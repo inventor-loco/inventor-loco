@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <title>Vicente Matus Icaza — Home</title>
+  <title>Vicente Matus Icaza — Publications</title>
   <style>
 
     :root {
@@ -232,9 +232,9 @@
       <span>IDeTIC · ULPGC</span>
     </a>
     <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
+      <a href="index.html" class="">Home</a>
 <a href="cv.html" class="">CV</a>
-<a href="publications.html" class="">Publications</a>
+<a href="publications.html" class="active">Publications</a>
 <a href="courses.html" class="">Courses</a>
 <a href="contact.html" class="">Contact</a>
     </div>
@@ -244,58 +244,86 @@
 <main>
   <div class="wrap">
 
-    <section class="shell hero">
-      <div class="eyebrow">Research portfolio · teaching platform · applied prototyping</div>
-      <h1>Welcome.</h1>
-      <p class="lead">I work on optical camera communications, embedded systems, experimental prototyping, and teaching platforms built around practical engineering.</p>
-      <p class="intro">This homepage is intentionally brief. Use it as the front door to the four sections below: a concise CV, selected publications with BibTeX downloads, current courses and seminar tracks, and a contact page with a simple form.</p>
+    <section class="shell hero compact">
+      <div class="eyebrow">Selected research output</div>
+      <h1>Publications</h1>
+      <p class="lead">A reduced list of representative papers. The page avoids citation counters and paper statistics, and each entry provides a DOI and downloadable BibTeX.</p>
       <div class="hero-actions">
-        <a href="cv.html" class="btn">Open CV</a>
-        <a href="publications.html" class="btn-ghost">Browse publications</a>
-      </div>
-      <div class="grid-4" style="margin-top:2rem;">
-        <a class="jump-card" href="cv.html">
-          <div class="card-kicker">Profile</div>
-          <h3>CV</h3>
-          <p>Academic background, positions, research areas, mentoring, and a printable layout.</p>
-        </a>
-        <a class="jump-card" href="publications.html">
-          <div class="card-kicker">Research output</div>
-          <h3>Publications</h3>
-          <p>A reduced list of representative papers with DOI links and downloadable <code>.bib</code> citations.</p>
-        </a>
-        <a class="jump-card" href="courses.html">
-          <div class="card-kicker">Teaching platform</div>
-          <h3>Courses</h3>
-          <p>Seminar tracks, course families, and the structure of the teaching side you are preparing.</p>
-        </a>
-        <a class="jump-card" href="contact.html">
-          <div class="card-kicker">Collaboration</div>
-          <h3>Contact form</h3>
-          <p>Research collaborations, invited seminars, mentoring, prototyping, and project inquiries.</p>
-        </a>
+        <a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ" class="btn" target="_blank" rel="noopener">Full list on Google Scholar</a>
+        <a href="cv.html" class="btn-ghost">Back to CV</a>
       </div>
     </section>
 
     <section class="shell section">
-      <div class="section-kicker">At a glance</div>
-      <h2>What this site is for</h2>
-      <p class="section-sub">A clean personal site that separates overview from detail: the landing page stays light, while the deeper pages carry the academic, publication, and teaching content.</p>
-      <div class="grid-3" style="margin-top:1.35rem;">
-        <div class="card">
-          <div class="card-kicker">Research</div>
-          <h3>Optical wireless systems</h3>
-          <p>Camera-based communication, visible light links, harsh-channel experiments, and prototype-driven validation.</p>
+      <div class="section-kicker">Representative papers</div>
+      <h2>Reduced, cleaner list</h2>
+      <p class="section-sub">This page is intentionally curated. It highlights a few papers that represent survey work, healthcare applications, wireless sensor networks, harsh-channel experimentation, and receiver-side signal processing.</p>
+      <div class="pub-list" style="margin-top:1.2rem;">
+        
+        <div class="pub-item">
+          <div class="year">2025</div>
+          <div>
+            <div class="pub-title">Optical Camera Communications: Concept, Marketing, Implementation, Challenges and Applications</div>
+            <div class="pub-authors">Teli, S.R., <span class="self">Matus, V.</span>, Younus, O., Eollos-Jarosikova, K., Li, X., Hassan, N., Lin, B., Figueiredo, M., Alves, L., Vegni, A.M., Zvanovec, S., Perez-Jimenez, R., Ghassemlooy, Z.</div>
+            <div class="pub-venue">Science China Information Sciences, 68(10), 2025</div>
+            <p class="pub-note">A broad survey paper that frames the field, its implementation routes, open challenges, and application space.</p>
+            <div class="pub-actions">
+              <a class="pub-action" href="https://doi.org/10.1007/s11432-025-4504-3" target="_blank" rel="noopener">DOI</a>
+              <button class="pub-action" onclick="downloadBib('teli2025occsurvey')">Download .bib</button>
+            </div>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-kicker">Teaching</div>
-          <h3>Courses and seminars</h3>
-          <p>25-lesson seminar tracks with room to grow into slides, lab guides, code examples, and student resources.</p>
+        <div class="pub-item">
+          <div class="year">2024</div>
+          <div>
+            <div class="pub-title">Optical Camera Communications in Healthcare: A Wearable LED Transmitter Evaluation during Indoor Physical Exercise</div>
+            <div class="pub-authors">Niarchou, E., <span class="self">Matus, V.</span>, Rabadan, J., Guerra, V., Perez-Jimenez, R.</div>
+            <div class="pub-venue">Sensors, 24(9), 2766, 2024</div>
+            <p class="pub-note">Experimental wearable OCC applied to indoor physical exercise, with emphasis on movement, lighting, and practical link behavior.</p>
+            <div class="pub-actions">
+              <a class="pub-action" href="https://doi.org/10.3390/s24092766" target="_blank" rel="noopener">DOI</a>
+              <button class="pub-action" onclick="downloadBib('niarchou2024healthcare')">Download .bib</button>
+            </div>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-kicker">Applied work</div>
-          <h3>Instrumentation and prototyping</h3>
-          <p>Embedded hardware, experimentation, automation, and practical engineering for research and transfer.</p>
+        <div class="pub-item">
+          <div class="year">2021</div>
+          <div>
+            <div class="pub-title">Wireless Sensor Networks Using Sub-Pixel Optical Camera Communications: Advances in Experimental Channel Evaluation</div>
+            <div class="pub-authors"><span class="self">Matus, V.</span>, Guerra, V., Jurado-Verdu, C., Zvanovec, S., Perez-Jimenez, R.</div>
+            <div class="pub-venue">Sensors, 21(8), 2739, 2021</div>
+            <p class="pub-note">Experimental evaluation of sub-pixel OCC links for wireless sensor networks, emphasizing channel behavior in practical scenarios.</p>
+            <div class="pub-actions">
+              <a class="pub-action" href="https://doi.org/10.3390/s21082739" target="_blank" rel="noopener">DOI</a>
+              <button class="pub-action" onclick="downloadBib('matus2021subpixel')">Download .bib</button>
+            </div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="year">2020</div>
+          <div>
+            <div class="pub-title">Experimentally Derived Feasibility of Optical Camera Communications under Turbulence and Fog Conditions</div>
+            <div class="pub-authors"><span class="self">Matus, V.</span>, Eso, E., Teli, S.R., Perez-Jimenez, R., Zvanovec, S.</div>
+            <div class="pub-venue">Sensors, 20(3), 757, 2020</div>
+            <p class="pub-note">Experimental OCC under fog and turbulence, addressing harsh-channel feasibility rather than idealized laboratory assumptions.</p>
+            <div class="pub-actions">
+              <a class="pub-action" href="https://doi.org/10.3390/s20030757" target="_blank" rel="noopener">DOI</a>
+              <button class="pub-action" onclick="downloadBib('matus2020fog')">Download .bib</button>
+            </div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="year">2019</div>
+          <div>
+            <div class="pub-title">Correlation-based Signal Detection for Optical Camera Communication Systems under Ambient Light Noise</div>
+            <div class="pub-authors">Jurado-Verdu, C., <span class="self">Matus, V.</span>, Guerra, V., Perez-Jimenez, R.</div>
+            <div class="pub-venue">Optics Express, 27(14), 19150–19155, 2019</div>
+            <p class="pub-note">Receiver-side signal detection focused on synchronization and correlation-based processing under ambient light interference.</p>
+            <div class="pub-actions">
+              <a class="pub-action" href="https://doi.org/10.1364/OE.27.019150" target="_blank" rel="noopener">DOI</a>
+              <button class="pub-action" onclick="downloadBib('jurado2019correlation')">Download .bib</button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -313,6 +341,74 @@
     </div>
   </div>
 </footer>
+
+<script>
+  const bibEntries = {
+      teli2025occsurvey: `@article{Teli2025OCCSurvey,
+  author = {Teli, S. R. and Matus, V. and Younus, O. and Eollos-Jarosikova, K. and Li, X. and Hassan, N. and Lin, B. and Figueiredo, M. and Alves, L. N. and Vegni, A. M. and Zvanovec, S. and Perez-Jimenez, R. and Ghassemlooy, Z.},
+  title = {Optical Camera Communications: Concept, Marketing, Implementation, Challenges and Applications},
+  journal = {Science China Information Sciences},
+  volume = {68},
+  number = {10},
+  year = {2025},
+  doi = {10.1007/s11432-025-4504-3}
+}`,
+      niarchou2024healthcare: `@article{Niarchou2024Healthcare,
+  author = {Niarchou, Eleni and Matus, Vicente and Rabadan, Juan and Guerra, Veronica and Perez-Jimenez, Rafael},
+  title = {Optical Camera Communications in Healthcare: A Wearable LED Transmitter Evaluation during Indoor Physical Exercise},
+  journal = {Sensors},
+  volume = {24},
+  number = {9},
+  pages = {2766},
+  year = {2024},
+  doi = {10.3390/s24092766}
+}`,
+      matus2021subpixel: `@article{Matus2021SubPixel,
+  author = {Matus, Vicente and Guerra, Veronica and Jurado-Verdu, Carlos and Zvanovec, Stanislav and Perez-Jimenez, Rafael},
+  title = {Wireless Sensor Networks Using Sub-Pixel Optical Camera Communications: Advances in Experimental Channel Evaluation},
+  journal = {Sensors},
+  volume = {21},
+  number = {8},
+  pages = {2739},
+  year = {2021},
+  doi = {10.3390/s21082739}
+}`,
+      matus2020fog: `@article{Matus2020Fog,
+  author = {Matus, Vicente and Eso, Elizabeth and Teli, S. R. and Perez-Jimenez, Rafael and Zvanovec, Stanislav},
+  title = {Experimentally Derived Feasibility of Optical Camera Communications under Turbulence and Fog Conditions},
+  journal = {Sensors},
+  volume = {20},
+  number = {3},
+  pages = {757},
+  year = {2020},
+  doi = {10.3390/s20030757}
+}`,
+      jurado2019correlation: `@article{JuradoVerdu2019Correlation,
+  author = {Jurado-Verdu, Carlos and Matus, Vicente and Guerra, Veronica and Perez-Jimenez, Rafael},
+  title = {Correlation-based Signal Detection for Optical Camera Communication Systems under Ambient Light Noise},
+  journal = {Optics Express},
+  volume = {27},
+  number = {14},
+  pages = {19150--19155},
+  year = {2019},
+  doi = {10.1364/OE.27.019150}
+}`
+  };
+
+  function downloadBib(key) {
+    const content = bibEntries[key];
+    if (!content) return;
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${key}.bib`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  }
+</script>
 
 </body>
 </html>

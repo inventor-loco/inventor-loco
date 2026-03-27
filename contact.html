@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <title>Vicente Matus Icaza — Home</title>
+  <title>Vicente Matus Icaza — Contact</title>
   <style>
 
     :root {
@@ -232,70 +232,74 @@
       <span>IDeTIC · ULPGC</span>
     </a>
     <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
+      <a href="index.html" class="">Home</a>
 <a href="cv.html" class="">CV</a>
 <a href="publications.html" class="">Publications</a>
 <a href="courses.html" class="">Courses</a>
-<a href="contact.html" class="">Contact</a>
+<a href="contact.html" class="active">Contact</a>
     </div>
-    <a href="contact.html" class="nav-cta">Get in touch</a>
+    <a href="courses.html" class="nav-cta">View courses</a>
   </div>
 </nav>
 <main>
   <div class="wrap">
 
-    <section class="shell hero">
-      <div class="eyebrow">Research portfolio · teaching platform · applied prototyping</div>
-      <h1>Welcome.</h1>
-      <p class="lead">I work on optical camera communications, embedded systems, experimental prototyping, and teaching platforms built around practical engineering.</p>
-      <p class="intro">This homepage is intentionally brief. Use it as the front door to the four sections below: a concise CV, selected publications with BibTeX downloads, current courses and seminar tracks, and a contact page with a simple form.</p>
-      <div class="hero-actions">
-        <a href="cv.html" class="btn">Open CV</a>
-        <a href="publications.html" class="btn-ghost">Browse publications</a>
-      </div>
-      <div class="grid-4" style="margin-top:2rem;">
-        <a class="jump-card" href="cv.html">
-          <div class="card-kicker">Profile</div>
-          <h3>CV</h3>
-          <p>Academic background, positions, research areas, mentoring, and a printable layout.</p>
-        </a>
-        <a class="jump-card" href="publications.html">
-          <div class="card-kicker">Research output</div>
-          <h3>Publications</h3>
-          <p>A reduced list of representative papers with DOI links and downloadable <code>.bib</code> citations.</p>
-        </a>
-        <a class="jump-card" href="courses.html">
-          <div class="card-kicker">Teaching platform</div>
-          <h3>Courses</h3>
-          <p>Seminar tracks, course families, and the structure of the teaching side you are preparing.</p>
-        </a>
-        <a class="jump-card" href="contact.html">
-          <div class="card-kicker">Collaboration</div>
-          <h3>Contact form</h3>
-          <p>Research collaborations, invited seminars, mentoring, prototyping, and project inquiries.</p>
-        </a>
-      </div>
+    <section class="shell hero compact">
+      <div class="eyebrow">Contact</div>
+      <h1>Get in touch</h1>
+      <p class="lead">For research collaborations, invited seminars, mentoring, consulting, or applied prototyping inquiries.</p>
     </section>
 
     <section class="shell section">
-      <div class="section-kicker">At a glance</div>
-      <h2>What this site is for</h2>
-      <p class="section-sub">A clean personal site that separates overview from detail: the landing page stays light, while the deeper pages carry the academic, publication, and teaching content.</p>
-      <div class="grid-3" style="margin-top:1.35rem;">
+      <div class="section-kicker">Contact page</div>
+      <h2>Direct details and simple form</h2>
+      <div class="contact-grid" style="margin-top:1.2rem;">
         <div class="card">
-          <div class="card-kicker">Research</div>
-          <h3>Optical wireless systems</h3>
-          <p>Camera-based communication, visible light links, harsh-channel experiments, and prototype-driven validation.</p>
+          <div class="mini-list">
+            <div class="mini-item"><div class="mini-k">Email</div><div class="mini-v"><a href="mailto:vicente.matus@ulpgc.es">vicente.matus@ulpgc.es</a></div></div>
+            <div class="mini-item"><div class="mini-k">Institution</div><div class="mini-v">IDeTIC, ULPGC · Las Palmas de Gran Canaria, Spain</div></div>
+            <div class="mini-item"><div class="mini-k">Scholar</div><div class="mini-v"><a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ" target="_blank" rel="noopener">Google Scholar</a></div></div>
+            <div class="mini-item"><div class="mini-k">ORCID</div><div class="mini-v"><a href="https://orcid.org/0000-0003-4262-3882" target="_blank" rel="noopener">0000-0003-4262-3882</a></div></div>
+            <div class="mini-item"><div class="mini-k">Scopus</div><div class="mini-v"><a href="https://www.scopus.com/authid/detail.uri?authorId=57203117554" target="_blank" rel="noopener">57203117554</a></div></div>
+          </div>
+          <div class="hero-actions" style="margin-top:1rem;">
+            <button class="tiny-btn" id="copy-email">Copy email</button>
+            <a class="tiny-btn" href="courses.html">View courses</a>
+          </div>
+          <div class="note">The form below is frontend-only: it opens your email client with the message prefilled, so it works without a backend.</div>
         </div>
+
         <div class="card">
-          <div class="card-kicker">Teaching</div>
-          <h3>Courses and seminars</h3>
-          <p>25-lesson seminar tracks with room to grow into slides, lab guides, code examples, and student resources.</p>
-        </div>
-        <div class="card">
-          <div class="card-kicker">Applied work</div>
-          <h3>Instrumentation and prototyping</h3>
-          <p>Embedded hardware, experimentation, automation, and practical engineering for research and transfer.</p>
+          <form id="contact-form" class="form-grid">
+            <div class="frow-2">
+              <label>
+                <span>Name</span>
+                <input type="text" id="name" placeholder="Your name" />
+              </label>
+              <label>
+                <span>Email</span>
+                <input type="email" id="email" placeholder="your@email.com" />
+              </label>
+            </div>
+            <label>
+              <span>Subject</span>
+              <select id="subject">
+                <option>Research collaboration</option>
+                <option>Invited seminar / talk</option>
+                <option>Teaching inquiry</option>
+                <option>Consulting / prototyping</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea id="message" placeholder="Write your message here"></textarea>
+            </label>
+            <div class="row-actions">
+              <button type="submit" class="btn">Open email draft</button>
+              <span id="form-status" class="muted"></span>
+            </div>
+          </form>
         </div>
       </div>
     </section>
@@ -313,6 +317,39 @@
     </div>
   </div>
 </footer>
+
+<script>
+  document.getElementById('copy-email').addEventListener('click', async () => {
+    const email = 'vicente.matus@ulpgc.es';
+    try {
+      await navigator.clipboard.writeText(email);
+      document.getElementById('copy-email').textContent = 'Copied ✓';
+      setTimeout(() => document.getElementById('copy-email').textContent = 'Copy email', 1800);
+    } catch (e) {
+      window.location.href = 'mailto:' + email;
+    }
+  });
+
+  document.getElementById('contact-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const body = [
+      name ? `Name: ${name}` : '',
+      email ? `Email: ${email}` : '',
+      '',
+      message
+    ].filter(Boolean).join('
+');
+
+    const mailto = `mailto:vicente.matus@ulpgc.es?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+    document.getElementById('form-status').textContent = 'Opening your email app…';
+    setTimeout(() => document.getElementById('form-status').textContent = '', 2400);
+  });
+</script>
 
 </body>
 </html>

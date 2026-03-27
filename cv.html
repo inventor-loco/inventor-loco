@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <title>Vicente Matus Icaza — Home</title>
+  <title>Vicente Matus Icaza — CV</title>
   <style>
 
     :root {
@@ -232,8 +232,8 @@
       <span>IDeTIC · ULPGC</span>
     </a>
     <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
-<a href="cv.html" class="">CV</a>
+      <a href="index.html" class="">Home</a>
+<a href="cv.html" class="active">CV</a>
 <a href="publications.html" class="">Publications</a>
 <a href="courses.html" class="">Courses</a>
 <a href="contact.html" class="">Contact</a>
@@ -244,58 +244,114 @@
 <main>
   <div class="wrap">
 
-    <section class="shell hero">
-      <div class="eyebrow">Research portfolio · teaching platform · applied prototyping</div>
-      <h1>Welcome.</h1>
-      <p class="lead">I work on optical camera communications, embedded systems, experimental prototyping, and teaching platforms built around practical engineering.</p>
-      <p class="intro">This homepage is intentionally brief. Use it as the front door to the four sections below: a concise CV, selected publications with BibTeX downloads, current courses and seminar tracks, and a contact page with a simple form.</p>
-      <div class="hero-actions">
-        <a href="cv.html" class="btn">Open CV</a>
-        <a href="publications.html" class="btn-ghost">Browse publications</a>
+    <section class="shell hero compact">
+      <div class="eyebrow">Curriculum vitae</div>
+      <h1>CV</h1>
+      <p class="lead">A concise academic profile focused on research, teaching, mentoring, and prototype-driven engineering.</p>
+      <div class="hero-actions no-print">
+        <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+        <a href="contact.html" class="btn-ghost">Contact</a>
       </div>
-      <div class="grid-4" style="margin-top:2rem;">
-        <a class="jump-card" href="cv.html">
-          <div class="card-kicker">Profile</div>
-          <h3>CV</h3>
-          <p>Academic background, positions, research areas, mentoring, and a printable layout.</p>
-        </a>
-        <a class="jump-card" href="publications.html">
-          <div class="card-kicker">Research output</div>
-          <h3>Publications</h3>
-          <p>A reduced list of representative papers with DOI links and downloadable <code>.bib</code> citations.</p>
-        </a>
-        <a class="jump-card" href="courses.html">
-          <div class="card-kicker">Teaching platform</div>
-          <h3>Courses</h3>
-          <p>Seminar tracks, course families, and the structure of the teaching side you are preparing.</p>
-        </a>
-        <a class="jump-card" href="contact.html">
-          <div class="card-kicker">Collaboration</div>
-          <h3>Contact form</h3>
-          <p>Research collaborations, invited seminars, mentoring, prototyping, and project inquiries.</p>
-        </a>
+      <p class="print-only body-copy"><strong>Vicente Matus Icaza</strong> · IDeTIC, Universidad de Las Palmas de Gran Canaria · vicente.matus@ulpgc.es</p>
+    </section>
+
+    <section class="shell section">
+      <div class="section-kicker">Academic profile</div>
+      <h2>Positions & education</h2>
+      <div class="timeline" style="margin-top:1.2rem;">
+        <div class="timeline-row">
+          <div class="year">2022–present</div>
+          <div>
+            <div class="timeline-title">Postdoctoral Researcher</div>
+            <div class="timeline-org">IDeTIC, Universidad de Las Palmas de Gran Canaria</div>
+            <p class="timeline-desc">Postdoctoral research in Optical Camera Communications and experimental optical wireless systems.</p>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="year">2023–2024</div>
+          <div>
+            <div class="timeline-title">Visiting Researcher</div>
+            <div class="timeline-org">Instituto de Telecomunicações, Aveiro, Portugal</div>
+            <p class="timeline-desc">Research collaboration connected to wearable OCC and related experimental communication problems.</p>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="year">2020–2021</div>
+          <div>
+            <div class="timeline-title">Research stay</div>
+            <div class="timeline-org">Northumbria University</div>
+            <p class="timeline-desc">International research collaboration during the Ph.D. stage.</p>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="year">2021</div>
+          <div>
+            <div class="timeline-title">Ph.D. in EmITIC</div>
+            <div class="timeline-org">Universidad de Las Palmas de Gran Canaria</div>
+            <p class="timeline-desc">Completed under a Marie Skłodowska-Curie Actions fellowship.</p>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="year">2018</div>
+          <div>
+            <div class="timeline-title">Electrical Engineer</div>
+            <div class="timeline-org">Universidad de Chile</div>
+            <p class="timeline-desc">Training in electrical engineering, instrumentation, and communication-oriented experimentation.</p>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="shell section">
-      <div class="section-kicker">At a glance</div>
-      <h2>What this site is for</h2>
-      <p class="section-sub">A clean personal site that separates overview from detail: the landing page stays light, while the deeper pages carry the academic, publication, and teaching content.</p>
-      <div class="grid-3" style="margin-top:1.35rem;">
+      <div class="section-kicker">Portfolio areas</div>
+      <h2>Focus of work</h2>
+      <div class="grid-2" style="margin-top:1.2rem;">
         <div class="card">
           <div class="card-kicker">Research</div>
-          <h3>Optical wireless systems</h3>
-          <p>Camera-based communication, visible light links, harsh-channel experiments, and prototype-driven validation.</p>
+          <h3>Camera-based communication systems</h3>
+          <p>Design and evaluation of OCC systems using practical transmitters, camera receivers, and experimentally validated signal-processing pipelines.</p>
         </div>
+        <div class="card">
+          <div class="card-kicker">Experiments</div>
+          <h3>Harsh and unconventional environments</h3>
+          <p>Work related to fog, turbulence, healthcare wearables, underwater links, and satellite-oriented scenarios where standard assumptions often break down.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Hardware</div>
+          <h3>Embedded systems and prototyping</h3>
+          <p>Development of optical front-ends, acquisition setups, instrumentation, and prototype platforms that connect theory with deployable systems.</p>
+        </div>
+        <div class="card">
+          <div class="card-kicker">Transfer</div>
+          <h3>Applied R&amp;D</h3>
+          <p>Interest in automation, instrumentation, prototyping, and collaboration models that bridge academic work with technology transfer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section">
+      <div class="section-kicker">Teaching & service</div>
+      <h2>Academic contribution</h2>
+      <div class="grid-2" style="margin-top:1.2rem;">
         <div class="card">
           <div class="card-kicker">Teaching</div>
-          <h3>Courses and seminars</h3>
-          <p>25-lesson seminar tracks with room to grow into slides, lab guides, code examples, and student resources.</p>
+          <h3>Courses, seminars, and labs</h3>
+          <p>Teaching activity includes optical communications seminars, laboratory-oriented OCC demonstrations, mentoring, and course development for broader engineering audiences.</p>
+          <div class="tag-row">
+            <span class="tag accent">Seminars</span>
+            <span class="tag">Labs</span>
+            <span class="tag">Mentoring</span>
+          </div>
         </div>
         <div class="card">
-          <div class="card-kicker">Applied work</div>
-          <h3>Instrumentation and prototyping</h3>
-          <p>Embedded hardware, experimentation, automation, and practical engineering for research and transfer.</p>
+          <div class="card-kicker">Service</div>
+          <h3>Supervision and examination</h3>
+          <p>Ph.D. supervision, external examination of theses, invited seminars, and research guidance connected to optical wireless communications and experimental engineering.</p>
+          <div class="tag-row">
+            <span class="tag">Supervision</span>
+            <span class="tag">Review</span>
+            <span class="tag">Invited talks</span>
+          </div>
         </div>
       </div>
     </section>
