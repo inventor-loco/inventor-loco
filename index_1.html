@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vicente Matus Icaza — Optical Wireless Communications Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white:  #ffffff;
+      --ink:    #0d0d0d;
+      --ink2:   #4a4a4a;
+      --ink3:   #888;
+      --rule:   #e0e0e0;
+      --rule2:  #f2f2f2;
+      --accent: #1a56db;
+      --acc2:   #e8f0fe;
+      --mono:   'IBM Plex Mono', monospace;
+      --sans:   'IBM Plex Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--white);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 2.5rem;
+      height: 54px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-id { display: flex; align-items: baseline; gap: 0.6rem; text-decoration: none; color: var(--ink); }
+    .nav-name { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em; }
+    .nav-affil { font-family: var(--mono); font-size: 0.68rem; color: var(--ink3); }
+    .nav-links { display: flex; gap: 0.2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem; color: var(--ink2); text-decoration: none;
+      padding: 0.3rem 0.7rem; border-radius: 3px; transition: background .15s, color .15s;
+    }
+    .nav-links a:hover { background: var(--rule2); color: var(--ink); }
+    .nav-cta {
+      font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
+      padding: 0.38rem 0.9rem; background: var(--accent); color: white;
+      border-radius: 3px; text-decoration: none; transition: opacity .15s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── PAGE SHELL ── */
+    .page { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 6.5rem 0 4rem;
+      display: grid; grid-template-columns: 1fr 300px;
+      gap: 4rem; align-items: start;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-kicker {
+      font-family: var(--mono); font-size: 0.7rem; color: var(--accent);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem;
+      opacity: 0; animation: fadeUp .55s .05s forwards;
+    }
+    .hero-name {
+      font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 600;
+      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+      opacity: 0; animation: fadeUp .55s .15s forwards;
+    }
+    /* top-down value proposition — the most important line */
+    .hero-value {
+      font-size: 1.05rem; font-weight: 400; color: var(--ink);
+      line-height: 1.6; margin-bottom: 1.25rem; max-width: 580px;
+      border-left: 2px solid var(--accent); padding-left: 1rem;
+      opacity: 0; animation: fadeUp .55s .22s forwards;
+    }
+    .hero-role {
+      font-size: 0.9rem; color: var(--ink2); font-weight: 300;
+      margin-bottom: 1.4rem; line-height: 1.6;
+      opacity: 0; animation: fadeUp .55s .28s forwards;
+    }
+    .hero-role strong { font-weight: 500; color: var(--ink); }
+    .hero-bio {
+      font-size: 0.9rem; color: var(--ink2); max-width: 560px;
+      line-height: 1.78; margin-bottom: 2rem;
+      opacity: 0; animation: fadeUp .55s .35s forwards;
+    }
+    .hero-links {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      opacity: 0; animation: fadeUp .55s .45s forwards;
+    }
+    .hero-link {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-family: var(--mono); font-size: 0.72rem;
+      color: var(--ink2); text-decoration: none;
+      border: 1px solid var(--rule); border-radius: 3px;
+      padding: 0.3rem 0.75rem; transition: border-color .15s, color .15s;
+    }
+    .hero-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* sidebar */
+    .hero-sidebar { opacity: 0; animation: fadeIn .8s .5s forwards; }
+    .sidebar-card { border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+    .sidebar-photo {
+      height: 160px; background: linear-gradient(150deg, #dce8ff, #b8cbf5);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 3rem; font-weight: 600;
+      color: var(--accent); letter-spacing: -0.05em;
+    }
+    .sidebar-meta { padding: 1rem; }
+    .smr {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.4rem 0; border-bottom: 1px solid var(--rule2); font-size: 0.8rem;
+    }
+    .smr:last-child { border-bottom: none; }
+    .smr-k { font-family: var(--mono); font-size: 0.65rem; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.07em; }
+    .smr-v { color: var(--ink); font-weight: 400; text-align: right; }
+    .badge {
+      font-family: var(--mono); font-size: 0.62rem; font-weight: 500;
+      padding: 0.15rem 0.5rem; border-radius: 2px;
+      background: var(--acc2); color: var(--accent);
+    }
+
+    /* ── SECTION ── */
+    .section { padding: 4.5rem 0; border-bottom: 1px solid var(--rule); }
+    .section:last-of-type { border-bottom: none; }
+    .sec-head { margin-bottom: 2.75rem; }
+    .sec-idx { font-family: var(--mono); font-size: 0.67rem; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.45rem; }
+    .sec-title { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.4rem; }
+    .sec-sub { font-size: 0.88rem; color: var(--ink2); max-width: 520px; }
+
+    /* ── PUBLICATIONS ── */
+    .pub-item {
+      display: grid; grid-template-columns: 48px 1fr; gap: 0 1.3rem;
+      padding: 1.5rem 0; border-bottom: 1px solid var(--rule2);
+    }
+    .pub-item:last-child { border-bottom: none; }
+    .pub-year { font-family: var(--mono); font-size: 0.72rem; color: var(--ink3); padding-top: 0.18rem; }
+    .pub-title { font-size: 0.93rem; font-weight: 500; line-height: 1.45; margin-bottom: 0.28rem; }
+    .pub-authors { font-size: 0.78rem; color: var(--ink2); margin-bottom: 0.2rem; }
+    .pub-authors .self { font-weight: 500; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 2px; }
+    .pub-venue { font-size: 0.76rem; color: var(--ink3); font-style: italic; margin-bottom: 0.65rem; }
+    .pub-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.65rem; }
+    .pub-tag {
+      font-family: var(--mono); font-size: 0.62rem; font-weight: 500;
+      padding: 0.17rem 0.48rem; border-radius: 2px;
+      background: var(--rule2); color: var(--ink2);
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .pub-tag.hi { background: var(--acc2); color: var(--accent); }
+    .pub-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+    .pub-btn {
+      font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+      text-decoration: none; color: var(--accent);
+      border: 1px solid currentColor; padding: 0.2rem 0.58rem; border-radius: 2px;
+      transition: background .14s, color .14s;
+    }
+    .pub-btn:hover { background: var(--accent); color: white; }
+    .pub-btn.pdf { color: #b91c1c; border-color: currentColor; }
+    .pub-btn.pdf:hover { background: #b91c1c; color: white; }
+    .abs-toggle {
+      font-family: var(--mono); font-size: 0.66rem; color: var(--ink3);
+      border: none; background: none; cursor: pointer; padding: 0 0.2rem;
+      transition: color .14s;
+    }
+    .abs-toggle:hover { color: var(--ink); }
+    .pub-abstract {
+      display: none; margin-top: 0.8rem; font-size: 0.82rem; color: var(--ink2);
+      line-height: 1.7; padding: 0.8rem 0.95rem;
+      background: var(--rule2); border-left: 2px solid var(--rule);
+    }
+    .pub-abstract.open { display: block; }
+
+    /* citations badge inline */
+    .cite-count {
+      font-family: var(--mono); font-size: 0.62rem; color: var(--ink3);
+      padding: 0.17rem 0.48rem; border-radius: 2px;
+      background: var(--rule2); border: 1px solid var(--rule);
+    }
+
+    /* ── CV ── */
+    .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .cv-block { margin-bottom: 2.25rem; }
+    .cv-block-h {
+      font-family: var(--mono); font-size: 0.67rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink3);
+      padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule); margin-bottom: 1rem;
+    }
+    .cv-entry { display: grid; grid-template-columns: 78px 1fr; gap: 0 0.9rem; margin-bottom: 1.15rem; }
+    .cv-yr { font-family: var(--mono); font-size: 0.7rem; color: var(--ink3); padding-top: 0.17rem; }
+    .cv-t { font-size: 0.875rem; font-weight: 500; margin-bottom: 0.1rem; }
+    .cv-o { font-size: 0.8rem; color: var(--ink2); margin-bottom: 0.18rem; }
+    .cv-d { font-size: 0.78rem; color: var(--ink3); line-height: 1.55; }
+
+    .skill-rows { display: flex; flex-direction: column; gap: 0.85rem; }
+    .skill-row { display: grid; grid-template-columns: 140px 1fr; align-items: center; gap: 1rem; }
+    .sk-label { font-family: var(--mono); font-size: 0.7rem; color: var(--ink2); }
+    .sk-track { height: 3px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+    .sk-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0; transition: width 1.1s cubic-bezier(.16,1,.3,1); }
+
+    .dl-cv {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
+      color: var(--ink); border: 1px solid var(--ink); padding: 0.45rem 1rem;
+      border-radius: 3px; text-decoration: none; transition: background .15s, color .15s;
+    }
+    .dl-cv:hover { background: var(--ink); color: white; }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .contact-desc { font-size: 0.9rem; color: var(--ink2); line-height: 1.75; margin-bottom: 1.75rem; }
+    .cinfo-row {
+      display: flex; align-items: baseline; padding: 0.6rem 0;
+      border-bottom: 1px solid var(--rule2); font-size: 0.83rem;
+    }
+    .cinfo-row:first-child { border-top: 1px solid var(--rule2); }
+    .cinfo-k { font-family: var(--mono); font-size: 0.67rem; color: var(--ink3); width: 86px; flex-shrink: 0; text-transform: uppercase; letter-spacing: 0.06em; }
+    .cinfo-v { color: var(--ink); }
+    .cinfo-v a { color: var(--accent); text-decoration: none; }
+    .cinfo-v a:hover { text-decoration: underline; }
+
+    .cform { display: flex; flex-direction: column; gap: 0.9rem; }
+    .frow2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+    .fg { display: flex; flex-direction: column; gap: 0.28rem; }
+    .fg label { font-family: var(--mono); font-size: 0.65rem; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.08em; }
+    .fg input, .fg textarea, .fg select {
+      font-family: var(--sans); font-size: 0.875rem; font-weight: 300;
+      color: var(--ink); background: var(--white);
+      border: 1px solid var(--rule); border-radius: 3px;
+      padding: 0.58rem 0.8rem; outline: none; transition: border-color .15s; width: 100%;
+    }
+    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--accent); }
+    .fg textarea { resize: vertical; min-height: 96px; }
+    .btn-send {
+      align-self: flex-start; font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
+      background: var(--ink); color: white; border: none;
+      padding: 0.55rem 1.4rem; border-radius: 3px; cursor: pointer; transition: background .15s;
+    }
+    .btn-send:hover { background: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--rule); padding: 1.75rem 0; }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.75rem; color: var(--ink3); flex-wrap: wrap; gap: 0.75rem;
+    }
+    .footer-inner a { color: var(--ink3); text-decoration: none; }
+    .footer-inner a:hover { color: var(--ink); }
+    .f-name { font-family: var(--mono); font-weight: 500; color: var(--ink); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    .reveal { opacity:0; transform:translateY(16px); transition: opacity .6s, transform .6s; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:860px) {
+      .hero { grid-template-columns:1fr; padding-top:5.5rem; }
+      .hero-sidebar, .nav-links { display:none; }
+      .cv-grid, .contact-grid { grid-template-columns:1fr; gap:2rem; }
+      .frow2 { grid-template-columns:1fr; }
+    }
+    @media (max-width:520px) {
+      .page { padding:0 1.1rem; }
+      .nav-inner { padding:0 1.1rem; }
+      .pub-item { grid-template-columns:1fr; }
+      .pub-year { margin-bottom:0.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-id">
+      <span class="nav-name">Vicente Matus Icaza</span>
+      <span class="nav-affil">IDeTIC · ULPGC</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#cv">CV</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Collaborate</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page">
+  <div class="hero">
+    <div>
+      <div class="hero-kicker">Optical Wireless Communications · Embedded Systems · IoT</div>
+      <h1 class="hero-name">Vicente Matus Icaza</h1>
+
+      <!-- Top-down: value first -->
+      <p class="hero-value">
+        I develop camera-based optical wireless communication systems that work in real-world conditions — fog, sandstorms, underwater, wearables, satellites — and publish the experimental results so others can build on them.
+      </p>
+
+      <p class="hero-role">
+        <strong>Postdoctoral Researcher</strong>, IDeTIC — Instituto para el Desarrollo Tecnológico y la Innovación en Comunicaciones<br>
+        Universidad de Las Palmas de Gran Canaria · Spain
+      </p>
+
+      <p class="hero-bio">
+        Ph.D. (2021, ULPGC, EU Marie Skłodowska-Curie Fellow) · B.Sc. Electrical Engineering (2018, Universidad de Chile). Previously visiting researcher at Instituto de Telecomunicações, Aveiro (2022–2024) and Northumbria University (2020–2021). Co-founder of a technology startup focused on automation, instrumentation and intelligent systems.
+      </p>
+
+      <div class="hero-links">
+        <a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ" class="hero-link" target="_blank">↗ Google Scholar</a>
+        <a href="https://orcid.org/0000-0003-4262-3882" class="hero-link" target="_blank">↗ ORCID</a>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=57203117554" class="hero-link" target="_blank">↗ Scopus</a>
+        <a href="mailto:vicente.matus@ulpgc.es" class="hero-link">✉ Email</a>
+        <a href="#" class="hero-link">↓ CV (PDF)</a>
+      </div>
+    </div>
+
+    <div class="hero-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-photo">VM</div>
+        <div class="sidebar-meta">
+          <div class="smr"><span class="smr-k">Status</span><span class="smr-v"><span class="badge">Open to Collab</span></span></div>
+          <div class="smr"><span class="smr-k">Location</span><span class="smr-v">Las Palmas de GC, Spain</span></div>
+          <div class="smr"><span class="smr-k">Citations</span><span class="smr-v">373 total · 339 since 2021</span></div>
+          <div class="smr"><span class="smr-k">h-index</span><span class="smr-v">12 total · 10 since 2021</span></div>
+          <div class="smr"><span class="smr-k">i10-index</span><span class="smr-v">13 total · 11 since 2021</span></div>
+          <div class="smr"><span class="smr-k">ORCID</span><span class="smr-v">0000-0003-4262-3882</span></div>
+          <div class="smr"><span class="smr-k">ScopusID</span><span class="smr-v">57203117554</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PUBLICATIONS -->
+<div class="page">
+  <section class="section" id="publications">
+    <div class="sec-head reveal">
+      <div class="sec-idx">01 — Research Output</div>
+      <h2 class="sec-title">Selected Publications</h2>
+      <p class="sec-sub">Experimental OCC research across journals and IEEE/OSA/MDPI conferences. Full list on Google Scholar — 373 citations, h-index 12.</p>
+    </div>
+
+    <div class="reveal">
+
+      <!-- 1 -->
+      <div class="pub-item">
+        <div class="pub-year">2025</div>
+        <div>
+          <div class="pub-title">Optical Camera Communications: Concept, Marketing, Implementation, Challenges and Applications</div>
+          <div class="pub-authors">Teli, S.R., <span class="self">Matus, V.</span>, Younus, O.I., Eollos-Jarosikova, K., Li, X., et al.</div>
+          <div class="pub-venue">Science China Information Sciences, 68(10), 201301 · Science China, 2025</div>
+          <div class="pub-tags"><span class="pub-tag">OCC</span><span class="pub-tag">Survey</span><span class="pub-tag">IoT</span></div>
+          <div class="pub-actions">
+            <a href="#" class="pub-btn">DOI</a>
+            <span class="cite-count">2 cit.</span>
+            <button class="abs-toggle" onclick="toggleAbs(this)">+ Abstract</button>
+          </div>
+          <div class="pub-abstract">A comprehensive overview of Optical Camera Communication covering physical layer concepts, system architecture, modulation and implementation strategies, open challenges, and practical applications — co-authored by 13 researchers from 8 institutions across Europe and Asia.</div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="pub-item">
+        <div class="pub-year">2023</div>
+        <div>
+          <div class="pub-title">Hybrid Optical Wireless Communication for Versatile IoT Applications: Data Rate Improvement and Analysis</div>
+          <div class="pub-authors">Teli, S.R., Guerra-Yanez, C., <span class="self">Matus, V.</span>, Pérez-Jiménez, R., Ghassemlooy, Z., Zvanovec, S.</div>
+          <div class="pub-venue">IEEE Access, 11, pp. 55107–55116 · IEEE, 2023</div>
+          <div class="pub-tags"><span class="pub-tag">IoT</span><span class="pub-tag">Hybrid OWC</span><span class="pub-tag">Data Rate</span></div>
+          <div class="pub-actions">
+            <a href="#" class="pub-btn">DOI</a>
+            <span class="cite-count">14 cit.</span>
+            <button class="abs-toggle" onclick="toggleAbs(this)">+ Abstract</button>
+          </div>
+          <div class="pub-abstract">Presents a hybrid OCC/RF architecture demonstrating significant data rate improvements for heterogeneous IoT deployments. Experimental analysis covers link budget, throughput, and latency across indoor scenarios.</div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="pub-item">
+        <div class="pub-year">2021</div>
+        <div>
+          <div class="pub-title">Wireless Sensor Networks Using Sub-Pixel Optical Camera Communications: Advances in Experimental Channel Evaluation</div>
+          <div class="pub-authors"><span class="self">Matus, V.</span>, Guerra, V., Jurado-Verdu, C., Zvanovec, S., Pérez-Jiménez, R.</div>
+          <div class="pub-venue">Sensors, 21(8), 2739 · MDPI, 2021</div>
+          <div class="pub-tags"><span class="pub-tag">WSN</span><span class="pub-tag">Sub-pixel OCC</span><span class="pub-tag">Channel</span></div>
+          <div class="pub-actions">
+            <a href="#" class="pub-btn pdf">PDF</a>
+            <a href="#" class="pub-btn">DOI</a>
+            <span class="cite-count">25 cit.</span>
+            <button class="abs-toggle" onclick="toggleAbs(this)">+ Abstract</button>
+          </div>
+          <div class="pub-abstract">Experimental evaluation of sub-pixel OCC links for distributed wireless sensor networking, characterizing path loss, noise, and modulation efficiency across indoor and semi-outdoor environments. Corresponding author.</div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="pub-item">
+        <div class="pub-year">2020</div>
+        <div>
+          <div class="pub-title">Experimentally Derived Feasibility of Optical Camera Communications under Turbulence and Fog Conditions</div>
+          <div class="pub-authors"><span class="self">Matus, V.</span>, Eso, E., Teli, S.R., Pérez-Jiménez, R., Zvanovec, S.</div>
+          <div class="pub-venue">Sensors, 20(3), 757 · MDPI, 2020</div>
+          <div class="pub-tags"><span class="pub-tag">OCC</span><span class="pub-tag">Channel Impairments</span><span class="pub-tag">Fog</span></div>
+          <div class="pub-actions">
+            <a href="#" class="pub-btn pdf">PDF</a>
+            <a href="#" class="pub-btn">DOI</a>
+            <span class="cite-count">36 cit.</span>
+            <button class="abs-toggle" onclick="toggleAbs(this)">+ Abstract</button>
+          </div>
+          <div class="pub-abstract">First experimental study quantifying OCC link degradation under turbulence and fog conditions. Results establish practical feasibility boundaries for outdoor deployment and provide benchmark data for system designers.</div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="pub-item">
+        <div class="pub-year">2020</div>
+        <div>
+          <div class="pub-title">Optical Camera Communications for IoT — Rolling-Shutter Based MIMO Scheme with Grouped LED Array Transmitter</div>
+          <div class="pub-authors">Teli, S.R., <span class="self">Matus, V.</span>, Zvanovec, S., Pérez-Jiménez, R., Vitek, S., Ghassemlooy, Z.</div>
+          <div class="pub-venue">Sensors, 20(12), 3361 · MDPI, 2020</div>
+          <div class="pub-tags"><span class="pub-tag hi">42 cit. — top cited</span><span class="pub-tag">MIMO</span><span class="pub-tag">Rolling Shutter</span><span class="pub-tag">IoT</span></div>
+          <div class="pub-actions">
+            <a href="#" class="pub-btn pdf">PDF</a>
+            <a href="#" class="pub-btn">DOI</a>
+            <button class="abs-toggle" onclick="toggleAbs(this)">+ Abstract</button>
+          </div>
+          <div class="pub-abstract">Proposes and validates a rolling-shutter MIMO scheme using grouped LED arrays, demonstrating a significant throughput gain over single-channel OCC. This is currently the most cited publication in this line of research.</div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="pub-item">
+        <div class="pub-year">2019</div>
+        <div>
+          <div class="pub-title">Correlation-Based Receiver for Optical Camera Communications</div>
+          <div class="pub-authors">Jurado-Verdu, C., <span class="self">Matus, V.</span>, Rabadan, J., Guerra, V., Pérez-Jiménez, R.</div>
+          <div class="pub-venue">Optics Express, 27(14), pp. 19150–19155 · Optical Society of America, 2019</div>
+          <div class="pub-tags"><span class="pub-tag">39 cit.</span><span class="pub-tag">Receiver Design</span><span class="pub-tag">Signal Processing</span></div>
+          <div class="pub-actions">
+            <a href="#" class="pub-btn pdf">PDF</a>
+            <a href="#" class="pub-btn">DOI</a>
+            <button class="abs-toggle" onclick="toggleAbs(this)">+ Abstract</button>
+          </div>
+          <div class="pub-abstract">Introduces a correlation-based synchronization and detection scheme for OCC systems, demonstrating robust performance under realistic noise conditions with consumer-grade cameras.</div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="pub-item">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">Optical Camera Communications in Healthcare: A Wearable LED Transmitter Evaluation during Indoor Physical Exercise</div>
+          <div class="pub-authors">Niarchou, E., <span class="self">Matus, V.</span>, Rabadan, J., Guerra, V., Pérez-Jiménez, R.</div>
+          <div class="pub-venue">Sensors, 24(9), 2766 · MDPI, 2024</div>
+          <div class="pub-tags"><span class="pub-tag">Wearable</span><span class="pub-tag">Healthcare</span><span class="pub-tag">OCC</span></div>
+          <div class="pub-actions">
+            <a href="#" class="pub-btn pdf">PDF</a>
+            <a href="#" class="pub-btn">DOI</a>
+            <span class="cite-count">7 cit.</span>
+            <button class="abs-toggle" onclick="toggleAbs(this)">+ Abstract</button>
+          </div>
+          <div class="pub-abstract">Evaluates an LED-based wearable transmitter for indoor OCC during physical activity, characterizing link quality under body movement, varying distances, and realistic ambient light interference relevant to healthcare monitoring applications.</div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="pub-item">
+        <div class="pub-year">2025</div>
+        <div>
+          <div class="pub-title">A Novel Hybrid OCC/RF Architecture for IoT-Based Smart Farming</div>
+          <div class="pub-authors">Luna-Rivera, J.M., Hernández-Morales, C.A., <span class="self">Matus, V.</span>, Rabadan, J., Rufo, J., Guerra, V., Pérez-Jiménez, R.</div>
+          <div class="pub-venue">IEEE Internet of Things Journal, 12(12), pp. 20071–20086 · IEEE, 2025</div>
+          <div class="pub-tags"><span class="pub-tag">Smart Farming</span><span class="pub-tag">Hybrid OCC/RF</span><span class="pub-tag">IoT</span></div>
+          <div class="pub-actions">
+            <a href="#" class="pub-btn">DOI</a>
+            <span class="cite-count">5 cit.</span>
+            <button class="abs-toggle" onclick="toggleAbs(this)">+ Abstract</button>
+          </div>
+          <div class="pub-abstract">Proposes and validates a hybrid architecture combining OCC and RF links for IoT sensor networks in agricultural environments, demonstrating improved coverage, reliability, and energy efficiency over single-technology approaches.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="reveal" style="margin-top:1.75rem;">
+      <a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ" class="hero-link" target="_blank">↗ All 50+ publications on Google Scholar</a>
+    </div>
+  </section>
+</div>
+
+<!-- CV -->
+<div class="page">
+  <section class="section" id="cv">
+    <div class="sec-head reveal">
+      <div class="sec-idx">02 — Curriculum Vitae</div>
+      <h2 class="sec-title">Background</h2>
+    </div>
+
+    <div class="cv-grid">
+      <div class="reveal">
+
+        <div class="cv-block">
+          <div class="cv-block-h">Current Position</div>
+          <div class="cv-entry">
+            <div class="cv-yr">2022–</div>
+            <div>
+              <div class="cv-t">Postdoctoral Researcher</div>
+              <div class="cv-o">IDeTIC, Universidad de Las Palmas de Gran Canaria</div>
+              <div class="cv-d">Beneficiary of the Catalina Ruiz 2022 Fellowship, Gobierno de Canarias. Leading experimental OCC research for distributed sensor networks.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-block">
+          <div class="cv-block-h">Previous Positions</div>
+          <div class="cv-entry">
+            <div class="cv-yr">2022–2024</div>
+            <div>
+              <div class="cv-t">Visiting Postdoctoral Researcher</div>
+              <div class="cv-o">Instituto de Telecomunicações, Universidade de Aveiro, Portugal</div>
+              <div class="cv-d">1 year 7 months. Research on wearable OCC transmitters and NLOS links.</div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-yr">2020–2021</div>
+            <div>
+              <div class="cv-t">Visiting Researcher (PhD Stay)</div>
+              <div class="cv-o">Optical Communications Research Group, Northumbria University, UK</div>
+              <div class="cv-d">3 months. Collaboration on turbulence and channel impairment characterization.</div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-yr">2019</div>
+            <div>
+              <div class="cv-t">Visiting Researcher (PhD Stay)</div>
+              <div class="cv-o">Dept. of Electromagnetic Field, Czech Technical University in Prague</div>
+              <div class="cv-d">3 months. Rolling-shutter MIMO modelling and simulation.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-block">
+          <div class="cv-block-h">Education</div>
+          <div class="cv-entry">
+            <div class="cv-yr">2021</div>
+            <div>
+              <div class="cv-t">Ph.D. in Business, Internet and Communications Technologies (EmITIC)</div>
+              <div class="cv-o">Universidad de Las Palmas de Gran Canaria</div>
+              <div class="cv-d">EU Marie Skłodowska-Curie Actions (MSCA) Fellow. Thesis: "Contribution to the Experimental Channel Evaluation of Optical Camera Communication for Wireless Sensor Networks."</div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-yr">2018</div>
+            <div>
+              <div class="cv-t">B.Sc. Electrical Engineering (Ingeniero Civil Electricista)</div>
+              <div class="cv-o">Universidad de Chile</div>
+              <div class="cv-d">Master's thesis: "Development of a Visible Light Communications Versatile Research Platform with Potential Application on Vehicular Networks."</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="dl-cv">↓ Full CV (PDF)</a>
+      </div>
+
+      <div class="reveal">
+        <div class="cv-block">
+          <div class="cv-block-h">Active Research Projects</div>
+          <div class="cv-entry">
+            <div class="cv-yr">2023–2026</div>
+            <div>
+              <div class="cv-t">OCC4SAT: Optical Camera Communications for Satellites</div>
+              <div class="cv-o">IDeTIC, ULPGC · PI: José A. Rabadán Borges</div>
+              <div class="cv-d">Total funding: €2,404,475.</div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-yr">2017–2021</div>
+            <div>
+              <div class="cv-t">VISION: European Training Network on Visible Light-Based Interoperability</div>
+              <div class="cv-o">ULPGC · EU Marie Skłodowska-Curie ITN · €247,872</div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-yr">2018–2021</div>
+            <div>
+              <div class="cv-t">OSCAR: Hybrid Optical Architectures for Smart Cities</div>
+              <div class="cv-o">ULPGC · Spanish National Research Plan · €127,000</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-block">
+          <div class="cv-block-h">Technical Expertise</div>
+          <div class="skill-rows" id="skills">
+            <div class="skill-row"><span class="sk-label">OCC / VLC Systems</span><div class="sk-track"><div class="sk-fill" data-w="96%"></div></div></div>
+            <div class="skill-row"><span class="sk-label">Embedded Hardware</span><div class="sk-track"><div class="sk-fill" data-w="90%"></div></div></div>
+            <div class="skill-row"><span class="sk-label">Signal Processing</span><div class="sk-track"><div class="sk-fill" data-w="88%"></div></div></div>
+            <div class="skill-row"><span class="sk-label">PCB / Prototyping</span><div class="sk-track"><div class="sk-fill" data-w="85%"></div></div></div>
+            <div class="skill-row"><span class="sk-label">Python / MATLAB</span><div class="sk-track"><div class="sk-fill" data-w="82%"></div></div></div>
+            <div class="skill-row"><span class="sk-label">3D Printing / Fab</span><div class="sk-track"><div class="sk-fill" data-w="78%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="cv-block" style="margin-top:2rem;">
+          <div class="cv-block-h">Service</div>
+          <div class="cv-entry">
+            <div class="cv-yr">2025</div>
+            <div>
+              <div class="cv-t">Ph.D. Thesis Supervisor</div>
+              <div class="cv-o">Eleni Niarchou — "OCC Applied to Wearable Sensor Networks", ULPGC (defended 05/09/2025)</div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-yr">2022–23</div>
+            <div>
+              <div class="cv-t">External Examiner, 6 M.Sc. / Ph.D. Theses</div>
+              <div class="cv-o">Universidade de Aveiro (4) · Universidad de Chile (1) · ITM Colombia (1)</div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-yr">2022</div>
+            <div>
+              <div class="cv-t">Invited Seminar — Optical Wireless Communications</div>
+              <div class="cv-o">Universidad de Chile · 15 hours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div class="page">
+  <section class="section" id="contact">
+    <div class="sec-head reveal">
+      <div class="sec-idx">03 — Contact</div>
+      <h2 class="sec-title">Get in Touch</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <p class="contact-desc">
+          Available for research collaborations in optical wireless communications, invited seminars, joint project proposals (EU/national calls), and consulting on OCC system design and prototyping. I reply within 2 working days.
+        </p>
+        <div>
+          <div class="cinfo-row"><span class="cinfo-k">Email</span><span class="cinfo-v"><a href="mailto:vicente.matus@ulpgc.es">vicente.matus@ulpgc.es</a></span></div>
+          <div class="cinfo-row"><span class="cinfo-k">Institution</span><span class="cinfo-v">IDeTIC, ULPGC · Las Palmas de Gran Canaria, Spain</span></div>
+          <div class="cinfo-row"><span class="cinfo-k">Scholar</span><span class="cinfo-v"><a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ" target="_blank">Google Scholar</a></span></div>
+          <div class="cinfo-row"><span class="cinfo-k">ORCID</span><span class="cinfo-v"><a href="https://orcid.org/0000-0003-4262-3882" target="_blank">0000-0003-4262-3882</a></span></div>
+          <div class="cinfo-row"><span class="cinfo-k">Scopus</span><span class="cinfo-v"><a href="https://www.scopus.com/authid/detail.uri?authorId=57203117554" target="_blank">57203117554</a></span></div>
+          <div class="cinfo-row"><span class="cinfo-k">ResearcherID</span><span class="cinfo-v">ABG-1110-2021</span></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="cform">
+          <div class="frow2">
+            <div class="fg"><label>First name</label><input type="text" placeholder="Jana" /></div>
+            <div class="fg"><label>Last name</label><input type="text" placeholder="Novak" /></div>
+          </div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="you@institution.edu" /></div>
+          <div class="fg">
+            <label>Subject</label>
+            <select>
+              <option>Research Collaboration</option>
+              <option>Joint Project Proposal</option>
+              <option>Invited Seminar / Talk</option>
+              <option>Consulting / Prototyping</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label>Message</label><textarea placeholder="Briefly describe the collaboration or inquiry…"></textarea></div>
+          <button class="btn-send" id="send-btn">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span class="f-name">Vicente Matus Icaza</span>
+    <span>IDeTIC · ULPGC · Las Palmas de Gran Canaria, Spain</span>
+    <div style="display:flex;gap:1.25rem;">
+      <a href="https://orcid.org/0000-0003-4262-3882" target="_blank">ORCID</a>
+      <a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ" target="_blank">Scholar</a>
+      <a href="#" style="color:var(--accent);">CV (PDF)</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleAbs(btn) {
+    const abs = btn.closest('div').querySelector('.pub-abstract');
+    const open = abs.classList.toggle('open');
+    btn.textContent = open ? '− Abstract' : '+ Abstract';
+  }
+
+  const reveals = document.querySelectorAll('.reveal');
+  const ro = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 55); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => ro.observe(el));
+
+  const fills = document.querySelectorAll('.sk-fill');
+  const so = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.width = e.target.dataset.w; so.unobserve(e.target); } });
+  }, { threshold: 0.4 });
+  fills.forEach(f => so.observe(f));
+
+  document.getElementById('send-btn').addEventListener('click', function() {
+    this.textContent = 'Sent ✓'; this.style.background = '#166534';
+    setTimeout(() => { this.textContent = 'Send Message'; this.style.background = ''; }, 3000);
+  });
+</script>
+</body>
+</html>
