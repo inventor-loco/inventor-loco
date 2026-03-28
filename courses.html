@@ -1,354 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vicente Matus Icaza — Courses</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <title>Vicente Matus Icaza — Courses</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-
     :root {
-      --bg: #f8fafc;
-      --panel: rgba(255,255,255,0.94);
-      --panel-solid: #ffffff;
-      --ink: #0f172a;
-      --ink2: #475569;
-      --ink3: #64748b;
-      --rule: #e2e8f0;
-      --soft: #f1f5f9;
-      --accent: #1d4ed8;
-      --accent-soft: #dbeafe;
-      --shadow: 0 18px 46px rgba(15, 23, 42, 0.08);
-      --mono: 'IBM Plex Mono', monospace;
-      --sans: 'IBM Plex Sans', sans-serif;
-      --maxw: 1120px;
+      --white:#ffffff;--ink:#0d0d0d;--ink2:#4a4a4a;--ink3:#888;
+      --rule:#e0e0e0;--rule2:#f2f2f2;--accent:#1a56db;--acc2:#e8f0fe;
+      --mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 22%, #f8fafc 100%);
-      color: var(--ink);
-      font-family: var(--sans);
-      line-height: 1.68;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; }
-    .wrap, .nav-inner, .footer-inner { width: min(var(--maxw), calc(100% - 2.2rem)); margin: 0 auto; }
-    nav {
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: blur(12px);
-      background: rgba(248, 250, 252, 0.9);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.88);
-    }
-    .nav-inner {
-      min-height: 64px;
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    }
-    .brand {
-      display: flex; flex-direction: column; text-decoration: none; color: var(--ink);
-    }
-    .brand strong { font-size: 0.98rem; font-weight: 600; letter-spacing: -0.02em; }
-    .brand span {
-      font-family: var(--mono); font-size: 0.67rem; color: var(--ink3);
-      letter-spacing: 0.08em; text-transform: uppercase;
-    }
-    .nav-links { display: flex; align-items: center; gap: 0.25rem; flex-wrap: wrap; }
-    .nav-links a {
-      text-decoration: none; color: var(--ink2); font-size: 0.86rem;
-      padding: 0.45rem 0.78rem; border-radius: 999px; transition: .18s ease;
-    }
-    .nav-links a:hover, .nav-links a.active {
-      background: var(--panel-solid); color: var(--ink); box-shadow: 0 8px 22px rgba(15,23,42,0.06);
-    }
-    .nav-cta {
-      text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
-      min-height: 40px; padding: 0.68rem 0.95rem; border-radius: 999px;
-      background: var(--accent); color: white; font-weight: 500; font-size: 0.84rem;
-      box-shadow: 0 10px 24px rgba(29, 78, 216, 0.22); transition: .18s ease;
-    }
-    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 14px 30px rgba(29,78,216,0.28); }
-    main { padding: 2rem 0 4rem; }
-    .shell {
-      background: var(--panel);
-      border: 1px solid rgba(226, 232, 240, 0.9);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-    }
-    .eyebrow, .kicker, .meta-label, .tag, .year, .mini-k, .section-kicker {
-      font-family: var(--mono);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .hero { padding: 2.4rem; }
-    .hero.compact { padding: 2.1rem 2.3rem; }
-    .eyebrow { color: var(--accent); font-size: 0.72rem; margin-bottom: 1rem; }
-    h1 {
-      margin: 0 0 0.95rem;
-      font-size: clamp(2.3rem, 5vw, 4.2rem);
-      line-height: 0.98; letter-spacing: -0.05em;
-    }
-    .lead {
-      margin: 0 0 1rem; color: var(--ink); font-size: 1.05rem; max-width: 48rem;
-      border-left: 3px solid var(--accent); padding-left: 1rem;
-    }
-    .intro, .section-sub, .body-copy { margin: 0; color: var(--ink2); font-size: 0.96rem; }
-    .hero-actions, .row-actions, .pub-actions, .tag-row {
-      display: flex; flex-wrap: wrap; gap: 0.65rem;
-    }
-    .hero-actions { margin-top: 1.5rem; }
-    .btn, .btn-ghost, .pub-action, .tiny-btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
-      min-height: 42px; padding: 0.72rem 1rem; border-radius: 999px; text-decoration: none;
-      font-size: 0.84rem; font-weight: 500; transition: .18s ease; border: none; cursor: pointer;
-      font-family: var(--sans);
-    }
-    .btn { background: var(--accent); color: white; box-shadow: 0 10px 24px rgba(29,78,216,0.22); }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 30px rgba(29,78,216,0.28); }
-    .btn-ghost, .pub-action, .tiny-btn { background: white; color: var(--ink2); border: 1px solid var(--rule); }
-    .btn-ghost:hover, .pub-action:hover, .tiny-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
-    .tiny-btn { min-height: 36px; padding: 0.58rem 0.85rem; font-size: 0.8rem; }
-    .section { padding: 2rem 2.3rem; }
-    .section + .section { border-top: 1px solid var(--rule); }
-    .section-kicker { color: var(--ink3); font-size: 0.68rem; margin-bottom: 0.35rem; }
-    h2 { margin: 0 0 0.4rem; font-size: 1.56rem; line-height: 1.1; letter-spacing: -0.03em; }
-    .section-sub { max-width: 48rem; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
-    .card {
-      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-      border: 1px solid var(--rule); border-radius: 22px; padding: 1.15rem;
-    }
-    .jump-card {
-      text-decoration: none; color: var(--ink);
-      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-      border: 1px solid var(--rule); border-radius: 22px; padding: 1.15rem;
-      transition: .2s ease; display: flex; flex-direction: column; gap: .45rem;
-    }
-    .jump-card:hover { transform: translateY(-2px); border-color: rgba(29,78,216,0.28); box-shadow: 0 14px 28px rgba(15,23,42,0.08); }
-    .card-kicker { font-size: 0.68rem; color: var(--accent); }
-    .card h3, .jump-card h3, .pub-title, .timeline-title {
-      margin: 0; font-size: 1rem; line-height: 1.35; letter-spacing: -0.02em;
-    }
-    .card p, .jump-card p, .muted, .timeline-desc, .pub-meta, .pub-note {
-      margin: 0; color: var(--ink2); font-size: 0.86rem;
-    }
-    .tag-row { margin-top: 0.7rem; }
-    .tag {
-      font-size: 0.62rem; font-weight: 500; padding: 0.2rem 0.5rem; border-radius: 999px;
-      background: var(--soft); color: var(--ink2);
-    }
-    .tag.accent { background: var(--accent-soft); color: var(--accent); }
-    .stat-stack { display: grid; gap: 0.8rem; }
-    .stat {
-      display: grid; grid-template-columns: 90px 1fr; gap: 0.8rem;
-      padding-top: 0.8rem; border-top: 1px solid var(--rule);
-    }
-    .stat:first-child { border-top: none; padding-top: 0; }
-    .meta-label { font-size: 0.65rem; color: var(--ink3); padding-top: 0.15rem; }
-    .timeline { display: grid; gap: 1rem; }
-    .timeline-row {
-      display: grid; grid-template-columns: 110px 1fr; gap: 0.9rem;
-      padding-top: 1rem; border-top: 1px solid var(--rule);
-    }
-    .timeline-row:first-child { padding-top: 0; border-top: none; }
-    .year { font-size: 0.7rem; color: var(--ink3); padding-top: 0.15rem; }
-    .timeline-org, .pub-venue { color: var(--ink3); font-size: 0.8rem; margin-top: 0.15rem; }
-    .pub-list { display: grid; gap: 0; }
-    .pub-item { display: grid; grid-template-columns: 64px 1fr; gap: 0.95rem; padding: 1.15rem 0; border-top: 1px solid var(--rule); }
-    .pub-item:first-child { border-top: none; padding-top: 0; }
-    .pub-title { font-size: 0.98rem; font-weight: 500; margin-bottom: 0.25rem; }
-    .pub-authors { color: var(--ink2); font-size: 0.82rem; margin-bottom: 0.2rem; }
-    .pub-authors .self { font-weight: 600; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 2px; }
-    .pub-note { margin-top: 0.55rem; max-width: 48rem; }
-    .pub-actions { margin-top: 0.7rem; }
-    .info-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
-    .mini-list { display: grid; gap: 0.7rem; }
-    .mini-item { display: grid; grid-template-columns: 92px 1fr; gap: 0.75rem; padding-top: 0.7rem; border-top: 1px solid var(--rule); }
-    .mini-item:first-child { border-top: none; padding-top: 0; }
-    .mini-k { font-size: 0.64rem; color: var(--ink3); padding-top: 0.15rem; }
-    .mini-v { color: var(--ink2); font-size: 0.84rem; }
-    .contact-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 1rem; }
-    .form-grid { display: grid; gap: 0.9rem; }
-    .frow-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
-    label { display: grid; gap: 0.35rem; }
-    label span {
-      font-family: var(--mono); font-size: 0.65rem; color: var(--ink3);
-      text-transform: uppercase; letter-spacing: 0.08em;
-    }
-    input, textarea, select {
-      width: 100%; border: 1px solid var(--rule); border-radius: 16px; background: white;
-      padding: 0.78rem 0.9rem; font: inherit; color: var(--ink); outline: none;
-      transition: border-color .18s ease, box-shadow .18s ease;
-    }
-    textarea { min-height: 144px; resize: vertical; }
-    input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(29,78,216,0.08); }
-    .note {
-      margin-top: 0.75rem; padding: 0.95rem 1rem; border-radius: 18px;
-      background: var(--soft); color: var(--ink2); font-size: 0.84rem;
-    }
-    footer { padding: 0 0 2.2rem; }
-    .footer-inner {
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
-      color: var(--ink3); font-size: 0.78rem;
-    }
-    .footer-name { font-family: var(--mono); color: var(--ink); font-weight: 500; }
-    .footer-links { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .footer-links a { text-decoration: none; }
-    .footer-links a:hover { color: var(--ink); }
-    .print-only { display: none; }
-    @media (max-width: 980px) {
-      .grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .grid-3, .grid-2, .info-grid, .contact-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 760px) {
-      .nav-inner { padding: 0.3rem 0; align-items: flex-start; }
-      .nav-links { display: none; }
-      .hero, .hero.compact, .section { padding: 1.45rem; }
-      .pub-item, .timeline-row, .stat, .mini-item { grid-template-columns: 1fr; }
-      .year, .meta-label, .mini-k { padding-top: 0; }
-      .frow-2 { grid-template-columns: 1fr; }
-      .grid-4 { grid-template-columns: 1fr; }
-    }
-    @media print {
-      nav, .hero-actions, .nav-cta, footer, .no-print { display: none !important; }
-      body { background: white; }
-      main { padding: 0; }
-      .shell { box-shadow: none; border-radius: 0; border: none; }
-      .print-only { display: block; }
-    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--white);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased}
 
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 2.5rem;height:54px;display:flex;align-items:center;justify-content:space-between}
+    .nav-id{display:flex;align-items:baseline;gap:0.6rem;text-decoration:none;color:var(--ink)}
+    .nav-name{font-size:0.95rem;font-weight:600;letter-spacing:-0.01em}
+    .nav-affil{font-family:var(--mono);font-size:0.68rem;color:var(--ink3)}
+    .nav-links{display:flex;gap:0.2rem;list-style:none}
+    .nav-links a{font-size:0.8rem;color:var(--ink2);text-decoration:none;padding:0.3rem 0.7rem;border-radius:3px;transition:background .15s,color .15s}
+    .nav-links a:hover,.nav-links a.active{background:var(--rule2);color:var(--ink)}
+    .nav-cta{font-family:var(--mono);font-size:0.75rem;font-weight:500;padding:0.38rem 0.9rem;background:var(--accent);color:white;border-radius:3px;text-decoration:none;transition:opacity .15s}
+    .nav-cta:hover{opacity:0.85}
+
+    /* PAGE */
+    .page{max-width:1100px;margin:0 auto;padding:0 2.5rem}
+    .page-header{padding:7rem 0 3rem;border-bottom:1px solid var(--rule)}
+    .page-kicker{font-family:var(--mono);font-size:0.7rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem}
+    .page-kicker::before{content:'';width:20px;height:1px;background:var(--accent)}
+    .page-title{font-size:clamp(2rem,4vw,3rem);font-weight:600;letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.75rem}
+    .page-sub{font-size:0.95rem;color:var(--ink2);max-width:560px;line-height:1.7;margin-bottom:2rem}
+    .page-actions{display:flex;gap:0.75rem;flex-wrap:wrap}
+    .btn{font-family:var(--mono);font-size:0.75rem;font-weight:500;padding:0.45rem 1rem;border-radius:3px;text-decoration:none;transition:background .15s,color .15s,border-color .15s}
+    .btn-primary{background:var(--ink);color:white;border:1px solid var(--ink)}
+    .btn-primary:hover{background:var(--accent);border-color:var(--accent)}
+    .btn-ghost{background:transparent;color:var(--ink2);border:1px solid var(--rule)}
+    .btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
+
+    /* SECTIONS */
+    .section{padding:4rem 0;border-bottom:1px solid var(--rule)}
+    .section:last-of-type{border-bottom:none}
+    .sec-head{margin-bottom:2.5rem}
+    .sec-idx{font-family:var(--mono);font-size:0.67rem;color:var(--ink3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem}
+    .sec-title{font-size:1.4rem;font-weight:600;letter-spacing:-0.02em}
+
+    /* PLATFORM META */
+    .meta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .meta-card{border:1px solid var(--rule);border-radius:4px;padding:1.1rem 1.2rem}
+    .meta-card-label{font-family:var(--mono);font-size:0.65rem;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem}
+    .meta-card-value{font-size:0.9rem;color:var(--ink);font-weight:500;margin-bottom:0.2rem}
+    .meta-card-desc{font-size:0.8rem;color:var(--ink2);line-height:1.5}
+
+    /* COURSE CARDS */
+    .courses-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+    .course-card{border:1px solid var(--rule);border-radius:4px;padding:1.5rem;display:flex;flex-direction:column;transition:border-color .2s,box-shadow .2s}
+    .course-card:hover{box-shadow:0 2px 16px rgba(0,0,0,0.06)}
+    .course-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0.75rem;gap:1rem}
+    .course-badge{font-family:var(--mono);font-size:0.62rem;font-weight:500;padding:0.2rem 0.55rem;border-radius:2px;text-transform:uppercase;letter-spacing:0.06em;flex-shrink:0}
+    .course-lessons{font-family:var(--mono);font-size:0.65rem;color:var(--ink3)}
+    .course-title{font-size:1.05rem;font-weight:600;letter-spacing:-0.01em;margin-bottom:0.35rem;color:var(--ink)}
+    .course-subtitle{font-size:0.82rem;color:var(--ink2);line-height:1.6;margin-bottom:1rem}
+    .course-bullets{padding-left:1rem;margin-bottom:1.1rem}
+    .course-bullets li{font-size:0.8rem;color:var(--ink2);line-height:1.55;margin-bottom:0.15rem}
+    .course-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1.25rem}
+    .tag{font-family:var(--mono);font-size:0.62rem;font-weight:500;padding:0.17rem 0.48rem;border-radius:2px;background:var(--rule2);color:var(--ink2);text-transform:uppercase;letter-spacing:0.04em;border:1px solid var(--rule)}
+    .course-card-footer{margin-top:auto;padding-top:1rem;border-top:1px solid var(--rule2);display:flex;align-items:center;justify-content:space-between}
+    .course-status{font-family:var(--mono);font-size:0.65rem;color:var(--ink3)}
+    .open-btn{font-family:var(--mono);font-size:0.72rem;font-weight:500;text-decoration:none;padding:0.32rem 0.85rem;border-radius:3px;transition:opacity .15s;white-space:nowrap}
+    .open-btn:hover{opacity:0.82}
+    .course-card.upcoming{background:var(--rule2);border-style:dashed}
+    .course-card.upcoming .course-title{color:var(--ink2)}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--rule);padding:1.75rem 0}
+    .footer-inner{max-width:1100px;margin:0 auto;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--ink3);flex-wrap:wrap;gap:0.75rem}
+    .footer-inner a{color:var(--ink3);text-decoration:none}
+    .footer-inner a:hover{color:var(--ink)}
+    .f-name{font-family:var(--mono);font-weight:500;color:var(--ink)}
+
+    @media(max-width:768px){
+      .page{padding:0 1.25rem}
+      .nav-inner{padding:0 1.25rem}
+      .nav-links{display:none}
+      .courses-grid{grid-template-columns:1fr}
+      .meta-grid{grid-template-columns:1fr}
+      .footer-inner{padding:0 1.25rem}
+    }
   </style>
 </head>
 <body>
+
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="brand">
-      <strong>Vicente Matus Icaza</strong>
-      <span>IDeTIC · ULPGC</span>
+    <a href="index.html" class="nav-id">
+      <span class="nav-name">Vicente Matus Icaza</span>
+      <span class="nav-affil">IDeTIC · ULPGC</span>
     </a>
-    <div class="nav-links">
-      <a href="index.html" class="">Home</a>
-<a href="cv.html" class="">CV</a>
-<a href="publications.html" class="">Publications</a>
-<a href="courses.html" class="active">Courses</a>
-<a href="contact.html" class="">Contact</a>
-    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="courses.html" class="active">Courses</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
     <a href="contact.html" class="nav-cta">Get in touch</a>
   </div>
 </nav>
-<main>
-  <div class="wrap">
 
-    <section class="shell hero compact">
-      <div class="eyebrow">Teaching platform</div>
-      <h1>Courses</h1>
-      <p class="lead">The teaching side is organized as a family of 25-lesson seminar tracks that can later expand into dedicated course pages with slides, lab guides, code, sign-up, and student resources.</p>
-      <div class="hero-actions">
-        <a href="contact.html" class="btn">Ask about a seminar</a>
-        <a href="index.html" class="btn-ghost">Back home</a>
-      </div>
-    </section>
+<div class="page">
 
-    <section class="shell section">
-      <div class="section-kicker">Platform structure</div>
-      <h2>How the teaching side is being shaped</h2>
-      <div class="info-grid" style="margin-top:1.2rem;">
-        <div class="card">
-          <div class="card-kicker">Format</div>
-          <div class="mini-list" style="margin-top:0.85rem;">
-            <div class="mini-item"><div class="mini-k">Model</div><div class="mini-v">25-lesson seminar structure.</div></div>
-            <div class="mini-item"><div class="mini-k">Growth</div><div class="mini-v">Each seminar can evolve into a dedicated course page.</div></div>
-            <div class="mini-item"><div class="mini-k">Use</div><div class="mini-v">Slides, reading guides, lab notes, troubleshooting, and project material.</div></div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-kicker">Student-facing features</div>
-          <div class="mini-list" style="margin-top:0.85rem;">
-            <div class="mini-item"><div class="mini-k">Access</div><div class="mini-v">Sign-up forms and cohort-oriented pages.</div></div>
-            <div class="mini-item"><div class="mini-k">Materials</div><div class="mini-v">Downloadable files, curated tools, and future lab resources.</div></div>
-            <div class="mini-item"><div class="mini-k">Next step</div><div class="mini-v">Dedicated mini-pages per course with syllabus and lesson index.</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="shell section">
-      <div class="section-kicker">Current tracks</div>
-      <h2>Seminars currently being prepared</h2>
-      <div class="grid-2" style="margin-top:1.2rem;">
-        
-      <div class="card">
-        <div class="card-kicker">Flagship Seminar</div>
-        <h3>Optical Camera Communications (OCC)</h3>
-        <p class="muted" style="margin-top:0.28rem;">Camera-based links · experimental measurements · signal processing</p>
-        <p style="margin-top:0.8rem; color:var(--ink2); font-size:0.86rem;">A seminar centered on the physical and algorithmic foundations of OCC, from camera hardware and rolling/global shutter behavior to measurement campaigns and receiver-side processing.</p>
-        <ul style="margin:0.85rem 0 0 1rem; color:var(--ink2); font-size:0.84rem; padding:0; line-height:1.65;"><li>Visible light communication basics, LEDs, and current-source circuits</li><li>Ground truth, metadata, hallway/outdoor/atmospheric measurements</li><li>Correlation, matched filtering, Gaussian mixtures, and DSP workflows</li></ul>
-        <div class="tag-row"><span class="tag">OCC</span><span class="tag">DSP</span><span class="tag">Experiments</span><span class="tag">Computer Vision</span></div>
-      </div>
-    
-      <div class="card">
-        <div class="card-kicker">Applied Energy</div>
-        <h3>Solar Energy Seminar</h3>
-        <p class="muted" style="margin-top:0.28rem;">PV systems · power electronics · installation practice</p>
-        <p style="margin-top:0.8rem; color:var(--ink2); font-size:0.86rem;">A practical seminar that starts with photovoltaic fundamentals and grows into system design, safety, power electronics, installation workflow, grid connection, monitoring, and troubleshooting.</p>
-        <ul style="margin:0.85rem 0 0 1rem; color:var(--ink2); font-size:0.84rem; padding:0; line-height:1.65;"><li>Cells, panels, wiring, shadowing, protections, and grounding</li><li>Inverters, PWM, MPPT, batteries, mobile systems, and EV-related topics</li><li>Legality, paperwork, maintenance, diagnostics, and business insights</li></ul>
-        <div class="tag-row"><span class="tag">Solar</span><span class="tag">PV</span><span class="tag">Installation</span><span class="tag">Safety</span></div>
-      </div>
-    
-      <div class="card">
-        <div class="card-kicker">Digital Fabrication</div>
-        <h3>3D Printing &amp; Digital Manufacturing</h3>
-        <p class="muted" style="margin-top:0.28rem;">CAD/CAM · machine architecture · troubleshooting</p>
-        <p style="margin-top:0.8rem; color:var(--ink2); font-size:0.86rem;">A hands-on pathway through additive manufacturing and small-scale digital fabrication, covering printers, materials, workflows, remote operation, and community/fab-lab culture.</p>
-        <ul style="margin:0.85rem 0 0 1rem; color:var(--ink2); font-size:0.84rem; padding:0; line-height:1.65;"><li>Types of machines, filaments, hot ends, mechanics, and electronics</li><li>3D modelling basics, parameters, maintenance, and optimization</li><li>Recycling, online model sourcing, printer farms, and business insight</li></ul>
-        <div class="tag-row"><span class="tag">3D Printing</span><span class="tag">CAD</span><span class="tag">CAM</span><span class="tag">Fabrication</span></div>
-      </div>
-    
-      <div class="card">
-        <div class="card-kicker">Home Systems</div>
-        <h3>Pure Water at Home: Reverse Osmosis</h3>
-        <p class="muted" style="margin-top:0.28rem;">Installation · water quality · maintenance</p>
-        <p style="margin-top:0.8rem; color:var(--ink2); font-size:0.86rem;">A practical seminar on domestic reverse osmosis systems, from component-level understanding to installation, cleaning, maintenance, measurement, upgrades, and common failure modes.</p>
-        <ul style="margin:0.85rem 0 0 1rem; color:var(--ink2); font-size:0.84rem; padding:0; line-height:1.65;"><li>RO stages, tank, post-filtering, pumps, and water-quality monitoring</li><li>Installation sequence, membrane handling, troubleshooting, and modifications</li><li>Advanced systems, remote monitoring, recycling, and business considerations</li></ul>
-        <div class="tag-row"><span class="tag">RO</span><span class="tag">Water Quality</span><span class="tag">Maintenance</span><span class="tag">DIY</span></div>
-      </div>
-    
-      <div class="card">
-        <div class="card-kicker">Research Skills</div>
-        <h3>Academic Publishing: Cool Papers</h3>
-        <p class="muted" style="margin-top:0.28rem;">Writing · figures · submission workflow</p>
-        <p style="margin-top:0.8rem; color:var(--ink2); font-size:0.86rem;">A publication-oriented course for students and researchers who want to improve how they structure, illustrate, revise, and submit technical work.</p>
-        <ul style="margin:0.85rem 0 0 1rem; color:var(--ink2); font-size:0.84rem; padding:0; line-height:1.65;"><li>LaTeX, Word, vector graphics, matplotlib, and drawing workflows</li><li>Bibliography, ethics, plagiarism awareness, quartiles, and cover letters</li><li>Mindmaps, collaborative documents, long/short formats, and slideshows</li></ul>
-        <div class="tag-row"><span class="tag">Writing</span><span class="tag">LaTeX</span><span class="tag">Figures</span><span class="tag">Publishing</span></div>
-      </div>
-    
-      <div class="card">
-        <div class="card-kicker">Everyday Engineering</div>
-        <h3>Home Electricity: Essential Knowledge</h3>
-        <p class="muted" style="margin-top:0.28rem;">Electrical intuition · protection · practical diagnostics</p>
-        <p style="margin-top:0.8rem; color:var(--ink2); font-size:0.86rem;">A foundational electricity course designed for non-specialists and makers who want a safer, more practical understanding of domestic electrical systems and related equipment.</p>
-        <ul style="margin:0.85rem 0 0 1rem; color:var(--ink2); font-size:0.84rem; padding:0; line-height:1.65;"><li>Current, voltage, power, cables, supplies, outlets, and protections</li><li>Grounding, appliances, lighting, tools, batteries, and EV-adjacent themes</li><li>Electricity bills, manuals, drawings, troubleshooting, and technician selection</li></ul>
-        <div class="tag-row"><span class="tag">Electricity</span><span class="tag">Safety</span><span class="tag">Diagnostics</span><span class="tag">Home Systems</span></div>
-      </div>
-    
-      </div>
-      <div class="note">Upcoming topic already identified: <strong>Microcontroller Development Boards</strong>.</div>
-    </section>
-
+  <div class="page-header">
+    <div class="page-kicker">Teaching platform</div>
+    <h1 class="page-title">Courses</h1>
+    <p class="page-sub">Six 25-lesson seminar tracks — each a structured journey from fundamentals to applied practice. Click any course to open the interactive presentation with a full lesson index, video slots, figure placeholders, and editable notes.</p>
+    <div class="page-actions">
+      <a href="contact.html" class="btn btn-primary">Ask about a seminar</a>
+      <a href="index.html" class="btn btn-ghost">Back home</a>
+    </div>
   </div>
-</main>
+
+  <!-- PLATFORM STRUCTURE -->
+  <section class="section">
+    <div class="sec-head">
+      <div class="sec-idx">Platform structure</div>
+      <h2 class="sec-title">How the teaching side is being shaped</h2>
+    </div>
+    <div class="meta-grid">
+      <div class="meta-card">
+        <div class="meta-card-label">Format</div>
+        <div class="meta-card-value">25-lesson seminar</div>
+        <div class="meta-card-desc">Each track is structured across 5 units — foundations through advanced applications — with objectives, content cards, tables, and callouts per lesson.</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-card-label">Per-lesson materials</div>
+        <div class="meta-card-value">Video · Figure · Notes</div>
+        <div class="meta-card-desc">Every lesson has a YouTube embed slot, an SVG/image drop zone for Inkscape figures, and an editable text notes block. All saved locally in the browser.</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-card-label">Navigation</div>
+        <div class="meta-card-value">Left-sidebar index</div>
+        <div class="meta-card-desc">Each course opens as a self-contained HTML presentation. Click lessons in the sidebar or use ← → keys. No server or login required.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="section">
+    <div class="sec-head">
+      <div class="sec-idx">Current tracks</div>
+      <h2 class="sec-title">Seminars currently being prepared</h2>
+    </div>
+
+    <div class="courses-grid">
+
+      <!-- OCC -->
+      <div class="course-card">
+        <div class="course-card-top">
+          <span class="course-badge" style="background:#e8f0fe;color:#1a56db;">Flagship Seminar</span>
+          <span class="course-lessons">25 lessons</span>
+        </div>
+        <div class="course-title">Optical Camera Communications (OCC)</div>
+        <div class="course-subtitle">Camera-based links · experimental measurements · signal processing</div>
+        <ul class="course-bullets">
+          <li>Visible light communication basics, LEDs, and current-source circuits</li>
+          <li>Ground truth, metadata, hallway/outdoor/atmospheric measurements</li>
+          <li>Correlation, matched filtering, Gaussian mixtures, and DSP workflows</li>
+        </ul>
+        <div class="course-tags">
+          <span class="tag">OCC</span><span class="tag">DSP</span><span class="tag">Experiments</span><span class="tag">Computer Vision</span>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-status">In development</span>
+          <a href="courses/course-occ.html" class="open-btn" style="background:#1a56db;color:white;">Open course →</a>
+        </div>
+      </div>
+
+      <!-- SOLAR -->
+      <div class="course-card">
+        <div class="course-card-top">
+          <span class="course-badge" style="background:#fef3c7;color:#b45309;">Applied Energy</span>
+          <span class="course-lessons">25 lessons</span>
+        </div>
+        <div class="course-title">Solar Energy Seminar</div>
+        <div class="course-subtitle">PV systems · power electronics · installation practice</div>
+        <ul class="course-bullets">
+          <li>Cells, panels, wiring, shadowing, protections, and grounding</li>
+          <li>Inverters, PWM, MPPT, batteries, mobile systems, and EV-related topics</li>
+          <li>Legality, paperwork, maintenance, diagnostics, and business insights</li>
+        </ul>
+        <div class="course-tags">
+          <span class="tag">Solar</span><span class="tag">PV</span><span class="tag">Installation</span><span class="tag">Safety</span>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-status">In development</span>
+          <a href="courses/course-solar.html" class="open-btn" style="background:#b45309;color:white;">Open course →</a>
+        </div>
+      </div>
+
+      <!-- 3D PRINTING -->
+      <div class="course-card">
+        <div class="course-card-top">
+          <span class="course-badge" style="background:#ccfbf1;color:#0f766e;">Digital Fabrication</span>
+          <span class="course-lessons">25 lessons</span>
+        </div>
+        <div class="course-title">3D Printing &amp; Digital Manufacturing</div>
+        <div class="course-subtitle">CAD/CAM · machine architecture · troubleshooting</div>
+        <ul class="course-bullets">
+          <li>Types of machines, filaments, hot ends, mechanics, and electronics</li>
+          <li>3D modelling basics, parameters, maintenance, and optimisation</li>
+          <li>Recycling, online model sourcing, printer farms, and business insight</li>
+        </ul>
+        <div class="course-tags">
+          <span class="tag">3D Printing</span><span class="tag">CAD</span><span class="tag">CAM</span><span class="tag">Fabrication</span>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-status">In development</span>
+          <a href="courses/course-3dprinting.html" class="open-btn" style="background:#0f766e;color:white;">Open course →</a>
+        </div>
+      </div>
+
+      <!-- OSMOSIS -->
+      <div class="course-card">
+        <div class="course-card-top">
+          <span class="course-badge" style="background:#f0fdf4;color:#166534;">Home Systems</span>
+          <span class="course-lessons">25 lessons</span>
+        </div>
+        <div class="course-title">Pure Water at Home: Reverse Osmosis</div>
+        <div class="course-subtitle">Installation · water quality · maintenance</div>
+        <ul class="course-bullets">
+          <li>RO stages, tank, post-filtering, pumps, and water-quality monitoring</li>
+          <li>Installation sequence, membrane handling, troubleshooting, and modifications</li>
+          <li>Advanced systems, remote monitoring, recycling, and business considerations</li>
+        </ul>
+        <div class="course-tags">
+          <span class="tag">RO</span><span class="tag">Water Quality</span><span class="tag">Maintenance</span><span class="tag">DIY</span>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-status">Unit 1 complete</span>
+          <a href="courses/course-osmosis.html" class="open-btn" style="background:#166534;color:white;">Open course →</a>
+        </div>
+      </div>
+
+      <!-- PUBLISHING -->
+      <div class="course-card">
+        <div class="course-card-top">
+          <span class="course-badge" style="background:#ede9fe;color:#7c3aed;">Research Skills</span>
+          <span class="course-lessons">25 lessons</span>
+        </div>
+        <div class="course-title">Academic Publishing: Cool Papers</div>
+        <div class="course-subtitle">Writing · figures · submission workflow</div>
+        <ul class="course-bullets">
+          <li>LaTeX, Word, vector graphics, matplotlib, and drawing workflows</li>
+          <li>Bibliography, ethics, plagiarism awareness, quartiles, and cover letters</li>
+          <li>Mindmaps, collaborative documents, long/short formats, and slideshows</li>
+        </ul>
+        <div class="course-tags">
+          <span class="tag">Writing</span><span class="tag">LaTeX</span><span class="tag">Figures</span><span class="tag">Publishing</span>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-status">In development</span>
+          <a href="courses/course-publishing.html" class="open-btn" style="background:#7c3aed;color:white;">Open course →</a>
+        </div>
+      </div>
+
+      <!-- ELECTRICITY -->
+      <div class="course-card">
+        <div class="course-card-top">
+          <span class="course-badge" style="background:#fee2e2;color:#dc2626;">Everyday Engineering</span>
+          <span class="course-lessons">25 lessons</span>
+        </div>
+        <div class="course-title">Home Electricity: Essential Knowledge</div>
+        <div class="course-subtitle">Electrical intuition · protection · practical diagnostics</div>
+        <ul class="course-bullets">
+          <li>Current, voltage, power, cables, supplies, outlets, and protections</li>
+          <li>Grounding, appliances, lighting, tools, batteries, and EV-adjacent themes</li>
+          <li>Electricity bills, manuals, drawings, troubleshooting, and technician selection</li>
+        </ul>
+        <div class="course-tags">
+          <span class="tag">Electricity</span><span class="tag">Safety</span><span class="tag">Diagnostics</span><span class="tag">Home Systems</span>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-status">In development</span>
+          <a href="courses/course-electricity.html" class="open-btn" style="background:#dc2626;color:white;">Open course →</a>
+        </div>
+      </div>
+
+      <!-- UPCOMING -->
+      <div class="course-card upcoming">
+        <div class="course-card-top">
+          <span class="course-badge" style="background:#e5e7eb;color:#6b7280;">Coming Soon</span>
+          <span class="course-lessons">— lessons</span>
+        </div>
+        <div class="course-title">Microcontroller Development Boards</div>
+        <div class="course-subtitle">Arduino · ESP32 · embedded systems · prototyping</div>
+        <ul class="course-bullets">
+          <li>Board selection, pinout, and power considerations</li>
+          <li>Programming environments: Arduino IDE, PlatformIO, MicroPython</li>
+          <li>Sensors, actuators, communication protocols, and real projects</li>
+        </ul>
+        <div class="course-tags">
+          <span class="tag">Arduino</span><span class="tag">ESP32</span><span class="tag">Embedded</span><span class="tag">Prototyping</span>
+        </div>
+        <div class="course-card-footer">
+          <span class="course-status">Topic identified · not yet started</span>
+          <a href="contact.html" class="open-btn" style="border:1px solid var(--rule);color:var(--ink2);">Notify me →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
 <footer>
   <div class="footer-inner">
-    <span class="footer-name">Vicente Matus Icaza</span>
+    <span class="f-name">Vicente Matus Icaza</span>
     <span>IDeTIC · ULPGC · Las Palmas de Gran Canaria, Spain</span>
-    <div class="footer-links">
-      <a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ" target="_blank" rel="noopener">Scholar</a>
-      <a href="https://orcid.org/0000-0003-4262-3882" target="_blank" rel="noopener">ORCID</a>
+    <div style="display:flex;gap:1.25rem;">
+      <a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ" target="_blank">Scholar</a>
+      <a href="https://orcid.org/0000-0003-4262-3882" target="_blank">ORCID</a>
       <a href="mailto:vicente.matus@ulpgc.es">Email</a>
     </div>
   </div>
