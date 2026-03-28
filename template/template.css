@@ -280,7 +280,7 @@ body {
   scroll-snap-stop: always;
   min-height: calc(100vh - var(--topbar-h));
   display: none;
-  flex-direction: row;
+  flex-direction: row-reverse;
 }
 .slide.active { display: flex; }
 
@@ -295,7 +295,7 @@ body {
   justify-content: center;
   padding: 1.5rem 1rem;
   gap: 1rem;
-  border-right: 1px solid #1a1a1a;
+  border-left: 1px solid #1a1a1a;
 }
 
 /* Vertical (portrait 9:16) video container */
@@ -644,7 +644,7 @@ body {
   .app { grid-template-columns: 1fr; grid-template-areas: "topbar" "lesson"; }
   .menu-toggle { display: flex !important; }
   .slide { flex-direction: column; }
-  .slide-video-pane { width: 100%; border-right: none; border-bottom: 1px solid var(--rule); padding: 1rem; flex-direction: row; gap: 1rem; align-items: flex-start; background: var(--ink); min-height: unset; }
+  .slide-video-pane { width: 100%; border-left: none; border-bottom: 1px solid var(--rule); padding: 1rem; flex-direction: row; gap: 1rem; align-items: flex-start; background: var(--ink); min-height: unset; }
   .video-portrait { max-width: 140px; flex-shrink: 0; }
   .yt-input-row { flex: 1; }
   .slide-content-pane { padding: 1.5rem 1.25rem; }
