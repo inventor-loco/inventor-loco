@@ -36,26 +36,55 @@ body {
 }
 
 /* ── LAYOUT SHELL ────────────────────────────────────────────── */
+/*
+  Sidebar is a fixed overlay that slides in/out.
+  .main-area fills the full viewport and shifts right only when
+  sidebar is open — no gap ever.
+*/
 .app {
-  display: grid;
-  grid-template-columns: var(--sidebar-w) 1fr;
-  grid-template-rows: var(--topbar-h) 1fr;
-  grid-template-areas:
-    "sidebar topbar"
-    "sidebar lesson";
-  height: 100vh;
-  width: 100vw;
+  display: contents; /* children lay themselves out */
 }
+
+.main-area {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-left: 0;
+  transition: margin-left .25s ease;
+}
+.main-area.shifted {
+  margin-left: var(--sidebar-w);
+}
+
+/* Dim backdrop shown on mobile when sidebar is open */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 99;
+  cursor: pointer;
+}
+.sidebar-backdrop.visible { display: block; }
 
 /* ── SIDEBAR ────────────────────────────────────────────────── */
 .sidebar {
-  grid-area: sidebar;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-w);
   background: var(--sidebar-bg);
   border-right: 1px solid var(--rule);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: 100vh;
+  z-index: 100;
+  transform: translateX(calc(-1 * var(--sidebar-w)));
+  transition: transform .25s ease;
+}
+.sidebar.open {
+  transform: translateX(0);
 }
 
 .sidebar-header {
@@ -165,7 +194,8 @@ body {
 
 /* ── TOP BAR ─────────────────────────────────────────────────── */
 .topbar {
-  grid-area: topbar;
+  flex-shrink: 0;
+  height: var(--topbar-h);
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--rule);
@@ -185,19 +215,23 @@ body {
 }
 
 .menu-toggle {
-  display: none;
+  display: flex;
   align-items: center;
-  gap: 0.35rem;
-  font-family: var(--mono);
-  font-size: 0.68rem;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
   color: var(--ink2);
   background: none;
   border: 1px solid var(--rule);
   border-radius: 3px;
-  padding: 0.28rem 0.65rem;
   cursor: pointer;
   flex-shrink: 0;
+  transition: border-color .15s, color .15s;
+  line-height: 1;
 }
+.menu-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.menu-toggle.active { background: var(--acc2); border-color: var(--accent); color: var(--accent); }
 
 .topbar-lesson {
   font-family: var(--mono);
@@ -264,7 +298,7 @@ body {
 
 /* ── LESSON AREA ────────────────────────────────────────────── */
 .lesson-area {
-  grid-area: lesson;
+  flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
   scroll-snap-type: y mandatory;
@@ -609,46 +643,55 @@ body {
 
 /* ── PROGRESS BAR ───────────────────────────────────────────── */
 .progress-bar {
-  position: fixed; bottom: 0; left: var(--sidebar-w); right: 0;
+  position: fixed; bottom: 0; left: 0; right: 0;
   height: 2px; background: var(--rule); z-index: 20;
+  transition: left .25s ease;
+}
+.progress-bar.shifted {
+  left: var(--sidebar-w);
 }
 .progress-fill {
   height: 100%; background: var(--accent); transition: width .35s ease;
 }
 
-/* ── FULLSCREEN adjustments ─────────────────────────────────── */
-:fullscreen .app,
-:-webkit-full-screen .app {
-  height: 100vh;
-  width: 100vw;
+/* ── FULLSCREEN ─────────────────────────────────────────────── */
+:fullscreen .main-area,
+:-webkit-full-screen .main-area {
+  margin-left: 0 !important;
 }
-:fullscreen .progress-bar,
-:-webkit-full-screen .progress-bar {
-  left: var(--sidebar-w);
+:fullscreen .sidebar,
+:-webkit-full-screen .sidebar {
+  display: none;
 }
 
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  :root { --sidebar-w: 0px; }
-  .sidebar {
-    position: fixed; top: 0; left: 0; bottom: 0;
-    width: 260px; z-index: 200;
-    transform: translateX(-260px);
-    transition: transform .25s;
-    box-shadow: none;
+@media (max-width: 768px) {
+  /* On mobile the sidebar never shifts the main area — it overlays */
+  .main-area.shifted {
+    margin-left: 0;
   }
-  .sidebar.open {
-    transform: translateX(0);
-    box-shadow: 4px 0 24px rgba(0,0,0,0.12);
+  /* Show backdrop on mobile when sidebar open */
+  .sidebar-backdrop.visible { display: block; }
+
+  /* Video moves to BOTTOM on mobile */
+  .slide {
+    flex-direction: column-reverse;
   }
-  .app { grid-template-columns: 1fr; grid-template-areas: "topbar" "lesson"; }
-  .menu-toggle { display: flex !important; }
-  .slide { flex-direction: column; }
-  .slide-video-pane { width: 100%; border-left: none; border-bottom: 1px solid var(--rule); padding: 1rem; flex-direction: row; gap: 1rem; align-items: flex-start; background: var(--ink); min-height: unset; }
-  .video-portrait { max-width: 140px; flex-shrink: 0; }
+  .slide-video-pane {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--rule);
+    padding: 1rem 1rem 1.5rem;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+    background: var(--ink);
+    min-height: unset;
+  }
+  .video-portrait { max-width: 120px; flex-shrink: 0; }
   .yt-input-row { flex: 1; }
-  .slide-content-pane { padding: 1.5rem 1.25rem; }
+  .slide-content-pane { padding: 1.5rem 1.1rem; }
   .lesson-media { grid-template-columns: 1fr; }
   .content-grid, .content-grid.cols-3 { grid-template-columns: 1fr; }
-  .progress-bar { left: 0; }
+  .progress-bar.shifted { left: 0; }
 }

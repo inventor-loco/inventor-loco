@@ -460,16 +460,65 @@
     cancelText(idx);
   }
 
-  /* ── 9. MOBILE MENU ─────────────────────────────────────────── */
+  /* ── 9. SIDEBAR TOGGLE ──────────────────────────────────────── */
   function setupMobileMenu() {
-    const toggle  = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
+    const toggle   = document.getElementById('menu-toggle');
+    const sidebar  = document.getElementById('sidebar');
+    const mainArea = document.getElementById('main-area');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    const progBar  = document.getElementById('progress-bar');
     if (!toggle || !sidebar) return;
-    toggle.addEventListener('click', () => sidebar.classList.toggle('open'));
-    // close when a lesson is clicked on mobile
-    sidebar.querySelectorAll('.lesson-item') // populated after buildDOM
+
+    function isMobile() { return window.innerWidth <= 768; }
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      toggle.classList.add('active');
+      toggle.textContent = '✕';
+      if (isMobile()) {
+        backdrop && backdrop.classList.add('visible');
+      } else {
+        mainArea && mainArea.classList.add('shifted');
+        progBar  && progBar.classList.add('shifted');
+      }
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      toggle.classList.remove('active');
+      toggle.textContent = '☰';
+      backdrop && backdrop.classList.remove('visible');
+      mainArea && mainArea.classList.remove('shifted');
+      progBar  && progBar.classList.remove('shifted');
+    }
+
+    function toggleSidebar() {
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    }
+
+    toggle.addEventListener('click', toggleSidebar);
+
+    // Close when backdrop clicked (mobile)
+    backdrop && backdrop.addEventListener('click', closeSidebar);
+
+    // Close when a lesson is tapped on mobile
     document.getElementById('lesson-nav').addEventListener('click', function () {
-      if (window.innerWidth <= 900) sidebar.classList.remove('open');
+      if (isMobile()) closeSidebar();
+    });
+
+    // Re-evaluate shift on resize (switching between mobile and desktop)
+    window.addEventListener('resize', function () {
+      if (sidebar.classList.contains('open')) {
+        if (isMobile()) {
+          mainArea && mainArea.classList.remove('shifted');
+          progBar  && progBar.classList.remove('shifted');
+          backdrop && backdrop.classList.add('visible');
+        } else {
+          backdrop && backdrop.classList.remove('visible');
+          mainArea && mainArea.classList.add('shifted');
+          progBar  && progBar.classList.add('shifted');
+        }
+      }
     });
   }
 
