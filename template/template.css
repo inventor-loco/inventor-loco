@@ -430,9 +430,9 @@ body {
 /* ── SLIDE CONTENT PANE ─────────────────────────────────────── */
 .slide-content-pane {
   flex: 1;
+  min-width: 0;           /* prevent flex blowout */
   overflow-y: auto;
-  padding: 2.5rem 3rem;
-  max-width: 720px;
+  padding: 2.5rem 3.5rem;
 }
 
 .slide-kicker {
