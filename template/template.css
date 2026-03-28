@@ -652,6 +652,11 @@ body {
   /* Show backdrop on mobile when sidebar open */
   .sidebar-backdrop.visible { display: block; }
 
+  /* Disable scroll-snap on mobile — navigation is handled by horizontal swipe */
+  .lesson-area {
+    scroll-snap-type: none;
+  }
+
   /* Video moves to BOTTOM on mobile */
   .slide {
     flex-direction: column-reverse;

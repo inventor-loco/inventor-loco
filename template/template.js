@@ -95,7 +95,9 @@
         /* ── video pane ── */
         '<div class="slide-video-pane">' +
           '<div class="video-portrait" id="yt-wrap-' + idx + '">' +
-            '<iframe src="https://www.youtube.com/embed/nzCJcHLkNmQ?rel=0" allowfullscreen loading="lazy"></iframe>' +
+            (lesson.video
+              ? '<iframe src="https://www.youtube.com/embed/' + lesson.video + '?rel=0" allowfullscreen loading="lazy"></iframe>'
+              : '<div class="video-placeholder"><div class="yt-play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="video-placeholder-label">No video yet</div></div>') +
           '</div>' +
           '<div class="yt-input-row">' +
             '<div class="yt-input-label">Lesson video</div>' +
@@ -279,7 +281,29 @@
   }
 
 
-  /* ── 6. YOUTUBE ─────────────────────────────────────────────── */
+  /* ── 6. SWIPE (mobile) ──────────────────────────────────────── */
+  function setupSwipe() {
+    const area = document.getElementById('lesson-area');
+    if (!area) return;
+    let startX = 0, startY = 0;
+
+    area.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    area.addEventListener('touchend', function (e) {
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      // Only fire if horizontal movement is dominant and exceeds 48 px threshold
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 48) {
+        if (dx < 0) next();   // swipe left  → next lesson
+        else        prev();   // swipe right → prev lesson
+      }
+    }, { passive: true });
+  }
+
+  /* ── 7. YOUTUBE ─────────────────────────────────────────────── */
   function loadYT(idx) {
     const wrap  = document.getElementById('yt-wrap-' + idx);
     const input = document.getElementById('yt-input-' + idx);
@@ -515,6 +539,7 @@
 
     setupKeyboard();
     setupScrollSnap();
+    setupSwipe();
     setupMobileMenu();
 
     // defer restore so DOM is fully ready
