@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+  course-template.html
+  ─────────────────────────────────────────────────────────────
+  This is the SHELL. It contains zero course-specific content.
+  To create a new course:
+    1. Copy this file → course-xyz.html  (or keep using the shell + data file)
+    2. Create course-data-xyz.js defining window.COURSE = { ... }
+    3. Change the <script src="..."> at the bottom to point to your data file
+  ─────────────────────────────────────────────────────────────
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading course… — Vicente Matus Icaza</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Shared styles — one file for all courses -->
+  <link rel="stylesheet" href="../template/template.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     APP SHELL — all text content is injected by template.js
+═══════════════════════════════════════════════════════════ -->
+<div class="app" id="app">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="../courses.html" class="back-link" id="back-link">← All courses</a>
+      <div class="course-badge" id="sidebar-badge">Loading…</div>
+      <div class="sidebar-title" id="sidebar-title">Loading…</div>
+      <div class="sidebar-meta"  id="sidebar-meta">…</div>
+    </div>
+    <nav class="lesson-nav" id="lesson-nav">
+      <!-- populated by template.js -->
+    </nav>
+  </aside>
+
+  <!-- ── TOP BAR ── -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <button class="menu-toggle" id="menu-toggle" style="display:none;">☰</button>
+      <div class="topbar-lesson">
+        Lesson <span class="counter" id="lesson-counter">— / —</span>
+        &nbsp;·&nbsp;
+        <span class="lesson-title-top" id="lesson-title-top">…</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button class="nav-btn" id="prev-btn" onclick="window._course.prev()" disabled>← Prev</button>
+      <button class="nav-btn primary" id="next-btn" onclick="window._course.next()">Next →</button>
+      <span class="progress-pill" id="progress-pill">— / —</span>
+      <button class="fullscreen-btn" id="fullscreen-btn" title="Toggle fullscreen (F)">⛶</button>
+    </div>
+  </div>
+
+  <!-- ── LESSON AREA ── -->
+  <div class="lesson-area" id="lesson-area">
+    <div id="slide-container">
+      <!-- slides injected by template.js -->
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<!-- ── PROGRESS BAR ── -->
+<div class="progress-bar">
+  <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPTS
+     Order matters:
+       1. Course data  (defines window.COURSE)
+       2. Template     (reads window.COURSE and boots)
+═══════════════════════════════════════════════════════════ -->
+
+<!--
+  ↓ CHANGE THIS LINE to point to your course data file
+    e.g. for the OCC course:  <script src="../template/course-data-occ.js"></script>
+-->
+<script src="../template/course-data-CHANGEME.js"></script>
+<script src="../template/template.js"></script>
+
+</body>
+</html>
