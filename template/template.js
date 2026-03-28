@@ -95,10 +95,7 @@
         /* ── video pane ── */
         '<div class="slide-video-pane">' +
           '<div class="video-portrait" id="yt-wrap-' + idx + '">' +
-            '<div class="video-placeholder">' +
-              '<div class="yt-play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>' +
-              '<div class="video-placeholder-label">Video not yet uploaded</div>' +
-            '</div>' +
+            '<iframe src="https://www.youtube.com/embed/jNQXAC9IVRw?rel=0" allowfullscreen loading="lazy"></iframe>' +
           '</div>' +
           '<div class="yt-input-row">' +
             '<div class="yt-input-label">YouTube URL or video ID</div>' +
@@ -124,11 +121,11 @@
             '<div class="media-block">' +
               '<div class="media-label">Figure</div>' +
               '<div class="svg-figure">' +
-                '<div class="svg-drop-zone" id="svg-zone-' + idx + '">' +
+                '<div class="svg-drop-zone" id="svg-zone-' + idx + '" style="display:none">' +
                   '<div class="svg-drop-icon">📐</div>' +
                   '<div class="svg-drop-label"><strong>Drop your SVG here</strong><br>or click to browse · PNG/JPG also accepted</div>' +
                 '</div>' +
-                '<div class="svg-preview" id="svg-preview-' + idx + '"><img src="" alt="Figure" /></div>' +
+                '<div class="svg-preview" id="svg-preview-' + idx + '" style="display:block"><img src="example-figure.svg" alt="Figure" /></div>' +
                 '<div class="svg-caption-wrap">' +
                   '<input class="svg-caption" id="svg-caption-' + idx + '" placeholder="Figure caption…" />' +
                   '<button class="svg-clear-btn" onclick="window._course.clearFigure(' + idx + ')">✕</button>' +
@@ -144,7 +141,7 @@
                   '<button class="text-edit-btn" id="text-edit-btn-' + idx + '" onclick="window._course.editText(' + idx + ')">Edit</button>' +
                 '</div>' +
                 '<div class="text-block-body">' +
-                  '<div class="text-view empty" id="text-view-' + idx + '" data-raw="">No notes yet — click Edit to add text.</div>' +
+                  '<div class="text-view" id="text-view-' + idx + '" data-raw="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>' +
                   '<textarea class="text-editor" id="text-editor-' + idx + '" placeholder="Notes, references, or explanations…"></textarea>' +
                 '</div>' +
                 '<button class="text-save-btn" id="text-save-btn-' + idx + '" onclick="window._course.saveText(' + idx + ')">Save</button>' +
@@ -171,11 +168,11 @@
         '<li>Click any lesson in the left index</li>' +
         '<li>Use Page Up / Page Down or ← →</li>' +
         '<li>Scroll within this pane to read</li>' +
-        '<li>Press <strong>F</strong> or click ⛶ for fullscreen</li>' +
+        '<li>Press <strong>F11</strong> for fullscreen</li>' +
         '</ul></div>' +
         '</div>';
     }
-    return '<div class="callout info"><span class="callout-icon">📝</span><span>Content for this lesson is being developed. Add the video, drop in your Inkscape figure, and write notes below as you build this lesson out.</span></div>';
+    return '<div class="callout info"><span class="callout-icon">📝</span><span>Content for the lessons is being developed and updated. Please <a href="../contact.html" style="color:var(--accent);text-decoration:underline;">show interest</a> if you need further information.</span></div>';
   }
 
   /* ── 3. NAVIGATION STATE ────────────────────────────────────── */
@@ -259,11 +256,6 @@
         case 'ArrowUp':
         case 'PageUp':
           e.preventDefault(); prev(); break;
-        case 'f':
-        case 'F':
-          toggleFullscreen(); break;
-        case 'Escape':
-          if (document.fullscreenElement) document.exitFullscreen(); break;
       }
     });
   }
@@ -287,24 +279,6 @@
     });
   }
 
-  /* ── 5. FULLSCREEN ──────────────────────────────────────────── */
-  function toggleFullscreen() {
-    const app = document.getElementById('app');
-    if (!document.fullscreenElement) {
-      (app.requestFullscreen || app.webkitRequestFullscreen || app.mozRequestFullScreen).call(app);
-    } else {
-      (document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen).call(document);
-    }
-  }
-
-  function setupFullscreenBtn() {
-    const btn = document.getElementById('fullscreen-btn');
-    if (!btn) return;
-    btn.addEventListener('click', toggleFullscreen);
-    document.addEventListener('fullscreenchange', function () {
-      btn.textContent = document.fullscreenElement ? '⛶ Exit' : '⛶';
-    });
-  }
 
   /* ── 6. YOUTUBE ─────────────────────────────────────────────── */
   function loadYT(idx) {
@@ -542,7 +516,6 @@
 
     setupKeyboard();
     setupScrollSnap();
-    setupFullscreenBtn();
     setupMobileMenu();
 
     // defer restore so DOM is fully ready
@@ -561,7 +534,6 @@
       next:         next,
       prev:         prev,
       goTo:         goTo,
-      toggleFullscreen: toggleFullscreen,
     };
   }
 

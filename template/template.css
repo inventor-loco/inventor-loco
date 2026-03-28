@@ -272,18 +272,6 @@ body {
 .nav-btn.primary { background: var(--accent); color: white; border-color: var(--accent); }
 .nav-btn.primary:hover { opacity: 0.85; }
 
-.fullscreen-btn {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  padding: 0.28rem 0.65rem;
-  border-radius: 3px;
-  cursor: pointer;
-  border: 1px solid var(--rule);
-  background: var(--white);
-  color: var(--ink3);
-  transition: border-color .15s, color .15s;
-}
-.fullscreen-btn:hover { border-color: var(--ink); color: var(--ink); }
 
 .progress-pill {
   font-family: var(--mono);
@@ -654,15 +642,6 @@ body {
   height: 100%; background: var(--accent); transition: width .35s ease;
 }
 
-/* ── FULLSCREEN ─────────────────────────────────────────────── */
-:fullscreen .main-area,
-:-webkit-full-screen .main-area {
-  margin-left: 0 !important;
-}
-:fullscreen .sidebar,
-:-webkit-full-screen .sidebar {
-  display: none;
-}
 
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
