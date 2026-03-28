@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="../template/template.css" />
 </head>
 <body>
-<div class="app" id="app">
+
+  <!-- Sidebar (fixed overlay, toggled by JS) -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <a href="../courses.html" class="back-link" id="back-link">← All courses</a>
@@ -20,28 +21,41 @@
     </div>
     <nav class="lesson-nav" id="lesson-nav"></nav>
   </aside>
-  <div class="topbar">
-    <div class="topbar-left">
-      <button class="menu-toggle" id="menu-toggle" style="display:none;">☰</button>
-      <div class="topbar-lesson">
-        Lesson <span class="counter" id="lesson-counter">— / —</span>
-        &nbsp;·&nbsp;
-        <span class="lesson-title-top" id="lesson-title-top">…</span>
+
+  <!-- Backdrop (mobile only) -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+  <!-- Main area — shifts right on desktop when sidebar open -->
+  <div class="main-area" id="main-area">
+
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" id="menu-toggle" title="Toggle lesson index">☰</button>
+        <div class="topbar-lesson">
+          Lesson <span class="counter" id="lesson-counter">— / —</span>
+          &nbsp;·&nbsp;
+          <span class="lesson-title-top" id="lesson-title-top">…</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="nav-btn" id="prev-btn" onclick="window._course.prev()" disabled>← Prev</button>
+        <button class="nav-btn primary" id="next-btn" onclick="window._course.next()">Next →</button>
+        <span class="progress-pill" id="progress-pill">— / —</span>
+        <button class="fullscreen-btn" id="fullscreen-btn" title="Toggle fullscreen (F)">⛶</button>
       </div>
     </div>
-    <div class="topbar-right">
-      <button class="nav-btn" id="prev-btn" onclick="window._course.prev()" disabled>← Prev</button>
-      <button class="nav-btn primary" id="next-btn" onclick="window._course.next()">Next →</button>
-      <span class="progress-pill" id="progress-pill">— / —</span>
-      <button class="fullscreen-btn" id="fullscreen-btn" title="Toggle fullscreen (F)">⛶</button>
+
+    <div class="lesson-area" id="lesson-area">
+      <div id="slide-container"></div>
     </div>
+
+  </div><!-- /main-area -->
+
+  <div class="progress-bar" id="progress-bar">
+    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
   </div>
-  <div class="lesson-area" id="lesson-area">
-    <div id="slide-container"></div>
-  </div>
-</div>
-<div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-<script src="../template/course-data-solar.js"></script>
-<script src="../template/template.js"></script>
+
+  <script src="../template/course-data-solar.js"></script>
+  <script src="../template/template.js"></script>
 </body>
 </html>
