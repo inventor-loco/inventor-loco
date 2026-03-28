@@ -95,13 +95,12 @@
         /* ── video pane ── */
         '<div class="slide-video-pane">' +
           '<div class="video-portrait" id="yt-wrap-' + idx + '">' +
-            '<iframe src="https://www.youtube.com/shorts/nzCJcHLkNmQ" allowfullscreen loading="lazy"></iframe>' +
+            '<iframe src="https://www.youtube.com/embed/nzCJcHLkNmQ?rel=0" allowfullscreen loading="lazy"></iframe>' +
           '</div>' +
           '<div class="yt-input-row">' +
             '<div class="yt-input-label">Lesson video</div>' +
             '<div class="yt-input-group">' +
-              '<input class="yt-id-input" id="yt-input-' + idx + '" placeholder="" />' +
-              '<button class="yt-load-btn" onclick="window._course.loadYT(' + idx + ')">Load</button>' +
+              '<input class="yt-id-input" id="yt-input-' + idx + '" placeholder="youtu.be/… or video ID" />' +
             '</div>' +
           '</div>' +
         '</div>' +
