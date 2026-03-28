@@ -643,6 +643,39 @@ body {
 }
 
 
+/* ── SWIPE HINTS (mobile) ───────────────────────────────────── */
+.swipe-hint {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 56px;
+  background: rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.3rem;
+  opacity: 0;
+  transition: opacity .1s;
+  pointer-events: none;
+  z-index: 300;
+}
+.swipe-hint-prev { left: 0; border-radius: 0 6px 6px 0; }
+.swipe-hint-next { right: 0; border-radius: 6px 0 0 6px; }
+
+/* ── SLIDE TRANSITION ANIMATION ─────────────────────────────── */
+@keyframes slide-from-right {
+  from { opacity: 0.3; transform: translateX(36px); }
+  to   { opacity: 1;   transform: translateX(0); }
+}
+@keyframes slide-from-left {
+  from { opacity: 0.3; transform: translateX(-36px); }
+  to   { opacity: 1;   transform: translateX(0); }
+}
+.slide.anim-forward  { animation: slide-from-right .22s ease-out; }
+.slide.anim-backward { animation: slide-from-left  .22s ease-out; }
+
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   /* On mobile the sidebar never shifts the main area — it overlays */
@@ -665,15 +698,17 @@ body {
     width: 100%;
     border-left: none;
     border-top: 1px solid var(--rule);
-    padding: 1rem 1rem 1.5rem;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: flex-start;
+    padding: 1rem 1rem 1.25rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
     background: var(--ink);
     min-height: unset;
   }
-  .video-portrait { max-width: 120px; flex-shrink: 0; }
-  .yt-input-row { flex: 1; }
+  .video-portrait { max-width: 160px; flex-shrink: 0; }
+  .yt-input-row { width: 100%; max-width: 160px; text-align: center; }
+  .yt-input-group { display: none; }          /* hide the text input on mobile */
+  .yt-input-label { text-align: center; }
   .slide-content-pane { padding: 1.5rem 1.1rem; }
   .lesson-media { grid-template-columns: 1fr; }
   .content-grid, .content-grid.cols-3 { grid-template-columns: 1fr; }

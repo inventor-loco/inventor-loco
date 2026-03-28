@@ -187,7 +187,7 @@
     goTo(0, true);
   }
 
-  function goTo(n, silent) {
+  function goTo(n, silent, dir) {
     if (n < 0 || n >= total) return;
 
     // deactivate old
@@ -201,7 +201,15 @@
     // activate new
     const newSlide = document.getElementById('slide-' + current);
     const newItem  = document.querySelector('.lesson-item[data-idx="' + current + '"]');
-    if (newSlide) newSlide.classList.add('active');
+    if (newSlide) {
+      newSlide.classList.add('active');
+      // animate entry if a direction was provided
+      if (dir) {
+        const cls = dir === 'fwd' ? 'anim-forward' : 'anim-backward';
+        newSlide.classList.add(cls);
+        setTimeout(function () { newSlide.classList.remove(cls); }, 260);
+      }
+    }
     if (newItem)  {
       newItem.classList.add('active');
       newItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -238,8 +246,8 @@
     }
   }
 
-  function next() { goTo(current + 1); }
-  function prev() { goTo(current - 1); }
+  function next() { goTo(current + 1, false, 'fwd'); }
+  function prev() { goTo(current - 1, false, 'bwd'); }
 
   /* ── 4. KEYBOARD & SCROLL ───────────────────────────────────── */
   function setupKeyboard() {
@@ -285,22 +293,55 @@
   function setupSwipe() {
     const area = document.getElementById('lesson-area');
     if (!area) return;
-    let startX = 0, startY = 0;
+
+    // Edge hint elements — appear while the user is dragging
+    const hintPrev = document.createElement('div');
+    hintPrev.className = 'swipe-hint swipe-hint-prev';
+    hintPrev.textContent = '❮';
+    const hintNext = document.createElement('div');
+    hintNext.className = 'swipe-hint swipe-hint-next';
+    hintNext.textContent = '❯';
+    document.body.appendChild(hintPrev);
+    document.body.appendChild(hintNext);
+
+    const THRESHOLD = 48;
+    let startX = 0, startY = 0, tracking = false;
+
+    function hideHints() {
+      hintPrev.style.opacity = 0;
+      hintNext.style.opacity = 0;
+    }
 
     area.addEventListener('touchstart', function (e) {
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
+      tracking = true;
+    }, { passive: true });
+
+    area.addEventListener('touchmove', function (e) {
+      if (!tracking) return;
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+      // Only show hints when horizontal movement is dominant
+      if (Math.abs(dx) > Math.abs(dy)) {
+        const ratio = Math.min(Math.abs(dx) / THRESHOLD, 1);
+        if (dx < 0) { hintNext.style.opacity = ratio * 0.85; hintPrev.style.opacity = 0; }
+        else        { hintPrev.style.opacity = ratio * 0.85; hintNext.style.opacity = 0; }
+      }
     }, { passive: true });
 
     area.addEventListener('touchend', function (e) {
+      tracking = false;
+      hideHints();
       const dx = e.changedTouches[0].clientX - startX;
       const dy = e.changedTouches[0].clientY - startY;
-      // Only fire if horizontal movement is dominant and exceeds 48 px threshold
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 48) {
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > THRESHOLD) {
         if (dx < 0) next();   // swipe left  → next lesson
         else        prev();   // swipe right → prev lesson
       }
     }, { passive: true });
+
+    area.addEventListener('touchcancel', hideHints, { passive: true });
   }
 
   /* ── 7. YOUTUBE ─────────────────────────────────────────────── */
