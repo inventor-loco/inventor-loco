@@ -67,14 +67,17 @@
 
         <div class="card">
           <form id="contact-form" class="form-grid">
+            <input type="hidden" name="access_key" value="f78f387c-5f7e-4a5e-8c09-cbc725cfe26c">
+            <input type="hidden" name="subject" id="subject-hidden">
+            <input type="checkbox" name="botcheck" style="display:none">
             <div class="frow-2">
               <label>
                 <span>Name</span>
-                <input type="text" id="name" placeholder="Your name" />
+                <input type="text" name="name" id="name" placeholder="Your name" required />
               </label>
               <label>
                 <span>Email</span>
-                <input type="email" id="email" placeholder="your@email.com" />
+                <input type="email" name="email" id="email" placeholder="your@email.com" required />
               </label>
             </div>
             <label>
@@ -89,10 +92,10 @@
             </label>
             <label>
               <span>Message</span>
-              <textarea id="message" placeholder="Write your message here"></textarea>
+              <textarea name="message" id="message" placeholder="Write your message here" required></textarea>
             </label>
             <div class="row-actions">
-              <button type="submit" class="btn">Open email draft</button>
+              <button type="submit" class="btn" id="submit-btn">Send message</button>
               <span id="form-status" class="muted"></span>
             </div>
           </form>
@@ -127,24 +130,40 @@
     }
   });
 
-  document.getElementById('contact-form').addEventListener('submit', (event) => {
+  document.getElementById('contact-form').addEventListener('submit', async (event) => {
     event.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
-    const body = [
-      name ? `Name: ${name}` : '',
-      email ? `Email: ${email}` : '',
-      '',
-      message
-    ].filter(Boolean).join('
-');
+    const form = event.target;
+    const btn = document.getElementById('submit-btn');
+    const status = document.getElementById('form-status');
 
-    const mailto = `mailto:vicente.matus@ulpgc.es?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
-    document.getElementById('form-status').textContent = 'Opening your email app…';
-    setTimeout(() => document.getElementById('form-status').textContent = '', 2400);
+    // Sync the select value into the hidden subject field for Web3Forms
+    document.getElementById('subject-hidden').value = document.getElementById('subject').value;
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    status.textContent = '';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      const data = await res.json();
+      if (data.success) {
+        status.textContent = 'Message sent — thank you!';
+        status.style.color = 'var(--accent, #22c55e)';
+        form.reset();
+      } else {
+        throw new Error(data.message || 'Submission failed');
+      }
+    } catch (err) {
+      status.textContent = 'Something went wrong. Please try again or email directly.';
+      status.style.color = 'var(--danger, #ef4444)';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Send message';
+    }
   });
 </script>
 
