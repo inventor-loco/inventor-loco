@@ -117,7 +117,9 @@
             (lesson.objective
               ? '<div class="objective"><strong>Objective.</strong> ' + escHtml(lesson.objective) + '</div>'
               : '') +
-            (lesson.body || defaultBody(lesson, isFirst, course)) +
+            '<div class="md-body" id="md-body-' + idx + '">' +
+              defaultBody(lesson, isFirst, course) +
+            '</div>' +
 
             /* figure + notes */
             '<div class="lesson-media">' +
@@ -160,6 +162,26 @@
 
       container.appendChild(slide);
     });
+  }
+
+  /* ── MARKDOWN CONTENT LOADER ─────────────────────────────── */
+  var mdCache = {};
+
+  function loadMarkdown(idx) {
+    if (mdCache[idx] !== undefined) return;
+    mdCache[idx] = null; // mark as loading
+    var file = 'content/' + courseId + '/' + String(idx + 1).padStart(2, '0') + '.md';
+    fetch(file).then(function (res) {
+      if (!res.ok) return;
+      return res.text();
+    }).then(function (text) {
+      if (!text) return;
+      mdCache[idx] = text;
+      var el = document.getElementById('md-body-' + idx);
+      if (el && typeof marked !== 'undefined') {
+        el.innerHTML = marked.parse(text);
+      }
+    }).catch(function () { /* no .md file for this lesson, keep default */ });
   }
 
   function defaultBody(lesson, isFirst, course) {
@@ -241,6 +263,9 @@
     // progress pill
     const pill = document.getElementById('progress-pill');
     if (pill) pill.textContent = (current + 1) + ' / ' + total;
+
+    // load markdown content for this lesson (lazy, cached)
+    loadMarkdown(current);
 
     // scroll lesson area back to top
     if (!silent) {
