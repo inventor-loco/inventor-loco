@@ -95,64 +95,67 @@
         /* ── video pane ── */
         '<div class="slide-video-pane">' +
           '<div class="video-portrait" id="yt-wrap-' + idx + '">' +
-            (lesson.video
-              ? '<iframe src="https://www.youtube.com/embed/' + lesson.video + '?rel=0" allowfullscreen loading="lazy"></iframe>'
-              : '<div class="video-placeholder"><div class="yt-play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="video-placeholder-label">No video yet</div></div>') +
+            makeIframe(lesson.video || PLACEHOLDER_VID) +
           '</div>' +
           '<div class="yt-input-row">' +
             '<div class="yt-input-label">Lesson video</div>' +
             '<div class="yt-input-group">' +
               '<input class="yt-id-input" id="yt-input-' + idx + '" placeholder="youtu.be/… or video ID" />' +
+              '<button class="yt-load-btn" onclick="window._course.loadYT(' + idx + ')">Load</button>' +
             '</div>' +
           '</div>' +
         '</div>' +
 
         /* ── content pane ── */
         '<div class="slide-content-pane">' +
-          '<div class="slide-kicker">Unit ' + unitNum + ' · Lesson ' + lessonNum + '</div>' +
-          '<h1 class="slide-title">' + escHtml(lesson.title) + '</h1>' +
-          '<p class="slide-subtitle">' + escHtml(lesson.subtitle || '') + '</p>' +
-          (lesson.objective
-            ? '<div class="objective"><strong>Objective.</strong> ' + escHtml(lesson.objective) + '</div>'
-            : '') +
-          (lesson.body || defaultBody(lesson, isFirst, course)) +
+          '<div class="slide-header">' +
+            '<div class="slide-kicker">Unit ' + unitNum + ' · Lesson ' + lessonNum + '</div>' +
+            '<h1 class="slide-title">' + escHtml(lesson.title) + '</h1>' +
+            '<p class="slide-subtitle">' + escHtml(lesson.subtitle || '') + '</p>' +
+          '</div>' +
+          '<div class="slide-body">' +
+            (lesson.objective
+              ? '<div class="objective"><strong>Objective.</strong> ' + escHtml(lesson.objective) + '</div>'
+              : '') +
+            (lesson.body || defaultBody(lesson, isFirst, course)) +
 
-          /* figure + notes */
-          '<div class="lesson-media">' +
-            '<div class="media-block">' +
-              '<div class="media-label">Figure</div>' +
-              '<div class="svg-figure">' +
-                '<div class="svg-drop-zone" id="svg-zone-' + idx + '" style="display:none">' +
-                  '<div class="svg-drop-icon">📐</div>' +
-                  '<div class="svg-drop-label"><strong>Drop your SVG here</strong><br>or click to browse · PNG/JPG also accepted</div>' +
+            /* figure + notes */
+            '<div class="lesson-media">' +
+              '<div class="media-block">' +
+                '<div class="media-label">Figure</div>' +
+                '<div class="svg-figure">' +
+                  '<div class="svg-drop-zone" id="svg-zone-' + idx + '" style="display:none">' +
+                    '<div class="svg-drop-icon">📐</div>' +
+                    '<div class="svg-drop-label"><strong>Drop your SVG here</strong><br>or click to browse · PNG/JPG also accepted</div>' +
+                  '</div>' +
+                  '<div class="svg-preview" id="svg-preview-' + idx + '" style="display:block"><img src="example-figure.svg" alt="Figure" /></div>' +
+                  '<div class="svg-caption-wrap">' +
+                    '<input class="svg-caption" id="svg-caption-' + idx + '" placeholder="Figure caption…" />' +
+                    '<button class="svg-clear-btn" onclick="window._course.clearFigure(' + idx + ')">✕</button>' +
+                  '</div>' +
+                  '<input type="file" id="svg-input-' + idx + '" accept=".svg,.png,.jpg,.jpeg,.webp" style="display:none" />' +
                 '</div>' +
-                '<div class="svg-preview" id="svg-preview-' + idx + '" style="display:block"><img src="example-figure.svg" alt="Figure" /></div>' +
-                '<div class="svg-caption-wrap">' +
-                  '<input class="svg-caption" id="svg-caption-' + idx + '" placeholder="Figure caption…" />' +
-                  '<button class="svg-clear-btn" onclick="window._course.clearFigure(' + idx + ')">✕</button>' +
-                '</div>' +
-                '<input type="file" id="svg-input-' + idx + '" accept=".svg,.png,.jpg,.jpeg,.webp" style="display:none" />' +
               '</div>' +
-            '</div>' +
-            '<div class="media-block">' +
-              '<div class="media-label">Lesson notes</div>' +
-              '<div class="text-block">' +
-                '<div class="text-block-header">' +
-                  '<span class="text-block-label">Notes</span>' +
-                  '<button class="text-edit-btn" id="text-edit-btn-' + idx + '" onclick="window._course.editText(' + idx + ')">Edit</button>' +
+              '<div class="media-block">' +
+                '<div class="media-label">Lesson notes</div>' +
+                '<div class="text-block">' +
+                  '<div class="text-block-header">' +
+                    '<span class="text-block-label">Notes</span>' +
+                    '<button class="text-edit-btn" id="text-edit-btn-' + idx + '" onclick="window._course.editText(' + idx + ')">Edit</button>' +
+                  '</div>' +
+                  '<div class="text-block-body">' +
+                    '<div class="text-view" id="text-view-' + idx + '" data-raw="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>' +
+                    '<textarea class="text-editor" id="text-editor-' + idx + '" placeholder="Notes, references, or explanations…"></textarea>' +
+                  '</div>' +
+                  '<button class="text-save-btn" id="text-save-btn-' + idx + '" onclick="window._course.saveText(' + idx + ')">Save</button>' +
                 '</div>' +
-                '<div class="text-block-body">' +
-                  '<div class="text-view" id="text-view-' + idx + '" data-raw="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>' +
-                  '<textarea class="text-editor" id="text-editor-' + idx + '" placeholder="Notes, references, or explanations…"></textarea>' +
-                '</div>' +
-                '<button class="text-save-btn" id="text-save-btn-' + idx + '" onclick="window._course.saveText(' + idx + ')">Save</button>' +
               '</div>' +
-            '</div>' +
-          '</div>' + /* /lesson-media */
+            '</div>' + /* /lesson-media */
 
-          (lesson.tags
-            ? '<div class="tag-row">' + lesson.tags.map(t => '<span class="tag">' + escHtml(t) + '</span>').join('') + '</div>'
-            : '') +
+            (lesson.tags
+              ? '<div class="tag-row">' + lesson.tags.map(t => '<span class="tag">' + escHtml(t) + '</span>').join('') + '</div>'
+              : '') +
+          '</div>' + /* /slide-body */
         '</div>'; /* /slide-content-pane */
 
       container.appendChild(slide);
@@ -345,17 +348,22 @@
   }
 
   /* ── 7. YOUTUBE ─────────────────────────────────────────────── */
+  var PLACEHOLDER_VID = 'nzCJcHLkNmQ';
+
+  function makeIframe(vid) {
+    return '<iframe src="https://www.youtube-nocookie.com/embed/' + vid +
+      '?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="no-referrer-when-downgrade" allowfullscreen loading="lazy"></iframe>';
+  }
+
   function loadYT(idx) {
     const wrap  = document.getElementById('yt-wrap-' + idx);
     const input = document.getElementById('yt-input-' + idx);
     if (!wrap || !input) return;
     const raw = input.value.trim();
     const m   = raw.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
-    const vid = m ? m[1] : (raw.length >= 11 ? raw.substring(0, 11) : null);
+    const vid = m ? m[1] : (raw.length === 11 ? raw : null);
     if (!vid) return;
-    wrap.innerHTML =
-      '<iframe src="https://www.youtube.com/embed/' + vid +
-      '?rel=0" allowfullscreen loading="lazy"></iframe>';
+    wrap.innerHTML = makeIframe(vid);
     localStorage.setItem('yt-' + courseId + '-' + idx, vid);
   }
 
@@ -365,9 +373,7 @@
       if (!saved) continue;
       const wrap  = document.getElementById('yt-wrap-' + i);
       const input = document.getElementById('yt-input-' + i);
-      if (wrap)  wrap.innerHTML =
-        '<iframe src="https://www.youtube.com/embed/' + saved +
-        '?rel=0" allowfullscreen loading="lazy"></iframe>';
+      if (wrap)  wrap.innerHTML = makeIframe(saved);
       if (input) input.value = saved;
     }
   }

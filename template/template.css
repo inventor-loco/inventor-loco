@@ -420,7 +420,16 @@ body {
   flex: 1;
   min-width: 0;           /* prevent flex blowout */
   overflow-y: auto;
-  padding: 2.5rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.slide-header {
+  padding: 2.5rem 3.5rem 0;
+  flex-shrink: 0;
+}
+.slide-body {
+  padding: 0 3.5rem 2.5rem;
+  flex: 1;
 }
 
 .slide-kicker {
@@ -690,11 +699,22 @@ body {
     scroll-snap-type: none;
   }
 
-  /* Video moves to BOTTOM on mobile */
+  /* Video moves to AFTER title/subtitle on mobile */
   .slide {
-    flex-direction: column-reverse;
+    flex-direction: column;
+    min-height: auto;
+  }
+  /* Dissolve the content pane so header and body participate directly in the flex column */
+  .slide-content-pane {
+    display: contents;
+  }
+  .slide-header {
+    order: 1;
+    padding: 1.5rem 1.1rem 0.75rem;
+    flex-shrink: 0;
   }
   .slide-video-pane {
+    order: 2;
     width: 100%;
     border-left: none;
     border-top: 1px solid var(--rule);
@@ -705,11 +725,15 @@ body {
     background: var(--ink);
     min-height: unset;
   }
+  .slide-body {
+    order: 3;
+    padding: 0.75rem 1.1rem 1.5rem;
+    flex: 1;
+  }
   .video-portrait { max-width: 160px; flex-shrink: 0; }
   .yt-input-row { width: 100%; max-width: 160px; text-align: center; }
   .yt-input-group { display: none; }          /* hide the text input on mobile */
   .yt-input-label { text-align: center; }
-  .slide-content-pane { padding: 1.5rem 1.1rem; }
   .lesson-media { grid-template-columns: 1fr; }
   .content-grid, .content-grid.cols-3 { grid-template-columns: 1fr; }
   .progress-bar.shifted { left: 0; }

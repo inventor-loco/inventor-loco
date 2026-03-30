@@ -190,6 +190,7 @@ footer { padding: 0 0 2rem; }
 .footer-links { display: flex; gap: 1rem; flex-wrap: wrap; }
 .footer-links a { text-decoration: none; }
 .footer-links a:hover { color: var(--ink); }
+.footer-copy { width: 100%; text-align: center; margin-top: 0.5rem; font-size: 0.7rem; color: var(--ink3); }
 .print-only { display: none; }
 
 /* HAMBURGER / MOBILE NAV */
