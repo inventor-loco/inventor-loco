@@ -24,13 +24,13 @@
        document title
   ─────────────────────────────────────────────────────────── */
   function buildDOM(course) {
-    document.title = course.title + ' — Vicente Matus Icaza';
+    document.title = course.title + ' — Vicente Matus, PhD';
     document.getElementById('sidebar-badge').textContent  = course.badge;
     document.getElementById('sidebar-title').textContent  = course.title;
 
     const flat = flatLessons(course);
     document.getElementById('sidebar-meta').textContent =
-      flat.length + ' lessons · Vicente Matus Icaza';
+      flat.length + ' lessons · Vicente Matus, PhD';
 
     // back link
     const backLink = document.getElementById('back-link');

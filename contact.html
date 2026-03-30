@@ -7,14 +7,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <title>Vicente Matus Icaza | Contact</title>
+  <title>Vicente Matus, PhD | Contact</title>
     <link rel="stylesheet" href="styles/main-pages.css" />
 </head>
 <body>
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="brand">
-      <strong>Vicente Matus Icaza</strong>
+      <strong>Vicente Matus, PhD</strong>
       <span>IDeTIC · ULPGC</span>
     </a>
     <div class="nav-links">
@@ -22,9 +22,8 @@
 <a href="cv.html" class="">CV</a>
 <a href="publications.html" class="">Publications</a>
 <a href="courses.html" class="">Courses</a>
-<a href="contact.html" class="active">Contact</a>
     </div>
-    <a href="courses.html" class="nav-cta">View courses</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
     <button class="nav-hamburger" aria-label="Toggle navigation" onclick="document.getElementById('mobile-nav').classList.toggle('open')">
       <span></span><span></span><span></span>
     </button>
@@ -34,8 +33,7 @@
     <a href="cv.html">CV</a>
     <a href="publications.html">Publications</a>
     <a href="courses.html">Courses</a>
-    <a href="contact.html" class="active">Contact</a>
-    <a href="courses.html" class="mobile-nav-cta">View courses</a>
+    <a href="contact.html" class="mobile-nav-cta">Contact</a>
   </div>
 </nav>
 <main>
@@ -49,19 +47,14 @@
 
     <section class="shell section">
       <div class="section-kicker">Contact page</div>
-      <h2>Direct details and simple form</h2>
+      <h2>Send a message</h2>
       <div class="contact-grid" style="margin-top:1.2rem;">
         <div class="card">
           <div class="mini-list">
-            <div class="mini-item"><div class="mini-k">Email</div><div class="mini-v"><a href="mailto:vicente.matus@ulpgc.es">vicente.matus@ulpgc.es</a></div></div>
             <div class="mini-item"><div class="mini-k">Institution</div><div class="mini-v">IDeTIC, ULPGC · Las Palmas de Gran Canaria, Spain</div></div>
             <div class="mini-item"><div class="mini-k">Scholar</div><div class="mini-v"><a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ" target="_blank" rel="noopener">Google Scholar</a></div></div>
             <div class="mini-item"><div class="mini-k">ORCID</div><div class="mini-v"><a href="https://orcid.org/0000-0003-4262-3882" target="_blank" rel="noopener">0000-0003-4262-3882</a></div></div>
             <div class="mini-item"><div class="mini-k">Scopus</div><div class="mini-v"><a href="https://www.scopus.com/authid/detail.uri?authorId=57203117554" target="_blank" rel="noopener">57203117554</a></div></div>
-          </div>
-          <div class="hero-actions" style="margin-top:1rem;">
-            <button class="tiny-btn" id="copy-email">Copy email</button>
-            <a class="tiny-btn" href="courses.html">View courses</a>
           </div>
         </div>
 
@@ -107,29 +100,18 @@
 </main>
 <footer>
   <div class="footer-inner">
-    <span class="footer-name">Vicente Matus Icaza</span>
+    <span class="footer-name">Vicente Matus, PhD</span>
     <span>IDeTIC · ULPGC · Las Palmas de Gran Canaria, Spain</span>
     <div class="footer-links">
       <a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ" target="_blank" rel="noopener">Scholar</a>
       <a href="https://orcid.org/0000-0003-4262-3882" target="_blank" rel="noopener">ORCID</a>
-      <a href="mailto:vicente.matus@ulpgc.es">Email</a>
+      <a href="contact.html">Contact</a>
     </div>
-    <span class="footer-copy">&copy; Vicente Matus Icaza, IDeTIC-ULPGC, Spain</span>
+    <span class="footer-copy">&copy; Vicente Matus, IDeTIC-ULPGC, Spain</span>
   </div>
 </footer>
 
 <script>
-  document.getElementById('copy-email').addEventListener('click', async () => {
-    const email = 'vicente.matus@ulpgc.es';
-    try {
-      await navigator.clipboard.writeText(email);
-      document.getElementById('copy-email').textContent = 'Copied ✓';
-      setTimeout(() => document.getElementById('copy-email').textContent = 'Copy email', 1800);
-    } catch (e) {
-      window.location.href = 'mailto:' + email;
-    }
-  });
-
   document.getElementById('contact-form').addEventListener('submit', async (event) => {
     event.preventDefault();
     const form = event.target;
