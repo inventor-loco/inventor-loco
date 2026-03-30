@@ -97,13 +97,6 @@
           '<div class="video-portrait" id="yt-wrap-' + idx + '">' +
             makeIframe(lesson.video || PLACEHOLDER_VID) +
           '</div>' +
-          '<div class="yt-input-row">' +
-            '<div class="yt-input-label">Lesson video</div>' +
-            '<div class="yt-input-group">' +
-              '<input class="yt-id-input" id="yt-input-' + idx + '" placeholder="youtu.be/… or video ID" />' +
-              '<button class="yt-load-btn" onclick="window._course.loadYT(' + idx + ')">Load</button>' +
-            '</div>' +
-          '</div>' +
         '</div>' +
 
         /* ── content pane ── */
@@ -120,39 +113,6 @@
             '<div class="md-body" id="md-body-' + idx + '">' +
               defaultBody(lesson, isFirst, course) +
             '</div>' +
-
-            /* figure + notes */
-            '<div class="lesson-media">' +
-              '<div class="media-block">' +
-                '<div class="media-label">Figure</div>' +
-                '<div class="svg-figure">' +
-                  '<div class="svg-drop-zone" id="svg-zone-' + idx + '" style="display:none">' +
-                    '<div class="svg-drop-icon">📐</div>' +
-                    '<div class="svg-drop-label"><strong>Drop your SVG here</strong><br>or click to browse · PNG/JPG also accepted</div>' +
-                  '</div>' +
-                  '<div class="svg-preview" id="svg-preview-' + idx + '" style="display:block"><img src="example-figure.svg" alt="Figure" /></div>' +
-                  '<div class="svg-caption-wrap">' +
-                    '<input class="svg-caption" id="svg-caption-' + idx + '" placeholder="Figure caption…" />' +
-                    '<button class="svg-clear-btn" onclick="window._course.clearFigure(' + idx + ')">✕</button>' +
-                  '</div>' +
-                  '<input type="file" id="svg-input-' + idx + '" accept=".svg,.png,.jpg,.jpeg,.webp" style="display:none" />' +
-                '</div>' +
-              '</div>' +
-              '<div class="media-block">' +
-                '<div class="media-label">Lesson notes</div>' +
-                '<div class="text-block">' +
-                  '<div class="text-block-header">' +
-                    '<span class="text-block-label">Notes</span>' +
-                    '<button class="text-edit-btn" id="text-edit-btn-' + idx + '" onclick="window._course.editText(' + idx + ')">Edit</button>' +
-                  '</div>' +
-                  '<div class="text-block-body">' +
-                    '<div class="text-view" id="text-view-' + idx + '" data-raw="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>' +
-                    '<textarea class="text-editor" id="text-editor-' + idx + '" placeholder="Notes, references, or explanations…"></textarea>' +
-                  '</div>' +
-                  '<button class="text-save-btn" id="text-save-btn-' + idx + '" onclick="window._course.saveText(' + idx + ')">Save</button>' +
-                '</div>' +
-              '</div>' +
-            '</div>' + /* /lesson-media */
 
             (lesson.tags
               ? '<div class="tag-row">' + lesson.tags.map(t => '<span class="tag">' + escHtml(t) + '</span>').join('') + '</div>'
@@ -380,154 +340,16 @@
       '?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="no-referrer-when-downgrade" allowfullscreen loading="lazy"></iframe>';
   }
 
-  function loadYT(idx) {
-    const wrap  = document.getElementById('yt-wrap-' + idx);
-    const input = document.getElementById('yt-input-' + idx);
-    if (!wrap || !input) return;
-    const raw = input.value.trim();
-    const m   = raw.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
-    const vid = m ? m[1] : (raw.length === 11 ? raw : null);
-    if (!vid) return;
-    wrap.innerHTML = makeIframe(vid);
-    localStorage.setItem('yt-' + courseId + '-' + idx, vid);
-  }
-
   function restoreYT() {
     for (let i = 0; i < total; i++) {
       const saved = localStorage.getItem('yt-' + courseId + '-' + i);
       if (!saved) continue;
       const wrap  = document.getElementById('yt-wrap-' + i);
-      const input = document.getElementById('yt-input-' + i);
       if (wrap)  wrap.innerHTML = makeIframe(saved);
-      if (input) input.value = saved;
     }
   }
 
-  /* ── 7. SVG / IMAGE FIGURES ─────────────────────────────────── */
-  function setupFigures() {
-    for (let i = 0; i < total; i++) {
-      setupFigure(i);
-    }
-  }
-
-  function setupFigure(idx) {
-    const zone    = document.getElementById('svg-zone-' + idx);
-    const input   = document.getElementById('svg-input-' + idx);
-    const caption = document.getElementById('svg-caption-' + idx);
-    const key     = 'svg-' + courseId + '-' + idx;
-    const capKey  = 'svg-cap-' + courseId + '-' + idx;
-
-    const savedSrc = localStorage.getItem(key);
-    const savedCap = localStorage.getItem(capKey);
-    if (savedSrc) showFigurePreview(idx, savedSrc);
-    if (savedCap && caption) caption.value = savedCap;
-
-    if (!zone) return;
-    zone.addEventListener('click', () => input && input.click());
-    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
-    zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
-    zone.addEventListener('drop', e => {
-      e.preventDefault(); zone.classList.remove('dragover');
-      const file = e.dataTransfer.files[0];
-      if (file) readFigureFile(file, idx, key);
-    });
-    if (input) input.addEventListener('change', () => {
-      if (input.files[0]) readFigureFile(input.files[0], idx, key);
-    });
-    if (caption) caption.addEventListener('input', () => {
-      localStorage.setItem(capKey, caption.value);
-    });
-  }
-
-  function readFigureFile(file, idx, key) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      localStorage.setItem(key, e.target.result);
-      showFigurePreview(idx, e.target.result);
-    };
-    reader.readAsDataURL(file);
-  }
-
-  function showFigurePreview(idx, src) {
-    const zone    = document.getElementById('svg-zone-' + idx);
-    const preview = document.getElementById('svg-preview-' + idx);
-    if (!zone || !preview) return;
-    zone.style.display    = 'none';
-    preview.style.display = 'block';
-    const img = preview.querySelector('img');
-    if (img) img.src = src;
-  }
-
-  function clearFigure(idx) {
-    const key    = 'svg-' + courseId + '-' + idx;
-    const capKey = 'svg-cap-' + courseId + '-' + idx;
-    localStorage.removeItem(key);
-    localStorage.removeItem(capKey);
-    const zone    = document.getElementById('svg-zone-' + idx);
-    const preview = document.getElementById('svg-preview-' + idx);
-    const caption = document.getElementById('svg-caption-' + idx);
-    if (zone)    zone.style.display    = '';
-    if (preview) { preview.style.display = 'none'; const img = preview.querySelector('img'); if (img) img.src = ''; }
-    if (caption) caption.value = '';
-  }
-
-  /* ── 8. TEXT NOTES ──────────────────────────────────────────── */
-  function restoreNotes() {
-    for (let i = 0; i < total; i++) {
-      const key    = 'text-' + courseId + '-' + i;
-      const saved  = localStorage.getItem(key);
-      if (!saved) continue;
-      const view = document.getElementById('text-view-' + i);
-      if (!view) continue;
-      view.dataset.raw  = saved;
-      view.textContent  = saved;
-      view.className    = 'text-view';
-    }
-  }
-
-  function editText(idx) {
-    const view   = document.getElementById('text-view-' + idx);
-    const editor = document.getElementById('text-editor-' + idx);
-    const btn    = document.getElementById('text-edit-btn-' + idx);
-    const save   = document.getElementById('text-save-btn-' + idx);
-    if (!view || !editor) return;
-    editor.value         = view.dataset.raw || '';
-    view.style.display   = 'none';
-    editor.style.display = 'block';
-    save.style.display   = 'inline-block';
-    btn.textContent      = 'Cancel';
-    btn.onclick          = function () { cancelText(idx); };
-    editor.focus();
-  }
-
-  function cancelText(idx) {
-    const view   = document.getElementById('text-view-' + idx);
-    const editor = document.getElementById('text-editor-' + idx);
-    const btn    = document.getElementById('text-edit-btn-' + idx);
-    const save   = document.getElementById('text-save-btn-' + idx);
-    view.style.display   = '';
-    editor.style.display = 'none';
-    save.style.display   = 'none';
-    btn.textContent      = 'Edit';
-    btn.onclick          = function () { editText(idx); };
-  }
-
-  function saveText(idx) {
-    const view   = document.getElementById('text-view-' + idx);
-    const editor = document.getElementById('text-editor-' + idx);
-    const key    = 'text-' + courseId + '-' + idx;
-    const text   = editor.value.trim();
-    localStorage.setItem(key, text);
-    view.dataset.raw = text;
-    if (text) {
-      view.textContent = text;
-      view.className   = 'text-view';
-    } else {
-      view.textContent = 'No notes yet — click Edit to add text.';
-      view.className   = 'text-view empty';
-    }
-    cancelText(idx);
-  }
+  /* (Figures and notes sections removed — now handled by MD files) */
 
   /* ── 9. SIDEBAR TOGGLE ──────────────────────────────────────── */
   function setupMobileMenu() {
@@ -591,7 +413,42 @@
     });
   }
 
-  /* ── 10. UTILITY ─────────────────────────────────────────────── */
+  /* ── 10. SIDEBAR RESIZE ──────────────────────────────────────── */
+  function setupSidebarResize() {
+    var sidebar = document.getElementById('sidebar');
+    if (!sidebar) return;
+
+    var handle = document.createElement('div');
+    handle.className = 'sidebar-resize-handle';
+    sidebar.appendChild(handle);
+
+    var startX, startW;
+
+    function onMouseDown(e) {
+      if (window.innerWidth <= 768) return;
+      e.preventDefault();
+      startX = e.clientX;
+      startW = sidebar.offsetWidth;
+      handle.classList.add('dragging');
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    }
+
+    function onMouseMove(e) {
+      var newW = Math.max(200, Math.min(500, startW + (e.clientX - startX)));
+      document.documentElement.style.setProperty('--sidebar-w', newW + 'px');
+    }
+
+    function onMouseUp() {
+      handle.classList.remove('dragging');
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    }
+
+    handle.addEventListener('mousedown', onMouseDown);
+  }
+
+  /* ── 11. UTILITY ─────────────────────────────────────────────── */
   function escHtml(str) {
     if (!str) return '';
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -617,16 +474,12 @@
     // defer restore so DOM is fully ready
     setTimeout(function () {
       restoreYT();
-      setupFigures();
-      restoreNotes();
     }, 0);
+
+    setupSidebarResize();
 
     // expose methods needed by inline onclick handlers
     window._course = {
-      loadYT:       loadYT,
-      clearFigure:  clearFigure,
-      editText:     editText,
-      saveText:     saveText,
       next:         next,
       prev:         prev,
       goTo:         goTo,
