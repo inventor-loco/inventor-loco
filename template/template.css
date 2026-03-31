@@ -648,6 +648,15 @@ body {
   .video-portrait { max-width: 160px; flex-shrink: 0; }
   .content-grid, .content-grid.cols-3 { grid-template-columns: 1fr; }
   .progress-bar.shifted { left: 0; }
+
+  /* ── TOPBAR: icons-only on mobile ── */
+  .topbar { padding: 0 0.75rem; gap: 0.5rem; }
+  .topbar-left { padding-left: 36px; }
+  .topbar-lesson { display: none; }
+  .topbar-right { gap: 0.35rem; }
+  .btn-label { display: none; }
+  .nav-btn { padding: 0.28rem 0.5rem; }
+  .exit-btn { padding: 0.28rem 0.5rem; margin-left: 0; }
 }
 
 /* ── MARKDOWN BODY ───────────────────────────────────────── */
