@@ -5,7 +5,7 @@ Reverse Osmosis (RO) relies on overcoming natural osmotic pressure. In natural o
 
 This forces water molecules through the sub-nanometer pores of a synthetic membrane, leaving behind heavy metals, inorganic salts, and pathogens. Unlike "dead-end" filtration where water goes straight through a filter (like a coffee filter), RO uses **cross-flow filtration**. Water flows *parallel* to the membrane surface, continuously sweeping away rejected contaminants into a brine (waste) stream, preventing the membrane from rapidly clogging.
 
-![Cross-flow filtration vs dead-end filtration diagram](figure-placeholder.png)
+![Reverse osmosis process flow showing feed water, pre-filters, membrane separation, permeate, and concentrate drain](figs/osmosis/ro-process-example.svg)
 
 ### Removal Capabilities
 
@@ -366,4 +366,3 @@ You have now completed the definitive masterclass on Reverse Osmosis. You posses
 2. **Design:** Architect the exact 5-stage or tankless system that fits your water's specific chemistry.
 3. **Execute:** Install the system utilizing best practices (step bits, tube cutters, collet clips).
 4. **Monitor:** Build or install a continuous monitoring solution to shift your maintenance from reactive guessing to proactive data-driven service.
-
