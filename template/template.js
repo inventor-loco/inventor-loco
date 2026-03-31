@@ -126,22 +126,38 @@
 
   /* ── MARKDOWN CONTENT LOADER ─────────────────────────────── */
   var mdCache = {};
+  var mdLoaded = false;
 
-  function loadMarkdown(idx) {
-    if (mdCache[idx] !== undefined) return;
-    mdCache[idx] = null; // mark as loading
-    var file = 'content/' + courseId + '/' + String(idx + 1).padStart(2, '0') + '.md';
-    fetch(file).then(function (res) {
-      if (!res.ok) return;
+  function loadAllMarkdown() {
+    if (mdLoaded) return Promise.resolve();
+    mdLoaded = true;
+    var file = 'content/' + courseId + '.md';
+    return fetch(file).then(function (res) {
+      if (!res.ok) return '';
       return res.text();
     }).then(function (text) {
       if (!text) return;
-      mdCache[idx] = text;
-      var el = document.getElementById('md-body-' + idx);
-      if (el && typeof marked !== 'undefined') {
-        el.innerHTML = marked.parse(text);
+      var parts = text.split(/<!--\s*slug:\s*(\d+)\s*-->/);
+      for (var i = 1; i < parts.length; i += 2) {
+        var idx = parseInt(parts[i], 10) - 1;
+        mdCache[idx] = parts[i + 1].trim();
       }
-    }).catch(function () { /* no .md file for this lesson, keep default */ });
+    }).catch(function () { /* no combined .md file */ });
+  }
+
+  function renderMarkdown(idx) {
+    var el = document.getElementById('md-body-' + idx);
+    if (el && mdCache[idx] && typeof marked !== 'undefined') {
+      el.innerHTML = marked.parse(mdCache[idx]);
+    }
+  }
+
+  function loadMarkdown(idx) {
+    if (mdCache[idx] !== undefined) {
+      renderMarkdown(idx);
+      return;
+    }
+    loadAllMarkdown().then(function () { renderMarkdown(idx); });
   }
 
   function defaultBody(lesson, isFirst, course) {
