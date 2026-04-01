@@ -107,6 +107,7 @@
             '<p class="slide-subtitle">' + escHtml(lesson.subtitle || '') + '</p>' +
           '</div>' +
           '<div class="slide-body">' +
+            lessonDisclaimer() +
             (lesson.objective
               ? '<div class="objective"><strong>Objective.</strong> ' + escHtml(lesson.objective) + '</div>'
               : '') +
@@ -175,6 +176,13 @@
         '</div>';
     }
     return '<div class="callout info"><span class="callout-icon">📝</span><span>Content for the lessons is being developed and updated. Please <a href="../contact.html" style="color:var(--accent);text-decoration:underline;">show interest</a> if you need further information.</span></div>';
+  }
+
+  function lessonDisclaimer() {
+    return '<div class="lesson-disclaimer" role="note" aria-label="Lesson disclaimer">' +
+      '<strong>Disclaimer.</strong> Some materials in these lessons were generated with AI. ' +
+      'The author is currently validating and updating the information for maximum accuracy.' +
+      '</div>';
   }
 
   /* ── 3. NAVIGATION STATE ────────────────────────────────────── */
