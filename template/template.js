@@ -269,12 +269,8 @@
       if (tag === 'INPUT' || tag === 'TEXTAREA') return;
 
       switch (e.key) {
-        case 'ArrowRight':
-        case 'ArrowDown':
         case 'PageDown':
           e.preventDefault(); next(); break;
-        case 'ArrowLeft':
-        case 'ArrowUp':
         case 'PageUp':
           e.preventDefault(); prev(); break;
       }
