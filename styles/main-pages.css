@@ -193,6 +193,68 @@ footer { padding: 0 0 2rem; }
 .footer-copy { width: 100%; text-align: center; margin-top: 0.5rem; font-size: 0.7rem; color: var(--ink3); }
 .print-only { display: none; }
 
+/* --- Accordion / collapsible --- */
+.accordion-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--rule);
+  margin-top: 1.2rem;
+  user-select: none;
+}
+.accordion-toggle h3 {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.accordion-toggle::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid var(--ink3);
+  border-bottom: 1.5px solid var(--ink3);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 0.75rem;
+}
+.accordion.open .accordion-toggle::after {
+  transform: rotate(-135deg);
+}
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.accordion.open .accordion-body {
+  max-height: 1000px;
+}
+
+/* Stat row for research metrics */
+.stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 0.8rem;
+}
+.stat-item { text-align: center; }
+.stat-number {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--ink3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
 /* HAMBURGER / MOBILE NAV */
 .nav-hamburger {
   display: none;
@@ -231,6 +293,8 @@ footer { padding: 0 0 2rem; }
   .nav-cta { display: none !important; }
   .nav-hamburger { display: flex; }
   .hero, .hero.compact, .section { padding: 1.25rem; }
+  .stat-row { gap: 1rem; }
+  .accordion-toggle { padding: 0.6rem 0; }
   .pub-item, .timeline-row, .stat, .mini-item { grid-template-columns: 1fr; }
   .year, .meta-label, .mini-k { padding-top: 0; }
   .frow-2 { grid-template-columns: 1fr; }
@@ -243,4 +307,6 @@ footer { padding: 0 0 2rem; }
   .shell { border: none; box-shadow: none; }
   .section, .hero { padding: 0.85rem 0; }
   .print-only { display: block; }
+  .accordion-body { max-height: none !important; overflow: visible; }
+  .accordion-toggle::after { display: none; }
 }
