@@ -148,10 +148,8 @@ Understanding this topic is a prerequisite for the lessons that follow. It conne
 
 For reference, the key relationship is:
 
-```
-P = V x I
-E = P x t
-```
+$$P = V \times I$$
+$$E = P \times t$$
 
 Where `P` is power, `V` is voltage, `I` is current, `E` is energy, and `t` is time.
 
@@ -309,10 +307,8 @@ Understanding this topic is a prerequisite for the lessons that follow. It conne
 
 For reference, the key relationship is:
 
-```
-P = V x I
-E = P x t
-```
+$$P = V \times I$$
+$$E = P \times t$$
 
 Where `P` is power, `V` is voltage, `I` is current, `E` is energy, and `t` is time.
 
@@ -470,10 +466,8 @@ Understanding this topic is a prerequisite for the lessons that follow. It conne
 
 For reference, the key relationship is:
 
-```
-P = V x I
-E = P x t
-```
+$$P = V \times I$$
+$$E = P \times t$$
 
 Where `P` is power, `V` is voltage, `I` is current, `E` is energy, and `t` is time.
 
@@ -631,10 +625,8 @@ Understanding this topic is a prerequisite for the lessons that follow. It conne
 
 For reference, the key relationship is:
 
-```
-P = V x I
-E = P x t
-```
+$$P = V \times I$$
+$$E = P \times t$$
 
 Where `P` is power, `V` is voltage, `I` is current, `E` is energy, and `t` is time.
 
@@ -792,10 +784,8 @@ Understanding this topic is a prerequisite for the lessons that follow. It conne
 
 For reference, the key relationship is:
 
-```
-P = V x I
-E = P x t
-```
+$$P = V \times I$$
+$$E = P \times t$$
 
 Where `P` is power, `V` is voltage, `I` is current, `E` is energy, and `t` is time.
 

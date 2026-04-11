@@ -1,7 +1,7 @@
 <!-- slug: 01 -->
 ## What is reverse osmosis?
 
-Reverse Osmosis (RO) relies on overcoming natural osmotic pressure. In natural osmosis, a solvent (water) moves across a semipermeable membrane from a region of low solute concentration to one of high solute concentration, driven by the thermodynamic desire to equalize chemical potentials. **Reverse Osmosis** introduces hydrostatic pressure greater than the osmotic pressure (calculated via the van 't Hoff equation: π = iCRT) on the high-concentration side.
+Reverse Osmosis (RO) relies on overcoming natural osmotic pressure. In natural osmosis, a solvent (water) moves across a semipermeable membrane from a region of low solute concentration to one of high solute concentration, driven by the thermodynamic desire to equalize chemical potentials. **Reverse Osmosis** introduces hydrostatic pressure greater than the osmotic pressure (calculated via the van 't Hoff equation: $\pi = iCRT$) on the high-concentration side.
 
 This forces water molecules through the sub-nanometer pores of a synthetic membrane, leaving behind heavy metals, inorganic salts, and pathogens. Unlike "dead-end" filtration where water goes straight through a filter (like a coffee filter), RO uses **cross-flow filtration**. Water flows *parallel* to the membrane surface, continuously sweeping away rejected contaminants into a brine (waste) stream, preventing the membrane from rapidly clogging.
 
@@ -24,7 +24,7 @@ To baseline and monitor an RO system, we utilize electrical conductivity to esti
 
 ### Key metrics
 
-- **Conductivity to TDS:** A TDS meter measures conductivity in MicroSiemens (μS/cm) and applies a conversion factor (typically 0.5 to 0.7) to estimate TDS in Parts Per Million (PPM). Because it relies on conductivity, it does not measure uncharged particles like sugar or some motor oils, but is highly accurate for mineral and salt content.
+- **Conductivity to TDS:** A TDS meter measures conductivity in MicroSiemens ($\mu\text{S/cm}$) and applies a conversion factor (typically 0.5 to 0.7) to estimate TDS in Parts Per Million (PPM). Because it relies on conductivity, it does not measure uncharged particles like sugar or some motor oils, but is highly accurate for mineral and salt content.
 - **SDI (Silt Density Index):** A critical metric for RO feed water. An SDI > 5 indicates high particulate matter that will rapidly foul an RO membrane.
 - **Langelier Saturation Index (LSI):** Measures the scaling potential of water. Hard water (high Calcium/Magnesium) with a positive LSI will precipitate calcium carbonate onto the membrane surface, requiring softening pre-treatment or antiscalant dosing.
 - **Chlorine vs. Chloramines:** Municipalities use free chlorine or chloramines. Thin-Film Composite (TFC) membranes tolerate ZERO chlorine (<0.1 ppm). Carbon pre-filtration is mandatory.
@@ -88,7 +88,7 @@ Pay attention to the layered construction and to the way permeate moves inward w
 <!-- slug: 06 -->
 ## Post-filters & remineralization
 
-Permeate (RO water) is aggressive. By stripping all buffering alkalinity (carbonates/bicarbonates), the water absorbs CO₂ from the air, creating weak carbonic acid (H₂CO₃), dropping the pH to 5.5–6.5.
+Permeate (RO water) is aggressive. By stripping all buffering alkalinity (carbonates/bicarbonates), the water absorbs $\text{CO}_2$ from the air, creating weak carbonic acid ($\text{H}_2\text{CO}_3$), dropping the pH to 5.5–6.5.
 
 ### Taste Polishing
 
@@ -96,7 +96,7 @@ Coconut shell activated carbon is used purely to eliminate any rubbery tastes ac
 
 ### Remineralization Media
 
-Calcite (crushed marble / CaCO₃) and Corosex (Magnesium Oxide / MgO) are used to sacrifice minerals into the aggressive water. This raises the pH back to 7.5–8.5, restoring buffering capacity and imparting a "spring water" mouthfeel.
+Calcite (crushed marble / $\text{CaCO}_3$) and Corosex (Magnesium Oxide / $\text{MgO}$) are used to sacrifice minerals into the aggressive water. This raises the pH back to 7.5–8.5, restoring buffering capacity and imparting a "spring water" mouthfeel.
 
 ![Post-filtration and remineralization process showing carbon polishing, mineral media, and improved drinking water](figs/osmosis/06-postfilters-remineralization.png)
 *Figure 6. Post-treatment path for RO water, from taste polishing to remineralization.*
@@ -105,7 +105,7 @@ This figure is useful for explaining why ultra-low-mineral water often benefits 
 <!-- slug: 07 -->
 ## Tanks, pressure & flow
 
-A hydropneumatic RO tank operates on **Boyle's Law (P₁V₁ = P₂V₂)**.
+A hydropneumatic RO tank operates on **Boyle's Law ($P_1V_1 = P_2V_2$)**.
 
 ### Internal Mechanics
 
@@ -145,7 +145,11 @@ The "waste" water is correctly termed the **brine** or **concentrate**. Without 
 
 ### Recovery Rate
 
-Calculated as: R = (Permeate Flow / Feed Flow) × 100. A standard system has a 20–25% recovery rate.
+Calculated as:
+
+$$R = \frac{\text{Permeate Flow}}{\text{Feed Flow}} \times 100$$
+
+A standard system has a 20–25% recovery rate.
 
 ### Flow Restrictor Sizing
 
@@ -280,9 +284,9 @@ Install a dual probe meter. Probe 1 measures the Feed (e.g., 300 PPM). Probe 2 m
 
 ### Rejection Rate Calculation
 
-((Feed − Permeate) / Feed) × 100
+$$\frac{\text{Feed} - \text{Permeate}}{\text{Feed}} \times 100$$
 
-**Example:** ((300 − 15) / 300) × 100 = 95%
+**Example:** $\frac{300 - 15}{300} \times 100 = 95\%$
 
 > If the rejection rate drops below 80–85%, the membrane has failed and must be replaced.
 
@@ -297,7 +301,7 @@ Relying purely on time (e.g., "every 6 months") is flawed if you use 2 gallons a
 
 ### Advanced Monitoring (Delta-P)
 
-Professionals measure the pressure drop (ΔP) across the pre-filters. If the feed pressure is 60 PSI, and the pressure entering the RO membrane is 45 PSI, the pre-filters are clogged with sediment and must be changed.
+Professionals measure the pressure drop ($\Delta P$) across the pre-filters. If the feed pressure is 60 PSI, and the pressure entering the RO membrane is 45 PSI, the pre-filters are clogged with sediment and must be changed.
 
 ### Biological Loading
 
