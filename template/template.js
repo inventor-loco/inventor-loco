@@ -193,7 +193,41 @@
   function init(course) {
     courseId = course.slug;
     total    = flatLessons(course).length;
+    buildCarouselDots(total);
     goTo(0, true);
+  }
+
+  /* ── CAROUSEL DOTS (mobile) ────────────────────────────────── */
+  var DOT_SIZE = 7, DOT_GAP = 6, DOT_STEP = DOT_SIZE + DOT_GAP; // 13px per dot
+
+  function buildCarouselDots(count) {
+    var container = document.createElement('div');
+    container.className = 'carousel-dots';
+    container.id = 'carousel-dots';
+    var track = document.createElement('div');
+    track.className = 'carousel-dots-track';
+    track.id = 'carousel-dots-track';
+    for (var i = 0; i < count; i++) {
+      var dot = document.createElement('span');
+      dot.className = 'carousel-dot';
+      dot.setAttribute('data-idx', i);
+      track.appendChild(dot);
+    }
+    container.appendChild(track);
+    document.body.appendChild(container);
+  }
+
+  function updateCarouselDots(idx) {
+    var track = document.getElementById('carousel-dots-track');
+    if (!track) return;
+    var dots = track.querySelectorAll('.carousel-dot');
+    // Center active dot: shift track so dot[idx] sits in the middle of the 85px window
+    // Middle of window = 42.5px, center of dot[idx] = idx * 13 + 3.5
+    var offset = 42.5 - (idx * DOT_STEP + DOT_SIZE / 2);
+    track.style.transform = 'translateX(' + offset + 'px)';
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('active', i === idx);
+    }
   }
 
   function goTo(n, silent, dir) {
@@ -247,6 +281,9 @@
     // progress pill
     const pill = document.getElementById('progress-pill');
     if (pill) pill.textContent = (current + 1) + ' / ' + total;
+
+    // carousel dots
+    updateCarouselDots(current);
 
     // load markdown content for this lesson (lazy, cached)
     loadMarkdown(current);
