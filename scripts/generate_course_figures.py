@@ -1,56 +1,50 @@
 #!/usr/bin/env python3
-"""Batch-generate course figures with the OpenAI Images API.
+"""Batch-generate course figures with the Google Gen AI SDK.
 
 Usage:
   python scripts/generate_course_figures.py courses/figs/osmosis/prompts.json
 
 Requires:
-  OPENAI_API_KEY environment variable
+  GEMINI_API_KEY environment variable
 """
 
 from __future__ import annotations
 
 import argparse
-import base64
 import json
 import os
 import sys
 import time
-import urllib.error
-import urllib.request
 from pathlib import Path
 
+# Import the official SDK
+try:
+    from google import genai
+    from google.genai import types
+    from google.genai.errors import APIError
+except ImportError:
+    print("ERROR: google-genai SDK not found. Please run: pip install google-genai", file=sys.stderr)
+    sys.exit(1)
 
-DEFAULT_MODEL = "gpt-image-1.5"
-DEFAULT_SIZE = "1536x1024"
-DEFAULT_QUALITY = "high"
-DEFAULT_FORMAT = "png"
-DEFAULT_BACKGROUND = "opaque"
-API_URL = "https://api.openai.com/v1/images/generations"
+# Using the correct developer endpoint for the Flash Image model
+DEFAULT_MODEL = "gemini-3.1-flash-image-preview"
 
+# Global context tailored for the Osmosis course
+BASE_STYLE = (
+    "A clean, modern educational illustration for an engineering and science course on Reverse Osmosis. "
+    "The style should be high-quality flat vector art with a white background, "
+    "utilizing a crisp color palette of aquatic blues, clean white, slate gray, and contrasting safety orange for emphasis. "
+    "Use clean, sans-serif typography for any explicitly requested labels. "
+    "The layout must be highly structured, technically accurate, and easy for students to understand. "
+)
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Generate course figure images from a JSON manifest."
+        description="Generate course figure images from a JSON manifest using Gemini API."
     )
     parser.add_argument("manifest", help="Path to a JSON array with path/prompt entries.")
     parser.add_argument(
         "--model", default=DEFAULT_MODEL, help=f"Image model to use. Default: {DEFAULT_MODEL}"
-    )
-    parser.add_argument(
-        "--size", default=DEFAULT_SIZE, help=f"Image size to request. Default: {DEFAULT_SIZE}"
-    )
-    parser.add_argument(
-        "--quality",
-        default=DEFAULT_QUALITY,
-        choices=["low", "medium", "high", "auto"],
-        help=f"Generation quality. Default: {DEFAULT_QUALITY}",
-    )
-    parser.add_argument(
-        "--background",
-        default=DEFAULT_BACKGROUND,
-        choices=["opaque", "transparent", "auto"],
-        help=f"Background mode. Default: {DEFAULT_BACKGROUND}",
     )
     parser.add_argument(
         "--overwrite",
@@ -60,8 +54,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--delay",
         type=float,
-        default=1.0,
-        help="Seconds to wait between requests. Default: 1.0",
+        default=2.0,
+        help="Seconds to wait between requests. Default: 2.0",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print what would be generated without calling the API.",
     )
     return parser.parse_args()
 
@@ -76,46 +75,11 @@ def load_manifest(path: Path) -> list[dict[str, str]]:
     return data
 
 
-def build_payload(prompt: str, model: str, size: str, quality: str, background: str) -> bytes:
-    body = {
-        "model": model,
-        "prompt": prompt,
-        "size": size,
-        "quality": quality,
-        "background": background,
-        "output_format": DEFAULT_FORMAT,
-        "n": 1,
-    }
-    return json.dumps(body).encode("utf-8")
-
-
-def call_images_api(api_key: str, payload: bytes) -> dict:
-    request = urllib.request.Request(
-        API_URL,
-        data=payload,
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
-        method="POST",
-    )
-    with urllib.request.urlopen(request, timeout=300) as response:
-        return json.loads(response.read().decode("utf-8"))
-
-
-def save_image(output_path: Path, response_json: dict) -> None:
-    data = response_json.get("data") or []
-    if not data or "b64_json" not in data[0]:
-        raise ValueError("API response did not include image data.")
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_bytes(base64.b64decode(data[0]["b64_json"]))
-
-
 def main() -> int:
     args = parse_args()
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        print("OPENAI_API_KEY is not set.", file=sys.stderr)
+    
+    if not os.getenv("GEMINI_API_KEY") and not args.dry_run:
+        print("ERROR: GEMINI_API_KEY environment variable is not set.", file=sys.stderr)
         return 1
 
     manifest_path = Path(args.manifest)
@@ -129,38 +93,61 @@ def main() -> int:
         print(f"Failed to read manifest: {exc}", file=sys.stderr)
         return 1
 
+    if not args.dry_run:
+        client = genai.Client()
+
     root = Path.cwd()
     failures = 0
+    total = len(items)
 
     for index, item in enumerate(items, start=1):
         output_path = root / item["path"]
+        tag = f"[{index}/{total}]"
+        
         if output_path.exists() and not args.overwrite:
-            print(f"[{index}/{len(items)}] Skip existing {output_path}")
+            print(f"{tag} Skip existing {output_path}")
             continue
 
-        print(f"[{index}/{len(items)}] Generating {output_path} ...")
-        payload = build_payload(
-            prompt=item["prompt"],
-            model=args.model,
-            size=args.size,
-            quality=args.quality,
-            background=args.background,
-        )
+        full_prompt = BASE_STYLE + item["prompt"]
+
+        if args.dry_run:
+            print(f"{tag} DRY-RUN {output_path}")
+            print(f"        prompt: {full_prompt[:90]}...")
+            continue
+
+        print(f"{tag} Generating {output_path} ...")
 
         try:
-            response_json = call_images_api(api_key, payload)
-            save_image(output_path, response_json)
-            print(f"[{index}/{len(items)}] Saved {output_path}")
-        except urllib.error.HTTPError as exc:
+            response = client.models.generate_content(
+                model=args.model,
+                contents=full_prompt,
+                config=types.GenerateContentConfig(
+                    response_modalities=["IMAGE"],
+                )
+            )
+            
+            saved = False
+            for part in response.candidates[0].content.parts:
+                if part.inline_data is not None:
+                    output_path.parent.mkdir(parents=True, exist_ok=True)
+                    output_path.write_bytes(part.inline_data.data)
+                    saved = True
+                    print(f"{tag} Saved {output_path}")
+                    break
+            
+            if not saved:
+                print(f"{tag} Failed {output_path.name}: No image data returned.", file=sys.stderr)
+                failures += 1
+
+        except APIError as exc:
             failures += 1
-            details = exc.read().decode("utf-8", errors="replace")
-            print(f"[{index}/{len(items)}] HTTP error for {output_path}: {exc.code}", file=sys.stderr)
-            print(details, file=sys.stderr)
+            print(f"{tag} API Error for {output_path.name}", file=sys.stderr)
+            print(f"        {exc}", file=sys.stderr)
         except Exception as exc:
             failures += 1
-            print(f"[{index}/{len(items)}] Failed {output_path}: {exc}", file=sys.stderr)
+            print(f"{tag} Failed {output_path.name}: {exc}", file=sys.stderr)
 
-        if index < len(items):
+        if index < total:
             time.sleep(max(args.delay, 0.0))
 
     if failures:
@@ -172,4 +159,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    sys.exit(main())
