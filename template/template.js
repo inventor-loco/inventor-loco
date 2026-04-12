@@ -185,6 +185,151 @@
       '</div>';
   }
 
+  /* ── COVER PAGE ──────────────────────────────────────────────── */
+  var showingCover = true;
+
+  function buildCover(course) {
+    var flat = flatLessons(course);
+    var container = document.getElementById('slide-container');
+    var cover = document.createElement('div');
+    cover.className = 'cover-page';
+    cover.id = 'cover-page';
+
+    /* ── TOC (collapsible units) ── */
+    var tocHtml = '';
+    var globalIdx = 0;
+    course.units.forEach(function (unit, ui) {
+      var unitLabel = unit.name.replace(/^Unit\s*\d+\s*[—–\-]\s*/, '');
+      tocHtml += '<div class="cover-unit-card">' +
+        '<button class="cover-unit-header" onclick="this.parentElement.classList.toggle(\'open\')">' +
+          '<span><span class="cover-unit-num">Unit ' + (ui + 1) + '</span>' +
+          '<span class="cover-unit-name">' + escHtml(unitLabel) + '</span></span>' +
+          '<span class="cover-unit-chevron">&#9662;</span>' +
+        '</button><ul class="cover-unit-lessons">';
+      unit.lessons.forEach(function (lesson, li) {
+        var idx = globalIdx++;
+        tocHtml += '<li><a onclick="window._course.goTo(' + idx + ')">' +
+          '<span class="toc-num">' + String(idx + 1).padStart(2, '0') + '</span> ' +
+          escHtml(lesson.title) + '</a></li>';
+      });
+      tocHtml += '</ul></div>';
+    });
+
+    /* ── Nav guide (shared across all courses) ── */
+    var navHtml =
+      '<div class="nav-guide-grid">' +
+        '<div class="nav-guide-card">' +
+          '<div class="nav-guide-keys"><kbd>PgUp</kbd> <kbd>PgDn</kbd></div>' +
+          '<div class="nav-guide-title">Keyboard</div>' +
+          '<div class="nav-guide-desc">Page Up to go back<br>Page Down to advance</div>' +
+        '</div>' +
+        '<div class="nav-guide-card">' +
+          '<div class="nav-guide-keys">&#9776;</div>' +
+          '<div class="nav-guide-title">Sidebar</div>' +
+          '<div class="nav-guide-desc">Open the index and<br>click any lesson</div>' +
+        '</div>' +
+        '<div class="nav-guide-card">' +
+          '<div class="nav-guide-keys">&lsaquo; swipe &rsaquo;</div>' +
+          '<div class="nav-guide-title">Touch</div>' +
+          '<div class="nav-guide-desc">Swipe left or right<br>on mobile devices</div>' +
+        '</div>' +
+        '<div class="nav-guide-card">' +
+          '<div class="nav-guide-keys">F11</div>' +
+          '<div class="nav-guide-title">Fullscreen</div>' +
+          '<div class="nav-guide-desc">Immersive mode for<br>distraction-free study</div>' +
+        '</div>' +
+      '</div>';
+
+    cover.innerHTML =
+      /* ── Hero ── */
+      '<div class="cover-hero">' +
+        '<img src="figs/' + course.slug + '/cover.png" class="cover-hero-img" ' +
+          'onerror="this.remove()" alt="" />' +
+        '<div class="cover-hero-overlay">' +
+          '<span class="cover-badge-lg">' + escHtml(course.badge) + '</span>' +
+          '<h1 class="cover-hero-title">' + escHtml(course.title) + '</h1>' +
+          '<p class="cover-hero-meta">' + flat.length + ' lessons &middot; ' +
+            course.units.length + ' units &middot; Vicente Matus, PhD</p>' +
+        '</div>' +
+      '</div>' +
+
+      /* ── Body ── */
+      '<div class="cover-body">' +
+        '<section class="cover-section">' +
+          '<h2>Welcome</h2>' +
+          '<p>This course walks you through <strong>' + escHtml(course.title) + '</strong> ' +
+          'from foundational concepts to applied practice. Each lesson includes written ' +
+          'material, diagrams, and (when available) a short video explanation. ' +
+          'Work at your own pace, revisit any lesson, and download the full course for offline reading.</p>' +
+        '</section>' +
+
+        '<section class="cover-section">' +
+          '<h2>How to Navigate</h2>' + navHtml +
+          '<div class="cover-nav-video" id="cover-nav-video">' +
+            '<iframe src="https://www.youtube-nocookie.com/embed/-DQ233YbOq8?rel=0" ' +
+              'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+              'allowfullscreen loading="lazy"></iframe>' +
+          '</div>' +
+        '</section>' +
+
+        '<section class="cover-section">' +
+          '<h2>Course Contents</h2>' +
+          '<div class="cover-toc-grid">' + tocHtml + '</div>' +
+        '</section>' +
+
+        '<div class="cover-actions">' +
+          '<button class="cover-btn cover-btn-start" onclick="window._course.goTo(0)">' +
+            'Start Lesson 1 &rarr;</button>' +
+          '<button class="cover-btn cover-btn-download" onclick="window._course.downloadPDF()">' +
+            '&#128196; Download Full Course (PDF)</button>' +
+        '</div>' +
+      '</div>';
+
+    container.prepend(cover);
+  }
+
+  function showCover() {
+    showingCover = true;
+    var cover = document.getElementById('cover-page');
+    if (cover) cover.classList.add('active');
+
+    // hide current lesson slide
+    var oldSlide = document.getElementById('slide-' + current);
+    if (oldSlide) oldSlide.classList.remove('active');
+    var oldItem = document.querySelector('.lesson-item.active');
+    if (oldItem) oldItem.classList.remove('active');
+
+    // topbar
+    var counterEl = document.getElementById('lesson-counter');
+    if (counterEl) counterEl.textContent = 'Cover';
+    var titleEl = document.getElementById('lesson-title-top');
+    if (titleEl) titleEl.textContent = 'Welcome';
+
+    // buttons
+    var prevBtn = document.getElementById('prev-btn');
+    var nextBtn = document.getElementById('next-btn');
+    if (prevBtn) prevBtn.disabled = true;
+    if (nextBtn) nextBtn.disabled = false;
+
+    // progress
+    var fill = document.getElementById('progress-fill');
+    if (fill) fill.style.width = '0%';
+    var pill = document.getElementById('progress-pill');
+    if (pill) pill.textContent = 'Cover';
+
+    updateCarouselDots(-1);
+
+    var area = document.getElementById('lesson-area');
+    if (area) area.scrollTop = 0;
+  }
+
+  function hideCover() {
+    if (!showingCover) return;
+    showingCover = false;
+    var cover = document.getElementById('cover-page');
+    if (cover) cover.classList.remove('active');
+  }
+
   /* ── 3. NAVIGATION STATE ────────────────────────────────────── */
   let current = 0;
   let total   = 0;
@@ -194,7 +339,8 @@
     courseId = course.slug;
     total    = flatLessons(course).length;
     buildCarouselDots(total);
-    goTo(0, true);
+    buildCover(course);
+    showCover();
   }
 
   /* ── CAROUSEL DOTS (mobile) ────────────────────────────────── */
@@ -232,6 +378,7 @@
 
   function goTo(n, silent, dir) {
     if (n < 0 || n >= total) return;
+    hideCover();
 
     // deactivate old
     const oldSlide = document.getElementById('slide-' + current);
@@ -295,8 +442,14 @@
     }
   }
 
-  function next() { goTo(current + 1, false, 'fwd'); }
-  function prev() { goTo(current - 1, false, 'bwd'); }
+  function next() {
+    if (showingCover) { goTo(0, false, 'fwd'); }
+    else { goTo(current + 1, false, 'fwd'); }
+  }
+  function prev() {
+    if (current === 0 && !showingCover) { showCover(); }
+    else if (!showingCover) { goTo(current - 1, false, 'bwd'); }
+  }
 
   /* ── 4. KEYBOARD & SCROLL ───────────────────────────────────── */
   function setupKeyboard() {
@@ -407,6 +560,106 @@
   }
 
   /* (Figures and notes sections removed — now handled by MD files) */
+
+  /* ── PDF DOWNLOAD ───────────────────────────────────────────── */
+  function downloadPDF() {
+    loadAllMarkdown().then(function () {
+      var course = window.COURSE;
+      var flat = flatLessons(course);
+      var baseUrl = window.location.href.replace(/[^/]*$/, '');
+
+      var html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>' +
+        '<base href="' + baseUrl + '"/>' +
+        '<title>' + escHtml(course.title) + ' — Vicente Matus, PhD</title>' +
+        '<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>' +
+        '<style>' + pdfStyles() + '</style></head><body>';
+
+      /* cover */
+      html += '<div class="pdf-cover">' +
+        '<div class="pdf-badge">' + escHtml(course.badge) + '</div>' +
+        '<h1>' + escHtml(course.title) + '</h1>' +
+        '<p class="pdf-meta">' + flat.length + ' lessons &middot; ' + course.units.length + ' units</p>' +
+        '<p class="pdf-author">Vicente Matus, PhD<br>IDeTIC &middot; ULPGC &middot; Las Palmas de Gran Canaria, Spain</p>' +
+        '</div>';
+
+      /* table of contents */
+      html += '<div class="pdf-toc"><h2>Table of Contents</h2>';
+      var tocIdx = 0;
+      course.units.forEach(function (unit) {
+        html += '<h3>' + escHtml(unit.name) + '</h3><ol start="' + (tocIdx + 1) + '">';
+        unit.lessons.forEach(function (lesson) {
+          html += '<li>' + escHtml(lesson.title) + '</li>';
+          tocIdx++;
+        });
+        html += '</ol>';
+      });
+      html += '</div>';
+
+      /* lessons */
+      flat.forEach(function (item, idx) {
+        html += '<div class="pdf-lesson">' +
+          '<div class="pdf-lesson-kicker">Lesson ' + String(idx + 1).padStart(2, '0') + '</div>' +
+          '<h2>' + escHtml(item.lesson.title) + '</h2>';
+        if (item.lesson.subtitle) {
+          html += '<p class="pdf-subtitle">' + escHtml(item.lesson.subtitle) + '</p>';
+        }
+        if (mdCache[idx]) {
+          html += '<div class="pdf-content">' + marked.parse(mdCache[idx]) + '</div>';
+        } else {
+          html += '<p class="pdf-placeholder">Content is being developed.</p>';
+        }
+        html += '</div>';
+      });
+
+      /* footer */
+      html += '<div class="pdf-footer">' +
+        '<p>&copy; Vicente Matus, PhD &mdash; IDeTIC, ULPGC, Spain</p>' +
+        '<p>Generated on ' + new Date().toLocaleDateString('en-GB') + '</p></div>';
+
+      html += '</body></html>';
+
+      var win = window.open('', '_blank');
+      if (win) {
+        win.document.write(html);
+        win.document.close();
+        setTimeout(function () { win.print(); }, 600);
+      }
+    });
+  }
+
+  function pdfStyles() {
+    return 'body{font-family:"IBM Plex Sans",sans-serif;font-weight:300;color:#0d0d0d;' +
+      'max-width:800px;margin:0 auto;padding:2rem;line-height:1.6}' +
+      '.pdf-cover{text-align:center;padding:4rem 0 3rem;border-bottom:2px solid #0d0d0d;margin-bottom:2rem;page-break-after:always}' +
+      '.pdf-cover h1{font-size:2.2rem;font-weight:600;margin:.5rem 0;letter-spacing:-.02em}' +
+      '.pdf-badge{font-family:"IBM Plex Mono",monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:#666}' +
+      '.pdf-meta{font-size:.9rem;color:#666;margin:.5rem 0}' +
+      '.pdf-author{font-size:.95rem;color:#333;margin-top:2rem}' +
+      '.pdf-toc{margin-bottom:2rem;page-break-after:always}' +
+      '.pdf-toc h2{font-size:1.4rem;margin-bottom:1rem}' +
+      '.pdf-toc h3{font-size:.85rem;font-family:"IBM Plex Mono",monospace;color:#666;text-transform:uppercase;letter-spacing:.06em;margin:1.2rem 0 .4rem}' +
+      '.pdf-toc ol{padding-left:1.5rem;margin:0}.pdf-toc li{font-size:.9rem;margin-bottom:.2rem}' +
+      '.pdf-lesson{margin-bottom:2rem;page-break-before:auto}' +
+      '.pdf-lesson-kicker{font-family:"IBM Plex Mono",monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:.3rem}' +
+      '.pdf-lesson h2{font-size:1.3rem;font-weight:600;margin-bottom:.3rem}' +
+      '.pdf-subtitle{font-size:.9rem;color:#666;border-bottom:1px solid #e0e0e0;padding-bottom:1rem;margin-bottom:1rem}' +
+      '.pdf-content h1,.pdf-content h2,.pdf-content h3{margin:1em 0 .4em;font-weight:600}' +
+      '.pdf-content h1{font-size:1.15rem}.pdf-content h2{font-size:1.05rem}.pdf-content h3{font-size:.95rem}' +
+      '.pdf-content p{margin:.5em 0}.pdf-content ul,.pdf-content ol{padding-left:1.4em;margin:.5em 0}' +
+      '.pdf-content li{margin-bottom:.2em}' +
+      '.pdf-content img{max-width:100%;height:auto;margin:.8em 0}' +
+      '.pdf-content code{font-family:"IBM Plex Mono",monospace;font-size:.85em;background:#f2f2f2;padding:.1em .3em;border-radius:2px}' +
+      '.pdf-content pre{background:#f5f5f5;padding:.8rem 1rem;border-radius:4px;overflow-x:auto;font-size:.82rem;margin:.6em 0}' +
+      '.pdf-content pre code{background:none;padding:0}' +
+      '.pdf-content blockquote{border-left:3px solid #ccc;margin:.6em 0;padding:.3em .8em;color:#4a4a4a}' +
+      '.pdf-content table{width:100%;border-collapse:collapse;margin:.6em 0;font-size:.85rem}' +
+      '.pdf-content th,.pdf-content td{border:1px solid #ddd;padding:.4em .6em;text-align:left}' +
+      '.pdf-content th{background:#f5f5f5;font-weight:500}' +
+      '.pdf-placeholder{color:#999;font-style:italic}' +
+      '.pdf-footer{text-align:center;padding-top:2rem;border-top:1px solid #e0e0e0;margin-top:3rem;color:#888;font-size:.8rem}' +
+      '@media print{.pdf-cover{page-break-after:always}.pdf-lesson{page-break-inside:avoid}body{padding:0}}' +
+      '@page{margin:2cm}';
+  }
 
   /* ── 9. SIDEBAR TOGGLE ──────────────────────────────────────── */
   function setupMobileMenu() {
@@ -540,6 +793,8 @@
       next:         next,
       prev:         prev,
       goTo:         goTo,
+      showCover:    showCover,
+      downloadPDF:  downloadPDF,
     };
   }
 

@@ -743,3 +743,303 @@ body {
 .md-body hr { border: none; border-top: 1px solid var(--rule, #e0e0e0); margin: 1.2em 0; }
 .md-body img { max-width: 100%; border-radius: 4px; }
 .md-body a { color: var(--accent, #1a56db); text-decoration: underline; }
+
+/* ── COVER PAGE ─────────────────────────────────────────────── */
+.cover-page {
+  display: none;
+  flex-direction: column;
+  min-height: calc(100vh - var(--topbar-h));
+}
+.cover-page.active { display: flex; }
+
+/* Hero */
+.cover-hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 60%, #000) 100%);
+  padding: 3.5rem 2.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 320px;
+  overflow: hidden;
+}
+.cover-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+}
+.cover-hero-overlay {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 680px;
+}
+.cover-badge-lg {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.12);
+  padding: 0.25rem 0.7rem;
+  border-radius: 2px;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+.cover-hero-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+}
+.cover-hero-meta {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.03em;
+}
+
+/* Body */
+.cover-body {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 3rem 3rem;
+  width: 100%;
+}
+.cover-section {
+  margin-bottom: 2.5rem;
+}
+.cover-section h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.cover-section p {
+  font-size: 0.9rem;
+  color: var(--ink2);
+  line-height: 1.7;
+}
+
+/* TOC grid */
+.cover-toc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.cover-unit-card {
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--white);
+  transition: border-color 0.15s;
+  overflow: hidden;
+}
+.cover-unit-card:hover,
+.cover-unit-card.open {
+  border-color: var(--accent);
+}
+
+/* Collapsible header */
+.cover-unit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.12s;
+}
+.cover-unit-header:hover { background: var(--rule2); }
+.cover-unit-num {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.15rem;
+}
+.cover-unit-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+  display: block;
+}
+.cover-unit-chevron {
+  font-size: 0.7rem;
+  color: var(--ink3);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+.cover-unit-card.open .cover-unit-chevron {
+  transform: rotate(180deg);
+}
+
+/* Collapsible lesson list */
+.cover-unit-lessons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.cover-unit-card.open .cover-unit-lessons {
+  max-height: 600px; /* large enough for 5 items */
+}
+.cover-unit-card li {
+  font-size: 0.78rem;
+  color: var(--ink2);
+  line-height: 1.5;
+  padding: 0.15rem 1.1rem;
+  border-top: 1px solid var(--rule2);
+}
+.cover-unit-card li a {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  padding: 0.15rem 0;
+  transition: color 0.12s;
+}
+.cover-unit-card li a:hover { color: var(--accent); }
+.toc-num {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--ink3);
+  margin-right: 0.3rem;
+}
+
+/* Navigation guide */
+.nav-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.nav-guide-card {
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 1rem 0.85rem;
+  text-align: center;
+  background: var(--white);
+  transition: border-color 0.15s;
+}
+.nav-guide-card:hover { border-color: var(--accent); }
+.nav-guide-keys {
+  font-family: var(--mono);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.nav-guide-keys kbd {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  background: var(--rule2);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.15rem 0.4rem;
+  color: var(--ink);
+}
+.nav-guide-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+.nav-guide-desc {
+  font-size: 0.68rem;
+  color: var(--ink3);
+  line-height: 1.45;
+}
+
+/* Navigation video placeholder */
+.cover-nav-video {
+  margin-top: 1.25rem;
+}
+.cover-nav-video iframe {
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 6px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Action buttons */
+.cover-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding-top: 1rem;
+}
+.cover-btn {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.65rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.cover-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.cover-btn:active { transform: translateY(0); }
+.cover-btn-start {
+  background: var(--accent);
+  color: #fff;
+}
+.cover-btn-download {
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+}
+.cover-btn-download:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Cover responsive */
+@media (max-width: 768px) {
+  .cover-hero {
+    padding: 2.5rem 1.25rem 2rem;
+    min-height: 220px;
+  }
+  .cover-hero-title {
+    font-size: 1.6rem;
+  }
+  .cover-body {
+    padding: 1.5rem 1.1rem 2rem;
+  }
+  .cover-toc-grid {
+    grid-template-columns: 1fr;
+  }
+  .nav-guide-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .cover-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cover-btn {
+    text-align: center;
+  }
+}
