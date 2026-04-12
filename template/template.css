@@ -829,6 +829,28 @@ body {
   color: var(--ink2);
   line-height: 1.7;
 }
+.cover-actions-block {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 1.35rem 1.5rem 1.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--white) 0%, var(--rule2) 100%);
+  box-shadow: 0 10px 30px rgba(14, 20, 34, 0.05);
+}
+.cover-actions-block h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0.35rem;
+}
+.cover-actions-block p {
+  margin-bottom: 1.15rem;
+}
+.cover-section-annex {
+  margin-top: 3.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--rule);
+}
 
 /* TOC grid */
 .cover-toc-grid {
@@ -987,8 +1009,8 @@ body {
 .cover-actions {
   display: flex;
   gap: 1rem;
-  justify-content: center;
-  padding-top: 1rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 .cover-btn {
   font-family: var(--mono);
@@ -999,6 +1021,8 @@ body {
   cursor: pointer;
   border: none;
   transition: opacity 0.15s, transform 0.1s;
+  min-width: 220px;
+  text-align: center;
 }
 .cover-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 .cover-btn:active { transform: translateY(0); }

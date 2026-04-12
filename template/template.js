@@ -264,7 +264,7 @@
         '</section>' +
 
         '<section class="cover-section">' +
-          '<h2>How to Navigate</h2>' + navHtml +
+          '<h2>Video</h2>' +
           '<div class="cover-nav-video" id="cover-nav-video">' +
             '<iframe src="https://www.youtube-nocookie.com/embed/-DQ233YbOq8?rel=0" ' +
               'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
@@ -277,12 +277,20 @@
           '<div class="cover-toc-grid">' + tocHtml + '</div>' +
         '</section>' +
 
-        '<div class="cover-actions">' +
-          '<button class="cover-btn cover-btn-start" onclick="window._course.goTo(0)">' +
-            'Start Lesson 1 &rarr;</button>' +
-          '<button class="cover-btn cover-btn-download" onclick="window._course.downloadPDF()">' +
-            '&#128196; Download Full Course (PDF)</button>' +
-        '</div>' +
+        '<section class="cover-section cover-actions-block">' +
+          '<h2>Start or Download</h2>' +
+          '<p>Begin with the first lesson now, or download the complete PDF version for offline reading.</p>' +
+          '<div class="cover-actions">' +
+            '<button class="cover-btn cover-btn-start" onclick="window._course.goTo(0)">' +
+              'Start Lesson 1 &rarr;</button>' +
+            '<button class="cover-btn cover-btn-download" onclick="window._course.downloadPDF()">' +
+              '&#128196; Download Full Course (PDF)</button>' +
+          '</div>' +
+        '</section>' +
+
+        '<section class="cover-section cover-section-annex">' +
+          '<h2>How to Navigate</h2>' + navHtml +
+        '</section>' +
       '</div>';
 
     container.prepend(cover);
