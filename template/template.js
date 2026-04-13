@@ -146,6 +146,12 @@
     }).catch(function () { /* no combined .md file */ });
   }
 
+  // TODO: citation support — load a master .bib file (e.g. refs/master.bib or
+  // courses/refs/occ.bib) via fetch(), parse with citation-js (CDN), then
+  // post-process rendered HTML to replace [@key] tokens with numbered
+  // superscripts and append a per-lesson <div class="references"> block.
+  // Individual papers can point at the same master.bib or keep separate ones —
+  // citation keys are unique across the master file so either works.
   function renderMarkdown(idx) {
     var el = document.getElementById('md-body-' + idx);
     if (el && mdCache[idx] && typeof marked !== 'undefined') {
