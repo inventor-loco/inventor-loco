@@ -6,6 +6,45 @@
 (function () {
   'use strict';
 
+  /* ── 0. KATEX LAZY LOADER ────────────────────────────────── */
+  var _katexReady = false;
+  var _katexPending = [];
+
+  function ensureKaTeX() {
+    if (_katexReady || document.getElementById('katex-css')) return;
+    var link = document.createElement('link');
+    link.id = 'katex-css';
+    link.rel = 'stylesheet';
+    link.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css';
+    document.head.appendChild(link);
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js';
+    s.onload = function () {
+      var ar = document.createElement('script');
+      ar.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js';
+      ar.onload = function () {
+        _katexReady = true;
+        _katexPending.forEach(renderMath);
+        _katexPending = [];
+      };
+      document.head.appendChild(ar);
+    };
+    document.head.appendChild(s);
+  }
+
+  function renderMath(idx) {
+    var el = document.getElementById('md-body-' + idx);
+    if (el && typeof renderMathInElement !== 'undefined') {
+      renderMathInElement(el, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$',  right: '$',  display: false }
+        ],
+        throwOnError: false
+      });
+    }
+  }
+
   /* ── 1. INJECT CSS TOKENS FROM COURSE DATA ───────────────── */
   function applyTokens(course) {
     const root = document.documentElement;
@@ -150,6 +189,11 @@
     var el = document.getElementById('md-body-' + idx);
     if (el && mdCache[idx] && typeof marked !== 'undefined') {
       el.innerHTML = marked.parse(mdCache[idx]);
+      if (_katexReady) {
+        renderMath(idx);
+      } else {
+        _katexPending.push(idx);
+      }
     }
   }
 
@@ -841,6 +885,7 @@
 
     setupSidebarResize();
     setupLightbox();
+    ensureKaTeX();
 
     // expose methods needed by inline onclick handlers
     window._course = {
