@@ -3,8 +3,8 @@ window.COURSE = {
   "slug": "osmosis",
   "badge": "RO · Water Quality · Maintenance · DIY",
   "title": "Pure Water at Home: Reverse Osmosis",
-  "accent": "#166534",
-  "acc2": "#f0fdf4",
+  "accent": "#1a56db",
+  "acc2": "#e8f0fe",
   "backUrl": "../courses.html",
   "units": [
     {
