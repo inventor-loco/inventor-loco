@@ -731,7 +731,52 @@
     });
   }
 
-  /* ── 10. SIDEBAR RESIZE ──────────────────────────────────────── */
+  /* ── 10. LIGHTBOX ───────────────────────────────────────────── */
+  function setupLightbox() {
+    // Inject overlay element
+    const lb = document.createElement('div');
+    lb.id = 'lightbox';
+    lb.innerHTML =
+      '<span id="lightbox-close" title="Close">&#x2715;</span>' +
+      '<img id="lightbox-img" src="" alt="">';
+    document.body.appendChild(lb);
+
+    const lbImg = document.getElementById('lightbox-img');
+
+    function openLightbox(src, alt) {
+      lbImg.src = src;
+      lbImg.alt = alt || '';
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Backdrop click closes, image click does not
+    lb.addEventListener('click', closeLightbox);
+    lbImg.addEventListener('click', function (e) { e.stopPropagation(); });
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+
+    // Escape key closes
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Delegate clicks on course figures
+    const slides = document.getElementById('slide-container');
+    if (slides) {
+      slides.addEventListener('click', function (e) {
+        if (e.target.matches('.md-body img')) {
+          openLightbox(e.target.src, e.target.alt);
+        }
+      });
+    }
+  }
+
+  /* ── 11. SIDEBAR RESIZE ──────────────────────────────────────── */
   function setupSidebarResize() {
     var sidebar = document.getElementById('sidebar');
     if (!sidebar) return;
@@ -795,6 +840,7 @@
     }, 0);
 
     setupSidebarResize();
+    setupLightbox();
 
     // expose methods needed by inline onclick handlers
     window._course = {

@@ -741,7 +741,7 @@ body {
 .md-body th, .md-body td { border: 1px solid var(--rule, #e0e0e0); padding: 0.45em 0.7em; text-align: left; }
 .md-body th { background: var(--soft, #f2f2f2); font-weight: 500; }
 .md-body hr { border: none; border-top: 1px solid var(--rule, #e0e0e0); margin: 1.2em 0; }
-.md-body img { max-width: 100%; border-radius: 4px; }
+.md-body img { max-width: 100%; border-radius: 4px; cursor: zoom-in; }
 .md-body a { color: var(--accent, #1a56db); text-decoration: underline; }
 
 /* ── COVER PAGE ─────────────────────────────────────────────── */
@@ -1039,6 +1039,42 @@ body {
   border-color: var(--accent);
   color: var(--accent);
 }
+
+/* ── Lightbox ──────────────────────────────────────────── */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0,0,0,.85);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+#lightbox.open {
+  display: flex;
+}
+#lightbox img {
+  max-width: 92vw;
+  max-height: 92vh;
+  border-radius: 6px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.6);
+  cursor: default;
+  object-fit: contain;
+}
+#lightbox-close {
+  position: fixed;
+  top: 1rem;
+  right: 1.2rem;
+  font-size: 2rem;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  opacity: .7;
+  user-select: none;
+}
+#lightbox-close:hover { opacity: 1; }
 
 /* Cover responsive */
 @media (max-width: 768px) {
