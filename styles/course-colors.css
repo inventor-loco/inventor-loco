@@ -1,0 +1,26 @@
+/* ============================================================
+   course-colors.css — single source of truth for course accent colors
+   Imported by both main-pages.css (courses listing) and
+   template.css (individual course pages).
+   To change a course color, edit only this file.
+   ============================================================ */
+
+:root {
+  --c-occ:              #166534;
+  --c-occ-soft:         #f0fdf4;
+
+  --c-solar:            #b45309;
+  --c-solar-soft:       #fef3c7;
+
+  --c-3dprinting:       #0f766e;
+  --c-3dprinting-soft:  #ccfbf1;
+
+  --c-osmosis:          #1a56db;
+  --c-osmosis-soft:     #e8f0fe;
+
+  --c-publishing:       #7c3aed;
+  --c-publishing-soft:  #ede9fe;
+
+  --c-electricity:      #dc2626;
+  --c-electricity-soft: #fee2e2;
+}

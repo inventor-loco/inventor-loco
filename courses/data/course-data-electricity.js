@@ -3,8 +3,8 @@ window.COURSE = {
   "slug": "electricity",
   "badge": "Electricity · Safety · Diagnostics · Home Systems",
   "title": "Home Electricity: Essential Knowledge",
-  "accent": "#dc2626",
-  "acc2": "#fee2e2",
+  "accent": "var(--c-electricity)",
+  "acc2": "var(--c-electricity-soft)",
   "backUrl": "../courses.html",
   "units": [
     {

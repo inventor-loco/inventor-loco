@@ -3,8 +3,8 @@ window.COURSE = {
   "slug": "3dprinting",
   "badge": "3D Printing · CAD · CAM · Fabrication",
   "title": "3D Printing & Digital Manufacturing",
-  "accent": "#0f766e",
-  "acc2": "#ccfbf1",
+  "accent": "var(--c-3dprinting)",
+  "acc2": "var(--c-3dprinting-soft)",
   "backUrl": "../courses.html",
   "units": [
     {

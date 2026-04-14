@@ -3,8 +3,8 @@ window.COURSE = {
   "slug": "solar",
   "badge": "Solar · PV · Installation · Safety",
   "title": "Solar Energy Seminar",
-  "accent": "#b45309",
-  "acc2": "#fef3c7",
+  "accent": "var(--c-solar)",
+  "acc2": "var(--c-solar-soft)",
   "backUrl": "../courses.html",
   "units": [
     {

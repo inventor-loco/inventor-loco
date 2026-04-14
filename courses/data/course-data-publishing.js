@@ -3,8 +3,8 @@ window.COURSE = {
   "slug": "publishing",
   "badge": "Writing · LaTeX · Figures · Publishing",
   "title": "Academic Publishing: Cool Papers",
-  "accent": "#7c3aed",
-  "acc2": "#ede9fe",
+  "accent": "var(--c-publishing)",
+  "acc2": "var(--c-publishing-soft)",
   "backUrl": "../courses.html",
   "units": [
     {

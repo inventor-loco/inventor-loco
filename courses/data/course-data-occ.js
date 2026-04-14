@@ -3,8 +3,8 @@ window.COURSE = {
   "slug": "occ",
   "badge": "OCC · DSP · Experiments · Computer Vision",
   "title": "Optical Camera Communications (OCC)",
-  "accent": "#166534",
-  "acc2": "#f0fdf4",
+  "accent": "var(--c-occ)",
+  "acc2": "var(--c-occ-soft)",
   "backUrl": "../courses.html",
   "units": [
     {
