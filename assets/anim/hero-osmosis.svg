@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 140" width="100%" preserveAspectRatio="xMidYMid meet">
+  <title>Osmosis — Membrane separation animation</title>
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      animate, animateMotion, animateTransform { display: none; }
+    }
+  </style>
+
+  <rect width="320" height="140" fill="#fff" stroke="#e0e0e0"/>
+
+  <!-- Tank -->
+  <rect x="30" y="30" width="260" height="80" fill="none" stroke="#0d0d0d" stroke-width="1.2"/>
+
+  <!-- Membrane (dashed vertical) -->
+  <line x1="160" y1="30" x2="160" y2="110" stroke="#0d0d0d" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="160" y="24" font-family="IBM Plex Mono,monospace" font-size="7" fill="#888" text-anchor="middle">MEMBRANE</text>
+
+  <!-- Water molecules passing through -->
+  <g fill="#1a56db">
+    <circle cx="60" cy="60" r="2.2">
+      <animate attributeName="cx" values="60;285" dur="4s" repeatCount="indefinite" begin="0s"/>
+    </circle>
+    <circle cx="60" cy="80" r="2.2">
+      <animate attributeName="cx" values="60;285" dur="4s" repeatCount="indefinite" begin="1s"/>
+    </circle>
+    <circle cx="60" cy="100" r="2.2">
+      <animate attributeName="cx" values="60;285" dur="4s" repeatCount="indefinite" begin="2s"/>
+    </circle>
+    <circle cx="60" cy="70" r="2.2">
+      <animate attributeName="cx" values="60;285" dur="4s" repeatCount="indefinite" begin="2.8s"/>
+    </circle>
+  </g>
+
+  <!-- Contaminants — larger, stopped at membrane -->
+  <g fill="none" stroke="#0d0d0d" stroke-width="1">
+    <circle cx="80"  cy="50" r="4"/>
+    <circle cx="110" cy="95" r="5"/>
+    <circle cx="130" cy="70" r="4.5"/>
+    <circle cx="95"  cy="80" r="3.5"/>
+  </g>
+</svg>

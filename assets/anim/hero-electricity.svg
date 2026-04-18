@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 140" width="100%" preserveAspectRatio="xMidYMid meet">
+  <title>Electricity — Current through a load animation</title>
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      animate, animateMotion, animateTransform { display: none; }
+    }
+  </style>
+
+  <rect width="320" height="140" fill="#fff" stroke="#e0e0e0"/>
+
+  <!-- Circuit loop (also the animateMotion path) -->
+  <path id="elec-circuit" d="M 50 50 H 140 M 180 50 H 270 V 100 H 50 V 50" fill="none" stroke="#0d0d0d" stroke-width="1.2"/>
+
+  <!-- Battery (source) -->
+  <g transform="translate(35 70)" stroke="#0d0d0d" stroke-width="1.2" fill="none">
+    <path d="M0 0 V16 M5 -4 V20 M10 0 V16 M15 -4 V20"/>
+  </g>
+
+  <!-- Resistor (load) -->
+  <path d="M 140 50 L 145 45 L 155 55 L 165 45 L 175 55 L 180 50" stroke="#0d0d0d" stroke-width="1.2" fill="none"/>
+  <text x="160" y="38" font-family="IBM Plex Mono,monospace" font-size="7" fill="#888" text-anchor="middle">R</text>
+
+  <!-- Flowing electrons -->
+  <g fill="#dc2626">
+    <circle r="3">
+      <animateMotion dur="2s" repeatCount="indefinite">
+        <mpath href="#elec-circuit"/>
+      </animateMotion>
+    </circle>
+    <circle r="3">
+      <animateMotion dur="2s" repeatCount="indefinite" begin="0.5s">
+        <mpath href="#elec-circuit"/>
+      </animateMotion>
+    </circle>
+    <circle r="3">
+      <animateMotion dur="2s" repeatCount="indefinite" begin="1s">
+        <mpath href="#elec-circuit"/>
+      </animateMotion>
+    </circle>
+    <circle r="3">
+      <animateMotion dur="2s" repeatCount="indefinite" begin="1.5s">
+        <mpath href="#elec-circuit"/>
+      </animateMotion>
+    </circle>
+  </g>
+</svg>

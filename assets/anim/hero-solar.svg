@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 140" width="100%" preserveAspectRatio="xMidYMid meet">
+  <title>Solar — Photon to current animation</title>
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      animate, animateMotion, animateTransform { display: none; }
+    }
+  </style>
+
+  <rect width="320" height="140" fill="#fff" stroke="#e0e0e0"/>
+
+  <!-- Sun -->
+  <g transform="translate(50 40)">
+    <circle r="14" fill="none" stroke="#b45309" stroke-width="1"/>
+    <g stroke="#b45309" stroke-width="1">
+      <path d="M0 -22 V-18 M0 22 V18 M-22 0 H-18 M22 0 H18"/>
+    </g>
+  </g>
+
+  <!-- Falling photons -->
+  <g stroke="#b45309" stroke-width="1" fill="none">
+    <line x1="75" y1="55" x2="140" y2="90">
+      <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0s"/>
+    </line>
+    <line x1="90" y1="45" x2="155" y2="85">
+      <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.4s"/>
+    </line>
+    <line x1="105" y1="50" x2="170" y2="95">
+      <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.8s"/>
+    </line>
+  </g>
+
+  <!-- PV panel -->
+  <g transform="translate(130 90) rotate(-12)">
+    <rect width="80" height="30" fill="#fafafa" stroke="#0d0d0d" stroke-width="1"/>
+    <g stroke="#0d0d0d" stroke-width="0.4">
+      <path d="M20 0 V30 M40 0 V30 M60 0 V30 M0 15 H80"/>
+    </g>
+  </g>
+
+  <!-- Wire to battery -->
+  <path d="M 210 110 H 250 V 70 H 270" stroke="#0d0d0d" stroke-width="1" fill="none"/>
+
+  <!-- Battery symbol -->
+  <g transform="translate(270 65)" stroke="#0d0d0d" stroke-width="1" fill="none">
+    <path d="M0 0 V10 M6 -3 V13 M12 0 V10 M18 -3 V13"/>
+  </g>
+
+  <!-- Electron flowing along wiring -->
+  <circle r="2.5" fill="#b45309">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M 170 105 L 210 110 L 250 110 L 250 70 L 270 70"/>
+  </circle>
+</svg>

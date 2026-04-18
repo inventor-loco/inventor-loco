@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 140" width="100%" preserveAspectRatio="xMidYMid meet">
+  <title>OCC — Rolling-shutter scanline animation</title>
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      animate, animateMotion, animateTransform { display: none; }
+    }
+  </style>
+
+  <rect width="320" height="140" fill="#fff" stroke="#e0e0e0"/>
+
+  <!-- LED on the left, pulsing -->
+  <g transform="translate(30 70)">
+    <circle r="8" fill="none" stroke="#0d0d0d" stroke-width="1"/>
+    <circle r="4" fill="#166534">
+      <animate attributeName="opacity" values="1;0.15;1;0.15;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="0" y="26" font-family="IBM Plex Mono,monospace" font-size="7" fill="#888" text-anchor="middle">LED</text>
+  </g>
+
+  <!-- Light path -->
+  <path d="M 40 70 H 220" stroke="#166534" stroke-width="0.8" stroke-dasharray="3 3"/>
+
+  <!-- Camera frame with rolling shutter -->
+  <g transform="translate(220 40)">
+    <rect width="70" height="60" fill="#fafafa" stroke="#0d0d0d" stroke-width="1"/>
+    <!-- Rolling scanline -->
+    <rect x="0" y="0" width="70" height="3" fill="#166534" opacity="0.8">
+      <animate attributeName="y" values="0;60;0" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    <!-- Captured stripe pattern -->
+    <g stroke="#0d0d0d" stroke-width="0.4" opacity="0.5">
+      <path d="M 0 10 H 70"/>
+      <path d="M 0 18 H 70"/>
+      <path d="M 0 26 H 70"/>
+      <path d="M 0 34 H 70"/>
+      <path d="M 0 42 H 70"/>
+      <path d="M 0 50 H 70"/>
+    </g>
+    <text x="35" y="76" font-family="IBM Plex Mono,monospace" font-size="7" fill="#888" text-anchor="middle">CAM</text>
+  </g>
+</svg>

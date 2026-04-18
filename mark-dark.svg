@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="180" height="180">
+  <title>VMI — Vicente Matus Icaza (dark)</title>
+  <rect width="180" height="180" fill="#0d0d0d" rx="36"/>
+  <g fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M 22 38 L 50 138 L 78 38"/>
+    <path d="M 88 138 L 88 38 L 110 82 L 132 38 L 132 138"/>
+    <path d="M 150 72 L 150 138"/>
+  </g>
+  <circle fill="#ffffff" cx="150" cy="42" r="9"/>
+  <g fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.22">
+    <circle cx="22"  cy="38"  r="14"/>
+    <circle cx="78"  cy="38"  r="14"/>
+    <circle cx="132" cy="138" r="14"/>
+    <circle cx="150" cy="42"  r="18"/>
+  </g>
+</svg>

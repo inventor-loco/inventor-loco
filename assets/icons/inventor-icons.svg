@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+
+  <!-- ── Navigation icons (24×24, stroke) ───────────────────── -->
+  <symbol id="icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M3 11 L12 4 L21 11 V20 H3 Z M10 20 V14 H14 V20"/>
+  </symbol>
+
+  <symbol id="icon-cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M5 3 H16 L19 6 V21 H5 Z M8 8 H14 M8 12 H16 M8 16 H13"/>
+  </symbol>
+
+  <symbol id="icon-pub" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M4 2 H13 A5 5 0 0 1 13 12 H4 Z M4 12 H14 A5 5 0 0 1 14 22 H4 Z"/>
+  </symbol>
+
+  <symbol id="icon-courses" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M3 7 L12 3 L21 7 L12 11 Z M6 9 V15 C6 17 9 18 12 18 C15 18 18 17 18 15 V9"/>
+  </symbol>
+
+  <symbol id="icon-donate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22 C7 18 4 14 4 10 A4 4 0 0 1 12 8 A4 4 0 0 1 20 10 C20 14 17 18 12 22 Z"/>
+  </symbol>
+
+  <symbol id="icon-contact" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M3 6 H21 V18 H3 Z M3 6 L12 13 L21 6"/>
+  </symbol>
+
+  <!-- ── UI utility (24×24, stroke) ─────────────────────────── -->
+  <symbol id="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M4 12 H20 M14 6 L20 12 L14 18"/>
+  </symbol>
+
+  <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M12 4 V20 M5 13 L12 20 L19 13"/>
+  </symbol>
+
+  <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M14 4 H20 V10 M20 4 L12 12 M5 5 H11 M5 5 V19 H19 V13"/>
+  </symbol>
+
+  <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+    <circle cx="11" cy="11" r="6"/>
+    <path d="M15 15 L21 21"/>
+  </symbol>
+
+  <!-- ── Contact / social hairline (24×24, stroke) ───────────── -->
+  <symbol id="icon-email" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M3 6 H21 V18 H3 Z M3 6 L12 13 L21 6"/>
+  </symbol>
+
+  <symbol id="icon-location" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22 C8 17 5 13 5 9 A7 7 0 0 1 19 9 C19 13 16 17 12 22 Z"/>
+    <circle cx="12" cy="9" r="2.5"/>
+  </symbol>
+
+  <symbol id="icon-rss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M4 11 A9 9 0 0 1 13 20 M4 4 A16 16 0 0 1 20 20"/>
+    <circle cx="5" cy="19" r="1.4" fill="currentColor" stroke="none"/>
+  </symbol>
+
+  <!-- ── Course badge icons (32×32, stroke) ─────────────────── -->
+  <symbol id="icon-occ" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6">
+    <rect x="4" y="10" width="10" height="12" rx="1"/>
+    <circle cx="9" cy="16" r="2"/>
+    <path d="M14 16 H20"/>
+    <rect x="20" y="11" width="8" height="10" rx="1"/>
+    <path d="M22 14 H26 M22 17 H26"/>
+    <circle cx="6"  cy="7" r="0.8" fill="currentColor" stroke="none"/>
+    <circle cx="12" cy="7" r="0.8" fill="currentColor" stroke="none"/>
+    <path d="M6 10 V7 M12 10 V7"/>
+  </symbol>
+
+  <symbol id="icon-solar" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6">
+    <circle cx="16" cy="16" r="4"/>
+    <path d="M16 4 V8 M16 24 V28 M4 16 H8 M24 16 H28 M7 7 L10 10 M22 22 L25 25 M7 25 L10 22 M22 10 L25 7"/>
+  </symbol>
+
+  <symbol id="icon-3dprint" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M6 10 L16 5 L26 10 L26 22 L16 27 L6 22 Z M6 10 L16 15 L26 10 M16 15 V27"/>
+  </symbol>
+
+  <symbol id="icon-osmosis" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M16 4 C10 10 7 14 7 19 A9 9 0 0 0 25 19 C25 14 22 10 16 4 Z"/>
+    <path d="M12 18 A4 4 0 0 1 16 22"/>
+  </symbol>
+
+  <symbol id="icon-publishing" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M6 6 H20 L26 12 V26 H6 Z M20 6 V12 H26"/>
+    <path d="M10 16 H22 M10 20 H22 M10 24 H18"/>
+  </symbol>
+
+  <symbol id="icon-electricity" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="miter">
+    <path d="M18 3 L9 17 H15 L13 29 L24 13 H18 Z"/>
+  </symbol>
+
+  <!-- ── Brand glyphs (24×24, filled, currentColor) ─────────── -->
+  <symbol id="icon-orcid" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 17.629H5.667V7.062h1.702v10.567zm-.852-12.269a1.06 1.06 0 1 1 0-2.121 1.06 1.06 0 0 1 0 2.121zM18.525 17.629h-3.928V7.062h3.928c3.3 0 4.976 2.385 4.976 5.284 0 3.147-1.956 5.283-4.976 5.283zm-.223-9.046h-2.003v7.523h1.99c2.828 0 3.473-2.146 3.473-3.762 0-2.634-1.676-3.761-3.46-3.761z"/>
+  </symbol>
+
+  <symbol id="icon-scholar" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+  </symbol>
+
+  <symbol id="icon-github" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+  </symbol>
+
+  <symbol id="icon-linkedin" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+  </symbol>
+
+  <symbol id="icon-scopus" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 6.63 5.37 12 12 12s12-5.37 12-12C24 5.37 18.63 0 12 0zm4.05 17.5c-1.03.63-2.28.95-3.65.95-2.02 0-3.68-.64-4.95-1.88-.22-.22-.2-.57.02-.77l.8-.7c.2-.18.5-.17.7.02.87.83 2 1.27 3.43 1.27.9 0 1.68-.18 2.3-.53.63-.36.95-.88.95-1.56 0-.6-.24-1.08-.72-1.42-.47-.34-1.27-.66-2.4-.95-1.1-.28-1.97-.55-2.62-.82-.65-.27-1.2-.66-1.65-1.17-.45-.5-.67-1.16-.67-1.97 0-1.18.48-2.13 1.42-2.85.95-.72 2.18-1.08 3.7-1.08 1.63 0 3.02.5 4.17 1.48.22.2.23.53.03.74l-.72.77c-.2.2-.5.22-.72.03-.82-.67-1.8-1.02-2.93-1.02-.83 0-1.52.17-2.06.5-.54.33-.82.8-.82 1.4 0 .47.15.85.45 1.13.3.28.67.5 1.1.66.44.17 1.03.35 1.78.55 1.06.28 1.93.57 2.6.85.67.28 1.24.7 1.72 1.24.47.55.7 1.26.7 2.14 0 1.28-.5 2.27-1.5 2.98z"/>
+  </symbol>
+
+</svg>

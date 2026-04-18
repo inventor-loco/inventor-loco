@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 140" width="100%" preserveAspectRatio="xMidYMid meet">
+  <title>3D Printing — Layer-by-layer extrusion animation</title>
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      animate, animateMotion, animateTransform { display: none; }
+    }
+  </style>
+
+  <rect width="320" height="140" fill="#fff" stroke="#e0e0e0"/>
+
+  <!-- Build plate -->
+  <line x1="80" y1="120" x2="240" y2="120" stroke="#0d0d0d" stroke-width="2"/>
+
+  <!-- Gantry rail -->
+  <line x1="60" y1="30" x2="260" y2="30" stroke="#0d0d0d" stroke-width="1"/>
+
+  <!-- Extruder head + nozzle, animated as a group -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0; 150 0; 0 0" dur="4s" repeatCount="indefinite" additive="replace"/>
+    <rect x="80" y="25" width="20" height="22" fill="#fafafa" stroke="#0d0d0d" stroke-width="1"/>
+    <path d="M 90 47 L 87 56 L 93 56 Z" fill="#0d0d0d"/>
+  </g>
+
+  <!-- Layers growing up from build plate (each fades in on the correct pass) -->
+  <g fill="#0f766e">
+    <rect x="95" y="115" width="130" height="4">
+      <animate attributeName="opacity" values="0;1;1;1" dur="4s" repeatCount="indefinite" keyTimes="0;0.1;0.5;1"/>
+    </rect>
+    <rect x="95" y="110" width="130" height="4">
+      <animate attributeName="opacity" values="0;0;1;1" dur="4s" repeatCount="indefinite" keyTimes="0;0.3;0.4;1"/>
+    </rect>
+    <rect x="95" y="105" width="130" height="4">
+      <animate attributeName="opacity" values="0;0;1;1" dur="4s" repeatCount="indefinite" keyTimes="0;0.5;0.6;1"/>
+    </rect>
+    <rect x="95" y="100" width="130" height="4">
+      <animate attributeName="opacity" values="0;0;1;1" dur="4s" repeatCount="indefinite" keyTimes="0;0.7;0.8;1"/>
+    </rect>
+    <rect x="95" y="95" width="130" height="4">
+      <animate attributeName="opacity" values="0;0;1;1" dur="4s" repeatCount="indefinite" keyTimes="0;0.88;0.95;1"/>
+    </rect>
+  </g>
+</svg>
