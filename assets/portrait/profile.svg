@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Profile photo placeholder — inventor-loco
+  Replace with: assets/portrait/profile.png (processed 1-bit halftone, 4:5 ratio)
+  Minimum source: 1200×1500 px, natural light, plain background
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 250" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="ph-dots" width="4" height="4" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="0.7" fill="#0d0d0d" opacity="0.18"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="200" height="250" fill="#f5f5f5"/>
+
+  <!-- Silhouette — head -->
+  <circle cx="100" cy="96" r="36" fill="#c8c8c8"/>
+
+  <!-- Silhouette — shoulders -->
+  <path d="M 18 250 Q 20 172 100 155 Q 180 172 182 250 Z" fill="#c8c8c8"/>
+
+  <!-- Halftone grain overlay -->
+  <rect width="200" height="250" fill="url(#ph-dots)"/>
+
+  <!-- Label -->
+  <text x="100" y="234" font-family="IBM Plex Mono,ui-monospace,monospace" font-size="8.5" fill="#888" text-anchor="middle" letter-spacing="1.5">PHOTO PENDING</text>
+</svg>

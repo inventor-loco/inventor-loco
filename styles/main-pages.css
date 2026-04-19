@@ -58,8 +58,13 @@ nav {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
 }
 .brand {
-  display: flex; flex-direction: column; text-decoration: none; color: var(--ink);
+  display: flex; flex-direction: row; align-items: center; gap: 0.55rem; text-decoration: none; color: var(--ink);
 }
+.brand-mark {
+  width: 30px; height: 30px; flex-shrink: 0; display: block;
+  border: 1px solid var(--rule); border-radius: 6px; padding: 4px; box-sizing: border-box;
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
 .brand strong, .nav-name { font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em; }
 .brand span, .nav-affil {
   font-family: var(--mono); font-size: 0.68rem; color: var(--ink3);

@@ -62,6 +62,10 @@
   display: block;
 }
 
+/* Footer & mini-list link icon layout */
+.footer-links a,
+.mini-k { display: inline-flex; align-items: center; gap: 0.3rem; }
+
 /* Reduced-motion: freeze all SVG animations */
 @media (prefers-reduced-motion: reduce) {
   svg animate,
