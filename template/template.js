@@ -382,6 +382,8 @@
 
     var area = document.getElementById('lesson-area');
     if (area) area.scrollTop = 0;
+
+    history.replaceState(null, '', window.location.pathname + window.location.search);
   }
 
   function hideCover() {
@@ -401,7 +403,19 @@
     total    = flatLessons(course).length;
     buildCarouselDots(total);
     buildCover(course);
-    showCover();
+
+    var hashLesson = parseInt(window.location.hash.slice(1), 10);
+    if (!isNaN(hashLesson) && hashLesson >= 1 && hashLesson <= total) {
+      goTo(hashLesson - 1);
+    } else {
+      showCover();
+    }
+
+    window.addEventListener('hashchange', function () {
+      var n = parseInt(window.location.hash.slice(1), 10);
+      if (!isNaN(n) && n >= 1 && n <= total) { goTo(n - 1); }
+      else if (!window.location.hash) { showCover(); }
+    });
   }
 
   /* ── CAROUSEL DOTS (mobile) ────────────────────────────────── */
@@ -501,6 +515,8 @@
       const area = document.getElementById('lesson-area');
       if (area) area.scrollTop = 0;
     }
+
+    history.replaceState(null, '', '#' + (n + 1));
   }
 
   function next() {
