@@ -142,8 +142,8 @@
             makeIframe(initVid) +
           '</div>' +
           '<div class="video-lang-selector">' +
-            '<button class="lang-flag' + (initLang === 'es' ? ' active' : '') + '" data-lang="es" onclick="window._course.switchLang(' + idx + ',\'es\')" title="Spanish">🇪🇸</button>' +
-            '<button class="lang-flag' + (initLang === 'en' ? ' active' : '') + '" data-lang="en" onclick="window._course.switchLang(' + idx + ',\'en\')" title="English">🇬🇧</button>' +
+            '<button class="lang-flag' + (initLang === 'es' ? ' active' : '') + '" data-lang="es" onclick="window._course.switchLang(' + idx + ',\'es\')" title="Spanish"><img src="../assets/flags/flag-es.svg" alt="ES" width="28" height="19"></button>' +
+            '<button class="lang-flag' + (initLang === 'en' ? ' active' : '') + '" data-lang="en" onclick="window._course.switchLang(' + idx + ',\'en\')" title="English"><img src="../assets/flags/flag-en.svg" alt="EN" width="28" height="19"></button>' +
           '</div>' +
         '</div>' +
 

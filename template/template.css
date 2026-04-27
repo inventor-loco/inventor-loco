@@ -720,7 +720,7 @@ body {
     padding: 0.75rem 1.1rem 1.5rem;
     flex: 1;
   }
-  .video-portrait { max-width: 160px; flex-shrink: 0; }
+  .video-portrait { width: 80%; max-width: 320px; flex-shrink: 0; }
   .content-grid, .content-grid.cols-3 { grid-template-columns: 1fr; }
   .progress-bar.shifted { left: 0; }
 
