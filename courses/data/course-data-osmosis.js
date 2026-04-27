@@ -122,6 +122,7 @@ window.COURSE = {
         {
           "title": "Tools and materials needed",
           "subtitle": "A domestic RO installation requires no specialist skills — but having the right tools prevents most common mistakes.",
+          "videos": { "es": "U7S0uHlBwYQ" },
           "tags": [
             "Tools",
             "Installation",

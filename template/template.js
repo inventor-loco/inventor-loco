@@ -130,11 +130,20 @@
       slide.className = 'slide' + (isFirst ? ' active' : '');
       slide.id = 'slide-' + idx;
 
+      var vids     = lesson.videos || {};
+      var vidsJson = JSON.stringify(vids);
+      var initLang = vids['es'] ? 'es' : (vids['en'] ? 'en' : null);
+      var initVid  = initLang ? vids[initLang] : (lesson.video || PLACEHOLDER_VID);
+
       slide.innerHTML =
         /* ── video pane ── */
         '<div class="slide-video-pane">' +
-          '<div class="video-portrait" id="yt-wrap-' + idx + '">' +
-            makeIframe(lesson.video || PLACEHOLDER_VID) +
+          '<div class="video-portrait" id="yt-wrap-' + idx + '" data-videos=\'' + vidsJson + '\'>' +
+            makeIframe(initVid) +
+          '</div>' +
+          '<div class="video-lang-selector">' +
+            '<button class="lang-flag' + (initLang === 'es' ? ' active' : '') + '" data-lang="es" onclick="window._course.switchLang(' + idx + ',\'es\')" title="Spanish">🇪🇸</button>' +
+            '<button class="lang-flag' + (initLang === 'en' ? ' active' : '') + '" data-lang="en" onclick="window._course.switchLang(' + idx + ',\'en\')" title="English">🇬🇧</button>' +
           '</div>' +
         '</div>' +
 
@@ -611,6 +620,21 @@
     }
   }
 
+  function switchLang(idx, lang) {
+    var wrap = document.getElementById('yt-wrap-' + idx);
+    if (!wrap) return;
+    var vids = {};
+    try { vids = JSON.parse(wrap.getAttribute('data-videos') || '{}'); } catch (e) {}
+    var vid = vids[lang] || PLACEHOLDER_VID;
+    wrap.innerHTML = makeIframe(vid);
+    var pane = wrap.parentElement;
+    if (pane) {
+      pane.querySelectorAll('.lang-flag[data-lang]').forEach(function (btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+    }
+  }
+
   /* (Figures and notes sections removed — now handled by MD files) */
 
   /* ── PDF DOWNLOAD ───────────────────────────────────────────── */
@@ -894,6 +918,7 @@
       goTo:         goTo,
       showCover:    showCover,
       downloadPDF:  downloadPDF,
+      switchLang:   switchLang,
     };
   }
 
