@@ -186,21 +186,89 @@ The figure supports system selection by linking each form factor to tradeoffs in
 <!-- slug: 11 -->
 ## Tools and materials needed
 
-### Tubing Cutters
+This lesson covers everything laid out before a domestic RO installation: what the **Aguaplus RO system includes**, what tools are **essential**, and what is **optional but useful**.
 
-Standard scissors crush the Linear Low-Density Polyethylene (LLDPE) tubing, causing micro-leaks in push-fittings. A specialized tubing cutter ensures a perfectly circular, 90-degree cut.
+### What the System Includes
 
-### Push-to-Connect Fittings (John Guest / Mur-lok)
+**Pre-filter housings and cartridges**
 
-These rely on a stainless steel collet that bites into the tubing and an EPDM O-ring that seals it.
+The system ships with three filter housings (two if your water supply needs only two pre-filtration stages). Three cartridges are included:
 
-### Drill & Step Bit
+- **Sediment (5 µm)** — labelled at the system inlet. First stage.
+- **GAC (Granular Activated Carbon)** — the cartridge that rattles when shaken. Rubber seal only at the top, so it must be installed in the correct direction.
+- **Carbon Block** — does not rattle; rubber seals on both sides, so direction does not matter.
 
-A titanium step bit is far superior to standard twist bits for cleanly drilling through stainless steel sinks without catching or warping the metal.
+A housing wrench is included to tighten and loosen the pre-filter housings.
 
-![Flat-lay of tools and materials needed for reverse osmosis installation](figs/osmosis/11-tools-and-materials.png)
-*Figure 11. Basic installation toolkit for a typical undersink RO system.*
-This is a quick visual inventory of the parts and tools that prevent common mistakes during drilling, cutting, and tubing assembly.
+**Membrane and post-filter**
+
+The membrane housing holds the RO membrane cartridge. The post-filter stage arrives fully assembled and ready to connect.
+
+**Tank and connections**
+
+The pressurised storage tank is included, along with all necessary fittings:
+
+- Faucet (tap) with its mounting base
+- Drain outlet tubing
+- Feed water inlet tubing
+- Tank inlet/outlet tubing
+
+### Essential Tools
+
+**Drill and 12 mm bit**
+
+A high-power drill with a 12 mm bit is required to bore the hole through the countertop for the faucet. Use a **pyramidal steel bit** for stainless-steel countertops, or the appropriate **stone bit** for granite or composite surfaces.
+
+**Two adjustable wrenches**
+
+A pair of adjustable wrenches is used to tighten fittings. Work one against the other to avoid stressing the connections.
+
+**PTFE (Teflon) tape**
+
+Wrap threaded connections with PTFE tape to ensure a watertight seal and prevent slow drips at threaded joints.
+
+**TDS meter**
+
+The TDS sensor tells you whether the system is performing correctly right after installation, and later signals when cartridges need replacement.
+
+**Sharp knife (new blade)**
+
+A clean, sharp blade is needed to cut tubing. A dull blade can deform the tubing cross-section and prevent a proper push-fit seal.
+
+**Mounting screws**
+
+| Type | Use |
+|------|-----|
+| Flat-head / lenticular screws | Recommended for mounting the main bracket to the cabinet |
+| L-hook or conical-head screws | For the anchor zones that secure the system body |
+
+### Optional Tools
+
+**Pressure gauge**
+
+Tells you whether mains pressure is adequate (no pump needed), too low (booster pump required), or too high (pressure reducer needed). Connect it with a ½″ male–male flexible hose to the showerhead outlet to read your home pressure, or use a reducer and elbow to connect directly to the system tubing. This is measured once at installation unless a fault appears later.
+
+**Needle-nose pliers**
+
+Useful for working with push-fit connections in tight or awkward spaces.
+
+**Tubular wrench with bar**
+
+Provides more torque than an adjustable wrench for tightening the faucet nut from below the countertop.
+
+**Large-and-small housing spanner**
+
+The included wrench fits only the three pre-filter housings (large size). This optional dual-size spanner also fits the smaller membrane housing.
+
+> **Note on hand-tightening:** All push-fit connections can be made by hand. Wrenches become important later — as pressure builds, the rubber seals compress and tighten, and a wrench prevents leaks from loosening over time.
+
+**Food-grade silicone lubricant**
+
+Applied to the membrane O-rings before insertion. Must be rated safe for oral/potable use. Do **not** use petroleum-based products (petroleum jelly, mineral oil, or similar) — they degrade rubber over time and can leach harmful substances into the water. If no suitable lubricant is available, install the membrane slowly and carefully so each O-ring seats without being displaced.
+
+![Flat-lay of the Aguaplus RO system components, essential tools, and optional tools for a domestic reverse osmosis installation](figs/osmosis/11-tools-and-materials.png)
+*Figure 11. Everything laid out before starting: system-included parts, essential tools, and optional accessories.*
+Organised in three groups so you can check off what you have before starting the installation.
 
 <!-- slug: 12 -->
 ## Step-by-step installation
