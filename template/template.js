@@ -383,7 +383,12 @@
     var area = document.getElementById('lesson-area');
     if (area) area.scrollTop = 0;
 
-    history.replaceState(null, '', window.location.pathname + window.location.search);
+    if (_replaceNextHistory) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+      _replaceNextHistory = false;
+    } else {
+      history.pushState(null, '', window.location.pathname + window.location.search);
+    }
   }
 
   function hideCover() {
@@ -397,6 +402,7 @@
   let current = 0;
   let total   = 0;
   let courseId = '';
+  let _replaceNextHistory = false; // true when browser (not user) drives navigation
 
   function init(course) {
     courseId = course.slug;
@@ -404,6 +410,7 @@
     buildCarouselDots(total);
     buildCover(course);
 
+    _replaceNextHistory = true;
     var hashLesson = parseInt(window.location.hash.slice(1), 10);
     if (!isNaN(hashLesson) && hashLesson >= 1 && hashLesson <= total) {
       goTo(hashLesson - 1);
@@ -412,6 +419,7 @@
     }
 
     window.addEventListener('hashchange', function () {
+      _replaceNextHistory = true;
       var n = parseInt(window.location.hash.slice(1), 10);
       if (!isNaN(n) && n >= 1 && n <= total) { goTo(n - 1); }
       else if (!window.location.hash) { showCover(); }
@@ -516,7 +524,12 @@
       if (area) area.scrollTop = 0;
     }
 
-    history.replaceState(null, '', '#' + (n + 1));
+    if (_replaceNextHistory) {
+      history.replaceState(null, '', '#' + (n + 1));
+      _replaceNextHistory = false;
+    } else {
+      history.pushState(null, '', '#' + (n + 1));
+    }
   }
 
   function next() {
