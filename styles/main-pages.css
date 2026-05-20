@@ -98,6 +98,10 @@ main { padding: 1.8rem 0 3rem; }
   letter-spacing: 0.08em;
 }
 .hero { padding: 2rem; }
+.hero-logo {
+  display: block; width: 84px; height: 84px; margin: 0 0 1.2rem;
+  border: 1px solid var(--rule); border-radius: 12px;
+}
 .hero.compact { padding: 1.9rem 2rem; }
 .eyebrow { color: var(--page-accent); font-size: 0.7rem; margin-bottom: 0.8rem; }
 h1 {
