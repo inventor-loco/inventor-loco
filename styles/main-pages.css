@@ -186,7 +186,7 @@ h2 { margin: 0 0 0.4rem; font-size: 1.4rem; line-height: 1.1; letter-spacing: -0
 .pub-actions { margin-top: 0.7rem; }
 .info-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
 .mini-list { display: grid; gap: 0.7rem; }
-.mini-item { display: grid; grid-template-columns: 92px 1fr; gap: 0.75rem; padding-top: 0.7rem; border-top: 1px solid var(--rule); }
+.mini-item { display: grid; grid-template-columns: 124px 1fr; gap: 0.75rem; padding-top: 0.7rem; border-top: 1px solid var(--rule); }
 .mini-item:first-child { border-top: none; padding-top: 0; }
 .mini-k { font-size: 0.62rem; color: var(--ink3); padding-top: 0.15rem; }
 .mini-v { color: var(--ink2); font-size: 0.82rem; }
