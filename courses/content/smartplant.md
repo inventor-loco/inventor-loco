@@ -9,14 +9,27 @@ We use a **top-down methodology**. You do not start with a pile of components an
 
 ### The kit
 
-This is a **DFRobot self-watering kit** built around a **modified Arduino Leonardo** board. The official build steps live on the [DFRobot website](https://www.dfrobot.com/); this guide is the path *I* would take to teach it.
+This is the **DFRobot EcoDuino — an Auto Plant Kit (KIT0003)**. The "brain" is the **EcoDuino control board**, which runs an **ATmega32U4** chip — so it programs *exactly* like an **Arduino Leonardo**. The official build steps live on the [DFRobot wiki](https://wiki.dfrobot.com/_SKU_KIT0003_EcoDuino_-_An_Auto_Plant_Kit); this guide is the path *I* would take to teach it.
+
+#### What's in the box
+
+- **EcoDuino control board** (ATmega32U4, Leonardo-compatible) — the pump driver and the sensor headers are already on this board.
+- **Soil-moisture sensor** — the resistive probe that drives the whole decision.
+- **DHT11 module** — air temperature & humidity.
+- **Peristaltic water pump** + a length of **silicone hose**.
+- **Battery holder** (takes **6 × AA** — note: *batteries are not included*) and a **USB cable** for power and programming.
+- A two-piece **plastic enclosure**, **4 screws**, **2 screwdrivers**, and **2 badges**.
+
+> You supply the two things the kit can't ship: a **water container** and a **plant**.
+
+#### The four parts that matter for the electronics
 
 | Part | Role | We call it… |
 |------|------|-------------|
-| Arduino Leonardo (DFRobot) | Runs the program — the "brain" | Controller |
+| EcoDuino board (ATmega32U4) | Runs the program — the "brain" | Controller |
 | Resistive soil-moisture probe | Senses how dry the soil is | Input / sensor |
-| DHT-11 module | Senses air temperature & humidity | Input / sensor |
-| Small DC water pump | Moves water from tank to soil | Output / actuator |
+| DHT11 module | Senses air temperature & humidity | Input / sensor |
+| Peristaltic water pump | Moves water from tank to soil | Output / actuator |
 
 ### What to do right now
 
@@ -116,18 +129,18 @@ Now we open the system and test **one part at a time**. We begin with the sensor
 
 ### Wiring
 
-The probe has three pins: **VCC**, **GND**, and **signal (A0)**.
+The probe has three pins: **VCC**, **GND**, and **signal**. On the EcoDuino board the moisture header is already wired to **analog pin A2** — so plug the probe into its labelled socket and that's the connection.
 
-- VCC → 5V
+- VCC → VCC (5V)
 - GND → GND
-- Signal → analog pin **A0**
+- Signal → analog pin **A2**
 
 ### Read it
 
 `analogRead()` turns the probe's voltage into a number from **0 to 1023**.
 
 ```cpp
-const int SOIL_PIN = A0;
+const int SOIL_PIN = A2;   // EcoDuino wires the moisture header to A2
 
 void setup() {
   Serial.begin(9600);
@@ -162,20 +175,20 @@ Our second sensor is the **DHT-11** — a small blue module that reports **air t
 
 ### Wiring
 
-Three used pins: **VCC**, **GND**, **DATA**.
+Three used pins: **VCC**, **GND**, **DATA**. On the EcoDuino the DHT11 header is wired to **digital pin 9**.
 
-- VCC → 5V
+- VCC → VCC (5V)
 - GND → GND
-- DATA → digital pin **2**
+- DATA → digital pin **9**
 
 ### Read it
 
-The DHT-11 needs a library. In the Arduino IDE: **Tools → Manage Libraries → search "DHT sensor library" (Adafruit) → Install**.
+The DHT-11 needs a library. The EcoDuino ships with DFRobot's own `AutoWatering` library (which bundles a `DHT` driver), but for learning we'll use the well-documented **Adafruit "DHT sensor library"**: **Tools → Manage Libraries → search "DHT sensor library" (Adafruit) → Install**.
 
 ```cpp
 #include "DHT.h"
 
-#define DHTPIN  2
+#define DHTPIN  9        // EcoDuino wires the DHT11 header to digital pin 9
 #define DHTTYPE DHT11
 
 DHT dht(DHTPIN, DHTTYPE);
@@ -214,11 +227,11 @@ Time for our only actuator. The pump is the first part with **real power** behin
 
 An Arduino pin supplies only a few tens of milliamps. A pump pulls far more, and when a motor switches off it kicks back a voltage **spike**. Connect it directly and you destroy the pin — or the whole board.
 
-So the pin does not *power* the pump. It only sends a **command** to a switch that handles the power: a **transistor** (e.g. a MOSFET) or a **relay**. On the DFRobot kit this switch is already on the board.
+So the pin does not *power* the pump. It only sends a **command** to a switch that handles the power: a **transistor** (e.g. a MOSFET), a **relay**, or — as on the EcoDuino — a small **motor-driver chip**. On this kit that driver is already on the board, and it is steered by **two** pins, **5 and 6**. Drive *both* HIGH and the pump runs; drive *both* LOW and it stops.
 
 ```
-  Arduino pin ──► [ transistor / relay ] ──► PUMP ──► power supply
-   (tiny signal)        (the switch)        (big current)
+  Arduino pins 5 + 6 ──► [ onboard motor driver ] ──► PUMP ──► battery pack
+     (tiny signals)            (the switch)          (big current)
 ```
 
 A **flyback diode** across the pump absorbs that turn-off spike. On the kit it is already fitted; on a breadboard, you add it yourself.
@@ -226,16 +239,20 @@ A **flyback diode** across the pump absorbs that turn-off spike. On the kit it i
 ### Switch it
 
 ```cpp
-const int PUMP_PIN = 6;   // pin wired to the transistor/relay
+const int PUMP_A = 5;   // the two pins that steer the onboard pump driver
+const int PUMP_B = 6;
 
 void setup() {
-  pinMode(PUMP_PIN, OUTPUT);
+  pinMode(PUMP_A, OUTPUT);
+  pinMode(PUMP_B, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(PUMP_PIN, HIGH);  // pump ON
+  digitalWrite(PUMP_A, HIGH);    // pump ON — both pins HIGH
+  digitalWrite(PUMP_B, HIGH);
   delay(3000);                   // run 3 seconds
-  digitalWrite(PUMP_PIN, LOW);   // pump OFF
+  digitalWrite(PUMP_A, LOW);     // pump OFF — both pins LOW
+  digitalWrite(PUMP_B, LOW);
   delay(10000);                  // wait 10 seconds
 }
 ```
@@ -254,9 +271,10 @@ The sketch is simply the **logic from Lesson 3**, written in code:
 ```cpp
 #include "DHT.h"
 
-const int SOIL_PIN = A0;
-const int PUMP_PIN = 6;
-#define DHTPIN  2
+const int SOIL_PIN = A2;   // EcoDuino: moisture header → A2
+const int PUMP_A   = 5;    // EcoDuino: onboard pump driver → pins 5 & 6
+const int PUMP_B   = 6;
+#define DHTPIN  9          // EcoDuino: DHT11 header → digital pin 9
 #define DHTTYPE DHT11
 DHT dht(DHTPIN, DHTTYPE);
 
@@ -267,9 +285,15 @@ const int WET = 700;   // above this → soil is wet → stop
 const unsigned long PUMP_MS = 3000;     // burst length  (safety, Lesson 3)
 const unsigned long WAIT_MS = 30000;    // soak time before checking again
 
+void pump(bool on) {                    // both driver pins move together
+  digitalWrite(PUMP_A, on ? HIGH : LOW);
+  digitalWrite(PUMP_B, on ? HIGH : LOW);
+}
+
 void setup() {
   Serial.begin(9600);
-  pinMode(PUMP_PIN, OUTPUT);
+  pinMode(PUMP_A, OUTPUT);
+  pinMode(PUMP_B, OUTPUT);
   dht.begin();
 }
 
@@ -284,9 +308,9 @@ void loop() {
 
   if (moisture < DRY) {            // decide
     Serial.println("Dry → watering");
-    digitalWrite(PUMP_PIN, HIGH);  // act: a single safe burst
+    pump(true);                    // act: a single safe burst
     delay(PUMP_MS);
-    digitalWrite(PUMP_PIN, LOW);
+    pump(false);
     delay(WAIT_MS);                // let it soak, then re-check
   } else {
     delay(2000);
@@ -307,13 +331,13 @@ That is **sense → decide → act**, closed through the plant itself. The syste
 <!-- slug: 08 -->
 ## Add WiFi with an ESP32
 
-Our Leonardo does its job perfectly — but it cannot talk to the internet. The **extension** of this workshop swaps the brain for an **ESP32**: a microcontroller with **WiFi and Bluetooth built in**, for a similar price.
+Our EcoDuino (an ATmega32U4, like a Leonardo) does its job perfectly — but it cannot talk to the internet. The **extension** of this workshop swaps the brain for an **ESP32**: a microcontroller with **WiFi and Bluetooth built in**, for a similar price.
 
 Everything you learned transfers. The ESP32 reads the same sensors and drives the same pump — the *logic is identical*. What's new is that it can also **report and receive data over the network**.
 
 ### What changes
 
-| | Arduino Leonardo | ESP32 |
+| | EcoDuino (ATmega32U4) | ESP32 |
 |---|---|---|
 | Logic voltage | 5 V | **3.3 V** (mind your sensors!) |
 | Analog read | `analogRead` 0–1023 | `analogRead` 0–4095 |
