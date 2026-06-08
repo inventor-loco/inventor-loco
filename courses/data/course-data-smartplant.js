@@ -13,8 +13,8 @@ window.COURSE = {
         {
           "title": "Meet your self-watering plant",
           "subtitle": "You start with a complete, working system. We learn it top-down — from the whole, then into the parts.",
-          "objective": "Power up the DFRobot kit, see it keep a plant watered on its own, and describe what the system does before opening it up.",
-          "tags": ["Top-Down", "DFRobot", "Arduino Leonardo", "Overview"]
+          "objective": "Power up the DFRobot EcoDuino kit, see it keep a plant watered on its own, and describe what the system does before opening it up.",
+          "tags": ["Top-Down", "DFRobot", "EcoDuino", "Overview"]
         },
         {
           "title": "Inputs and outputs of the system",
