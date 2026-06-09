@@ -27,6 +27,13 @@ for slug in "${SLUGS[@]}"; do
     echo "" >> "$out"                    # blank line after each section
   done
 
+  # Optional references section (## References + [id]: url "title" definitions).
+  # Appended last so the merged file ends with the useful-links / citations block.
+  if [ -f "$src/references.md" ]; then
+    cat "$src/references.md" >> "$out"
+    echo "" >> "$out"
+  fi
+
   count=$(ls "$src"/[0-9][0-9].md 2>/dev/null | wc -l)
   echo "OK    $slug — merged $count lessons → ${slug}.md"
 done

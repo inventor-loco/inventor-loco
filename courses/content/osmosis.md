@@ -1,7 +1,7 @@
 <!-- slug: 01 -->
 ## What is reverse osmosis?
 
-Reverse Osmosis (RO) relies on overcoming natural osmotic pressure. In natural osmosis, a solvent (water) moves across a semipermeable membrane from a region of low solute concentration to one of high solute concentration, driven by the thermodynamic desire to equalize chemical potentials. **Reverse Osmosis** introduces hydrostatic pressure greater than the osmotic pressure (calculated via the van 't Hoff equation: $\pi = iCRT$) on the high-concentration side.
+[Reverse Osmosis (RO)][ro-wiki] relies on overcoming natural osmotic pressure. In natural osmosis, a solvent (water) moves across a semipermeable membrane from a region of low solute concentration to one of high solute concentration, driven by the thermodynamic desire to equalize chemical potentials. **Reverse Osmosis** introduces hydrostatic pressure greater than the osmotic pressure (calculated via the [van 't Hoff relation][osmotic-pressure]: $\pi = iCRT$) on the high-concentration side.
 
 This forces water molecules through the sub-nanometer pores of a synthetic membrane, leaving behind heavy metals, inorganic salts, and pathogens. Unlike "dead-end" filtration where water goes straight through a filter (like a coffee filter), RO uses **cross-flow filtration**. Water flows *parallel* to the membrane surface, continuously sweeping away rejected contaminants into a brine (waste) stream, preventing the membrane from rapidly clogging.
 
@@ -20,13 +20,13 @@ This figure helps distinguish the thermodynamic tendency of water movement from 
 <!-- slug: 02 -->
 ## How water quality is measured
 
-To baseline and monitor an RO system, we utilize electrical conductivity to estimate **Total Dissolved Solids (TDS)**.
+To baseline and monitor an RO system, we utilize electrical conductivity to estimate **[Total Dissolved Solids (TDS)][tds]**.
 
 ### Key metrics
 
 - **Conductivity to TDS:** A TDS meter measures conductivity in MicroSiemens ($\mu\text{S/cm}$) and applies a conversion factor (typically 0.5 to 0.7) to estimate TDS in Parts Per Million (PPM). Because it relies on conductivity, it does not measure uncharged particles like sugar or some motor oils, but is highly accurate for mineral and salt content.
 - **SDI (Silt Density Index):** A critical metric for RO feed water. An SDI > 5 indicates high particulate matter that will rapidly foul an RO membrane.
-- **Langelier Saturation Index (LSI):** Measures the scaling potential of water. Hard water (high Calcium/Magnesium) with a positive LSI will precipitate calcium carbonate onto the membrane surface, requiring softening pre-treatment or antiscalant dosing.
+- **[Langelier Saturation Index (LSI)][lsi]:** Measures the scaling potential of water. Hard water (high Calcium/Magnesium) with a positive LSI will precipitate calcium carbonate onto the membrane surface, requiring softening pre-treatment or antiscalant dosing.
 - **Chlorine vs. Chloramines:** Municipalities use free chlorine or chloramines. Thin-Film Composite (TFC) membranes tolerate ZERO chlorine (<0.1 ppm). Carbon pre-filtration is mandatory.
 
 ![Water quality metrics infographic showing TDS, conductivity, SDI, LSI, and chlorine protection](figs/osmosis/02-water-quality-metrics.png)
@@ -431,7 +431,7 @@ Analog TDS sensors require calibration against a known NaCl standard solution (e
 
 ### Telemetry
 
-Write the firmware to calculate the moving average of the rejection rate and track total gallons processed. Publish these payloads via MQTT to a broker (like Home Assistant) to trigger push notifications when the filters reach their volumetric lifespan limits.
+Write the firmware to calculate the moving average of the rejection rate and track total gallons processed. Publish these payloads via [MQTT][mqtt] to a broker (like [Home Assistant][home-assistant]) to trigger push notifications when the filters reach their volumetric lifespan limits.
 
 ![IoT reverse osmosis monitoring architecture with sensors, ESP32, and dashboard connectivity](figs/osmosis/20-iot-monitoring.png)
 *Figure 20. Sensor and telemetry architecture for an IoT-enabled RO monitoring project.*
@@ -526,3 +526,21 @@ You have now completed the definitive masterclass on Reverse Osmosis. You posses
 ![Course recap map showing the full reverse osmosis learning journey from foundations to advanced applications](figs/osmosis/25-recap-course-map.png)
 *Figure 25. Course map summarizing the progression from membrane fundamentals to installation, monitoring, and scale-up.*
 The recap figure is useful as a final orientation tool before students move from theory into project design or hands-on implementation.
+
+## References
+
+Useful links cited throughout this course:
+
+- [Reverse osmosis — overview][ro-wiki]
+- [Osmotic pressure & the van 't Hoff relation][osmotic-pressure]
+- [Total dissolved solids (TDS)][tds]
+- [Langelier Saturation Index (LSI)][lsi]
+- [MQTT — messaging protocol for IoT][mqtt]
+- [Home Assistant — home automation platform][home-assistant]
+
+[ro-wiki]:          https://en.wikipedia.org/wiki/Reverse_osmosis "Reverse osmosis — overview"
+[osmotic-pressure]: https://en.wikipedia.org/wiki/Osmotic_pressure "Osmotic pressure & the van 't Hoff relation"
+[tds]:              https://en.wikipedia.org/wiki/Total_dissolved_solids "Total dissolved solids (TDS)"
+[lsi]:              https://en.wikipedia.org/wiki/Langelier_saturation_index "Langelier Saturation Index (LSI)"
+[mqtt]:             https://mqtt.org/ "MQTT — messaging protocol for IoT"
+[home-assistant]:   https://www.home-assistant.io/ "Home Assistant — home automation platform"

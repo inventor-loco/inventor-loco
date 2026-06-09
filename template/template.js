@@ -176,6 +176,10 @@
   /* ── MARKDOWN CONTENT LOADER ─────────────────────────────── */
   var mdCache = {};
   var mdLoaded = false;
+  // Link-reference definitions ([id]: url "title") collected from the whole
+  // file. Lessons are parsed independently, so these are appended to every
+  // chunk to make standard markdown reference links resolve per lesson.
+  var linkDefs = '';
 
   function loadAllMarkdown() {
     if (mdLoaded) return Promise.resolve();
@@ -186,6 +190,7 @@
       return res.text();
     }).then(function (text) {
       if (!text) return;
+      linkDefs = (text.match(/^\s{0,3}\[[^\]]+\]:\s+\S.*$/gm) || []).join('\n');
       var parts = text.split(/<!--\s*slug:\s*(\d+)\s*-->/);
       for (var i = 1; i < parts.length; i += 2) {
         var idx = parseInt(parts[i], 10) - 1;
@@ -197,7 +202,11 @@
   function renderMarkdown(idx) {
     var el = document.getElementById('md-body-' + idx);
     if (el && mdCache[idx] && typeof marked !== 'undefined') {
-      el.innerHTML = marked.parse(mdCache[idx]);
+      el.innerHTML = marked.parse(mdCache[idx] + '\n\n' + linkDefs);
+      el.querySelectorAll('a[href^="http"]').forEach(function (a) {
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+      });
       if (_katexReady) {
         renderMath(idx);
       } else {
@@ -709,7 +718,7 @@
           html += '<p class="pdf-subtitle">' + escHtml(item.lesson.subtitle) + '</p>';
         }
         if (mdCache[idx]) {
-          html += '<div class="pdf-content">' + marked.parse(mdCache[idx]) + '</div>';
+          html += '<div class="pdf-content">' + marked.parse(mdCache[idx] + '\n\n' + linkDefs) + '</div>';
         } else {
           html += '<p class="pdf-placeholder">Content is being developed.</p>';
         }
