@@ -207,12 +207,63 @@
         a.target = '_blank';
         a.rel = 'noopener noreferrer';
       });
+      addCopyButtons(el);
       if (_katexReady) {
         renderMath(idx);
       } else {
         _katexPending.push(idx);
       }
     }
+  }
+
+  /* ── COPY-TO-CLIPBOARD BUTTONS ON CODE BLOCKS ────────────── */
+  function addCopyButtons(el) {
+    el.querySelectorAll('pre').forEach(function (pre) {
+      if (pre.querySelector('.code-copy-btn')) return;
+      var btn = document.createElement('button');
+      btn.className = 'code-copy-btn';
+      btn.type = 'button';
+      btn.textContent = 'Copy';
+      btn.title = 'Copy code to clipboard';
+      btn.addEventListener('click', function () {
+        var code = pre.querySelector('code');
+        var text = code ? code.innerText : pre.innerText;
+        copyText(text, function (ok) {
+          btn.textContent = ok ? 'Copied!' : 'Press Ctrl+C';
+          btn.classList.toggle('copied', ok);
+          setTimeout(function () {
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
+          }, 1800);
+        });
+      });
+      pre.classList.add('has-copy-btn');
+      pre.appendChild(btn);
+    });
+  }
+
+  function copyText(text, done) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () { done(true); },
+        function () { done(legacyCopy(text)); }
+      );
+    } else {
+      done(legacyCopy(text));
+    }
+  }
+
+  function legacyCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
   }
 
   function loadMarkdown(idx) {

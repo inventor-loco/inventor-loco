@@ -13,20 +13,20 @@ window.COURSE = {
         {
           "title": "Meet your self-watering plant",
           "subtitle": "You start with a complete, working system. We learn it top-down — from the whole, then into the parts.",
-          "objective": "Power up the DFRobot EcoDuino kit, see it keep a plant watered on its own, and describe what the system does before opening it up.",
-          "tags": ["Top-Down", "DFRobot", "EcoDuino", "Overview"]
+          "objective": "Identify the parts of the DFRobot EcoDuino kit, classify each as input (sensor) or output (actuator), and sketch the sense → decide → act loop.",
+          "tags": ["Top-Down", "DFRobot", "EcoDuino", "Sensors", "Actuators"]
         },
         {
-          "title": "Inputs and outputs of the system",
-          "subtitle": "Every automatic system senses, decides, and acts. Let's name the sensors and the actuators in front of us.",
-          "objective": "Classify each component as an input (sensor) or output (actuator), and sketch the sense → decide → act loop.",
-          "tags": ["Inputs", "Outputs", "Sensors", "Actuators"]
+          "title": "The full program — upload it and drive it",
+          "subtitle": "Download the complete sketch, upload it once, and switch its sections on and off from the Serial Monitor.",
+          "objective": "Upload SelfWateringPlant.ino and use the console commands — test sensors, test actuators, normal run — to control which section of the program runs.",
+          "tags": ["Full Code", "Upload", "Serial Monitor", "Commands"]
         },
         {
-          "title": "The watering logic",
-          "subtitle": "When should the pump turn on, and when must it stop? Good logic is the difference between a healthy plant and a flooded one.",
-          "objective": "Write the decision rule for the pump using a threshold, hysteresis, and a safety limit — before touching any code.",
-          "tags": ["Control Logic", "Threshold", "Hysteresis", "Safety"]
+          "title": "Anatomy of an Arduino sketch",
+          "subtitle": "Preamble, setup(), loop() — every Arduino program shares the same three-part architecture.",
+          "objective": "Recognise the preamble / setup / loop structure in miniature sketches and map it onto the full workshop program.",
+          "tags": ["Preamble", "Setup", "Loop", "Architecture"]
         }
       ]
     },
@@ -34,28 +34,22 @@ window.COURSE = {
       "name": "Unit 2 — Test the Parts",
       "lessons": [
         {
-          "title": "Test the input: soil moisture",
-          "subtitle": "The resistive probe is the plant's thirst sensor. We read it, watch it change, and calibrate dry vs. wet.",
-          "objective": "Read the analog soil-moisture value, observe it in the Serial Monitor, and record your dry and wet calibration points.",
-          "tags": ["Soil Moisture", "Analog Read", "Calibration", "Serial Monitor"]
+          "title": "Test the sensors",
+          "subtitle": "Type 'test sensors': the pump locks off and the program prints soil moisture, temperature, and humidity. Time to calibrate.",
+          "objective": "Use the test-sensors mode to read the soil probe and DHT11, and record your dry and wet calibration points.",
+          "tags": ["Soil Moisture", "DHT-11", "Analog Read", "Calibration"]
         },
         {
-          "title": "Test the input: temperature & humidity",
-          "subtitle": "The DHT-11 tells us about the air around the plant. Useful context, and our first digital sensor.",
-          "objective": "Wire and read the DHT-11, print temperature and humidity, and understand the sensor's limits.",
-          "tags": ["DHT-11", "Temperature", "Humidity", "Digital Sensor"]
+          "title": "Test the actuators",
+          "subtitle": "Type 'test actuators': the pump pulses safely while sensors are ignored. Learn why a motor never connects straight to a pin.",
+          "objective": "Use the test-actuators mode to pulse the pump through the onboard driver, and explain the protection components.",
+          "tags": ["Water Pump", "Motor Driver", "Actuator", "Safety"]
         },
         {
-          "title": "Test the output: water pump",
-          "subtitle": "An actuator with real power behind it. We switch the pump safely and learn why it never connects straight to a pin.",
-          "objective": "Drive the pump through a transistor/relay, run it for a fixed time, and explain the protection components.",
-          "tags": ["Water Pump", "Relay", "Transistor", "Actuator"]
-        },
-        {
-          "title": "Put it all together",
-          "subtitle": "Sensors + logic + pump, reassembled into the loop we started with — but now we understand every line.",
-          "objective": "Combine the tested parts into one sketch that waters automatically, and verify the full sense → decide → act loop.",
-          "tags": ["Integration", "Loop", "Automation", "Verification"]
+          "title": "Normal run — the watering logic",
+          "subtitle": "Type 'normal run': everything is live. Threshold, hysteresis, and a safety limit keep the plant watered, not flooded.",
+          "objective": "Reason out the watering rule (threshold, hysteresis, burst-and-soak safety) and verify the full sense → decide → act loop running live.",
+          "tags": ["Control Logic", "Threshold", "Hysteresis", "Verification"]
         }
       ]
     },
