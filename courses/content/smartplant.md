@@ -1,146 +1,274 @@
 <!-- slug: 01 -->
-## Meet your self-watering plant
+## The complete code — start here
 
-Welcome to the **Sustainability Lab** workshop. Today you will build a plant that waters itself — and, more importantly, you will understand *every* part of how it does so.
+Welcome to the **Sustainability Lab** workshop. We use a **top-down** approach: you get the *full, working program* first. Only then do we open it up and ask *why*.
 
-We use a **top-down methodology**. You do not start with a pile of components and a wiring diagram. You start with a **complete, working system**: a plant, a tank of water, a small pump, two sensors, and a microcontroller already running the program. We switch it on, and it works. Only *then* do we open it up and ask *why*.
+> **Download the code:** [self_watering_plant.ino](../code/smartplant/self_watering_plant.ino)
 
-> **Why top-down?** Seeing the finished behaviour first gives every later step a purpose. When we test the soil sensor in Unit 2, you already know exactly where that reading goes and what it decides.
+Upload the sketch to your EcoDuino now. Open the **Serial Monitor** at **9600 baud** and type one of three commands to choose what the system does:
 
-### The kit
+| Command | What it does |
+|---------|-------------|
+| `test sensors` | Prints sensor readings every 0.5 s — use this to calibrate |
+| `test actuators` | Cycles the pump on/off so you can check the plumbing |
+| `normal run` | Full automatic watering logic (the default on power-up) |
 
-This is the **DFRobot EcoDuino — an Auto Plant Kit (KIT0003)**. The "brain" is the **EcoDuino control board**, which runs an **ATmega32U4** chip — so it programs *exactly* like an **Arduino Leonardo**. The official build steps live on the [DFRobot wiki](https://wiki.dfrobot.com/_SKU_KIT0003_EcoDuino_-_An_Auto_Plant_Kit); this guide is the path *I* would take to teach it.
+### The full sketch
 
-#### What's in the box
+```cpp
+/*  self_watering_plant.ino
+    DFRobot EcoDuino (KIT0003) — ATmega32U4 / Leonardo
+    Requires: DHT sensor library by Adafruit               */
 
-- **EcoDuino control board** (ATmega32U4, Leonardo-compatible) — the pump driver and the sensor headers are already on this board.
-- **Soil-moisture sensor** — the resistive probe that drives the whole decision.
-- **DHT11 module** — air temperature & humidity.
-- **Peristaltic water pump** + a length of **silicone hose**.
-- **Battery holder** (takes **6 × AA** — note: *batteries are not included*) and a **USB cable** for power and programming.
-- A two-piece **plastic enclosure**, **4 screws**, **2 screwdrivers**, and **2 badges**.
+#include "DHT.h"
 
-> You supply the two things the kit can't ship: a **water container** and a **plant**.
+/* ── Pin assignments ── */
+const int SOIL_PIN = A2;
+const int PUMP_A   = 5;
+const int PUMP_B   = 6;
+#define   DHTPIN   9
+#define   DHTTYPE  DHT11
 
-#### The four parts that matter for the electronics
+DHT dht(DHTPIN, DHTTYPE);
 
-| Part | Role | We call it… |
-|------|------|-------------|
-| EcoDuino board (ATmega32U4) | Runs the program — the "brain" | Controller |
-| Resistive soil-moisture probe | Senses how dry the soil is | Input / sensor |
-| DHT11 module | Senses air temperature & humidity | Input / sensor |
-| Peristaltic water pump | Moves water from tank to soil | Output / actuator |
+/* ── Thresholds — adjust after running "test sensors" ── */
+int DRY_THRESHOLD = 400;
+int WET_THRESHOLD = 700;
 
-### What to do right now
+/* ── Timing ── */
+const unsigned long PUMP_ON_MS = 3000;
+const unsigned long SOAK_MS    = 30000;
 
-1. Place the probe in the soil and the pump's tube into the water tank.
-2. Connect the board to power (USB or battery).
-3. Watch. When the soil is dry enough, the pump runs for a few seconds, then stops.
+/* ── Mode ── */
+enum Mode { NORMAL_RUN, TEST_SENSORS, TEST_ACTUATORS };
+Mode currentMode = NORMAL_RUN;
 
-That is the whole system. In the next lesson we give names to its pieces.
+bool          pumpRunning = false;
+unsigned long modeTimer   = 0;
+bool          actPhase    = false;
+
+void setPump(bool on) {
+  digitalWrite(PUMP_A, on ? HIGH : LOW);
+  digitalWrite(PUMP_B, on ? HIGH : LOW);
+  pumpRunning = on;
+}
+
+/* ── SETUP ── */
+void setup() {
+  Serial.begin(9600);
+  while (!Serial) { ; }
+  pinMode(PUMP_A, OUTPUT);
+  pinMode(PUMP_B, OUTPUT);
+  setPump(false);
+  dht.begin();
+  Serial.println("Commands: test sensors | test actuators | normal run");
+  modeTimer = millis();
+}
+
+/* ── LOOP ── */
+void loop() {
+  if (Serial.available()) {
+    String cmd = Serial.readStringUntil('\n');
+    cmd.trim(); cmd.toLowerCase();
+    if      (cmd == "test sensors")   { setPump(false); currentMode = TEST_SENSORS;   modeTimer = millis(); Serial.println(">> TEST SENSORS"); }
+    else if (cmd == "test actuators") {                 currentMode = TEST_ACTUATORS; modeTimer = millis(); Serial.println(">> TEST ACTUATORS"); actPhase = false; }
+    else if (cmd == "normal run")     { setPump(false); currentMode = NORMAL_RUN;     modeTimer = millis(); Serial.println(">> NORMAL RUN"); }
+  }
+  switch (currentMode) {
+    case TEST_SENSORS:   runTestSensors();   break;
+    case TEST_ACTUATORS: runTestActuators(); break;
+    case NORMAL_RUN:     runNormalMode();    break;
+  }
+}
+
+/* ── TEST SENSORS mode ── */
+void runTestSensors() {
+  if (millis() - modeTimer < 500) return;
+  modeTimer = millis();
+  int soil = analogRead(SOIL_PIN);
+  float t  = dht.readTemperature();
+  float h  = dht.readHumidity();
+  Serial.print("Soil: "); Serial.print(soil);
+  Serial.print("   T: "); Serial.print(t, 1);
+  Serial.print(" C   H: "); Serial.print(h, 1); Serial.println(" %");
+}
+
+/* ── TEST ACTUATORS mode ── */
+void runTestActuators() {
+  unsigned long e = millis() - modeTimer;
+  if (!actPhase && e == 0)    { setPump(true);  Serial.println("Pump ON  — 3 s"); }
+  if (!actPhase && e >= 3000) { setPump(false); actPhase = true;  modeTimer = millis(); Serial.println("Pump OFF — 5 s"); }
+  if ( actPhase && e >= 5000) { setPump(true);  actPhase = false; modeTimer = millis(); Serial.println("Pump ON  — 3 s"); }
+}
+
+/* ── NORMAL RUN mode ── */
+void runNormalMode() {
+  int soil = analogRead(SOIL_PIN);
+  Serial.print("Soil: "); Serial.println(soil);
+  if (soil < DRY_THRESHOLD) {
+    Serial.println("Dry → watering burst");
+    setPump(true);  delay(PUMP_ON_MS);
+    setPump(false); delay(SOAK_MS);
+  } else {
+    delay(2000);
+  }
+}
+```
+
+Don't worry if you don't understand every line yet — that's the point of the next lessons. Right now: upload, open Serial Monitor, type `test sensors`, and watch numbers appear. The system is *alive*.
 
 <!-- slug: 02 -->
-## Inputs and outputs of the system
+## Arduino anatomy: preamble, setup, loop
 
-Every automatic system does three things in a loop: it **senses** the world, it **decides** what to do, and it **acts** on the world. Engineers call this **sense → decide → act**.
+Every Arduino sketch has exactly three parts. Once you know this skeleton you can read *any* Arduino program — including the full one from Lesson 1.
 
-To understand any system, first separate its **inputs** from its **outputs**.
+### The skeleton
+
+```cpp
+/* === PREAMBLE ===
+   Anything that runs before the board starts.
+   Libraries, pin numbers, global variables.        */
+
+#include "DHT.h"          // pull in a library
+const int SOIL_PIN = A2;  // give a name to a pin
+
+/* === SETUP ===
+   Runs once when the board powers on or resets.
+   Use it to configure pins and start Serial.       */
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(SOIL_PIN, INPUT);
+}
+
+/* === LOOP ===
+   Runs forever, as fast as the chip allows.
+   This is where your actual work happens.          */
+
+void loop() {
+  int value = analogRead(SOIL_PIN);
+  Serial.println(value);
+  delay(500);
+}
+```
+
+### Why three parts?
+
+| Part | When | Purpose |
+|------|------|---------|
+| **Preamble** | Compile time | Libraries, constants, variable declarations |
+| **setup()** | Once at boot | Configure hardware, start communication |
+| **loop()** | Forever after | Read sensors, decide, act |
+
+### How our full sketch fits
+
+Open `self_watering_plant.ino` and find these three zones:
+
+- **Preamble** (lines 1–~30): `#include`, pin constants, `DHT dht(…)`, `enum Mode`, timing values, state variables.
+- **setup()**: starts Serial, configures pins, prints the command menu.
+- **loop()**: reads Serial commands, then calls one of three sub-functions based on the current mode.
+
+The sub-functions (`runTestSensors`, `runTestActuators`, `runNormalMode`) are just tidy helpers — they're not magic, they're called *from* `loop()`. Arduino only ever requires `setup()` and `loop()`; everything else is your own organisation.
+
+<!-- slug: 03 -->
+## How the system works
+
+Every automatic system does three things in a continuous loop: **sense → decide → act**. Our plant does exactly this.
 
 ### Inputs = sensors
 
-These bring information *into* the controller. Our plant has two:
+Two sensors bring information into the controller:
 
-- **Soil moisture** — a resistive probe. Dry soil conducts poorly (high resistance); wet soil conducts well (low resistance). The board reads this as a number.
-- **Temperature & humidity** — the **DHT-11**, telling us about the air. A hot, dry day means the plant loses water faster.
+- **Soil moisture probe** (analog pin A2) — dry soil has high resistance → high reading; wet soil has low resistance → low reading.
+- **DHT11** (digital pin 9) — reports air temperature and humidity. Hot, dry conditions suggest the plant needs water sooner.
 
-### Outputs = actuators
+### Output = actuator
 
-These let the controller *change* the world. Our plant has one:
+One actuator lets the controller change the world:
 
-- **Water pump** — when the controller switches it on, water flows from the tank to the soil.
+- **Peristaltic pump** driven via the onboard motor-driver chip (pins 5 + 6). Both pins HIGH → pump runs; both LOW → pump stops.
 
-### The loop, drawn out
-
-```
-        ┌─────────────────────────────────────┐
-        │                                     │
-   [ Soil moisture ] ─┐                       │
-                      ├──►  CONTROLLER  ──►  [ Water Pump ]
-   [ Temp / humidity ]┘     (decides)         │
-        ▲                                     │
-        └──────── the soil gets wetter ───────┘
-```
-
-The pump changes the soil, the sensor reads the change, the controller decides again. It is a **closed loop** — the output feeds back into the input through the real world (the plant).
-
-> **Your turn:** Point at each component on the bench and say out loud: *"input"* or *"output"*. This habit will serve you for every embedded system you ever meet.
-
-<!-- slug: 03 -->
-## The watering logic
-
-Before we write a single line of code, let's **think**. When should the pump turn **on**? When must it turn **off**?
-
-### A first, naive rule
-
-> *If the soil is dry, turn the pump on. If not, turn it off.*
-
-This is the right idea but it has three problems. Let's fix each one.
-
-### Problem 1 — What does "dry" mean? → a threshold
-
-The sensor gives a number. We need a line in the sand: a **threshold**. Below it = water; above it = fine. We will *measure* this number in Unit 2 (calibration), but the logic is:
+### The closed loop
 
 ```
-if (moisture < DRY_THRESHOLD)  pump = ON;
-else                            pump = OFF;
+   [ Soil probe ] ──┐
+                    ├──► CONTROLLER ──► [ Water Pump ]
+   [ DHT11      ] ──┘     (decides)
+        ▲                                    │
+        └────── soil gets wetter ────────────┘
 ```
 
-### Problem 2 — Flickering at the edge → hysteresis
+The pump changes the soil; the sensor reads the change; the controller decides again. Output feeds back into input through the real world — that's a **closed loop**.
 
-Right at the threshold, sensor noise makes the value jump above and below, so the pump flickers on-off-on-off. The fix is **hysteresis**: use *two* thresholds.
-
-- Turn **on** when it gets quite dry (`< DRY`).
-- Turn **off** only once it is properly wet (`> WET`), not the instant it crosses back.
-
-```
-if (moisture < DRY)  pump = ON;
-if (moisture > WET)  pump = OFF;
-```
-
-### Problem 3 — What if the sensor lies? → a safety limit
-
-Water takes time to spread through soil before the probe "feels" it. If we keep pumping until the reading moves, we may **flood** the plant. So we add a hard rule that overrides everything:
-
-> *Never run the pump longer than `MAX_ON_TIME` (say, 5 seconds), then wait before checking again.*
-
-### The final logic
+### The decision logic in plain English
 
 1. Read moisture.
-2. If dry and pump is off → run pump for a short, **fixed** burst.
-3. Wait a while (let water soak in).
+2. If below `DRY_THRESHOLD` → run pump for `PUMP_ON_MS` milliseconds (a fixed safe burst).
+3. Wait `SOAK_MS` milliseconds so water spreads before re-checking.
 4. Repeat.
 
-This "pulse and wait" approach is safer than "pump until wet." Hold on to this reasoning — the code in Lesson 7 is just this paragraph, translated.
+**Why a fixed burst instead of "pump until wet"?** Water takes time to reach the probe. If we kept pumping until the reading changed, we'd flood the plant. The burst-and-wait approach is the safer choice.
+
+**Why two thresholds?** At the boundary, sensor noise makes the reading jump above and below. A small gap between the ON threshold (`DRY`) and the expected OFF threshold (`WET`) prevents the pump from flickering.
 
 <!-- slug: 04 -->
-## Test the input: soil moisture
+## Test your sensors
 
-Now we open the system and test **one part at a time**. We begin with the sensor that drives the whole decision: the resistive soil-moisture probe.
+With the sketch uploaded, type `test sensors` in the Serial Monitor. You'll see a live table:
 
-### Wiring
+```
+Soil: 612   T: 24.0 C   H: 55.0 %
+Soil: 610   T: 24.0 C   H: 55.0 %
+```
 
-The probe has three pins: **VCC**, **GND**, and **signal**. On the EcoDuino board the moisture header is already wired to **analog pin A2** — so plug the probe into its labelled socket and that's the connection.
+### What to do
 
-- VCC → VCC (5V)
-- GND → GND
-- Signal → analog pin **A2**
+**Step 1 — Read both extremes of the soil probe**
 
-### Read it
+| Condition | Do this | Write down the value |
+|-----------|---------|----------------------|
+| **Dry** | Hold probe in air, or push into dry soil | `____` |
+| **Wet** | Push probe into a cup of water | `____` |
 
-`analogRead()` turns the probe's voltage into a number from **0 to 1023**.
+Your `DRY_THRESHOLD` should sit between these two numbers, closer to the dry end. Your `WET_THRESHOLD` (only used as a reference) is near the wet end.
+
+> Note: higher value may mean drier *or* wetter depending on probe wiring. Read both extremes; don't assume.
+
+**Step 2 — Update the sketch**
+
+Edit these two lines in the preamble and re-upload:
 
 ```cpp
-const int SOIL_PIN = A2;   // EcoDuino wires the moisture header to A2
+int DRY_THRESHOLD = 400;  // ← change to your dry value
+int WET_THRESHOLD = 700;  // ← change to your wet value
+```
+
+**Step 3 — Check the DHT11**
+
+Breathe on the sensor or cup it in your hand. You should see humidity climb and temperature steady. If you see `nan` values, wait 2 seconds — the DHT11 is slow.
+
+### Why calibrate?
+
+Raw sensor numbers are meaningless until *you* measure your specific soil, probe, and pot. Two identical probes in different soils can give different readings. Calibration is not optional — it's the difference between a plant that gets watered correctly and one that gets flooded.
+
+<!-- slug: 05 -->
+## The soil moisture probe in depth
+
+The resistive soil-moisture probe is the simplest sensor in the kit — and the most important. This lesson explains how it works and its limits.
+
+### How it works
+
+The probe has two metal electrodes. The board applies a small voltage across them and reads the resulting current via `analogRead()`.
+
+- **Dry soil** → high resistance → low current → **high** analog reading (close to 1023)
+- **Wet soil** → low resistance → high current → **low** analog reading (close to 0)
+
+`analogRead()` on the ATmega32U4 returns a value from **0 to 1023** (10-bit ADC, 5 V reference).
+
+### Calibration reminder
+
+```cpp
+const int SOIL_PIN = A2;
 
 void setup() {
   Serial.begin(9600);
@@ -153,44 +281,30 @@ void loop() {
 }
 ```
 
-Open the **Serial Monitor** (magnifying-glass icon, top right of the Arduino IDE) and watch the numbers.
+This minimal sketch (a simplified version of `runTestSensors`) shows just the moisture read. Notice how it maps to the **preamble / setup / loop** structure from Lesson 2.
 
-### Calibrate — the important bit
+### Limits to know
 
-The raw number means nothing until *you* give it meaning. Do this experiment:
+- **Corrosion:** Current flowing through wet soil slowly corrodes the metal electrodes. Fine for a workshop; for a long-term build, a **capacitive** probe (no metal exposed) lasts much longer.
+- **Salinity:** Different soils conduct differently based on mineral content, not just water content. Your calibration is specific to your soil mix.
+- **Placement depth:** The probe reads the moisture at exactly the depth it's inserted. Move it and the numbers change.
 
-| Condition | Push the probe into… | Write down the value |
-|-----------|----------------------|----------------------|
-| **Dry** | air / dry soil | `____` (your DRY) |
-| **Wet** | a cup of water / soaked soil | `____` (your WET) |
+<!-- slug: 06 -->
+## The DHT11 temperature & humidity sensor
 
-> **Note:** Depending on how the probe is wired, *higher* may mean wetter **or** drier. Don't assume — read both extremes and see which way it goes. Your two numbers define the thresholds from Lesson 3.
+The DHT11 is our first *digital* sensor. Instead of a raw voltage, it sends a small data packet over a single wire, decoded by the Adafruit DHT library.
 
-A resistive probe corrodes over time because current flows through wet soil. That's fine for a workshop; for a long-term build, a **capacitive** probe lasts far longer. Good thing to mention to students.
+### Wiring (already done on EcoDuino)
 
-<!-- slug: 05 -->
-## Test the input: temperature & humidity
+- VCC → 5 V, GND → GND, DATA → **digital pin 9**
 
-Our second sensor is the **DHT-11** — a small blue module that reports **air temperature** and **relative humidity**. It is our first *digital* sensor: instead of a raw voltage, it sends a small data packet over one wire.
-
-### Wiring
-
-Three used pins: **VCC**, **GND**, **DATA**. On the EcoDuino the DHT11 header is wired to **digital pin 9**.
-
-- VCC → VCC (5V)
-- GND → GND
-- DATA → digital pin **9**
-
-### Read it
-
-The DHT-11 needs a library. The EcoDuino ships with DFRobot's own `AutoWatering` library (which bundles a `DHT` driver), but for learning we'll use the well-documented **Adafruit "DHT sensor library"**: **Tools → Manage Libraries → search "DHT sensor library" (Adafruit) → Install**.
+### A standalone read sketch
 
 ```cpp
 #include "DHT.h"
 
-#define DHTPIN  9        // EcoDuino wires the DHT11 header to digital pin 9
+#define DHTPIN  9
 #define DHTTYPE DHT11
-
 DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
@@ -202,44 +316,56 @@ void loop() {
   float t = dht.readTemperature();   // °C
   float h = dht.readHumidity();      // %
 
-  Serial.print("Temp: ");     Serial.print(t);
-  Serial.print(" C  Hum: ");  Serial.print(h);
-  Serial.println(" %");
-
-  delay(2000);   // DHT-11 is slow — don't read faster than every 2 s
+  if (isnan(t) || isnan(h)) {
+    Serial.println("DHT read error — wait 2 s");
+  } else {
+    Serial.print("T: "); Serial.print(t);
+    Serial.print(" C   H: "); Serial.print(h);
+    Serial.println(" %");
+  }
+  delay(2000);   // DHT11 minimum interval
 }
 ```
 
-### Know its limits
+Again: preamble → setup → loop. The pattern is always the same.
 
-- **Slow:** one reading every ~2 seconds, no faster.
-- **Rough:** ±2 °C and ±5 % humidity. Fine for "is it hot and dry today?", not for a laboratory.
-- Breathe on it or cup it in your hand — you'll watch humidity climb. Proof it's alive.
+### Limits to know
 
-In our plant, temperature and humidity are *context*: a hot, dry day suggests watering a little sooner. The soil probe still makes the core decision.
+- **Slow:** one reading every ~2 seconds. Reading faster returns stale or invalid data.
+- **Rough:** ±2 °C and ±5 % humidity — fine for contextual awareness, not for precision measurement.
+- **Role in our system:** temperature and humidity are *context*, not the trigger. The soil probe still makes the core watering decision. A hot, dry day could shift your threshold slightly, but that's a refinement.
 
-<!-- slug: 06 -->
-## Test the output: water pump
+<!-- slug: 07 -->
+## Test your actuator
 
-Time for our only actuator. The pump is the first part with **real power** behind it — and the first that can damage your board if connected carelessly.
-
-### Golden rule: never drive a motor straight from a pin
-
-An Arduino pin supplies only a few tens of milliamps. A pump pulls far more, and when a motor switches off it kicks back a voltage **spike**. Connect it directly and you destroy the pin — or the whole board.
-
-So the pin does not *power* the pump. It only sends a **command** to a switch that handles the power: a **transistor** (e.g. a MOSFET), a **relay**, or — as on the EcoDuino — a small **motor-driver chip**. On this kit that driver is already on the board, and it is steered by **two** pins, **5 and 6**. Drive *both* HIGH and the pump runs; drive *both* LOW and it stops.
+Type `test actuators` in the Serial Monitor. The pump will cycle: ON for 3 seconds, OFF for 5 seconds, repeatedly. You'll see:
 
 ```
-  Arduino pins 5 + 6 ──► [ onboard motor driver ] ──► PUMP ──► battery pack
-     (tiny signals)            (the switch)          (big current)
+>> TEST ACTUATORS
+Pump ON  — 3 s
+Pump OFF — 5 s
+Pump ON  — 3 s
 ```
 
-A **flyback diode** across the pump absorbs that turn-off spike. On the kit it is already fitted; on a breadboard, you add it yourself.
+Put the inlet tube in a water container and the outlet tube in a cup. Watch water move. When you're done, type `normal run` or `test sensors` to stop.
 
-### Switch it
+### Why the pump never connects directly to a pin
+
+An Arduino output pin can supply only **~40 mA**. A small peristaltic pump draws far more — and when a motor switches off, it produces a voltage **spike** that can destroy the pin or the whole board.
+
+So the pin does not *power* the pump. It sends a tiny signal to an onboard **motor-driver chip** that handles the real current. On the EcoDuino, two pins steer this driver:
+
+```
+  Pins 5 + 6 ──► [ motor driver chip ] ──► PUMP ──► battery pack
+  (tiny signal)      (the switch)          (big current)
+```
+
+Both pins HIGH = pump ON. Both LOW = pump OFF. The driver also contains a **flyback diode** that absorbs the turn-off spike.
+
+### The actuator control code
 
 ```cpp
-const int PUMP_A = 5;   // the two pins that steer the onboard pump driver
+const int PUMP_A = 5;
 const int PUMP_B = 6;
 
 void setup() {
@@ -248,102 +374,35 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(PUMP_A, HIGH);    // pump ON — both pins HIGH
+  digitalWrite(PUMP_A, HIGH);    // pump ON
   digitalWrite(PUMP_B, HIGH);
-  delay(3000);                   // run 3 seconds
-  digitalWrite(PUMP_A, LOW);     // pump OFF — both pins LOW
+  delay(3000);
+  digitalWrite(PUMP_A, LOW);     // pump OFF
   digitalWrite(PUMP_B, LOW);
-  delay(10000);                  // wait 10 seconds
+  delay(10000);
 }
 ```
 
-Put the tube into a cup, the outlet into another, and watch it move water. **Never run a pump dry** for long — without water to move, many small pumps overheat.
+This is the simplest version — preamble, setup, loop — with nothing else. In the full sketch the same logic lives inside `runTestActuators()`.
 
-You have now tested both inputs and the output, in isolation. Next we reunite them.
-
-<!-- slug: 07 -->
-## Put it all together
-
-We tested the soil probe, the DHT-11, and the pump separately. Now we rebuild the **exact system** we switched on in Lesson 1 — but this time you understand every line.
-
-The sketch is simply the **logic from Lesson 3**, written in code:
-
-```cpp
-#include "DHT.h"
-
-const int SOIL_PIN = A2;   // EcoDuino: moisture header → A2
-const int PUMP_A   = 5;    // EcoDuino: onboard pump driver → pins 5 & 6
-const int PUMP_B   = 6;
-#define DHTPIN  9          // EcoDuino: DHT11 header → digital pin 9
-#define DHTTYPE DHT11
-DHT dht(DHTPIN, DHTTYPE);
-
-// From your calibration in Lesson 4 — adjust these!
-const int DRY = 400;   // below this → soil is dry → water
-const int WET = 700;   // above this → soil is wet → stop
-
-const unsigned long PUMP_MS = 3000;     // burst length  (safety, Lesson 3)
-const unsigned long WAIT_MS = 30000;    // soak time before checking again
-
-void pump(bool on) {                    // both driver pins move together
-  digitalWrite(PUMP_A, on ? HIGH : LOW);
-  digitalWrite(PUMP_B, on ? HIGH : LOW);
-}
-
-void setup() {
-  Serial.begin(9600);
-  pinMode(PUMP_A, OUTPUT);
-  pinMode(PUMP_B, OUTPUT);
-  dht.begin();
-}
-
-void loop() {
-  int moisture = analogRead(SOIL_PIN);
-  float t = dht.readTemperature();
-  float h = dht.readHumidity();
-
-  Serial.print("Soil: ");  Serial.print(moisture);
-  Serial.print("  T: ");   Serial.print(t);
-  Serial.print("  H: ");   Serial.println(h);
-
-  if (moisture < DRY) {            // decide
-    Serial.println("Dry → watering");
-    pump(true);                    // act: a single safe burst
-    delay(PUMP_MS);
-    pump(false);
-    delay(WAIT_MS);                // let it soak, then re-check
-  } else {
-    delay(2000);
-  }
-}
-```
-
-### Verify the loop
-
-- Push the probe into **dry** soil → after a moment, the pump should pulse.
-- Then it **waits** — it does not pump again immediately (your safety rule working).
-- Pour water in / move the probe to wet soil → it stays off.
-
-That is **sense → decide → act**, closed through the plant itself. The system you met in Lesson 1 is no longer a black box.
-
-> **Make it yours:** tune `DRY`/`WET` to *your* calibration, shorten `PUMP_MS` for a small pot, and let temperature nudge the threshold on hot days.
+**Never run a peristaltic pump dry for long.** Without water to move, many small pumps overheat. Always keep the inlet tube submerged during tests.
 
 <!-- slug: 08 -->
 ## Add WiFi with an ESP32
 
-Our EcoDuino (an ATmega32U4, like a Leonardo) does its job perfectly — but it cannot talk to the internet. The **extension** of this workshop swaps the brain for an **ESP32**: a microcontroller with **WiFi and Bluetooth built in**, for a similar price.
+Our EcoDuino (ATmega32U4) does its job well — but it cannot connect to the internet. The **extension** of this workshop swaps the brain for an **ESP32**: WiFi and Bluetooth built in, for a similar price.
 
-Everything you learned transfers. The ESP32 reads the same sensors and drives the same pump — the *logic is identical*. What's new is that it can also **report and receive data over the network**.
+Everything you learned transfers. The ESP32 reads the same sensors and drives the same pump — the logic is identical. What's new is network connectivity.
 
 ### What changes
 
 | | EcoDuino (ATmega32U4) | ESP32 |
 |---|---|---|
-| Logic voltage | 5 V | **3.3 V** (mind your sensors!) |
-| Analog read | `analogRead` 0–1023 | `analogRead` 0–4095 |
+| Logic voltage | 5 V | **3.3 V** — check sensor compatibility |
+| Analog read range | 0–1023 | 0–4095 |
 | Connectivity | USB only | **WiFi + Bluetooth** |
 
-> ⚠️ The ESP32 runs at **3.3 V**. Check that your soil probe and pump driver are 3.3 V-friendly, or use a level shifter / the kit's protected inputs.
+> ⚠️ The ESP32 runs at **3.3 V**. Verify your soil probe and pump driver are 3.3 V-safe, or use level shifters.
 
 ### Connect and report
 
@@ -357,83 +416,73 @@ void setup() {
   Serial.begin(115200);
   WiFi.begin(SSID, PASS);
   while (WiFi.status() != WL_CONNECTED) { delay(300); Serial.print("."); }
-  Serial.println("\nConnected! IP: " + WiFi.localIP().toString());
+  Serial.println("\nConnected: " + WiFi.localIP().toString());
 }
 ```
 
-Once online, the plant can **publish** its readings — typically over **MQTT**, a lightweight messaging protocol where each plant sends its data to a central broker. Many devices, one stream of truth. A free dashboard (e.g. a home-automation server) can then chart soil moisture over days.
-
-The plant has gone from a closed box on your desk to a **node on a network**.
+Once online, the plant publishes readings over **MQTT** — a lightweight protocol where each device sends to a central broker and a dashboard displays the data.
 
 <!-- slug: 09 -->
 ## Intelligence in the loop: an LLM via API
 
-We asked at the start: *can we put intelligence in the loop?* Now that the plant is online, yes.
-
-Our Lesson 3 logic is a fixed rule: *if dry, water.* A **Large Language Model (LLM)** can reason with richer context — season, recent weather, the specific plant species, the last few days of readings — and *recommend* an action in plain language.
+Our normal-run logic is a fixed rule: *if dry, water.* A **Large Language Model (LLM)** can reason with richer context — the plant species, recent weather, the last few days of readings — and recommend an action in plain language.
 
 ### How it works
 
-The ESP32 sends the model a small summary and asks for a decision. The model replies; the ESP32 acts on the reply.
+The ESP32 sends the model a summary and asks for a watering decision:
 
 ```
-ESP32  ──(HTTPS: "soil=380, temp=31C, humidity=22%,
-                  basil, last watered 18h ago.
-                  Water now? answer yes/no + reason")──►  LLM API
+ESP32 ──(HTTPS)──► LLM API
+  "soil=380, temp=31C, hum=22%, basil, last watered 18h ago. Water now? yes/no + reason"
 
-LLM    ──("yes — soil is below basil's comfort range and the
-           hot, dry air increases water loss")──►  ESP32  ──► pump
+LLM  ──► "yes — soil below basil's comfort range; hot dry air accelerates loss"
+
+ESP32 ──► pump (if yes)
 ```
 
-The newest, most capable models for this are Anthropic's **Claude** family (e.g. `claude-opus-4-8`). You call the API over HTTPS with your sensor summary in the prompt and parse the answer.
+The newest models for this are Anthropic's **Claude** family (e.g. `claude-opus-4-8`). Call the API over HTTPS, include sensor context in the prompt, parse the response.
 
-### Important design notes
+### Design rules
 
-- **Keep the safety logic local.** The LLM *advises*; the firmware still enforces the hard limits from Lesson 3 (max pump time, minimum wait). Never let a remote answer flood your plant.
-- **Don't call it every second.** Query occasionally (e.g. once an hour, or only when borderline). API calls cost money and the soil changes slowly.
+- **Keep safety logic local.** The LLM *advises*; the firmware still enforces burst limits and soak time. A remote answer must never flood your plant.
+- **Don't query every second.** Call once an hour, or only when soil is borderline. API calls cost money; soil changes slowly.
 - **Handle no-reply.** If WiFi or the API is down, fall back to the simple local rule. The plant must survive offline.
 
-This is the heart of the extension: the **embedded system handles the fast, safe reflexes**, and the **LLM adds slow, contextual judgement** on top. Reflexes below, reasoning above.
+Reflexes (fast, local, safe) below. Reasoning (slow, contextual, expensive) above.
 
 <!-- slug: 10 -->
 ## Remote commands & networks of plants
 
-The final questions from the brief: *can the actuator be triggered remotely? Can we build an interconnected network?* Yes to both — and this is where one self-watering pot becomes a system.
-
-### Remote commands
-
-Because the ESP32 listens on the network, you can send it a command — *"water now"* — from a phone, a web page, or an automation. The same MQTT broker that *receives* readings can *send* commands back.
+Because the ESP32 listens on the network, you can send it a command from your phone, a web page, or a home-automation system. The same MQTT broker that *receives* readings can *send* commands back.
 
 ```
    Your phone ──► broker ──► ESP32 ──► pump
    (button)               (command)
 ```
 
-> 🔒 **Safety first — this is hardware on the internet.** Anything that can switch a pump remotely must be protected: authenticate every command, keep the **local burst-and-wait limits** so a flood of commands can't flood the plant, and never expose the device directly to the open internet. The reflex layer from Lesson 3 is your last line of defence.
+> 🔒 **Safety first.** Authenticate every command. Keep the firmware's local burst-and-wait limits so a flood of remote commands cannot flood the plant. Never expose the device directly to the open internet.
 
 ### A network of plants
 
-Now scale it. Each plant is an identical node: *sense → decide → act → report*. Point them all at one broker and one dashboard:
-
 ```
   [Plant A] ─┐
-  [Plant B] ─┼──► broker ──► dashboard  (charts, alerts)
+  [Plant B] ─┼──► broker ──► dashboard (charts, alerts)
   [Plant C] ─┘                  │
                                 └──► optional LLM "gardener"
-                                     watching all of them
+                                     reasoning across all of them
 ```
 
-From here the ideas open up:
+Ideas that emerge at scale:
 
-- A **shared dashboard** showing every plant's moisture and trend.
-- **Alerts** when a tank runs dry or a sensor flat-lines.
-- One **LLM "gardener"** reasoning across the whole garden, coordinating watering by species and weather.
-- Community-scale: a balcony, a classroom, a **rooftop farm** — all the same pattern, repeated.
+- A shared dashboard showing every plant's moisture trend.
+- Alerts when a tank runs dry or a sensor flat-lines.
+- One LLM "gardener" coordinating watering by species and weather.
+- A classroom, a balcony garden, a rooftop farm — same pattern, repeated.
 
 ### Where you've arrived
 
-You started by switching on a finished plant. You took it apart, understood each input and output, reasoned out the control logic, tested every piece, and put it back together. Then you gave it a voice on the network, intelligence in the loop, and a path to scale.
+You started with the complete working code, understood its architecture, calibrated sensors, tested the actuator, and stepped through the normal-run logic. Then you saw how the same system grows — WiFi, intelligence, remote control, scale.
 
-That is the whole journey of an embedded, connected, intelligent system — built around one plant that refuses to go thirsty.
+That is the full journey of an embedded, connected, intelligent system — built around one plant that refuses to go thirsty.
 
-> Built for the **Sustainability Lab** workshop. Explore the project: <https://sustanability-lab-landing-page.vercel.app/>
+> Built for the **Sustainability Lab** workshop.

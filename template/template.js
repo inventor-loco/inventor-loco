@@ -207,12 +207,49 @@
         a.target = '_blank';
         a.rel = 'noopener noreferrer';
       });
+      addCopyButtons(el);
+      addDownloadButtons(el);
       if (_katexReady) {
         renderMath(idx);
       } else {
         _katexPending.push(idx);
       }
     }
+  }
+
+  function addCopyButtons(el) {
+    el.querySelectorAll('pre').forEach(function (pre) {
+      if (pre.querySelector('.copy-btn')) return; // already added
+      var btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.title = 'Copy code';
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+      btn.addEventListener('click', function () {
+        var code = pre.querySelector('code');
+        var text = code ? code.innerText : pre.innerText;
+        navigator.clipboard.writeText(text).then(function () {
+          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+          btn.classList.add('copied');
+          setTimeout(function () {
+            btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+            btn.classList.remove('copied');
+          }, 1800);
+        });
+      });
+      pre.style.position = 'relative';
+      pre.appendChild(btn);
+    });
+  }
+
+  function addDownloadButtons(el) {
+    el.querySelectorAll('a[href$=".ino"]').forEach(function (a) {
+      if (a.querySelector('.dl-badge')) return;
+      a.setAttribute('download', '');
+      var badge = document.createElement('span');
+      badge.className = 'dl-badge';
+      badge.textContent = '↓ .ino';
+      a.appendChild(badge);
+    });
   }
 
   function loadMarkdown(idx) {
