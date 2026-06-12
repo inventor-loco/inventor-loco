@@ -38,7 +38,7 @@ DHT dht(DHTPIN, DHTTYPE);
  *  Put YOUR measured numbers here. With the EcoDuino probe a   *
  *  HIGHER reading usually means WETTER soil — verify it!       */
 const int DRY_THRESHOLD = 400;   // below this → soil is dry → water
-const int WET_THRESHOLD = 700;   // above this → soil is wet → stop
+const int WET_THRESHOLD = 770;   // above this → soil is wet → stop
 
 /* ── SAFETY LIMITS (never remove these!) ───────────────────── */
 const unsigned long PUMP_BURST_MS  = 3000UL;    // one watering burst: 3 s

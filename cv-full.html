@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <title>Vicente Matus, PhD — Full CV (printable)</title>
+  <link rel="icon" href="mark.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0d0d0d">
+  <script src="scripts/cv-shared.js" defer></script>
+  <style>
+    :root {
+      --ink: #161616;
+      --ink2: #3d3d3d;
+      --ink3: #6f6f6f;
+      --rule: #d9d9d9;
+      --mono: "IBM Plex Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { background: #f2f2f2; }
+    body {
+      margin: 0; padding: 0;
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--ink);
+      font-size: 10.5pt; line-height: 1.45;
+    }
+    .sheet {
+      max-width: 210mm; margin: 0 auto; background: #fff;
+      padding: 18mm 20mm; min-height: 297mm;
+      box-shadow: 0 2px 18px rgba(0,0,0,0.12);
+    }
+    /* Screen-only toolbar */
+    .toolbar {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; justify-content: center; gap: 1rem; align-items: center;
+      background: #161616; color: #fff; padding: 0.6rem 1rem;
+    }
+    .toolbar a, .toolbar button {
+      font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #fff; background: none;
+      border: 1px solid #5a5a5a; border-radius: 3px;
+      padding: 0.45rem 1rem; cursor: pointer; text-decoration: none;
+    }
+    .toolbar a:hover, .toolbar button:hover { border-color: #fff; }
+    .toolbar .hint { font-size: 0.65rem; color: #9a9a9a; font-family: var(--mono); }
+
+    h1 { font-size: 17pt; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+    .subtitle { font-size: 10.5pt; color: var(--ink2); margin: 0.15rem 0 0 0; }
+    .contact-line { font-family: var(--mono); font-size: 7.5pt; color: var(--ink3); margin-top: 0.5rem; line-height: 1.7; }
+    .contact-line a { color: var(--ink3); text-decoration: none; }
+    .contact-line a:hover { color: var(--ink); }
+    header.cv-head { display: flex; justify-content: space-between; gap: 1.5rem; align-items: flex-start; border-bottom: 2px solid var(--ink); padding-bottom: 0.8rem; }
+    .head-metrics { font-family: var(--mono); font-size: 7.5pt; color: var(--ink3); text-align: right; white-space: nowrap; line-height: 1.8; }
+    .head-metrics strong { color: var(--ink); font-weight: 500; }
+
+    h2 {
+      font-family: var(--mono); font-size: 8pt; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink3);
+      border-bottom: 1px solid var(--rule); padding-bottom: 0.25rem;
+      margin: 1.4rem 0 0.6rem 0;
+    }
+    p.summary { margin: 0.6rem 0 0 0; }
+
+    .entry { display: grid; grid-template-columns: 78px 1fr; gap: 0.9rem; margin-bottom: 0.55rem; break-inside: avoid; }
+    .entry .when { font-family: var(--mono); font-size: 7.5pt; color: var(--ink3); padding-top: 0.15rem; }
+    .entry .what strong { font-weight: 600; }
+    .entry .what .org { color: var(--ink2); }
+    .entry .what .desc { color: var(--ink2); font-size: 9.5pt; margin-top: 0.1rem; }
+
+    ul.plain { margin: 0.3rem 0 0 0; padding-left: 1.1rem; }
+    ul.plain li { margin-bottom: 0.25rem; }
+    .tags { font-size: 9.5pt; color: var(--ink2); }
+    .tags strong { font-weight: 600; color: var(--ink); }
+    .collab-list { font-size: 9.5pt; color: var(--ink2); line-height: 1.7; }
+    footer.cv-foot { margin-top: 1.6rem; border-top: 1px solid var(--rule); padding-top: 0.5rem; font-family: var(--mono); font-size: 7pt; color: var(--ink3); display: flex; justify-content: space-between; }
+
+    @media print {
+      html, body { background: #fff; }
+      .toolbar { display: none; }
+      .sheet { box-shadow: none; max-width: none; margin: 0; padding: 0; min-height: 0; }
+      a { color: inherit; text-decoration: none; }
+      @page { size: A4; margin: 16mm 18mm; }
+    }
+    @media (max-width: 640px) { .sheet { padding: 8mm 6mm; } header.cv-head { flex-direction: column; } .head-metrics { text-align: left; } }
+  </style>
+</head>
+<body>
+
+<div class="toolbar">
+  <a href="cv.html">&larr; Back to CV page</a>
+  <button onclick="window.print()">Print / Save as PDF</button>
+  <span class="hint">Tip: choose "Save as PDF" as destination</span>
+</div>
+
+<div class="sheet">
+
+  <header class="cv-head">
+    <div>
+      <h1>Vicente Matus Icaza, PhD</h1>
+      <p class="subtitle">Postdoctoral Researcher · IDeTIC, Universidad de Las Palmas de Gran Canaria, Spain</p>
+      <div class="contact-line">
+        <a href="mailto:vicente.matus@ulpgc.es">vicente.matus@ulpgc.es</a> ·
+        <a href="https://inventor-loco.github.io/inventor-loco/">inventor-loco.github.io/inventor-loco</a><br>
+        ORCID <a href="https://orcid.org/0000-0003-4262-3882">0000-0003-4262-3882</a> ·
+        CVN (FECYT) <a href="https://cvn.fecyt.es/0000-0003-4262-3882">cvn.fecyt.es/0000-0003-4262-3882</a> ·
+        <a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ">Google Scholar</a> ·
+        <a href="https://www.linkedin.com/in/vicente-matus/">LinkedIn</a> ·
+        <a href="https://github.com/inventor-loco">GitHub</a>
+      </div>
+    </div>
+    <div class="head-metrics">
+      h-index <strong>10</strong> · i10 <strong>11</strong> · citations <strong>336</strong><br>
+      journals <strong>18</strong> · conferences <strong>27</strong><br>
+      co-author countries <strong>10+</strong><br>
+      <span style="font-size:6.5pt;">Google Scholar · May 2026</span>
+    </div>
+  </header>
+
+  <h2>Profile</h2>
+  <p class="summary" data-cv="summary"></p>
+
+  <h2>Positions &amp; education</h2>
+  <div class="entry"><div class="when">2022–present</div><div class="what"><strong>Postdoctoral Researcher</strong> · <span class="org">IDeTIC, Universidad de Las Palmas de Gran Canaria</span><div class="desc">Optical Camera Communications and experimental optical wireless systems.</div></div></div>
+  <div class="entry"><div class="when">2025</div><div class="what"><strong>Co-founder &amp; Developer</strong> · <span class="org">Visionar Automatización Soc. Ltda., Canary Islands, Spain</span><div class="desc">Software and hardware developer of AI-powered solutions for local businesses.</div></div></div>
+  <div class="entry"><div class="when">2023–2024</div><div class="what"><strong>Visiting Researcher</strong> · <span class="org">Instituto de Telecomunicações, Aveiro, Portugal</span><div class="desc">Wearable OCC and related experimental communication problems.</div></div></div>
+  <div class="entry"><div class="when">2023</div><div class="what"><strong>Research stay</strong> · <span class="org">Northumbria University, UK</span><div class="desc">Supported by COST Action CA19111 NEWFOCUS — European Network on Future Generation Optical Wireless Communication Technologies.</div></div></div>
+  <div class="entry"><div class="when">2019</div><div class="what"><strong>Research stay</strong> · <span class="org">Czech Technical University in Prague, Czech Republic</span><div class="desc">Under the EU Horizon 2020 programme, Marie Skłodowska-Curie grant agreement No. 764461.</div></div></div>
+  <div class="entry"><div class="when">2018–2021</div><div class="what"><strong>Ph.D. in EmITIC</strong> · <span class="org">Universidad de Las Palmas de Gran Canaria</span><div class="desc">Marie Skłodowska-Curie Actions fellowship. Suma Cum Laude.</div></div></div>
+  <div class="entry"><div class="when">2018</div><div class="what"><strong>Electrical Engineer</strong> · <span class="org">Universidad de Chile</span><div class="desc">Graduated with highest distinction. Electrical engineering, instrumentation, and communication-oriented experimentation.</div></div></div>
+
+  <h2>Prior experience</h2>
+  <div class="entry"><div class="when">2018–2021</div><div class="what"><strong>Early Stage Researcher (ESR)</strong> · <span class="org">VISION-ITN, H2020 Marie Curie No. 764461 · IDeTIC, ULPGC</span><div class="desc">OCC for sensor networks. Chair of ECRN, SACVLC conference staff (2019, 2021), PhD students' representative.</div></div></div>
+  <div class="entry"><div class="when">2017–2018</div><div class="what"><strong>Research Assistant</strong> · <span class="org">Universidad de Chile · RETRACT (ERANet-LAC) &amp; FONDECYT projects</span><div class="desc">VLC hardware with software-defined radios (NI USRP, GNU Radio); CAN bus vehicle communication.</div></div></div>
+  <div class="entry"><div class="when">2016–2017</div><div class="what"><strong>Co-founder, Revo Project</strong> · <span class="org">Sustainable transportation startup · with Veolia (France) &amp; Lightning Hybrids (USA)</span><div class="desc">Regenerative braking for waste trucks; telemetry platform for driving-cycle tracking and energy-savings estimation.</div></div></div>
+  <div class="entry"><div class="when">2016–2018</div><div class="what"><strong>Electrical Engineer</strong> · <span class="org">Terralink, Chile</span><div class="desc">Certified LED street lighting design (DIALux) and photovoltaic system installation.</div></div></div>
+  <div class="entry"><div class="when">2016</div><div class="what"><strong>Volunteer</strong> · <span class="org">Toki Rapa Nui (Easter Island), NGO for sustainable development</span><div class="desc">Led the electrical team installing the off-grid solar system for the School of Music and Arts.</div></div></div>
+  <div class="entry"><div class="when">2014–2015</div><div class="what"><strong>Lab Instrumentation Developer</strong> · <span class="org">Postharvest Physiology Lab · Pontificia Universidad Católica de Chile</span><div class="desc">Raspberry Pi device for estimating fruit quality using near-infrared spectroscopy.</div></div></div>
+  <div class="entry"><div class="when">2013–2017</div><div class="what"><strong>Lab &amp; Teaching Assistant</strong> · <span class="org">Universidad de Chile · Dept. of Electrical Engineering</span><div class="desc">10+ semesters across circuits, communications, and telecom courses.</div></div></div>
+
+  <h2>Academic service</h2>
+  <div class="entry"><div class="when">2026</div><div class="what"><strong>President of Doctoral Thesis Committee</strong> · <span class="org">Universidad de Málaga · Doctorado en Ingeniería de Telecomunicación</span><div class="desc">Presided the doctoral defense of Dr. Milton Neptalí Román Cañizares: <em>VLC Systems Assisted by Intelligent Reflecting Surfaces and Angle Diversity Receivers: An AI-Based Optimization Approach</em> (thesis by compendium of publications, June 2, 2026).</div></div></div>
+
+  <h2>Funded research projects</h2>
+  <div class="entry"><div class="when">2023–2026</div><div class="what"><strong>OCC4SAT</strong> · <span class="org">IDeTIC · €2.4M</span><div class="desc">Optical camera communications for satellite-oriented applications.</div></div></div>
+  <div class="entry"><div class="when">2017–2021</div><div class="what"><strong>VISION (MSCA ITN)</strong> · <span class="org">Marie Skłodowska-Curie Actions, GA No. 764461 · €247K</span><div class="desc">European training network on visible-light-based interoperability and networking.</div></div></div>
+  <div class="entry"><div class="when">2018–2021</div><div class="what"><strong>OSCAR</strong> · <span class="org">ULPGC · €127K</span><div class="desc">Hybrid optical architectures for smart cities.</div></div></div>
+
+  <h2>Skills</h2>
+  <p class="tags"><strong>Software:</strong> Python, MATLAB, OpenCV, Qt, APIs, AWS, GNU/Linux, LaTeX<br>
+  <strong>Hardware:</strong> Raspberry Pi, Arduino, ESP32, SDR (NI USRP, GNU Radio), CAN bus<br>
+  <strong>Fabrication:</strong> SOLIDWORKS, 3D printing (FDM)<br>
+  <strong>Languages:</strong> Spanish (native), English B2 (Oxford Test of English)</p>
+
+  <h2>Distinctions</h2>
+  <div class="entry"><div class="when">2021</div><div class="what"><strong>Ph.D. Suma Cum Laude</strong> · <span class="org">Universidad de Las Palmas de Gran Canaria</span></div></div>
+  <div class="entry"><div class="when">2018</div><div class="what"><strong>Graduated with highest distinction</strong> · <span class="org">Electrical Engineering, Universidad de Chile</span></div></div>
+  <div class="entry"><div class="when">2016</div><div class="what"><strong>Outstanding student award</strong> · <span class="org">Faculty of Physical and Mathematical Sciences, Universidad de Chile</span></div></div>
+  <div class="entry"><div class="when">2009</div><div class="what"><strong>Top PSU score at institution</strong> · <span class="org">Liceo Abate Molina, Talca, Chile</span></div></div>
+
+  <h2>All-time collaborators</h2>
+  <p class="collab-list">ULPGC / IDeTIC · Universidad de Chile · Instituto de Telecomunicações (Portugal) · Northumbria University (UK) · Czech Technical University in Prague · Universidad de Málaga · Escuela Politécnica Nacional (Ecuador) · Pontificia Universidad Católica de Chile · Veolia (France) · Lightning Hybrids (USA) · Terralink (Chile) · Toki Rapa Nui · NEWFOCUS COST CA19111 · Visionar Automatización (Spain)</p>
+
+  <footer class="cv-foot">
+    <span>Vicente Matus, PhD · IDeTIC-ULPGC · Las Palmas de Gran Canaria, Spain</span>
+    <span>Full version: cvn.fecyt.es/0000-0003-4262-3882</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -14,6 +14,7 @@
   <meta name="theme-color" content="#0d0d0d">
   <link rel="stylesheet" href="styles/icons.css" />
   <link rel="stylesheet" href="styles/main-pages.css" />
+  <script src="scripts/cv-shared.js" defer></script>
   <style>
     :root { --page-accent: var(--c-teal); --page-accent-soft: var(--c-teal-soft); }
     .cv-hero-grid {
@@ -70,6 +71,32 @@
     .proj-url:hover { color: var(--ink); border-color: var(--ink); }
     .timeline-subsection { margin-top: 1.4rem; }
     .timeline-subsection > h3 { font-size: 0.85rem; font-weight: 500; margin: 0 0 0.6rem 0; color: var(--ink); }
+
+    /* Collaborators logo carousel */
+    .logo-carousel { overflow: hidden; position: relative; margin-top: 1.4rem; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+    .logo-carousel-track { display: flex; align-items: center; gap: 3rem; width: max-content; animation: logo-scroll 40s linear infinite; }
+    .logo-carousel:hover .logo-carousel-track { animation-play-state: paused; }
+    @keyframes logo-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .lc-item { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .lc-item img { display: block; height: 38px; width: auto; max-width: 150px; object-fit: contain; opacity: 0.75; filter: grayscale(1); transition: opacity 0.2s, filter 0.2s; }
+    .lc-item:hover img { opacity: 1; filter: none; }
+    .lc-name { display: none; align-items: center; justify-content: center; padding: 0.45rem 0.9rem; border: 1px solid var(--rule); border-radius: 3px; font-family: var(--mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink3); white-space: nowrap; }
+    @media (prefers-reduced-motion: reduce) { .logo-carousel-track { animation: none; flex-wrap: wrap; width: auto; } }
+
+    /* Collapsible sections: collapsed shows only the most recent entry */
+    .cv-collapsible.collapsed .cv-collapse-item { display: none; }
+    .cv-more-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 1.2rem; padding: 0.45rem 1rem;
+      background: none; border: 1px solid var(--rule); border-radius: 3px;
+      font-family: var(--mono); font-size: 0.65rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--ink3); cursor: pointer;
+    }
+    .cv-more-btn:hover { color: var(--ink); border-color: var(--ink); }
+    @media print {
+      .cv-collapsible.collapsed .cv-collapse-item { display: revert; }
+      .cv-more-btn { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -118,10 +145,11 @@
         <div class="cv-hero-title">
           <div class="eyebrow">Curriculum vitae</div>
           <h1>CV</h1>
-          <p class="lead">I am an engineer focused on building the new generation of wireless optical communications for the Internet of things. I work fluently with prototyping platforms and have authored numerous scientific publications taking part in publicly funded research projects. My goal is to transfer technology to society by means of entrepreneurship and teaching. My favorite space is the workshop.</p>
+          <p class="lead" data-cv="summary"></p>
           <p class="print-only body-copy"><strong>Vicente Matus, PhD</strong> · IDeTIC, Universidad de Las Palmas de Gran Canaria</p>
           <div class="hero-actions" style="margin-top:1.2rem;">
             <a href="https://cvn.fecyt.es/0000-0003-4262-3882" target="_blank" rel="noopener" class="btn-ghost">Download CVN (FECYT) &#8599;</a>
+            <a href="cv-full.html" class="btn-ghost">Printable full CV (PDF)</a>
           </div>
         </div>
         <div class="cv-hero-metrics">
@@ -142,7 +170,7 @@
       </div>
     </section>
 
-    <section class="shell section">
+    <section class="shell section cv-collapsible">
       <div class="section-kicker">Academic profile</div>
       <h2>Positions &amp; education</h2>
       <div class="timeline" style="margin-top:1.2rem;">
@@ -155,6 +183,17 @@
               <p class="timeline-desc">Postdoctoral research in Optical Camera Communications and experimental optical wireless systems.</p>
             </div>
             <img class="inst-logo" src="https://cdn.ulpgc.es/logos/logo-ulpgc-horizontal-2t.svg" alt="ULPGC" loading="lazy">
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="year">2025</div>
+          <div class="tl-split">
+            <div>
+              <div class="timeline-title">Co-founder &amp; Developer</div>
+              <div class="timeline-org">Visionar Automatización Soc. Ltda. · Canary Islands, Spain</div>
+              <p class="timeline-desc">Software and hardware developer of AI-powered solutions for local businesses.</p>
+            </div>
+            <img class="inst-logo" src="assets/logos/visionar.png" alt="Visionar Automatización" loading="lazy" onerror="this.remove()">
           </div>
         </div>
         <div class="timeline-row">
@@ -282,9 +321,25 @@
           </div>
         </div>
       </div>
+      <div class="timeline-subsection">
+        <h3>Academic service</h3>
+        <div class="timeline">
+          <div class="timeline-row">
+            <div class="year">2026</div>
+            <div class="tl-split">
+              <div>
+                <div class="timeline-title">President of Doctoral Thesis Committee</div>
+                <div class="timeline-org">Universidad de Málaga · Doctorado en Ingeniería de Telecomunicación</div>
+                <p class="timeline-desc">Presided the doctoral defense of Dr. Milton Neptalí Román Cañizares: <em>VLC Systems Assisted by Intelligent Reflecting Surfaces and Angle Diversity Receivers: An AI-Based Optimization Approach</em> (June 2, 2026).</p>
+              </div>
+              <img class="inst-logo" src="assets/logos/uma.png" alt="Universidad de Málaga" loading="lazy" onerror="this.remove()">
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="shell section">
+    <section class="shell section cv-collapsible">
       <div class="section-kicker">Funded projects</div>
       <h2>Research projects</h2>
       <div class="timeline" style="margin-top:1.2rem;">
@@ -328,6 +383,37 @@
     </section>
 
     <section class="shell section">
+      <div class="section-kicker">Network</div>
+      <h2>Collaborators</h2>
+      <p class="muted" style="margin-top:0.4rem;font-size:0.8rem;">Institutions and companies from research and past work, all-time.</p>
+      <div class="logo-carousel" aria-label="Collaborator logos">
+        <div class="logo-carousel-track" id="lc-track">
+          <div class="lc-item"><img src="https://cdn.ulpgc.es/logos/logo-ulpgc-horizontal-2t.svg" alt="ULPGC" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">ULPGC · IDeTIC</span></div>
+          <div class="lc-item"><img src="assets/logos/uchile.jpg" alt="Universidad de Chile" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Universidad de Chile</span></div>
+          <div class="lc-item"><img src="https://www.it.pt/img/IT-30years-logo_01_website.png" alt="Instituto de Telecomunicações" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Instituto de Telecomunicações</span></div>
+          <div class="lc-item"><img src="assets/logos/northumbria.png" alt="Northumbria University" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Northumbria University</span></div>
+          <div class="lc-item"><img src="assets/logos/ctu.svg" alt="Czech Technical University in Prague" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">CTU Prague</span></div>
+          <div class="lc-item"><img src="assets/logos/uma.png" alt="Universidad de Málaga" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Universidad de Málaga</span></div>
+          <div class="lc-item"><img src="assets/logos/epn.png" alt="Escuela Politécnica Nacional" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">EPN Ecuador</span></div>
+          <div class="lc-item"><img src="assets/logos/puc.png" alt="Pontificia Universidad Católica de Chile" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">PUC de Chile</span></div>
+          <div class="lc-item"><img src="assets/logos/veolia.png" alt="Veolia" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Veolia</span></div>
+          <div class="lc-item"><img src="assets/logos/lightning-hybrids.png" alt="Lightning Hybrids" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Lightning Hybrids</span></div>
+          <div class="lc-item"><img src="assets/logos/terralink.png" alt="Terralink" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Terralink</span></div>
+          <div class="lc-item"><img src="assets/logos/toki.png" alt="Toki Rapa Nui" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Toki Rapa Nui</span></div>
+          <div class="lc-item"><img src="assets/logos/newfocus.png" alt="NEWFOCUS COST CA19111" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">NEWFOCUS · COST</span></div>
+          <div class="lc-item"><img src="assets/logos/visionar.png" alt="Visionar Automatización" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Visionar Automatización</span></div>
+        </div>
+      </div>
+      <script>
+        // Duplicate the track contents once so the -50% translate loops seamlessly
+        (function () {
+          var t = document.getElementById('lc-track');
+          t.innerHTML += t.innerHTML;
+        })();
+      </script>
+    </section>
+
+    <section class="shell section cv-collapsible">
       <div class="section-kicker">Background</div>
       <h2>Skills &amp; distinctions</h2>
       <div class="grid-2" style="margin-top:1.2rem;">
@@ -397,6 +483,34 @@
 
   </div>
 </main>
+<script>
+  // Collapse each section to its most recent entry; a button reveals the rest
+  (function () {
+    document.querySelectorAll('.cv-collapsible').forEach(function (sec) {
+      var rows = sec.querySelectorAll('.timeline-row');
+      if (rows.length < 2) return;
+      rows.forEach(function (row, i) { if (i > 0) row.classList.add('cv-collapse-item'); });
+      // Hide whole subsections (e.g. "Prior experience") when all their rows are collapsed
+      sec.querySelectorAll('.timeline-subsection').forEach(function (sub) {
+        if (!sub.querySelector('.timeline-row:not(.cv-collapse-item)')) {
+          sub.classList.add('cv-collapse-item');
+        }
+      });
+      var hidden = rows.length - 1;
+      var btn = document.createElement('button');
+      btn.className = 'cv-more-btn';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.textContent = 'Show ' + hidden + ' more ↓';
+      btn.addEventListener('click', function () {
+        var collapsed = sec.classList.toggle('collapsed');
+        btn.setAttribute('aria-expanded', String(!collapsed));
+        btn.textContent = collapsed ? 'Show ' + hidden + ' more ↓' : 'Show less ↑';
+      });
+      sec.appendChild(btn);
+      sec.classList.add('collapsed');
+    });
+  })();
+</script>
 <footer>
   <div class="footer-inner">
     <span class="footer-name">Vicente Matus, PhD</span>
