@@ -64,7 +64,11 @@ Edit it here and both pages update automatically.
   H2020 MSCA grant agreement No. 764461.
 - **2018–2021 — Ph.D. in EmITIC**, ULPGC. Marie Skłodowska-Curie Actions fellowship.
   Suma Cum Laude.
-- **2018 — Electrical Engineer**, Universidad de Chile. Graduated with highest distinction.
+- **2014–2017 — Electrical Engineer**, Universidad de Chile (credits equivalent to a Master's
+  degree). Graduated with highest distinction (2018). Degree project: development of a visible
+  light communications platform applied to vehicular networks.
+- **2010–2014 — Bachelor in Electrical Engineering Sciences**, Universidad de Chile, Santiago,
+  Chile.
 
 ### Prior experience
 
@@ -103,6 +107,39 @@ Edit it here and both pages update automatically.
 - **Director de tesis:** César Augusto Azurdia Meza (Universidad de Chile) ·
   **Tutor:** Francisco Javier López Martínez
 - **Documentation:** `C:\Users\Y6082772\Desktop\REPOS\phd-thesis-milton\`
+
+### Thesis supervision
+
+- **2025 — Doctoral thesis**, Eleni Niarchou (ULPGC). *Contribution to the application of
+  Optical Camera Communications to Wearable Sensor Networks.* Defense Sep 5, 2025.
+- **2026 — Degree project**, Jonás Elías Peñailillo (Universidad de Chile). *HSSK for optical
+  camera communication: a low-cost approach for IoT applications.* Defense Mar 17, 2026.
+
+### External thesis-committee member (2022–2023)
+
+External examiner on six master's and doctoral thesis committees on optical wireless
+communications and indoor positioning:
+
+- MSc — Miguel Seabra da Silva, U. de Aveiro (Nov 30, 2023): *Indoor Positioning for Unmanned
+  Aerial Vehicles with Unmodulated Light Sources.*
+- PhD — Pablo Palacios Játiva, U. de Chile (Mar 17, 2023): *Design and Evaluation of Angle
+  Diversity Receivers Considering Accurate VLC Channel Models in Underground Mines.*
+- PhD — Roger Alexander Martínez Ciro, Instituto Tecnológico Metropolitano, Medellín
+  (Feb 10, 2023): *Sistema de Comunicación por Luz Visible para el Posicionamiento en
+  Interiores Basado en Esquemas de Modulación o Multiplexación.*
+- MSc — Beatriz Dias Silva, U. de Aveiro (Dec 7, 2022): *Optical Camera Communications for
+  Platooning Applications.*
+- MSc — Filipe Salgado Almeida, U. de Aveiro (Dec 7, 2022): *Sistema de Posicionamento de Luz
+  Visível Interior com Redes Neurais Artificiais.*
+- MSc — Diogo Alexandre Agostinho Vala, U. de Aveiro (Dec 6, 2022): *Ground Truth System for
+  Validation of Indoor Positioning Systems.*
+
+### Courses & seminars taught
+
+- **2022 — Research seminars in optical wireless communications**, Universidad de Chile (15 h,
+  Nov 11, 2022).
+- **2022 — Panel "Studying abroad: challenges and opportunities"**, Escuela Politécnica del
+  Litoral (ESPOL), Guayaquil, Ecuador (Jul 20, 2022).
 
 ## 6. Entrepreneurship
 

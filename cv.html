@@ -93,6 +93,20 @@
       letter-spacing: 0.08em; color: var(--ink3); cursor: pointer;
     }
     .cv-more-btn:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* Language toggle (EN/ES) with flags */
+    .lang-toggle { display: inline-flex; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; vertical-align: middle; }
+    .lang-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.45rem 0.7rem; background: none; border: none; cursor: pointer;
+      font-family: var(--mono); font-size: 0.65rem; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--ink3); line-height: 1;
+    }
+    .lang-btn + .lang-btn { border-left: 1px solid var(--rule); }
+    .lang-btn:hover { color: var(--ink); }
+    .lang-btn.active { background: var(--page-accent-soft); color: var(--ink); }
+    .lang-btn svg { width: 20px; height: 14px; border-radius: 2px; display: block; flex-shrink: 0; }
+    @media print { .lang-toggle { display: none; } }
     @media print {
       .cv-collapsible.collapsed .cv-collapse-item { display: revert; }
       .cv-more-btn { display: none; }
@@ -110,24 +124,24 @@
       </div>
     </a>
     <div class="nav-links">
-      <a href="index.html" class="">Home</a>
+      <a href="index.html" class="" data-es="Inicio">Home</a>
 <a href="cv.html" class="active">CV</a>
-<a href="publications.html" class="">Publications</a>
-<a href="courses.html" class="">Courses</a>
-<a href="donate.html" class="">Donate</a>
+<a href="publications.html" class="" data-es="Publicaciones">Publications</a>
+<a href="courses.html" class="" data-es="Cursos">Courses</a>
+<a href="donate.html" class="" data-es="Donar">Donate</a>
     </div>
-    <a href="contact.html" class="nav-cta">Contact</a>
+    <a href="contact.html" class="nav-cta" data-es="Contacto">Contact</a>
     <button class="nav-hamburger" aria-label="Toggle navigation" onclick="document.getElementById('mobile-nav').classList.toggle('open')">
       <span></span><span></span><span></span>
     </button>
   </div>
   <div class="mobile-nav" id="mobile-nav">
-    <a href="index.html">Home</a>
+    <a href="index.html" data-es="Inicio">Home</a>
     <a href="cv.html" class="active">CV</a>
-    <a href="publications.html">Publications</a>
-    <a href="courses.html">Courses</a>
-    <a href="donate.html">Donate</a>
-    <a href="contact.html" class="mobile-nav-cta">Contact</a>
+    <a href="publications.html" data-es="Publicaciones">Publications</a>
+    <a href="courses.html" data-es="Cursos">Courses</a>
+    <a href="donate.html" data-es="Donar">Donate</a>
+    <a href="contact.html" class="mobile-nav-cta" data-es="Contacto">Contact</a>
   </div>
 </nav>
 <main>
@@ -143,13 +157,23 @@
                width="180" height="225">
         </div>
         <div class="cv-hero-title">
-          <div class="eyebrow">Curriculum vitae</div>
+          <div class="eyebrow" data-es="Currículum vítae">Curriculum vitae</div>
           <h1>CV</h1>
           <p class="lead" data-cv="summary"></p>
           <p class="print-only body-copy"><strong>Vicente Matus, PhD</strong> · IDeTIC, Universidad de Las Palmas de Gran Canaria</p>
-          <div class="hero-actions" style="margin-top:1.2rem;">
-            <a href="https://cvn.fecyt.es/0000-0003-4262-3882" target="_blank" rel="noopener" class="btn-ghost">Download CVN (FECYT) &#8599;</a>
-            <a href="cv-full.html" class="btn-ghost">Printable full CV (PDF)</a>
+          <div class="hero-actions" style="margin-top:1.2rem;align-items:center;">
+            <a href="https://cvn.fecyt.es/0000-0003-4262-3882" target="_blank" rel="noopener" class="btn-ghost" data-es="Descargar CVN (FECYT) &#8599;">Download CVN (FECYT) &#8599;</a>
+            <a href="cv-full.html" class="btn-ghost" data-es="CV completo imprimible (PDF)">Printable full CV (PDF)</a>
+            <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+              <button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="true" onclick="cvSetLang('en')" title="English">
+                <svg viewBox="0 0 60 30" aria-hidden="true"><clipPath id="ukc"><rect width="60" height="30"/></clipPath><g clip-path="url(#ukc)"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#ukc)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 V30M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30M0,15 H60" stroke="#C8102E" stroke-width="6"/></g></svg>
+                EN
+              </button>
+              <button type="button" class="lang-btn" data-lang-btn="es" aria-pressed="false" onclick="cvSetLang('es')" title="Español">
+                <svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#AA151B"/><rect y="10" width="60" height="20" fill="#F1BF00"/></svg>
+                ES
+              </button>
+            </div>
           </div>
         </div>
         <div class="cv-hero-metrics">
@@ -171,16 +195,16 @@
     </section>
 
     <section class="shell section cv-collapsible">
-      <div class="section-kicker">Academic profile</div>
-      <h2>Positions &amp; education</h2>
+      <div class="section-kicker" data-es="Perfil académico">Academic profile</div>
+      <h2 data-es="Cargos y educación">Positions &amp; education</h2>
       <div class="timeline" style="margin-top:1.2rem;">
         <div class="timeline-row">
           <div class="year">2022–present</div>
           <div class="tl-split">
             <div>
-              <div class="timeline-title">Postdoctoral Researcher</div>
+              <div class="timeline-title" data-es="Investigador Postdoctoral">Postdoctoral Researcher</div>
               <div class="timeline-org">IDeTIC, Universidad de Las Palmas de Gran Canaria</div>
-              <p class="timeline-desc">Postdoctoral research in Optical Camera Communications and experimental optical wireless systems.</p>
+              <p class="timeline-desc" data-es="Investigación postdoctoral en comunicaciones por cámara óptica y sistemas experimentales de comunicaciones ópticas inalámbricas.">Postdoctoral research in Optical Camera Communications and experimental optical wireless systems.</p>
             </div>
             <img class="inst-logo" src="https://cdn.ulpgc.es/logos/logo-ulpgc-horizontal-2t.svg" alt="ULPGC" loading="lazy">
           </div>
@@ -189,9 +213,9 @@
           <div class="year">2025</div>
           <div class="tl-split">
             <div>
-              <div class="timeline-title">Co-founder &amp; Developer</div>
-              <div class="timeline-org">Visionar Automatización Soc. Ltda. · Canary Islands, Spain</div>
-              <p class="timeline-desc">Software and hardware developer of AI-powered solutions for local businesses.</p>
+              <div class="timeline-title" data-es="Cofundador y desarrollador">Co-founder &amp; Developer</div>
+              <div class="timeline-org" data-es="Visionar Automatización Soc. Ltda. · Islas Canarias, España">Visionar Automatización Soc. Ltda. · Canary Islands, Spain</div>
+              <p class="timeline-desc" data-es="Desarrollador de software y hardware de soluciones potenciadas por IA para negocios locales.">Software and hardware developer of AI-powered solutions for local businesses.</p>
             </div>
             <img class="inst-logo" src="assets/logos/visionar.png" alt="Visionar Automatización" loading="lazy" onerror="this.remove()">
           </div>
@@ -200,9 +224,9 @@
           <div class="year">2023–2024</div>
           <div class="tl-split">
             <div>
-              <div class="timeline-title">Visiting Researcher</div>
+              <div class="timeline-title" data-es="Investigador visitante">Visiting Researcher</div>
               <div class="timeline-org">Instituto de Telecomunicações, Aveiro, Portugal</div>
-              <p class="timeline-desc">Research collaboration connected to wearable OCC and related experimental communication problems.</p>
+              <p class="timeline-desc" data-es="Colaboración de investigación vinculada a OCC vestible y problemas experimentales de comunicación relacionados.">Research collaboration connected to wearable OCC and related experimental communication problems.</p>
             </div>
             <img class="inst-logo" src="https://www.it.pt/img/IT-30years-logo_01_website.png" alt="Instituto de Telecomunicações" loading="lazy">
           </div>
@@ -211,9 +235,9 @@
           <div class="year">2023</div>
           <div class="tl-split">
             <div>
-              <div class="timeline-title">Research stay</div>
+              <div class="timeline-title" data-es="Estancia de investigación">Research stay</div>
               <div class="timeline-org">Northumbria University, UK</div>
-              <p class="timeline-desc">International research collaboration supported by COST Action CA19111 – NEWFOCUS European Network on Future Generation Optical Wireless Communication Technologies.</p>
+              <p class="timeline-desc" data-es="Colaboración internacional de investigación financiada por la Acción COST CA19111 – NEWFOCUS, Red Europea sobre Tecnologías de Comunicación Óptica Inalámbrica de Futura Generación.">International research collaboration supported by COST Action CA19111 – NEWFOCUS European Network on Future Generation Optical Wireless Communication Technologies.</p>
               <a href="https://www.newfocus-cost.eu" class="proj-url" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.3rem;">NEWFOCUS ↗</a>
             </div>
             <img class="inst-logo" src="assets/logos/northumbria.png" alt="Northumbria University" loading="lazy">
@@ -223,9 +247,9 @@
           <div class="year">2019</div>
           <div class="tl-split">
             <div>
-              <div class="timeline-title">Research stay</div>
+              <div class="timeline-title" data-es="Estancia de investigación">Research stay</div>
               <div class="timeline-org">Czech Technical University in Prague, Czech Republic</div>
-              <p class="timeline-desc">International research collaboration under the European Union's Horizon 2020 research and innovation programme, Marie Skłodowska-Curie grant agreement No. 764461.</p>
+              <p class="timeline-desc" data-es="Colaboración internacional de investigación bajo el programa de investigación e innovación Horizonte 2020 de la Unión Europea, acuerdo de subvención Marie Skłodowska-Curie No. 764461.">International research collaboration under the European Union's Horizon 2020 research and innovation programme, Marie Skłodowska-Curie grant agreement No. 764461.</p>
             </div>
             <img class="inst-logo" src="assets/logos/ctu.svg" alt="Czech Technical University in Prague" loading="lazy">
           </div>
@@ -234,105 +258,169 @@
           <div class="year">2018–2021</div>
           <div class="tl-split">
             <div>
-              <div class="timeline-title">Ph.D. in EmITIC</div>
+              <div class="timeline-title" data-es="Doctorado en EmITIC">Ph.D. in EmITIC</div>
               <div class="timeline-org">Universidad de Las Palmas de Gran Canaria</div>
-              <p class="timeline-desc">Completed under a Marie Skłodowska-Curie Actions fellowship.</p>
+              <p class="timeline-desc" data-es="Realizado bajo una beca de las Acciones Marie Skłodowska-Curie.">Completed under a Marie Skłodowska-Curie Actions fellowship.</p>
             </div>
             <img class="inst-logo" src="https://cdn.ulpgc.es/logos/logo-ulpgc-horizontal-2t.svg" alt="ULPGC" loading="lazy">
           </div>
         </div>
         <div class="timeline-row">
-          <div class="year">2018</div>
+          <div class="year">2014–2017</div>
           <div class="tl-split">
             <div>
-              <div class="timeline-title">Electrical Engineer</div>
-              <div class="timeline-org">Universidad de Chile</div>
-              <p class="timeline-desc">Training in electrical engineering, instrumentation, and communication-oriented experimentation.</p>
+              <div class="timeline-title" data-es="Ingeniero Civil Eléctrico">Electrical Engineer</div>
+              <div class="timeline-org" data-es="Universidad de Chile (créditos equivalentes a Máster)">Universidad de Chile (credits equivalent to a Master's degree)</div>
+              <p class="timeline-desc" data-es="Graduado con máxima distinción (2018). Proyecto de fin de carrera: una plataforma de comunicaciones por luz visible aplicada a redes vehiculares.">Graduated with highest distinction (2018). Degree project: a visible light communications platform applied to vehicular networks.</p>
+            </div>
+            <img class="inst-logo" src="assets/logos/uchile.jpg" alt="Universidad de Chile" loading="lazy">
+          </div>
+        </div>
+        <div class="timeline-row">
+          <div class="year">2010–2014</div>
+          <div class="tl-split">
+            <div>
+              <div class="timeline-title" data-es="Grado de Licenciatura en Ingeniería Eléctrica">Bachelor in Electrical Engineering Sciences</div>
+              <div class="timeline-org">Universidad de Chile, Santiago, Chile</div>
             </div>
             <img class="inst-logo" src="assets/logos/uchile.jpg" alt="Universidad de Chile" loading="lazy">
           </div>
         </div>
       </div>
       <div class="timeline-subsection">
-        <h3>Prior experience</h3>
+        <h3 data-es="Experiencia previa">Prior experience</h3>
         <div class="timeline">
           <div class="timeline-row">
             <div class="year">2018–2021</div>
             <div>
-              <div class="timeline-title">Early Stage Researcher (ESR)</div>
+              <div class="timeline-title" data-es="Investigador en formación (ESR)">Early Stage Researcher (ESR)</div>
               <div class="timeline-org">VISION-ITN, H2020 Marie Curie No. 764461 · IDeTIC, ULPGC</div>
-              <p class="timeline-desc">OCC for sensor networks. Chair of ECRN, SACVLC conference staff (2019, 2021), PhD students' representative. Awarded Suma Cum Laude.</p>
+              <p class="timeline-desc" data-es="OCC para redes de sensores. Chair de la ECRN, equipo del congreso SACVLC (2019, 2021), representante de estudiantes de doctorado. Distinción Suma Cum Laude.">OCC for sensor networks. Chair of ECRN, SACVLC conference staff (2019, 2021), PhD students' representative. Awarded Suma Cum Laude.</p>
               <div class="logo-slot" title="Add institution logo"></div>
             </div>
           </div>
           <div class="timeline-row">
             <div class="year">2017–2018</div>
             <div>
-              <div class="timeline-title">Research Assistant</div>
-              <div class="timeline-org">Universidad de Chile · RETRACT (ERANet-LAC) &amp; FONDECYT projects</div>
-              <p class="timeline-desc">Developed VLC hardware using software-defined radios (NI USRP, GNU Radio) and CAN bus vehicle communication.</p>
+              <div class="timeline-title" data-es="Investigador asistente">Research Assistant</div>
+              <div class="timeline-org" data-es="Universidad de Chile · Proyectos RETRACT (ERANet-LAC) y FONDECYT">Universidad de Chile · RETRACT (ERANet-LAC) &amp; FONDECYT projects</div>
+              <p class="timeline-desc" data-es="Desarrolló hardware VLC usando radios definidas por software (NI USRP, GNU Radio) y comunicación por bus CAN en vehículos.">Developed VLC hardware using software-defined radios (NI USRP, GNU Radio) and CAN bus vehicle communication.</p>
               <div class="logo-slot" title="Add institution logo"></div>
             </div>
           </div>
           <div class="timeline-row">
             <div class="year">2016–2017</div>
             <div>
-              <div class="timeline-title">Co-founder, Revo Project</div>
-              <div class="timeline-org">Sustainable transportation startup · with Veolia (France) &amp; Lightning Hybrids (USA)</div>
-              <p class="timeline-desc">Regenerative braking for waste trucks. Built telemetry platform for driving cycle tracking and energy savings estimation.</p>
+              <div class="timeline-title" data-es="Cofundador, Revo Project">Co-founder, Revo Project</div>
+              <div class="timeline-org" data-es="Startup de transporte sostenible · con Veolia (Francia) y Lightning Hybrids (EE. UU.)">Sustainable transportation startup · with Veolia (France) &amp; Lightning Hybrids (USA)</div>
+              <p class="timeline-desc" data-es="Frenado regenerativo para camiones de basura. Construyó una plataforma de telemetría para el seguimiento del ciclo de conducción y la estimación de ahorro energético.">Regenerative braking for waste trucks. Built telemetry platform for driving cycle tracking and energy savings estimation.</p>
               <div class="logo-slot" title="Add institution logo"></div>
             </div>
           </div>
           <div class="timeline-row">
             <div class="year">2016–2018</div>
             <div>
-              <div class="timeline-title">Electrical Engineer</div>
+              <div class="timeline-title" data-es="Ingeniero Eléctrico">Electrical Engineer</div>
               <div class="timeline-org">Terralink, Chile</div>
-              <p class="timeline-desc">Certified LED street lighting design (DIALux) and photovoltaic system installation.</p>
+              <p class="timeline-desc" data-es="Diseño de iluminación vial LED homologada (DIALux) e instalación de sistemas fotovoltaicos.">Certified LED street lighting design (DIALux) and photovoltaic system installation.</p>
               <div class="logo-slot" title="Add institution logo"></div>
             </div>
           </div>
           <div class="timeline-row">
             <div class="year">2016</div>
             <div>
-              <div class="timeline-title">Volunteer · Toki Rapa Nui (Easter Island)</div>
-              <div class="timeline-org">NGO for sustainable development</div>
-              <p class="timeline-desc">Led the electrical team installing the off-grid solar system for the School of Music and Arts.</p>
+              <div class="timeline-title" data-es="Voluntario · Toki Rapa Nui (Isla de Pascua)">Volunteer · Toki Rapa Nui (Easter Island)</div>
+              <div class="timeline-org" data-es="ONG para el desarrollo sostenible">NGO for sustainable development</div>
+              <p class="timeline-desc" data-es="Lideró el equipo de electricistas que instaló el sistema solar aislado de la Escuela de Música y las Artes.">Led the electrical team installing the off-grid solar system for the School of Music and Arts.</p>
               <div class="logo-slot" title="Add institution logo"></div>
             </div>
           </div>
           <div class="timeline-row">
             <div class="year">2014–2015</div>
             <div>
-              <div class="timeline-title">Lab Instrumentation Developer</div>
-              <div class="timeline-org">Postharvest Physiology Lab · Pontificia Universidad Católica de Chile</div>
-              <p class="timeline-desc">Designed and built a Raspberry Pi device for estimating fruit quality using near-infrared spectroscopy.</p>
+              <div class="timeline-title" data-es="Desarrollador de instrumentación de laboratorio">Lab Instrumentation Developer</div>
+              <div class="timeline-org" data-es="Laboratorio de Fisiología de Poscosecha · Pontificia Universidad Católica de Chile">Postharvest Physiology Lab · Pontificia Universidad Católica de Chile</div>
+              <p class="timeline-desc" data-es="Diseñó y construyó un dispositivo Raspberry Pi para estimar la calidad de frutas mediante espectroscopía de infrarrojo cercano.">Designed and built a Raspberry Pi device for estimating fruit quality using near-infrared spectroscopy.</p>
               <div class="logo-slot" title="Add institution logo"></div>
             </div>
           </div>
           <div class="timeline-row">
             <div class="year">2013–2017</div>
             <div>
-              <div class="timeline-title">Lab &amp; Teaching Assistant</div>
-              <div class="timeline-org">Universidad de Chile · Dept. of Electrical Engineering</div>
-              <p class="timeline-desc">10+ semesters across circuits, communications, and telecom courses. Lab equipment maintenance and student project support.</p>
+              <div class="timeline-title" data-es="Auxiliar de laboratorio y de cátedra">Lab &amp; Teaching Assistant</div>
+              <div class="timeline-org" data-es="Universidad de Chile · Depto. de Ingeniería Eléctrica">Universidad de Chile · Dept. of Electrical Engineering</div>
+              <p class="timeline-desc" data-es="10+ semestres en cursos de circuitos, comunicaciones y telecomunicaciones. Mantenimiento de equipos de laboratorio y apoyo a proyectos de estudiantes.">10+ semesters across circuits, communications, and telecom courses. Lab equipment maintenance and student project support.</p>
               <div class="logo-slot" title="Add institution logo"></div>
             </div>
           </div>
         </div>
       </div>
       <div class="timeline-subsection">
-        <h3>Academic service</h3>
+        <h3 data-es="Servicio académico">Academic service</h3>
         <div class="timeline">
           <div class="timeline-row">
             <div class="year">2026</div>
             <div class="tl-split">
               <div>
-                <div class="timeline-title">President of Doctoral Thesis Committee</div>
+                <div class="timeline-title" data-es="Presidente de Tribunal de Tesis Doctoral">President of Doctoral Thesis Committee</div>
                 <div class="timeline-org">Universidad de Málaga · Doctorado en Ingeniería de Telecomunicación</div>
-                <p class="timeline-desc">Presided the doctoral defense of Dr. Milton Neptalí Román Cañizares: <em>VLC Systems Assisted by Intelligent Reflecting Surfaces and Angle Diversity Receivers: An AI-Based Optimization Approach</em> (June 2, 2026).</p>
+                <p class="timeline-desc" data-es="Presidió la defensa doctoral del Dr. Milton Neptalí Román Cañizares: <em>VLC Systems Assisted by Intelligent Reflecting Surfaces and Angle Diversity Receivers: An AI-Based Optimization Approach</em> (2 de junio de 2026).">Presided the doctoral defense of Dr. Milton Neptalí Román Cañizares: <em>VLC Systems Assisted by Intelligent Reflecting Surfaces and Angle Diversity Receivers: An AI-Based Optimization Approach</em> (June 2, 2026).</p>
               </div>
               <img class="inst-logo" src="assets/logos/uma.png" alt="Universidad de Málaga" loading="lazy" onerror="this.remove()">
+            </div>
+          </div>
+          <div class="timeline-row">
+            <div class="year">2022–2023</div>
+            <div>
+              <div class="timeline-title" data-es="Miembro de tribunales de tesis (revisor externo)">External thesis-committee member</div>
+              <div class="timeline-org" data-es="MSc y doctorado · U. de Aveiro · U. de Chile · ITM Medellín">MSc &amp; PhD · U. de Aveiro · U. de Chile · ITM Medellín</div>
+              <p class="timeline-desc" data-es="Revisor externo en seis tribunales de tesis de máster y doctorado sobre comunicaciones ópticas inalámbricas y posicionamiento en interiores.">External examiner on six master's and doctoral thesis committees on optical wireless communications and indoor positioning.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-subsection">
+        <h3 data-es="Dirección de tesis">Thesis supervision</h3>
+        <div class="timeline">
+          <div class="timeline-row">
+            <div class="year">2025</div>
+            <div class="tl-split">
+              <div>
+                <div class="timeline-title" data-es="Dirección de tesis doctoral">Doctoral thesis supervision</div>
+                <div class="timeline-org">Eleni Niarchou · Universidad de Las Palmas de Gran Canaria</div>
+                <p class="timeline-desc" data-es="Tesis doctoral: <em>Contribution to the application of Optical Camera Communications to Wearable Sensor Networks</em> (defensa 5 de septiembre de 2025).">Doctoral thesis: <em>Contribution to the application of Optical Camera Communications to Wearable Sensor Networks</em> (defense September 5, 2025).</p>
+              </div>
+              <img class="inst-logo" src="https://cdn.ulpgc.es/logos/logo-ulpgc-horizontal-2t.svg" alt="ULPGC" loading="lazy">
+            </div>
+          </div>
+          <div class="timeline-row">
+            <div class="year">2026</div>
+            <div class="tl-split">
+              <div>
+                <div class="timeline-title" data-es="Dirección de trabajo de título">Degree project supervision</div>
+                <div class="timeline-org">Jonás Elías Peñailillo · Universidad de Chile</div>
+                <p class="timeline-desc" data-es="Trabajo de título: <em>HSSK for optical camera communication: a low-cost approach for IoT applications</em> (defensa 17 de marzo de 2026).">Degree project: <em>HSSK for optical camera communication: a low-cost approach for IoT applications</em> (defense March 17, 2026).</p>
+              </div>
+              <img class="inst-logo" src="assets/logos/uchile.jpg" alt="Universidad de Chile" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-subsection">
+        <h3 data-es="Cursos y seminarios impartidos">Courses &amp; seminars taught</h3>
+        <div class="timeline">
+          <div class="timeline-row">
+            <div class="year">2022</div>
+            <div>
+              <div class="timeline-title" data-es="Seminarios de investigación en comunicaciones ópticas inalámbricas">Research seminars in optical wireless communications</div>
+              <div class="timeline-org" data-es="Universidad de Chile · 15 h">Universidad de Chile · 15 h</div>
+            </div>
+          </div>
+          <div class="timeline-row">
+            <div class="year">2022</div>
+            <div>
+              <div class="timeline-title" data-es="Panel: «Estudios en el extranjero: desafíos y oportunidades»">Panel: "Studying abroad: challenges and opportunities"</div>
+              <div class="timeline-org">Escuela Politécnica del Litoral (ESPOL) · Guayaquil, Ecuador</div>
             </div>
           </div>
         </div>
@@ -340,15 +428,15 @@
     </section>
 
     <section class="shell section cv-collapsible">
-      <div class="section-kicker">Funded projects</div>
-      <h2>Research projects</h2>
+      <div class="section-kicker" data-es="Proyectos financiados">Funded projects</div>
+      <h2 data-es="Proyectos de investigación">Research projects</h2>
       <div class="timeline" style="margin-top:1.2rem;">
           <div class="timeline-row">
             <div class="year">2023–2026</div>
             <div>
               <div class="timeline-title">OCC4SAT</div>
-              <div class="timeline-org">IDeTIC · Funded project · €2.4M</div>
-              <p class="timeline-desc">Optical camera communications for satellite-oriented applications.</p>
+              <div class="timeline-org" data-es="IDeTIC · Proyecto financiado · 2,4 M€">IDeTIC · Funded project · €2.4M</div>
+              <p class="timeline-desc" data-es="Comunicaciones por cámara óptica para aplicaciones orientadas a satélites.">Optical camera communications for satellite-oriented applications.</p>
               <div class="proj-links">
                 <div class="logo-slot" title="Add project logo">logo</div>
                 <a href="#" class="proj-url" title="Add project website URL">website ↗</a>
@@ -359,8 +447,8 @@
             <div class="year">2017–2021</div>
             <div>
               <div class="timeline-title">VISION (MSCA)</div>
-              <div class="timeline-org">Marie Skłodowska-Curie Actions · €247K</div>
-              <p class="timeline-desc">European training network on visible-light-based interoperability and networking.</p>
+              <div class="timeline-org" data-es="Acciones Marie Skłodowska-Curie · 247 k€">Marie Skłodowska-Curie Actions · €247K</div>
+              <p class="timeline-desc" data-es="Red europea de formación sobre interoperabilidad y redes basadas en luz visible.">European training network on visible-light-based interoperability and networking.</p>
               <div class="proj-links">
                 <div class="logo-slot" title="Add project logo">logo</div>
                 <a href="#" class="proj-url" title="Add project website URL">website ↗</a>
@@ -371,8 +459,8 @@
             <div class="year">2018–2021</div>
             <div>
               <div class="timeline-title">OSCAR</div>
-              <div class="timeline-org">ULPGC · Research project · €127K</div>
-              <p class="timeline-desc">Hybrid optical architectures for smart cities.</p>
+              <div class="timeline-org" data-es="ULPGC · Proyecto de investigación · 127 k€">ULPGC · Research project · €127K</div>
+              <p class="timeline-desc" data-es="Arquitecturas ópticas híbridas para ciudades inteligentes.">Hybrid optical architectures for smart cities.</p>
               <div class="proj-links">
                 <div class="logo-slot" title="Add project logo">logo</div>
                 <a href="#" class="proj-url" title="Add project website URL">website ↗</a>
@@ -383,9 +471,9 @@
     </section>
 
     <section class="shell section">
-      <div class="section-kicker">Network</div>
-      <h2>Collaborators</h2>
-      <p class="muted" style="margin-top:0.4rem;font-size:0.8rem;">Institutions and companies from research and past work, all-time.</p>
+      <div class="section-kicker" data-es="Red">Network</div>
+      <h2 data-es="Colaboradores">Collaborators</h2>
+      <p class="muted" style="margin-top:0.4rem;font-size:0.8rem;" data-es="Instituciones y empresas de la investigación y trabajos pasados, de todos los tiempos.">Institutions and companies from research and past work, all-time.</p>
       <div class="logo-carousel" aria-label="Collaborator logos">
         <div class="logo-carousel-track" id="lc-track">
           <div class="lc-item"><img src="https://cdn.ulpgc.es/logos/logo-ulpgc-horizontal-2t.svg" alt="ULPGC" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">ULPGC · IDeTIC</span></div>
@@ -414,12 +502,12 @@
     </section>
 
     <section class="shell section cv-collapsible">
-      <div class="section-kicker">Background</div>
-      <h2>Skills &amp; distinctions</h2>
+      <div class="section-kicker" data-es="Trayectoria">Background</div>
+      <h2 data-es="Habilidades y distinciones">Skills &amp; distinctions</h2>
       <div class="grid-2" style="margin-top:1.2rem;">
         <div class="card">
-          <div class="card-kicker">Technical skills</div>
-          <h3>Tools &amp; platforms</h3>
+          <div class="card-kicker" data-es="Habilidades técnicas">Technical skills</div>
+          <h3 data-es="Herramientas y plataformas">Tools &amp; platforms</h3>
           <div class="tag-row">
             <span class="tag">Python</span>
             <span class="tag">MATLAB</span>
@@ -441,39 +529,39 @@
           </div>
         </div>
         <div class="card">
-          <div class="card-kicker">Languages</div>
-          <h3>Spanish &amp; English</h3>
-          <p>Spanish native speaker. English B2 (Oxford Test of English).</p>
+          <div class="card-kicker" data-es="Idiomas">Languages</div>
+          <h3 data-es="Español e inglés">Spanish &amp; English</h3>
+          <p data-es="Hablante nativo de español. Inglés B2 (Oxford Test of English).">Spanish native speaker. English B2 (Oxford Test of English).</p>
         </div>
       </div>
       <div class="timeline-subsection">
-        <h3>Distinctions</h3>
+        <h3 data-es="Distinciones">Distinctions</h3>
         <div class="timeline">
           <div class="timeline-row" style="grid-template-columns:60px 1fr;">
             <div class="year">2021</div>
             <div>
-              <div class="timeline-title">Ph.D. Suma Cum Laude</div>
+              <div class="timeline-title" data-es="Doctorado Suma Cum Laude">Ph.D. Suma Cum Laude</div>
               <div class="timeline-org">Universidad de Las Palmas de Gran Canaria</div>
             </div>
           </div>
           <div class="timeline-row" style="grid-template-columns:60px 1fr;">
             <div class="year">2018</div>
             <div>
-              <div class="timeline-title">Graduated with highest distinction</div>
-              <div class="timeline-org">Electrical Engineering · Universidad de Chile</div>
+              <div class="timeline-title" data-es="Graduado con máxima distinción">Graduated with highest distinction</div>
+              <div class="timeline-org" data-es="Ingeniería Civil Eléctrica · Universidad de Chile">Electrical Engineering · Universidad de Chile</div>
             </div>
           </div>
           <div class="timeline-row" style="grid-template-columns:60px 1fr;">
             <div class="year">2016</div>
             <div>
-              <div class="timeline-title">Outstanding student award</div>
-              <div class="timeline-org">Faculty of Physical and Mathematical Sciences · Universidad de Chile</div>
+              <div class="timeline-title" data-es="Alumno destacado">Outstanding student award</div>
+              <div class="timeline-org" data-es="Facultad de Ciencias Físicas y Matemáticas · Universidad de Chile">Faculty of Physical and Mathematical Sciences · Universidad de Chile</div>
             </div>
           </div>
           <div class="timeline-row" style="grid-template-columns:60px 1fr;">
             <div class="year">2009</div>
             <div>
-              <div class="timeline-title">Top PSU score at institution</div>
+              <div class="timeline-title" data-es="Mejor puntaje PSU de la institución">Top PSU score at institution</div>
               <div class="timeline-org">Liceo Abate Molina, Talca</div>
             </div>
           </div>
@@ -486,6 +574,16 @@
 <script>
   // Collapse each section to its most recent entry; a button reveals the rest
   (function () {
+    var L = {
+      en: { more: function (n) { return 'Show ' + n + ' more ↓'; }, less: 'Show less ↑' },
+      es: { more: function (n) { return 'Ver ' + n + ' más ↓'; }, less: 'Ver menos ↑' }
+    };
+    var buttons = [];
+    function relabel(btn) {
+      var t = L[document.documentElement.lang === 'es' ? 'es' : 'en'];
+      var collapsed = btn.getAttribute('aria-expanded') === 'false';
+      btn.textContent = collapsed ? t.more(btn.dataset.hidden) : t.less;
+    }
     document.querySelectorAll('.cv-collapsible').forEach(function (sec) {
       var rows = sec.querySelectorAll('.timeline-row');
       if (rows.length < 2) return;
@@ -496,25 +594,29 @@
           sub.classList.add('cv-collapse-item');
         }
       });
-      var hidden = rows.length - 1;
       var btn = document.createElement('button');
       btn.className = 'cv-more-btn';
       btn.setAttribute('aria-expanded', 'false');
-      btn.textContent = 'Show ' + hidden + ' more ↓';
+      btn.dataset.hidden = rows.length - 1;
       btn.addEventListener('click', function () {
         var collapsed = sec.classList.toggle('collapsed');
         btn.setAttribute('aria-expanded', String(!collapsed));
-        btn.textContent = collapsed ? 'Show ' + hidden + ' more ↓' : 'Show less ↑';
+        relabel(btn);
       });
       sec.appendChild(btn);
       sec.classList.add('collapsed');
+      buttons.push(btn);
+      relabel(btn);
+    });
+    document.addEventListener('cvlangchange', function () {
+      buttons.forEach(relabel);
     });
   })();
 </script>
 <footer>
   <div class="footer-inner">
     <span class="footer-name">Vicente Matus, PhD</span>
-    <span>IDeTIC · ULPGC · Las Palmas de Gran Canaria, Spain</span>
+    <span data-es="IDeTIC · ULPGC · Las Palmas de Gran Canaria, España">IDeTIC · ULPGC · Las Palmas de Gran Canaria, Spain</span>
     <div class="footer-links">
       <a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg> Scholar</a>
       <a href="https://orcid.org/0000-0003-4262-3882" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 17.629H5.667V7.062h1.702v10.567zm-.852-12.269a1.06 1.06 0 1 1 0-2.121 1.06 1.06 0 0 1 0 2.121zM18.525 17.629h-3.928V7.062h3.928c3.3 0 4.976 2.385 4.976 5.284 0 3.147-1.956 5.283-4.976 5.283zm-.223-9.046h-2.003v7.523h1.99c2.828 0 3.473-2.146 3.473-3.762 0-2.634-1.676-3.761-3.46-3.761z"/></svg> ORCID</a>
@@ -524,7 +626,7 @@
       <a href="https://www.researchgate.net/profile/Vicente-Matus" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm-1.5 5h3.1c1.4 0 2.4.9 2.4 2.3 0 1-.5 1.8-1.3 2.2L16 16h-1.8l-1.6-4.2H10.5V16H9V7h1.5zm0 3.5h1.4c.8 0 1.3-.4 1.3-1.1 0-.7-.5-1.1-1.3-1.1H10.5V10.5z"/></svg> ResearchGate</a>
       <a href="contact.html"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3 6 H21 V18 H3 Z M3 6 L12 13 L21 6"/></svg> Contact</a>
     </div>
-    <span class="footer-copy">&copy; Vicente Matus, IDeTIC-ULPGC, Spain</span>
+    <span class="footer-copy" data-es="&copy; Vicente Matus, IDeTIC-ULPGC, España">&copy; Vicente Matus, IDeTIC-ULPGC, Spain</span>
   </div>
 </footer>
 
