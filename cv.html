@@ -14,7 +14,6 @@
   <meta name="theme-color" content="#0d0d0d">
   <link rel="stylesheet" href="styles/icons.css" />
   <link rel="stylesheet" href="styles/main-pages.css" />
-  <script src="scripts/cv-shared.js" defer></script>
   <style>
     :root { --page-accent: var(--c-teal); --page-accent-soft: var(--c-teal-soft); }
     .cv-hero-grid {
@@ -131,6 +130,16 @@
 <a href="donate.html" class="" data-es="Donar">Donate</a>
     </div>
     <a href="contact.html" class="nav-cta" data-es="Contacto">Contact</a>
+    <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+      <button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="true" onclick="setSiteLang('en')" title="English">
+        <svg viewBox="0 0 60 30" aria-hidden="true"><clipPath id="ukc"><rect width="60" height="30"/></clipPath><g clip-path="url(#ukc)"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#ukc)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 V30M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30M0,15 H60" stroke="#C8102E" stroke-width="6"/></g></svg>
+        EN
+      </button>
+      <button type="button" class="lang-btn" data-lang-btn="es" aria-pressed="false" onclick="setSiteLang('es')" title="Español">
+        <svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#AA151B"/><rect y="10" width="60" height="20" fill="#F1BF00"/></svg>
+        ES
+      </button>
+    </div>
     <button class="nav-hamburger" aria-label="Toggle navigation" onclick="document.getElementById('mobile-nav').classList.toggle('open')">
       <span></span><span></span><span></span>
     </button>
@@ -164,16 +173,6 @@
           <div class="hero-actions" style="margin-top:1.2rem;align-items:center;">
             <a href="https://cvn.fecyt.es/0000-0003-4262-3882" target="_blank" rel="noopener" class="btn-ghost" data-es="Descargar CVN (FECYT) &#8599;">Download CVN (FECYT) &#8599;</a>
             <a href="cv-full.html" class="btn-ghost" data-es="CV completo imprimible (PDF)">Printable full CV (PDF)</a>
-            <div class="lang-toggle" role="group" aria-label="Language / Idioma">
-              <button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="true" onclick="cvSetLang('en')" title="English">
-                <svg viewBox="0 0 60 30" aria-hidden="true"><clipPath id="ukc"><rect width="60" height="30"/></clipPath><g clip-path="url(#ukc)"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#ukc)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 V30M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30M0,15 H60" stroke="#C8102E" stroke-width="6"/></g></svg>
-                EN
-              </button>
-              <button type="button" class="lang-btn" data-lang-btn="es" aria-pressed="false" onclick="cvSetLang('es')" title="Español">
-                <svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#AA151B"/><rect y="10" width="60" height="20" fill="#F1BF00"/></svg>
-                ES
-              </button>
-            </div>
           </div>
         </div>
         <div class="cv-hero-metrics">
@@ -630,5 +629,6 @@
   </div>
 </footer>
 
+  <script src="scripts/site-lang.js"></script>
 </body>
 </html>

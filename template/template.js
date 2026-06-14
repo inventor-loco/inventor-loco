@@ -141,10 +141,6 @@
           '<div class="video-portrait" id="yt-wrap-' + idx + '" data-videos=\'' + vidsJson + '\'>' +
             makeIframe(initVid) +
           '</div>' +
-          '<div class="video-lang-selector">' +
-            '<button class="lang-flag' + (initLang === 'es' ? ' active' : '') + '" data-lang="es" onclick="window._course.switchLang(' + idx + ',\'es\')" title="Spanish"><img src="../assets/flags/flag-es.svg" alt="ES" width="28" height="19"></button>' +
-            '<button class="lang-flag' + (initLang === 'en' ? ' active' : '') + '" data-lang="en" onclick="window._course.switchLang(' + idx + ',\'en\')" title="English"><img src="../assets/flags/flag-en.svg" alt="EN" width="28" height="19"></button>' +
-          '</div>' +
         '</div>' +
 
         /* ── content pane ── */
@@ -700,28 +696,23 @@
       '?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="no-referrer-when-downgrade" allowfullscreen loading="lazy"></iframe>';
   }
 
-  function restoreYT() {
-    for (let i = 0; i < total; i++) {
-      const saved = localStorage.getItem('yt-' + courseId + '-' + i);
-      if (!saved) continue;
-      const wrap  = document.getElementById('yt-wrap-' + i);
-      if (wrap)  wrap.innerHTML = makeIframe(saved);
-    }
+  // Switch EVERY lesson video on the page to the given language. Falls back to
+  // the other language, then a placeholder, when a lesson lacks that language.
+  function applyVideoLang(lang) {
+    lang = (lang === 'es') ? 'es' : 'en';
+    var other = (lang === 'es') ? 'en' : 'es';
+    document.querySelectorAll('[id^="yt-wrap-"]').forEach(function (wrap) {
+      var vids = {};
+      try { vids = JSON.parse(wrap.getAttribute('data-videos') || '{}'); } catch (e) {}
+      var vid = vids[lang] || vids[other] || PLACEHOLDER_VID;
+      wrap.innerHTML = makeIframe(vid);
+    });
   }
 
-  function switchLang(idx, lang) {
-    var wrap = document.getElementById('yt-wrap-' + idx);
-    if (!wrap) return;
-    var vids = {};
-    try { vids = JSON.parse(wrap.getAttribute('data-videos') || '{}'); } catch (e) {}
-    var vid = vids[lang] || PLACEHOLDER_VID;
-    wrap.innerHTML = makeIframe(vid);
-    var pane = wrap.parentElement;
-    if (pane) {
-      pane.querySelectorAll('.lang-flag[data-lang]').forEach(function (btn) {
-        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-      });
-    }
+  function currentSiteLang() {
+    var stored;
+    try { stored = localStorage.getItem('site-lang') || localStorage.getItem('cv-lang'); } catch (e) {}
+    return (stored === 'es') ? 'es' : 'en';
   }
 
   /* (Figures and notes sections removed — now handled by MD files) */
@@ -991,10 +982,14 @@
     setupSwipe();
     setupMobileMenu();
 
-    // defer restore so DOM is fully ready
+    // defer so DOM is fully ready, then sync videos to the site language and
+    // keep them in sync with the top-bar language toggle.
     setTimeout(function () {
-      restoreYT();
+      applyVideoLang(currentSiteLang());
     }, 0);
+    document.addEventListener('sitelangchange', function (e) {
+      applyVideoLang((e.detail && e.detail.lang) || currentSiteLang());
+    });
 
     setupSidebarResize();
     setupLightbox();
@@ -1007,7 +1002,7 @@
       goTo:         goTo,
       showCover:    showCover,
       downloadPDF:  downloadPDF,
-      switchLang:   switchLang,
+      applyVideoLang: applyVideoLang,
     };
   }
 

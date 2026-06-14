@@ -45,6 +45,10 @@
         <button class="nav-btn" id="prev-btn" onclick="window._course.prev()" disabled>←<span class="btn-label"> Prev</span></button>
         <button class="nav-btn primary" id="next-btn" onclick="window._course.next()"><span class="btn-label">Next </span>→</button>
         <span class="progress-pill" id="progress-pill">— / —</span>
+        <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+          <button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="true" onclick="setSiteLang('en')" title="English"><img src="../assets/flags/flag-en.svg" alt="EN" width="20" height="14"> EN</button>
+          <button type="button" class="lang-btn" data-lang-btn="es" aria-pressed="false" onclick="setSiteLang('es')" title="Español"><img src="../assets/flags/flag-es.svg" alt="ES" width="20" height="14"> ES</button>
+        </div>
         <a href="../courses.html" class="exit-btn" id="back-link" title="Back to courses">✕<span class="btn-label"> Courses</span></a>
       </div>
     </div>
@@ -61,6 +65,7 @@
 
   <script src="data/course-data-electricity.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../scripts/site-lang.js"></script>
   <script src="../template/template.js"></script>
 </body>
 </html>

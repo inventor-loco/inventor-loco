@@ -85,6 +85,20 @@ nav {
   font-family: var(--mono);
 }
 .nav-cta:hover { opacity: .85; }
+
+/* Language toggle (EN/ES) with flags — lives in the nav */
+.lang-toggle { display: inline-flex; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; vertical-align: middle; flex-shrink: 0; }
+.lang-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.38rem 0.6rem; background: none; border: none; cursor: pointer;
+  font-family: var(--mono); font-size: 0.62rem; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--ink3); line-height: 1;
+}
+.lang-btn + .lang-btn { border-left: 1px solid var(--rule); }
+.lang-btn:hover { color: var(--ink); }
+.lang-btn.active { background: var(--soft); color: var(--page-accent); }
+.lang-btn svg { width: 20px; height: 14px; border-radius: 2px; display: block; flex-shrink: 0; }
+
 main { padding: 1.8rem 0 3rem; }
 .shell {
   background: var(--panel);

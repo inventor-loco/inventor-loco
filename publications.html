@@ -27,38 +27,48 @@
       </div>
     </a>
     <div class="nav-links">
-      <a href="index.html" class="">Home</a>
+      <a href="index.html" class="" data-es="Inicio">Home</a>
 <a href="cv.html" class="">CV</a>
-<a href="publications.html" class="active">Publications</a>
-<a href="courses.html" class="">Courses</a>
-<a href="donate.html" class="">Donate</a>
+<a href="publications.html" class="active" data-es="Publicaciones">Publications</a>
+<a href="courses.html" class="" data-es="Cursos">Courses</a>
+<a href="donate.html" class="" data-es="Donar">Donate</a>
     </div>
-    <a href="contact.html" class="nav-cta">Contact</a>
+    <a href="contact.html" class="nav-cta" data-es="Contacto">Contact</a>
+    <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+      <button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="true" onclick="setSiteLang('en')" title="English">
+        <svg viewBox="0 0 60 30" aria-hidden="true"><clipPath id="ukc"><rect width="60" height="30"/></clipPath><g clip-path="url(#ukc)"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#ukc)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 V30M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30M0,15 H60" stroke="#C8102E" stroke-width="6"/></g></svg>
+        EN
+      </button>
+      <button type="button" class="lang-btn" data-lang-btn="es" aria-pressed="false" onclick="setSiteLang('es')" title="Español">
+        <svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#AA151B"/><rect y="10" width="60" height="20" fill="#F1BF00"/></svg>
+        ES
+      </button>
+    </div>
     <button class="nav-hamburger" aria-label="Toggle navigation" onclick="document.getElementById('mobile-nav').classList.toggle('open')">
       <span></span><span></span><span></span>
     </button>
   </div>
   <div class="mobile-nav" id="mobile-nav">
-    <a href="index.html">Home</a>
+    <a href="index.html" data-es="Inicio">Home</a>
     <a href="cv.html">CV</a>
-    <a href="publications.html" class="active">Publications</a>
-    <a href="courses.html">Courses</a>
-    <a href="donate.html">Donate</a>
-    <a href="contact.html" class="mobile-nav-cta">Contact</a>
+    <a href="publications.html" class="active" data-es="Publicaciones">Publications</a>
+    <a href="courses.html" data-es="Cursos">Courses</a>
+    <a href="donate.html" data-es="Donar">Donate</a>
+    <a href="contact.html" class="mobile-nav-cta" data-es="Contacto">Contact</a>
   </div>
 </nav>
 <main>
   <div class="wrap">
 
     <section class="shell hero compact">
-      <div class="eyebrow">Complete research output</div>
-      <h1>Publications</h1>
-      <p class="lead">All publications with DOI links and downloadable BibTeX.</p>
+      <div class="eyebrow" data-es="Producción científica completa">Complete research output</div>
+      <h1 data-es="Publicaciones">Publications</h1>
+      <p class="lead" data-es="Todas las publicaciones con enlaces DOI y BibTeX descargable.">All publications with DOI links and downloadable BibTeX.</p>
     </section>
 
     <section class="shell section">
-      <div class="section-kicker">Complete list</div>
-      <h2>All publications</h2>
+      <div class="section-kicker" data-es="Lista completa">Complete list</div>
+      <h2 data-es="Todas las publicaciones">All publications</h2>
       <div class="pub-list" style="margin-top:1.2rem;">
 
         <!-- 2026 -->
@@ -70,7 +80,7 @@
             <div class="pub-venue">Electronics, 15(3), 567, 2026</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.3390/electronics15030567" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('segura2026ontology')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('segura2026ontology')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -84,7 +94,7 @@
             <div class="pub-venue">IEEE Internet of Things Journal, 12(12), 20071–20086, 2025</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/jiot.2025.3543443" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('luna2025novel')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('luna2025novel')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -96,7 +106,7 @@
             <div class="pub-venue">IET Optoelectronics, 19(1), e70005, 2025</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1049/ote2.70005" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('niarchou2025cnn')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('niarchou2025cnn')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -108,7 +118,7 @@
             <div class="pub-venue">Science China Information Sciences, 68(10), 201301, 2025</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1007/s11432-025-4504-3" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('teli2025optical')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('teli2025optical')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -120,7 +130,7 @@
             <div class="pub-venue">Sensors, 25(17), 5435, 2025</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.3390/s25175435" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('vera2025high')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('vera2025high')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -132,7 +142,7 @@
             <div class="pub-venue">SACVLC 2025 · pp. 1–6</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/sacvlc67412.2025.11261954" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('borja2025mobile')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('borja2025mobile')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -144,7 +154,7 @@
             <div class="pub-venue">COLCOM 2025 · pp. 1–6</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/colcom66267.2025.11185793" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('munoz2025design')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('munoz2025design')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -156,7 +166,7 @@
             <div class="pub-venue">LATINCOM 2025 · pp. 153–158</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/latincom67778.2025.11345393" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('penailillo2025practical')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('penailillo2025practical')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -170,7 +180,7 @@
             <div class="pub-venue">Optics Express, 32(14), 25091, 2024</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1364/oe.521967" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('niarchou2024wearablefiber')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('niarchou2024wearablefiber')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -182,7 +192,7 @@
             <div class="pub-venue">Sensors, 24(9), 2766, 2024</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.3390/s24092766" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('niarchou2024optical')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('niarchou2024optical')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -194,7 +204,7 @@
             <div class="pub-venue">IEEE Access, 12, 99137–99148, 2024</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/access.2024.3428347" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('teli2024fft')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('teli2024fft')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -206,7 +216,7 @@
             <div class="pub-venue">BalkanCom 2024 · pp. 96–100</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/balkancom61808.2024.10557196" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2024experimental')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2024experimental')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -218,7 +228,7 @@
             <div class="pub-venue">CSNDSP 2024 · pp. 222–227</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/csndsp60683.2024.10636635" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2024self')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2024self')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -230,7 +240,7 @@
             <div class="pub-venue">CSNDSP 2024 · pp. 621–625</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/csndsp60683.2024.10636549" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('niarchou2024wearableoutdoor')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('niarchou2024wearableoutdoor')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -242,7 +252,7 @@
             <div class="pub-venue">CSNDSP 2024 · pp. 609–614</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/csndsp60683.2024.10636649" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('rego2024using')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('rego2024using')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -254,7 +264,7 @@
             <div class="pub-venue">CSNDSP 2024 · pp. 217–221</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/csndsp60683.2024.10636452" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('teli2024snr')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('teli2024snr')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -268,7 +278,7 @@
             <div class="pub-venue">Applied Optics, 62(30), 8204, 2023</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1364/ao.496760" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('teli2023curved')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('teli2023curved')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -280,7 +290,7 @@
             <div class="pub-venue">IEEE Access, 11, 55107–55116, 2023</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/access.2023.3280850" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('teli2023hybrid')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('teli2023hybrid')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -292,7 +302,7 @@
             <div class="pub-venue">SACVLC 2023 · pp. 35–40</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/sacvlc59022.2023.10347670" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('aranda2023optical')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('aranda2023optical')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -304,7 +314,7 @@
             <div class="pub-venue">IEEE WF-IoT 2023 · pp. 1–8</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/wf-iot58464.2023.10539392" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('dowhuszko2023optical')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('dowhuszko2023optical')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -316,7 +326,7 @@
             <div class="pub-venue">SACVLC 2023 · pp. 100–105</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/sacvlc59022.2023.10347655" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('fernandes2023asynchronous')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('fernandes2023asynchronous')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -328,7 +338,7 @@
             <div class="pub-venue">SACVLC 2023 · pp. 17–22</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/sacvlc59022.2023.10347729" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('hernandez2023experimental')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('hernandez2023experimental')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -340,7 +350,7 @@
             <div class="pub-venue">ConTEL 2023 · pp. 1–6</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/contel58387.2023.10198924" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2023practical')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2023practical')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -352,7 +362,7 @@
             <div class="pub-venue">ConTEL 2023 · pp. 1–5</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/contel58387.2023.10199043" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('niarchou2023experimental')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('niarchou2023experimental')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -364,7 +374,7 @@
             <div class="pub-venue">SACVLC 2023 · pp. 1–5</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/sacvlc59022.2023.10347544" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('teli2023non')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('teli2023non')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -376,7 +386,7 @@
             <div class="pub-venue">SACVLC 2023 · pp. 88–93</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/sacvlc59022.2023.10347680" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('younus2023experimental')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('younus2023experimental')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -390,7 +400,7 @@
             <div class="pub-venue">CSNDSP 2022 · pp. 150–155</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/csndsp54353.2022.9907903" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('majlesein2022experimental')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('majlesein2022experimental')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -402,7 +412,7 @@
             <div class="pub-venue">WASOWC 2022 · pp. 1–4</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/wasowc54657.2022.9798438" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2022development')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2022development')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -416,7 +426,7 @@
             <div class="pub-venue">Optics Express, 29(15), 22973, 2021</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1364/oe.433053" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('jurado2021convolutional')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('jurado2021convolutional')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -428,7 +438,7 @@
             <div class="pub-venue">Sensors, 21(5), 1621, 2021</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.3390/s21051621" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('jurado2021optical')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('jurado2021optical')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -440,7 +450,7 @@
             <div class="pub-venue">Applied Optics, 60(1), 75, 2021</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1364/ao.405952" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2020sandstorm')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2020sandstorm')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -452,7 +462,7 @@
             <div class="pub-venue">IEEE Latin America Transactions, 19(10), 1798–1805, 2021</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/tla.2021.9477281" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2021demonstration')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2021demonstration')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -464,7 +474,7 @@
             <div class="pub-venue">Sensors, 21(8), 2739, 2021</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.3390/s21082739" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2021wireless')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2021wireless')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -476,7 +486,7 @@
             <div class="pub-venue">ISWCS 2021 · pp. 1–5</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/iswcs49558.2021.9562196" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('devulapalli2021lane')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('devulapalli2021lane')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -488,7 +498,7 @@
             <div class="pub-venue">PIMRC 2021 · pp. 1–6</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/pimrc50174.2021.9569653" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2021design')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2021design')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -499,7 +509,7 @@
             <div class="pub-authors"><span class="self">Matus, V.</span></div>
             <div class="pub-venue">PhD Thesis · Universidad de Las Palmas de Gran Canaria, 2021</div>
             <div class="pub-actions">
-              <button class="pub-action" onclick="downloadBib('icaza2021contribution')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('icaza2021contribution')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -513,7 +523,7 @@
             <div class="pub-venue">Sensors, 20(3), 757, 2020</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.3390/s20030757" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2020experimentally')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2020experimentally')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -525,7 +535,7 @@
             <div class="pub-venue">Sensors, 20(12), 3361, 2020</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.3390/s20123361" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('teli2020optical')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('teli2020optical')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -537,7 +547,7 @@
             <div class="pub-venue">CSNDSP 2020 · pp. 1–6</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/csndsp49049.2020.9249534" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('jurado2020application')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('jurado2020application')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -549,7 +559,7 @@
             <div class="pub-venue">WASOWC 2020 · pp. 1–5</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/wasowc49739.2020.9410076" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2020evaluation')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2020evaluation')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -561,7 +571,7 @@
             <div class="pub-venue">CSNDSP 2020 · pp. 1–5</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/csndsp49049.2020.9249441" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2020experimental')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2020experimental')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -573,7 +583,7 @@
             <div class="pub-venue">CSNDSP 2020 · pp. 1–5</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/csndsp49049.2020.9249566" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('teli2020first')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('teli2020first')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -587,7 +597,7 @@
             <div class="pub-venue">Optics Express, 27(14), 19150, 2019</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1364/oe.27.019150" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('jurado2019correlation')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('jurado2019correlation')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -599,7 +609,7 @@
             <div class="pub-venue">ConTEL 2019 · pp. 1–5</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/contel.2019.8848549" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2019simulation')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2019simulation')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -613,7 +623,7 @@
             <div class="pub-venue">CSNDSP 2018 · pp. 1–5</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/csndsp.2018.8471768" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2018implementation')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2018implementation')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -627,7 +637,7 @@
             <div class="pub-venue">SACVLC 2017 · pp. 1–4</div>
             <div class="pub-actions">
               <a class="pub-action" href="https://doi.org/10.1109/sacvlc.2017.8267606" target="_blank" rel="noopener">DOI</a>
-              <button class="pub-action" onclick="downloadBib('matus2017hardware')">Download .bib</button>
+              <button class="pub-action" onclick="downloadBib('matus2017hardware')" data-es="Descargar .bib">Download .bib</button>
             </div>
           </div>
         </div>
@@ -640,7 +650,7 @@
 <footer>
   <div class="footer-inner">
     <span class="footer-name">Vicente Matus, PhD</span>
-    <span>IDeTIC · ULPGC · Las Palmas de Gran Canaria, Spain</span>
+    <span data-es="IDeTIC · ULPGC · Las Palmas de Gran Canaria, España">IDeTIC · ULPGC · Las Palmas de Gran Canaria, Spain</span>
     <div class="footer-links">
       <a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg> Scholar</a>
       <a href="https://orcid.org/0000-0003-4262-3882" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 17.629H5.667V7.062h1.702v10.567zm-.852-12.269a1.06 1.06 0 1 1 0-2.121 1.06 1.06 0 0 1 0 2.121zM18.525 17.629h-3.928V7.062h3.928c3.3 0 4.976 2.385 4.976 5.284 0 3.147-1.956 5.283-4.976 5.283zm-.223-9.046h-2.003v7.523h1.99c2.828 0 3.473-2.146 3.473-3.762 0-2.634-1.676-3.761-3.46-3.761z"/></svg> ORCID</a>
@@ -648,9 +658,9 @@
       <a href="https://www.linkedin.com/in/vicente-matus/" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
       <a href="https://www.youtube.com/@inventorloco92" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418a2.506 2.506 0 0 0-1.768 1.768C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15V9l5.2 3-5.2 3z"/></svg> YouTube</a>
       <a href="https://www.researchgate.net/profile/Vicente-Matus" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm-1.5 5h3.1c1.4 0 2.4.9 2.4 2.3 0 1-.5 1.8-1.3 2.2L16 16h-1.8l-1.6-4.2H10.5V16H9V7h1.5zm0 3.5h1.4c.8 0 1.3-.4 1.3-1.1 0-.7-.5-1.1-1.3-1.1H10.5V10.5z"/></svg> ResearchGate</a>
-      <a href="contact.html"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3 6 H21 V18 H3 Z M3 6 L12 13 L21 6"/></svg> Contact</a>
+      <a href="contact.html"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3 6 H21 V18 H3 Z M3 6 L12 13 L21 6"/></svg> <span data-es="Contacto">Contact</span></a>
     </div>
-    <span class="footer-copy">&copy; Vicente Matus, IDeTIC-ULPGC, Spain</span>
+    <span class="footer-copy" data-es="&copy; Vicente Matus, IDeTIC-ULPGC, España">&copy; Vicente Matus, IDeTIC-ULPGC, Spain</span>
   </div>
 </footer>
 
@@ -1101,5 +1111,6 @@
   }
 </script>
 
+  <script src="scripts/site-lang.js"></script>
 </body>
 </html>
