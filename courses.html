@@ -23,7 +23,7 @@
     .meta-card-desc { font-size: 0.8rem; color: var(--ink2); line-height: 1.5; }
 
     /* COURSE CARDS */
-    .courses-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.2rem; }
+    .courses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.2rem; }
     .course-card { border: 1px solid var(--rule); border-radius: 4px; padding: 1.5rem; display: flex; flex-direction: column; background: white; transition: border-color .2s, box-shadow .2s; }
     .course-card:hover { box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
     .course-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.75rem; gap: 1rem; }
@@ -41,9 +41,68 @@
     .course-card.upcoming { background: var(--soft); border-style: dashed; }
     .course-card.upcoming .course-title { color: var(--ink2); }
 
+    /* Available courses (not upcoming) float to the top of the grid */
+    .course-card { order: 2; }
+    .course-card:not(.upcoming) { order: 1; }
+
+    /* VIEW TOGGLE (grid / list) */
+    .courses-toolbar { display: flex; align-items: center; justify-content: flex-end; gap: 0.75rem; margin-top: 1.1rem; }
+    .view-toggle { display: inline-flex; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+    .view-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.4rem 0.7rem; background: none; border: none; cursor: pointer;
+      font-family: var(--mono); font-size: 0.64rem; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--ink3); line-height: 1;
+    }
+    .view-btn + .view-btn { border-left: 1px solid var(--rule); }
+    .view-btn:hover { color: var(--ink); }
+    .view-btn.active { background: var(--soft); color: var(--page-accent); }
+    .view-btn svg { width: 15px; height: 15px; display: block; flex-shrink: 0; }
+
+    /* LIST VIEW */
+    .courses-grid.list-view { grid-template-columns: 1fr; gap: 0.8rem; }
+    .courses-grid.list-view .course-card {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      grid-template-areas:
+        "chip badge  footer"
+        "chip title  footer"
+        "chip sub    footer";
+      align-items: center;
+      column-gap: 1.25rem;
+      row-gap: 0.15rem;
+      padding: 1.1rem 1.4rem;
+    }
+    .courses-grid.list-view .course-chip { grid-area: chip; margin: 0; }
+    .courses-grid.list-view .course-card-top { grid-area: badge; margin: 0; justify-content: flex-start; gap: 0.6rem; }
+    .courses-grid.list-view .course-title { grid-area: title; margin: 0; }
+    .courses-grid.list-view .course-subtitle { grid-area: sub; margin: 0; }
+    .courses-grid.list-view .course-bullets,
+    .courses-grid.list-view .course-tags { display: none; }
+    .courses-grid.list-view .course-card-footer {
+      grid-area: footer; margin: 0; padding: 0; border-top: none;
+      flex-direction: column; align-items: flex-end; gap: 0.45rem;
+    }
+
+    @media (max-width: 980px) {
+      .courses-grid { grid-template-columns: 1fr 1fr; }
+    }
     @media (max-width: 768px) {
       .courses-grid { grid-template-columns: 1fr; }
       .meta-grid { grid-template-columns: 1fr; }
+      .courses-grid.list-view .course-card {
+        grid-template-columns: 48px 1fr;
+        grid-template-areas:
+          "chip badge"
+          "chip title"
+          "chip sub"
+          "footer footer";
+        row-gap: 0.25rem;
+      }
+      .courses-grid.list-view .course-card-footer {
+        flex-direction: row; align-items: center; justify-content: space-between;
+        padding-top: 0.7rem; margin-top: 0.3rem; border-top: 1px solid var(--soft);
+      }
     }
   </style>
 </head>
@@ -103,6 +162,19 @@
     <section class="shell section">
       <div class="section-kicker" data-es="Itinerarios actuales">Current tracks</div>
       <h2 data-es="Seminarios actualmente en preparación">Seminars currently being prepared</h2>
+
+      <div class="courses-toolbar">
+        <div class="view-toggle" role="group" aria-label="View / Vista">
+          <button type="button" class="view-btn" data-view-btn="grid" aria-pressed="false" onclick="setCourseView('grid')" title="Grid view">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            <span data-es="Cuadrícula">Grid</span>
+          </button>
+          <button type="button" class="view-btn active" data-view-btn="list" aria-pressed="true" onclick="setCourseView('list')" title="List view">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3.5" y1="6" x2="3.51" y2="6"/><line x1="3.5" y1="12" x2="3.51" y2="12"/><line x1="3.5" y1="18" x2="3.51" y2="18"/></svg>
+            <span data-es="Lista">List</span>
+          </button>
+        </div>
+      </div>
 
       <div class="courses-grid">
 
@@ -327,5 +399,27 @@
 </footer>
 
   <script src="scripts/site-lang.js"></script>
+  <script>
+    // Grid / list view toggle for the courses listing. The choice persists in
+    // localStorage so it survives reloads and navigation back to this page.
+    (function () {
+      var KEY = 'course-view';
+      var grid = document.querySelector('.courses-grid');
+      function apply(view) {
+        view = (view === 'list') ? 'list' : 'grid';
+        if (grid) grid.classList.toggle('list-view', view === 'list');
+        try { localStorage.setItem(KEY, view); } catch (e) {}
+        document.querySelectorAll('[data-view-btn]').forEach(function (b) {
+          var on = b.getAttribute('data-view-btn') === view;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-pressed', String(on));
+        });
+      }
+      window.setCourseView = apply;
+      var stored;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      apply(stored === 'grid' ? 'grid' : 'list');
+    })();
+  </script>
 </body>
 </html>
