@@ -1,0 +1,40 @@
+<svg viewBox="0 0 560 140" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'Courier New', monospace">
+
+  <!-- Form (left) -->
+  <rect x="10" y="52" width="110" height="40" rx="4" fill="#fce7f3" stroke="#db2777" stroke-width="1.5"/>
+  <text x="65" y="68" text-anchor="middle" font-size="10" font-weight="600" fill="#9d174d">tu formulario</text>
+  <text x="65" y="83" text-anchor="middle" font-size="9"  fill="#6b7280">(frontend)</text>
+
+  <!-- Arrow to Apps Script -->
+  <line x1="120" y1="72" x2="158" y2="72" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="154,68 164,72 154,76" fill="#9ca3af"/>
+
+  <!-- Apps Script Web App (centre) -->
+  <rect x="164" y="36" width="172" height="72" rx="4" fill="#f9fafb" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="250" y="62" text-anchor="middle" font-size="9.5" font-weight="600" fill="#374151">Apps Script</text>
+  <text x="250" y="77" text-anchor="middle" font-size="9"   fill="#6b7280">URL de Web App</text>
+  <text x="250" y="92" text-anchor="middle" font-size="9"   fill="#6b7280">corre en Google</text>
+
+  <!-- Three fan-out arrows -->
+  <!-- Gmail reply -->
+  <line x1="336" y1="60" x2="374" y2="36" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="370,30 380,34 372,42" fill="#9ca3af"/>
+  <rect x="380" y="18" width="164" height="34" rx="4" fill="#f0fdf4" stroke="#059669" stroke-width="1.5"/>
+  <text x="462" y="33" text-anchor="middle" font-size="9.5" font-weight="600" fill="#065f46">enviar respuesta Gmail</text>
+  <text x="462" y="46" text-anchor="middle" font-size="9"   fill="#6b7280">MailApp.sendEmail()</text>
+
+  <!-- Save to Sheet -->
+  <line x1="336" y1="72" x2="374" y2="72" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="370,68 380,72 370,76" fill="#9ca3af"/>
+  <rect x="380" y="56" width="164" height="34" rx="4" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="462" y="71" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1e40af">guardar en Hoja</text>
+  <text x="462" y="84" text-anchor="middle" font-size="9"   fill="#6b7280">SpreadsheetApp</text>
+
+  <!-- Build a Form -->
+  <line x1="336" y1="84" x2="374" y2="106" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="372,100 380,110 368,110" fill="#9ca3af"/>
+  <rect x="380" y="94" width="164" height="34" rx="4" fill="#fefce8" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="462" y="109" text-anchor="middle" font-size="9.5" font-weight="600" fill="#854d0e">crear un Google Form</text>
+  <text x="462" y="122" text-anchor="middle" font-size="9"   fill="#6b7280">FormApp.create()</text>
+
+</svg>
