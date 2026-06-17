@@ -64,12 +64,21 @@
   ─────────────────────────────────────────────────────────── */
   function buildDOM(course) {
     document.title = course.title + ' — Vicente Matus, PhD';
-    document.getElementById('sidebar-badge').textContent  = course.badge;
-    document.getElementById('sidebar-title').textContent  = course.title;
+
+    var badgeEl = document.getElementById('sidebar-badge');
+    badgeEl.textContent = course.badge;
+    if (course.badge_es) badgeEl.setAttribute('data-es', course.badge_es);
+
+    var titleEl = document.getElementById('sidebar-title');
+    titleEl.textContent = course.title;
+    if (course.title_es) titleEl.setAttribute('data-es', course.title_es);
 
     const flat = flatLessons(course);
-    document.getElementById('sidebar-meta').textContent =
-      flat.length + ' lessons · ' + (course.authors || 'Vicente Matus, PhD');
+    var metaEN = flat.length + ' lessons · '    + (course.authors || 'Vicente Matus, PhD');
+    var metaES = flat.length + ' lecciones · ' + (course.authors || 'Vicente Matus, PhD');
+    var metaEl = document.getElementById('sidebar-meta');
+    metaEl.textContent = metaEN;
+    metaEl.setAttribute('data-es', metaES);
 
     // back link
     const backLink = document.getElementById('back-link');
@@ -77,6 +86,9 @@
 
     buildNav(course, flat);
     buildSlides(course, flat);
+
+    // Re-apply the stored language to all data-es elements just built above
+    if (window.setSiteLang) window.setSiteLang(currentSiteLang());
   }
 
   function flatLessons(course) {
@@ -98,15 +110,17 @@
       const label = document.createElement('div');
       label.className = 'unit-label';
       label.textContent = unit.name;
+      if (unit.name_es) label.setAttribute('data-es', unit.name_es);
       nav.appendChild(label);
 
       unit.lessons.forEach((lesson, li) => {
         const a = document.createElement('a');
         a.className = 'lesson-item' + (lessonGlobalIdx === 0 ? ' active' : '');
         a.dataset.idx = lessonGlobalIdx;
+        var nameESAttr = lesson.title_es ? ' data-es="' + escHtml(lesson.title_es) + '"' : '';
         a.innerHTML =
           '<span class="lesson-num">' + String(lessonGlobalIdx + 1).padStart(2, '0') + '</span>' +
-          '<span class="lesson-name">' + escHtml(lesson.title) + '</span>';
+          '<span class="lesson-name"' + nameESAttr + '>' + escHtml(lesson.title) + '</span>';
         a.addEventListener('click', () => goTo(parseInt(a.dataset.idx)));
         nav.appendChild(a);
         lessonGlobalIdx++;
@@ -146,14 +160,14 @@
         /* ── content pane ── */
         '<div class="slide-content-pane">' +
           '<div class="slide-header">' +
-            '<div class="slide-kicker">Unit ' + unitNum + ' · Lesson ' + lessonNum + '</div>' +
-            '<h1 class="slide-title">' + escHtml(lesson.title) + '</h1>' +
-            '<p class="slide-subtitle">' + escHtml(lesson.subtitle || '') + '</p>' +
+            '<div class="slide-kicker" data-es="Unidad ' + unitNum + ' · Lección ' + lessonNum + '">Unit ' + unitNum + ' · Lesson ' + lessonNum + '</div>' +
+            '<h1 class="slide-title"' + (lesson.title_es ? ' data-es="' + escHtml(lesson.title_es) + '"' : '') + '>' + escHtml(lesson.title) + '</h1>' +
+            '<p class="slide-subtitle"' + (lesson.subtitle_es ? ' data-es="' + escHtml(lesson.subtitle_es) + '"' : '') + '>' + escHtml(lesson.subtitle || '') + '</p>' +
           '</div>' +
           '<div class="slide-body">' +
             lessonDisclaimer() +
             (lesson.objective
-              ? '<div class="objective"><strong>Objective.</strong> ' + escHtml(lesson.objective) + '</div>'
+              ? '<div class="objective"' + (lesson.objective_es ? ' data-es="&lt;strong&gt;Objetivo.&lt;/strong&gt; ' + escHtml(lesson.objective_es) + '"' : '') + '><strong>Objective.</strong> ' + escHtml(lesson.objective) + '</div>'
               : '') +
             '<div class="md-body" id="md-body-' + idx + '">' +
               defaultBody(lesson, isFirst, course) +
@@ -177,6 +191,12 @@
   // chunk to make standard markdown reference links resolve per lesson.
   var linkDefs = '';
 
+  /* ── ES markdown (parallel file, optional) ──────────────── */
+  var mdCacheES  = {};
+  var mdLoadedES = false;
+  var linkDefsES = '';
+  var mdRendered = {}; // idx → true once renderMarkdownLang has run
+
   function loadAllMarkdown() {
     if (mdLoaded) return Promise.resolve();
     mdLoaded = true;
@@ -195,21 +215,43 @@
     }).catch(function () { /* no combined .md file */ });
   }
 
-  function renderMarkdown(idx) {
-    var el = document.getElementById('md-body-' + idx);
-    if (el && mdCache[idx] && typeof marked !== 'undefined') {
-      el.innerHTML = marked.parse(mdCache[idx] + '\n\n' + linkDefs);
-      el.querySelectorAll('a[href^="http"]').forEach(function (a) {
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-      });
-      addCopyButtons(el);
-      if (_katexReady) {
-        renderMath(idx);
-      } else {
-        _katexPending.push(idx);
+  function loadAllMarkdownES() {
+    if (mdLoadedES) return Promise.resolve();
+    mdLoadedES = true;
+    var file = 'content/' + courseId + '-es.md';
+    return fetch(file).then(function (res) {
+      if (!res.ok) return '';
+      return res.text();
+    }).then(function (text) {
+      if (!text) return;
+      linkDefsES = (text.match(/^\s{0,3}\[[^\]]+\]:\s+\S.*$/gm) || []).join('\n');
+      var parts = text.split(/<!--\s*slug:\s*(\d+)\s*-->/);
+      for (var i = 1; i < parts.length; i += 2) {
+        var idx = parseInt(parts[i], 10) - 1;
+        mdCacheES[idx] = parts[i + 1].trim();
       }
-    }
+    }).catch(function () { /* no ES .md file — silently fall back to EN */ });
+  }
+
+  function renderMarkdownLang(idx, lang) {
+    var el = document.getElementById('md-body-' + idx);
+    if (!el || typeof marked === 'undefined') return;
+    var useES = (lang === 'es') && (mdCacheES[idx] !== undefined);
+    var src   = useES ? mdCacheES[idx]  : mdCache[idx];
+    var defs  = useES ? linkDefsES      : linkDefs;
+    if (!src) return;
+    el.innerHTML = marked.parse(src + '\n\n' + defs);
+    el.querySelectorAll('a[href^="http"]').forEach(function (a) {
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+    });
+    addCopyButtons(el);
+    if (_katexReady) { renderMath(idx); } else { _katexPending.push(idx); }
+    mdRendered[idx] = true;
+  }
+
+  function renderMarkdown(idx) {
+    renderMarkdownLang(idx, currentSiteLang());
   }
 
   /* ── COPY-TO-CLIPBOARD BUTTONS ON CODE BLOCKS ────────────── */
@@ -263,11 +305,14 @@
   }
 
   function loadMarkdown(idx) {
-    if (mdCache[idx] !== undefined) {
-      renderMarkdown(idx);
+    var lang = currentSiteLang();
+    var loads = [loadAllMarkdown()];
+    if (lang === 'es') loads.push(loadAllMarkdownES());
+    if (mdCache[idx] !== undefined && (lang !== 'es' || mdCacheES[idx] !== undefined || mdLoadedES)) {
+      renderMarkdownLang(idx, lang);
       return;
     }
-    loadAllMarkdown().then(function () { renderMarkdown(idx); });
+    Promise.all(loads).then(function () { renderMarkdownLang(idx, currentSiteLang()); });
   }
 
   function defaultBody(lesson, isFirst, course) {
@@ -288,7 +333,8 @@
   }
 
   function lessonDisclaimer() {
-    return '<div class="lesson-disclaimer" role="note" aria-label="Lesson disclaimer">' +
+    return '<div class="lesson-disclaimer" role="note" aria-label="Lesson disclaimer"' +
+      ' data-es="&lt;strong&gt;Aviso.&lt;/strong&gt; Algunos materiales de estas lecciones fueron generados con IA. El autor está validando y actualizando la información para garantizar la máxima precisión.">' +
       '<strong>Disclaimer.</strong> Some materials in these lessons were generated with AI. ' +
       'The author is currently validating and updating the information for maximum accuracy.' +
       '</div>';
@@ -308,44 +354,52 @@
     var tocHtml = '';
     var globalIdx = 0;
     course.units.forEach(function (unit, ui) {
-      var unitLabel = unit.name.replace(/^Unit\s*\d+\s*[—–\-]\s*/, '');
+      var unitLabel   = unit.name.replace(/^Unit\s*\d+\s*[—–\-]\s*/, '');
+      var unitLabelES = unit.name_es ? unit.name_es.replace(/^Unidad\s*\d+\s*[—–\-]\s*/, '') : null;
+      var unitNumEN = 'Unit '    + (ui + 1);
+      var unitNumES = 'Unidad ' + (ui + 1);
       tocHtml += '<div class="cover-unit-card">' +
         '<button class="cover-unit-header" onclick="this.parentElement.classList.toggle(\'open\')">' +
-          '<span><span class="cover-unit-num">Unit ' + (ui + 1) + '</span>' +
-          '<span class="cover-unit-name">' + escHtml(unitLabel) + '</span></span>' +
+          '<span>' +
+            '<span class="cover-unit-num" data-es="' + unitNumES + '">' + unitNumEN + '</span>' +
+            '<span class="cover-unit-name"' + (unitLabelES ? ' data-es="' + escHtml(unitLabelES) + '"' : '') + '>' + escHtml(unitLabel) + '</span>' +
+          '</span>' +
           '<span class="cover-unit-chevron">&#9662;</span>' +
         '</button><ul class="cover-unit-lessons">';
       unit.lessons.forEach(function (lesson, li) {
         var idx = globalIdx++;
+        var titleSpan = lesson.title_es
+          ? '<span data-es="' + escHtml(lesson.title_es) + '">' + escHtml(lesson.title) + '</span>'
+          : escHtml(lesson.title);
         tocHtml += '<li><a onclick="window._course.goTo(' + idx + ')">' +
           '<span class="toc-num">' + String(idx + 1).padStart(2, '0') + '</span> ' +
-          escHtml(lesson.title) + '</a></li>';
+          titleSpan + '</a></li>';
       });
       tocHtml += '</ul></div>';
     });
 
-    /* ── Nav guide (shared across all courses) ── */
+    /* ── Nav guide (shared across all courses, bilingual) ── */
     var navHtml =
       '<div class="nav-guide-grid">' +
         '<div class="nav-guide-card">' +
           '<div class="nav-guide-keys"><kbd>PgUp</kbd> <kbd>PgDn</kbd></div>' +
-          '<div class="nav-guide-title">Keyboard</div>' +
-          '<div class="nav-guide-desc">Page Up to go back<br>Page Down to advance</div>' +
+          '<div class="nav-guide-title" data-es="Teclado">Keyboard</div>' +
+          '<div class="nav-guide-desc" data-es="Re Pág para retroceder&lt;br&gt;Av Pág para avanzar">Page Up to go back<br>Page Down to advance</div>' +
         '</div>' +
         '<div class="nav-guide-card">' +
           '<div class="nav-guide-keys">&#9776;</div>' +
-          '<div class="nav-guide-title">Sidebar</div>' +
-          '<div class="nav-guide-desc">Open the index and<br>click any lesson</div>' +
+          '<div class="nav-guide-title" data-es="Índice">Sidebar</div>' +
+          '<div class="nav-guide-desc" data-es="Abre el índice y&lt;br&gt;haz clic en la lección">Open the index and<br>click any lesson</div>' +
         '</div>' +
         '<div class="nav-guide-card">' +
           '<div class="nav-guide-keys">&lsaquo; swipe &rsaquo;</div>' +
-          '<div class="nav-guide-title">Touch</div>' +
-          '<div class="nav-guide-desc">Swipe left or right<br>on mobile devices</div>' +
+          '<div class="nav-guide-title" data-es="Táctil">Touch</div>' +
+          '<div class="nav-guide-desc" data-es="Desliza a izquierda o derecha&lt;br&gt;en dispositivos móviles">Swipe left or right<br>on mobile devices</div>' +
         '</div>' +
         '<div class="nav-guide-card">' +
           '<div class="nav-guide-keys">F11</div>' +
-          '<div class="nav-guide-title">Fullscreen</div>' +
-          '<div class="nav-guide-desc">Immersive mode for<br>distraction-free study</div>' +
+          '<div class="nav-guide-title" data-es="Pantalla completa">Fullscreen</div>' +
+          '<div class="nav-guide-desc" data-es="Modo inmersivo para&lt;br&gt;estudiar sin distracciones">Immersive mode for<br>distraction-free study</div>' +
         '</div>' +
       '</div>';
 
@@ -357,7 +411,7 @@
     var videoSrc = course.hasOwnProperty('coverVideo') ? course.coverVideo : DEFAULT_COVER_VIDEO;
     var videoHtml = videoSrc
       ? '<section class="cover-section">' +
-          '<h2>Video</h2>' +
+          '<h2 data-es="Vídeo">Video</h2>' +
           '<div class="cover-nav-video" id="cover-nav-video">' +
             '<iframe src="' + videoSrc + '" ' +
               'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
@@ -366,56 +420,59 @@
         '</section>'
       : '';
 
+    /* ── Hero meta line ── */
+    var metaEN = flat.length + ' lessons &middot; ' + course.units.length + ' units &middot; '    + escHtml(course.authors || 'Vicente Matus, PhD');
+    var metaES = flat.length + ' lecciones &middot; ' + course.units.length + ' unidades &middot; ' + escHtml(course.authors || 'Vicente Matus, PhD');
+
+    /* ── Welcome text ── */
+    var welcomeEN = course.welcome ||
+      'This course walks you through <strong>' + escHtml(course.title) + '</strong> ' +
+      'from foundational concepts to applied practice. Each lesson includes written ' +
+      'material, diagrams, and (when available) a short video explanation. ' +
+      'Work at your own pace, revisit any lesson, and download the full course for offline reading.';
+    var welcomeES = course.welcome_es || '';
+
+    /* ── Download button (static PDF or generated) ── */
+    var dlBtnEN = course.pdfUrl
+      ? '<a class="cover-btn cover-btn-download" href="' + course.pdfUrl + '" download data-es="&#128196; Descargar el curso (PDF)">&#128196; Download Full Course (PDF)</a>'
+      : '<button class="cover-btn cover-btn-download" onclick="window._course.downloadPDF()" data-es="&#128196; Descargar el curso (PDF)">&#128196; Download Full Course (PDF)</button>';
+
     cover.innerHTML =
       /* ── Hero ── */
       '<div class="cover-hero">' +
-        '<img src="figs/' + course.slug + '/cover.png" class="cover-hero-img" ' +
-          'onerror="this.remove()" alt="" />' +
+        '<img src="figs/' + course.slug + '/cover.png" class="cover-hero-img" onerror="this.remove()" alt="" />' +
         '<div class="cover-hero-overlay">' +
-          '<span class="cover-badge-lg">' + escHtml(course.badge) + '</span>' +
-          '<h1 class="cover-hero-title">' + escHtml(course.title) + '</h1>' +
-          '<p class="cover-hero-meta">' + flat.length + ' lessons &middot; ' +
-            course.units.length + ' units &middot; ' + escHtml(course.authors || 'Vicente Matus, PhD') + '</p>' +
+          '<span class="cover-badge-lg"' + (course.badge_es ? ' data-es="' + escHtml(course.badge_es) + '"' : '') + '>' + escHtml(course.badge) + '</span>' +
+          '<h1 class="cover-hero-title"'  + (course.title_es ? ' data-es="' + escHtml(course.title_es) + '"' : '') + '>' + escHtml(course.title) + '</h1>' +
+          '<p class="cover-hero-meta" data-es="' + metaES + '">' + metaEN + '</p>' +
         '</div>' +
       '</div>' +
 
       /* ── Body ── */
       '<div class="cover-body">' +
         '<section class="cover-section">' +
-          '<h2>Welcome</h2>' +
-          '<p>' + (course.welcome ||
-            'This course walks you through <strong>' + escHtml(course.title) + '</strong> ' +
-            'from foundational concepts to applied practice. Each lesson includes written ' +
-            'material, diagrams, and (when available) a short video explanation. ' +
-            'Work at your own pace, revisit any lesson, and download the full course for offline reading.') +
-          '</p>' +
+          '<h2 data-es="Bienvenida">Welcome</h2>' +
+          '<p' + (welcomeES ? ' data-es="' + escHtml(welcomeES) + '"' : '') + '>' + welcomeEN + '</p>' +
         '</section>' +
 
         videoHtml +
 
         '<section class="cover-section">' +
-          '<h2>Course Contents</h2>' +
+          '<h2 data-es="Contenidos del curso">Course Contents</h2>' +
           '<div class="cover-toc-grid">' + tocHtml + '</div>' +
         '</section>' +
 
         '<section class="cover-section cover-actions-block">' +
-          '<h2>Start or Download</h2>' +
-          '<p>Begin with the first lesson now, or download the complete PDF version for offline reading.</p>' +
+          '<h2 data-es="Empezar o descargar">Start or Download</h2>' +
+          '<p data-es="Empieza con la primera lección ahora, o descarga el curso completo en PDF para leerlo sin conexión.">Begin with the first lesson now, or download the complete PDF version for offline reading.</p>' +
           '<div class="cover-actions">' +
-            '<button class="cover-btn cover-btn-start" onclick="window._course.goTo(0)">' +
-              'Start Lesson 1 &rarr;</button>' +
-            /* A course may ship a hand-made PDF via `pdfUrl`; otherwise the
-               full course is generated from its markdown on the fly. */
-            (course.pdfUrl
-              ? '<a class="cover-btn cover-btn-download" href="' + course.pdfUrl + '" download>' +
-                  '&#128196; Download Full Course (PDF)</a>'
-              : '<button class="cover-btn cover-btn-download" onclick="window._course.downloadPDF()">' +
-                  '&#128196; Download Full Course (PDF)</button>') +
+            '<button class="cover-btn cover-btn-start" onclick="window._course.goTo(0)" data-es="Lección 1 &amp;rarr;">Start Lesson 1 &rarr;</button>' +
+            dlBtnEN +
           '</div>' +
         '</section>' +
 
         '<section class="cover-section cover-section-annex">' +
-          '<h2>How to Navigate</h2>' + navHtml +
+          '<h2 data-es="Cómo navegar">How to Navigate</h2>' + navHtml +
         '</section>' +
       '</div>';
 
@@ -999,13 +1056,38 @@
     setupSwipe();
     setupMobileMenu();
 
+    // Kick off ES markdown pre-fetch so the first language toggle is instant.
+    loadAllMarkdownES();
+
     // defer so DOM is fully ready, then sync videos to the site language and
     // keep them in sync with the top-bar language toggle.
     setTimeout(function () {
       applyVideoLang(currentSiteLang());
     }, 0);
     document.addEventListener('sitelangchange', function (e) {
-      applyVideoLang((e.detail && e.detail.lang) || currentSiteLang());
+      var lang = (e.detail && e.detail.lang) || currentSiteLang();
+      applyVideoLang(lang);
+
+      // Re-render every lesson body that has already been shown at least once.
+      // If ES markdown hasn't loaded yet, load it first then re-render.
+      Object.keys(mdRendered).forEach(function (idxStr) {
+        var idx = parseInt(idxStr, 10);
+        if (lang === 'es' && !mdLoadedES) {
+          loadAllMarkdownES().then(function () { renderMarkdownLang(idx, lang); });
+        } else {
+          renderMarkdownLang(idx, lang);
+        }
+      });
+
+      // Keep topbar title in sync when viewing a lesson
+      if (!showingCover) {
+        var titleEl = document.getElementById('lesson-title-top');
+        var activeItem = document.querySelector('.lesson-item[data-idx="' + current + '"]');
+        if (titleEl && activeItem) {
+          var nameEl = activeItem.querySelector('.lesson-name');
+          if (nameEl) titleEl.textContent = nameEl.textContent;
+        }
+      }
     });
 
     setupSidebarResize();
