@@ -69,7 +69,7 @@
 
     const flat = flatLessons(course);
     document.getElementById('sidebar-meta').textContent =
-      flat.length + ' lessons · Vicente Matus, PhD';
+      flat.length + ' lessons · ' + (course.authors || 'Vicente Matus, PhD');
 
     // back link
     const backLink = document.getElementById('back-link');
@@ -349,6 +349,23 @@
         '</div>' +
       '</div>';
 
+    /* ── Cover video ──
+       Courses inherit the shared platform navigation video by default.
+       A course may override the embed URL by setting `coverVideo`, or hide
+       the section entirely by setting it to null / '' (e.g. workshop guides). */
+    var DEFAULT_COVER_VIDEO = 'https://www.youtube-nocookie.com/embed/-DQ233YbOq8?rel=0';
+    var videoSrc = course.hasOwnProperty('coverVideo') ? course.coverVideo : DEFAULT_COVER_VIDEO;
+    var videoHtml = videoSrc
+      ? '<section class="cover-section">' +
+          '<h2>Video</h2>' +
+          '<div class="cover-nav-video" id="cover-nav-video">' +
+            '<iframe src="' + videoSrc + '" ' +
+              'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+              'allowfullscreen loading="lazy"></iframe>' +
+          '</div>' +
+        '</section>'
+      : '';
+
     cover.innerHTML =
       /* ── Hero ── */
       '<div class="cover-hero">' +
@@ -358,7 +375,7 @@
           '<span class="cover-badge-lg">' + escHtml(course.badge) + '</span>' +
           '<h1 class="cover-hero-title">' + escHtml(course.title) + '</h1>' +
           '<p class="cover-hero-meta">' + flat.length + ' lessons &middot; ' +
-            course.units.length + ' units &middot; Vicente Matus, PhD</p>' +
+            course.units.length + ' units &middot; ' + escHtml(course.authors || 'Vicente Matus, PhD') + '</p>' +
         '</div>' +
       '</div>' +
 
@@ -366,20 +383,15 @@
       '<div class="cover-body">' +
         '<section class="cover-section">' +
           '<h2>Welcome</h2>' +
-          '<p>This course walks you through <strong>' + escHtml(course.title) + '</strong> ' +
-          'from foundational concepts to applied practice. Each lesson includes written ' +
-          'material, diagrams, and (when available) a short video explanation. ' +
-          'Work at your own pace, revisit any lesson, and download the full course for offline reading.</p>' +
+          '<p>' + (course.welcome ||
+            'This course walks you through <strong>' + escHtml(course.title) + '</strong> ' +
+            'from foundational concepts to applied practice. Each lesson includes written ' +
+            'material, diagrams, and (when available) a short video explanation. ' +
+            'Work at your own pace, revisit any lesson, and download the full course for offline reading.') +
+          '</p>' +
         '</section>' +
 
-        '<section class="cover-section">' +
-          '<h2>Video</h2>' +
-          '<div class="cover-nav-video" id="cover-nav-video">' +
-            '<iframe src="https://www.youtube-nocookie.com/embed/-DQ233YbOq8?rel=0" ' +
-              'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
-              'allowfullscreen loading="lazy"></iframe>' +
-          '</div>' +
-        '</section>' +
+        videoHtml +
 
         '<section class="cover-section">' +
           '<h2>Course Contents</h2>' +
