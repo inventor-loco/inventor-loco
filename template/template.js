@@ -404,8 +404,13 @@
           '<div class="cover-actions">' +
             '<button class="cover-btn cover-btn-start" onclick="window._course.goTo(0)">' +
               'Start Lesson 1 &rarr;</button>' +
-            '<button class="cover-btn cover-btn-download" onclick="window._course.downloadPDF()">' +
-              '&#128196; Download Full Course (PDF)</button>' +
+            /* A course may ship a hand-made PDF via `pdfUrl`; otherwise the
+               full course is generated from its markdown on the fly. */
+            (course.pdfUrl
+              ? '<a class="cover-btn cover-btn-download" href="' + course.pdfUrl + '" download>' +
+                  '&#128196; Download Full Course (PDF)</a>'
+              : '<button class="cover-btn cover-btn-download" onclick="window._course.downloadPDF()">' +
+                  '&#128196; Download Full Course (PDF)</button>') +
           '</div>' +
         '</section>' +
 

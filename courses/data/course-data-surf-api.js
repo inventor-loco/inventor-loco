@@ -9,7 +9,7 @@ window.COURSE = {
   "acc2": "var(--c-surf-api-soft)",
   "authors": "Nicola Gasparro & Vicente Matus",
   "heroImage": "assets/final.png",
-  "pdfUrl": "assets/workshop-guide.pdf",
+  "pdfUrl": "figs/surf-api/workshop-guide.pdf",
   "welcome": "Build a real web application: a live dashboard of ocean conditions at <strong>La Cícer Beach</strong> — tides, wind, and waves. You don't need to know how to code: you'll read, copy a few prompts into <strong>Claude Code</strong>, and watch your app come alive in the browser. Agüita House · Sustainability Lab · Las Palmas de Gran Canaria.",
   "units": [
     {
