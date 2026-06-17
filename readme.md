@@ -1,3 +1,4 @@
-Welcome to my website
+Welcome to my github!
 
-Go to https://inventor-loco.github.io/inventor-loco/
+check my website: https://inventor-loco.vercel.app
+
