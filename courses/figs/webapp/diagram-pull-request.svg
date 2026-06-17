@@ -1,0 +1,37 @@
+<svg viewBox="0 0 640 110" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'Courier New', monospace">
+
+  <!-- Branch change -->
+  <rect x="10"  y="28" width="148" height="52" rx="4" fill="#fce7f3" stroke="#db2777" stroke-width="1.5"/>
+  <text x="84"  y="48" text-anchor="middle" font-size="9.5" font-weight="600" fill="#9d174d">make a change</text>
+  <text x="84"  y="64" text-anchor="middle" font-size="9"   fill="#6b7280">on a branch</text>
+
+  <line x1="158" y1="54" x2="182" y2="54" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="178,50 188,54 178,58" fill="#9ca3af"/>
+
+  <!-- Open PR -->
+  <rect x="188" y="28" width="148" height="52" rx="4" fill="#f9fafb" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="262" y="48" text-anchor="middle" font-size="9.5" font-weight="600" fill="#374151">open a</text>
+  <text x="262" y="64" text-anchor="middle" font-size="9.5" font-weight="600" fill="#374151">Pull Request</text>
+
+  <line x1="336" y1="54" x2="360" y2="54" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="356,50 366,54 356,58" fill="#9ca3af"/>
+
+  <!-- Review -->
+  <rect x="366" y="28" width="112" height="52" rx="4" fill="#f9fafb" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="422" y="48" text-anchor="middle" font-size="9.5" font-weight="600" fill="#374151">review it</text>
+  <text x="422" y="64" text-anchor="middle" font-size="9"   fill="#6b7280">(tap Merge)</text>
+
+  <line x1="478" y1="54" x2="502" y2="54" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="498,50 508,54 498,58" fill="#9ca3af"/>
+
+  <!-- MERGE -->
+  <rect x="508" y="28" width="112" height="52" rx="4" fill="#f0fdf4" stroke="#059669" stroke-width="1.5"/>
+  <text x="564" y="48" text-anchor="middle" font-size="9.5" font-weight="600" fill="#065f46">MERGE</text>
+  <text x="564" y="64" text-anchor="middle" font-size="9"   fill="#6b7280">→ main updates</text>
+
+  <!-- Down arrow from MERGE -->
+  <line x1="564" y1="80" x2="564" y2="100" stroke="#059669" stroke-width="1.5"/>
+  <polygon points="560,96 564,106 568,96" fill="#059669"/>
+  <text x="572" y="96" font-size="9" fill="#059669">Vercel redeploys → live</text>
+
+</svg>

@@ -1,0 +1,49 @@
+<svg viewBox="0 0 680 130" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'Courier New', monospace">
+
+  <!-- Five step boxes -->
+  <!-- PROMPT -->
+  <rect x="10"  y="28" width="108" height="52" rx="4" fill="#fce7f3" stroke="#db2777" stroke-width="1.5"/>
+  <text x="64"  y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#9d174d">PROMPT</text>
+  <text x="64"  y="66" text-anchor="middle" font-size="9"  fill="#6b7280">ask the AI</text>
+
+  <!-- TEST -->
+  <rect x="146" y="28" width="108" height="52" rx="4" fill="#f9fafb" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="200" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#374151">TEST</text>
+  <text x="200" y="65" text-anchor="middle" font-size="9"  fill="#6b7280">open locally</text>
+
+  <!-- COMMIT -->
+  <rect x="282" y="28" width="108" height="52" rx="4" fill="#f9fafb" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="336" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#374151">COMMIT</text>
+  <text x="336" y="65" text-anchor="middle" font-size="9"  fill="#6b7280">snapshot in</text>
+  <text x="336" y="77" text-anchor="middle" font-size="9"  fill="#6b7280">GH Desktop</text>
+
+  <!-- PUSH -->
+  <rect x="418" y="28" width="108" height="52" rx="4" fill="#f9fafb" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="472" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#374151">PUSH</text>
+  <text x="472" y="65" text-anchor="middle" font-size="9"  fill="#6b7280">send to GitHub</text>
+  <text x="472" y="77" text-anchor="middle" font-size="9"  fill="#6b7280">→ Vercel</text>
+
+  <!-- CHECK -->
+  <rect x="554" y="28" width="116" height="52" rx="4" fill="#f0fdf4" stroke="#059669" stroke-width="1.5"/>
+  <text x="612" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#065f46">CHECK</text>
+  <text x="612" y="65" text-anchor="middle" font-size="9"  fill="#6b7280">refresh live</text>
+  <text x="612" y="77" text-anchor="middle" font-size="9"  fill="#6b7280">*.vercel.app</text>
+
+  <!-- Forward arrows -->
+  <line x1="118" y1="54" x2="142" y2="54" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="138,50 148,54 138,58" fill="#9ca3af"/>
+
+  <line x1="254" y1="54" x2="278" y2="54" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="274,50 284,54 274,58" fill="#9ca3af"/>
+
+  <line x1="390" y1="54" x2="414" y2="54" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="410,50 420,54 410,58" fill="#9ca3af"/>
+
+  <line x1="526" y1="54" x2="550" y2="54" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="546,50 556,54 546,58" fill="#9ca3af"/>
+
+  <!-- Loop-back arc (CHECK back to PROMPT) -->
+  <path d="M 670 28 Q 670 8 340 8 Q 10 8 10 28" fill="none" stroke="#db2777" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <polygon points="6,24 10,14 14,24" fill="#db2777"/>
+
+</svg>

@@ -57,16 +57,7 @@ The **backend** runs *somewhere else* — on a server, not on the visitor's mach
 
 So a more accurate picture is **backend = server code *plus* database**, where the database holds the dataset and the server code provides the functionality and search.
 
-```
-  ┌──────────────── FRONTEND (the browser) ────────────────┐
-  │   HTML (content) + CSS (style) + JS (functionality)     │
-  └───────────────────────────┬────────────────────────────┘
-                              │  request / response (API)
-  ┌───────────────────────────▼────────────────────────────┐
-  │                BACKEND (a server somewhere)              │
-  │     server code (logic, auth, search)  ──►  DATABASE     │
-  └─────────────────────────────────────────────────────────┘
-```
+<img src="figs/webapp/diagram-frontend-backend.svg" alt="Frontend and backend architecture" style="width:100%;max-width:640px;display:block;margin:1rem 0" />
 
 ### The twist: a full stack with no server of your own
 
@@ -91,14 +82,7 @@ Every tool below is **free to start** and does exactly **one job**. Together the
 
 ### How they connect
 
-```
-  You + AI tool        GitHub Desktop        GitHub            Vercel
-  (write code)  ──────►  (commit/push)  ────►  (repo)  ───────►  (live site)
-                                                  ▲                  │
-                                                  │   visitor submits │
-                                              Web3Forms  ◄────────────┘
-                                          or Apps Script
-```
+<img src="figs/webapp/diagram-formula-stack.svg" alt="The formula stack and workflow" style="width:100%;max-width:680px;display:block;margin:1rem 0" />
 
 The loop you'll live in: **edit locally → push to GitHub → Vercel redeploys → check the live URL.** Forms are bolted on once the page looks good.
 
@@ -160,10 +144,7 @@ https://your-repo-name.vercel.app
 
 Vercel is now **watching your repository**. From now on, every time you push a change to GitHub, Vercel automatically rebuilds and redeploys. This is called **continuous deployment**, and it's the quiet superpower of this whole workshop:
 
-```
-  push to GitHub  ──►  Vercel notices  ──►  rebuilds  ──►  live URL updated
-        (you)                            (automatic)        (seconds later)
-```
+<img src="figs/webapp/diagram-continuous-deploy.svg" alt="Continuous deployment pipeline" style="width:100%;max-width:620px;display:block;margin:1rem 0" />
 
 You will never click "deploy" again. **Pushing your code *is* deploying it.** Keep that `*.vercel.app` URL open in a tab — you'll refresh it constantly as you build.
 
@@ -236,15 +217,7 @@ Repeat until the page looks right *locally*. You haven't published anything yet 
 
 This is the heartbeat of the entire workshop. Once it's muscle memory, you can build anything.
 
-```
-   ┌──────────────────────────────────────────────────────┐
-   │                                                      │
-   ▼                                                      │
- PROMPT  ──►  TEST  ──►  COMMIT  ──►  PUSH  ──►  CHECK  ───┘
- (ask AI)   (open it   (snapshot   (send to   (refresh the
-            locally)   in GH       GitHub →    live .vercel
-                       Desktop)    Vercel)     .app URL)
-```
+<img src="figs/webapp/diagram-loop.svg" alt="The prompt-test-commit-push-check loop" style="width:100%;max-width:680px;display:block;margin:1rem 0" />
 
 ### Walking one full lap
 
@@ -315,12 +288,7 @@ Your whole workflow lives on GitHub — which means you can run it from a phone.
 
 A **Pull Request (PR)** is a proposed set of changes, kept separate from your live code until you approve it. It's the safe way to change things when you're not at your desk:
 
-```
-  make a change on a branch  ──►  open a Pull Request  ──►  review it  ──►  MERGE
-                                                                            │
-                                                              Vercel redeploys ▼
-                                                                  live site updated
-```
+<img src="figs/webapp/diagram-pull-request.svg" alt="Pull request workflow" style="width:100%;max-width:640px;display:block;margin:1rem 0" />
 
 ### The pocket loop
 
@@ -332,6 +300,51 @@ A **Pull Request (PR)** is a proposed set of changes, kept separate from your li
 > **Why a PR instead of editing `main` directly?** On the go, you can't easily preview locally. A PR gives you a moment to *look before you leap* — and a clean way to discard the change if it's wrong.
 
 <!-- slug: 11 -->
+## Turn it into an app — add it to your home screen
+
+Remember the title: website *and* web-**app**. Here's where the "app" arrives. Your site is just a URL — but with one tap on your phone you can give it an **icon on your home screen** that opens full-screen, with no address bar, exactly like a native app you'd download from a store. No store, no install file, no extra code required.
+
+> **Why this works.** A modern website *is* an app. Phones can "install" any web page as a shortcut that launches in its own window. This is the lightweight side of what the industry calls a **Progressive Web App (PWA)**.
+
+### On iPhone / iPad (use **Safari**)
+
+The home-screen option only appears in Apple's own browser, so this must be done in **Safari** — not Chrome or another app.
+
+1. Open **Safari** and go to your live site (`https://your-repo.vercel.app`).
+2. Tap the **Share** button (the square with an upward arrow) in the toolbar.
+3. Scroll down and tap **Add to Home Screen**.
+4. Edit the name if you like, then tap **Add**.
+
+An icon now sits on your home screen. Tapping it launches your site full-screen.
+
+### On Android (use **Chrome**)
+
+1. Open **Chrome** and go to your live site.
+2. Tap the **⋮** menu (three dots, top-right).
+3. Tap **Add to Home screen** (it may say **Install app**).
+4. Confirm the name and tap **Add** / **Install**.
+
+> **Heads-up:** the wording moves around between OS and browser versions, and the **native browser is required** — Safari on iOS, Chrome on Android. If you don't see the option, you're probably in the wrong browser or an in-app browser (like the one inside Instagram).
+
+### Make the icon and name look right (optional)
+
+By default the icon is a snapshot of your page. To control how the installed app looks — a proper icon, a name, a launch colour — your site needs two small things, and **your AI tool can add them for you**:
+
+- a **web app manifest** (`site.webmanifest`) describing the name, icon, and theme colour;
+- an **apple-touch-icon** (a square PNG) so iOS uses *your* logo.
+
+A prompt like this is enough:
+
+```
+Add a web app manifest and an apple-touch-icon so my site installs
+nicely to a phone home screen. Use my logo (logo.png) for the icon,
+set the app name to "<your project>", and a theme colour of <your
+brand colour>. Link them correctly in index.html.
+```
+
+Commit, push, check — then re-add to your home screen to see your own icon. You now have a website that *also* lives in your pocket as an app.
+
+<!-- slug: 12 -->
 ## A smarter backend — Google Apps Script
 
 Web3Forms is perfect for "send me a message." But sometimes you want **logic**: send the visitor an automatic reply, save submissions to a spreadsheet, or build a custom form. For that, meet **Google Apps Script** — a tiny, free backend that lives inside your Google account.
@@ -340,12 +353,7 @@ Web3Forms is perfect for "send me a message." But sometimes you want **logic**: 
 
 **Google Apps Script** lets you run small JavaScript programs on Google's servers, with built-in access to your Gmail, Google Sheets, Google Forms, and more. Deployed as a **Web App**, a script becomes a URL your page can send data to — a genuine backend endpoint, with no server to manage.
 
-```
-  your form  ──►  Apps Script Web App URL  ──►  script runs on Google
-                                                  │      │        │
-                                            send Gmail  save to   build a
-                                            reply       a Sheet   Google Form
-```
+<img src="figs/webapp/diagram-apps-script.svg" alt="Google Apps Script fan-out" style="width:100%;max-width:560px;display:block;margin:1rem 0" />
 
 ### Two things it unlocks
 
@@ -367,21 +375,14 @@ And because that's *just code*, **your AI tool can write it for you.** Describe 
 
 > **Web3Forms vs Apps Script — when to use which.** Reach for **Web3Forms** when you just need messages in your inbox (5 minutes, no code). Reach for **Apps Script** when you need *behaviour* — auto-replies, saving to a spreadsheet, or generating forms — and don't mind a little AI-written code.
 
-<!-- slug: 12 -->
+<!-- slug: 13 -->
 ## Recap & where to go next
 
 You started with nothing and finished with a **live, contactable website you built by orchestrating AI.** Hold on to the mental model — it scales to far bigger things.
 
 ### The model to keep
 
-```
-  FRONTEND (browser)          BACKEND (delegated)
-  HTML · CSS · JS     ◄────►  Web3Forms / Apps Script
-        │
-   GitHub (codebase)  ──►  Vercel (auto-deploy)  ──►  live URL
-        ▲
-   You + an AI tool, looping:  prompt → test → commit → push → check
-```
+<img src="figs/webapp/diagram-recap.svg" alt="Full-stack mental model recap" style="width:100%;max-width:640px;display:block;margin:1rem 0" />
 
 The whole workshop is really **one loop and a few managed services.** Master the loop and you can build almost anything by swapping in more capable pieces.
 
@@ -394,6 +395,7 @@ The whole workshop is really **one loop and a few managed services.** Master the
 - ✅ Lived the **prompt → test → commit → push → check** loop
 - ✅ Added a **Web3Forms** contact form — a backend without a server
 - ✅ Learned to maintain the site **from your phone** via Pull Requests
+- ✅ Installed the site as an **app on your phone's home screen**
 - ✅ Met **Google Apps Script** for smarter, AI-generated backends
 
 ### Next rungs on the ladder

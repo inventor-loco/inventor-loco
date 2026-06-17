@@ -1,0 +1,29 @@
+<svg viewBox="0 0 620 80" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'Courier New', monospace">
+
+  <!-- Step boxes -->
+  <rect x="10"  y="16" width="120" height="48" rx="4" fill="#fce7f3" stroke="#db2777" stroke-width="1.5"/>
+  <text x="70"  y="37" text-anchor="middle" font-size="10" font-weight="600" fill="#9d174d">push to GitHub</text>
+  <text x="70"  y="53" text-anchor="middle" font-size="9"  fill="#6b7280">(you)</text>
+
+  <line x1="130" y1="40" x2="154" y2="40" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="150,36 160,40 150,44" fill="#9ca3af"/>
+
+  <rect x="160" y="16" width="130" height="48" rx="4" fill="#f9fafb" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="225" y="37" text-anchor="middle" font-size="10" font-weight="600" fill="#374151">Vercel notices</text>
+  <text x="225" y="53" text-anchor="middle" font-size="9"  fill="#6b7280">(automatic)</text>
+
+  <line x1="290" y1="40" x2="314" y2="40" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="310,36 320,40 310,44" fill="#9ca3af"/>
+
+  <rect x="320" y="16" width="110" height="48" rx="4" fill="#f9fafb" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="375" y="37" text-anchor="middle" font-size="10" font-weight="600" fill="#374151">rebuilds</text>
+  <text x="375" y="53" text-anchor="middle" font-size="9"  fill="#6b7280">(seconds)</text>
+
+  <line x1="430" y1="40" x2="454" y2="40" stroke="#9ca3af" stroke-width="1.5"/>
+  <polygon points="450,36 460,40 450,44" fill="#9ca3af"/>
+
+  <rect x="460" y="16" width="148" height="48" rx="4" fill="#f0fdf4" stroke="#059669" stroke-width="1.5"/>
+  <text x="534" y="37" text-anchor="middle" font-size="10" font-weight="600" fill="#065f46">live URL updated</text>
+  <text x="534" y="53" text-anchor="middle" font-size="9"  fill="#6b7280">(seconds later)</text>
+
+</svg>
