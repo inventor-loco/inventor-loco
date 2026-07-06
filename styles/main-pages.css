@@ -143,6 +143,8 @@ h1 {
 .btn-ghost, .pub-action, .tiny-btn { background: transparent; color: var(--ink2); border: 1px solid var(--rule); }
 .btn-ghost:hover, .pub-action:hover, .tiny-btn:hover { border-color: var(--ink); background: var(--soft); transform: none; }
 .tiny-btn { min-height: 32px; padding: 0.35rem 0.75rem; font-size: 0.72rem; }
+.pub-action.is-disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+.pub-action.is-disabled:hover { border-color: var(--rule); background: transparent; }
 .section { padding: 1.75rem 2rem; }
 .section + .section { border-top: 1px solid var(--rule); }
 .section-kicker { color: var(--ink3); font-size: 0.67rem; margin-bottom: 0.35rem; }
@@ -193,6 +195,17 @@ h2 { margin: 0 0 0.4rem; font-size: 1.4rem; line-height: 1.1; letter-spacing: -0
 .pub-list { display: grid; gap: 0; }
 .pub-item { display: grid; grid-template-columns: 64px 1fr; gap: 0.95rem; padding: 1rem 0; border-top: 1px solid var(--rule); }
 .pub-item:first-child { border-top: none; padding-top: 0; }
+.pub-item.is-new {
+  border-top: none; border-left: 3px solid var(--accent); border-radius: 4px;
+  background: var(--accent-soft); padding: 1rem 1.1rem; margin: 0.5rem 0;
+}
+.pub-badge {
+  display: inline-block; margin-left: 0.5rem; padding: 0.1rem 0.5rem; border-radius: 3px;
+  background: var(--accent); color: white; font-family: var(--mono);
+  font-size: 0.62rem; font-weight: 500; vertical-align: middle; letter-spacing: 0.04em;
+}
+.pub-action.accent { background: var(--accent); color: white; border-color: var(--accent); }
+.pub-action.accent:hover { background: var(--accent); border-color: var(--accent); opacity: 0.85; }
 .pub-title { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.25rem; }
 .pub-authors { color: var(--ink2); font-size: 0.8rem; margin-bottom: 0.2rem; }
 .pub-authors .self { font-weight: 600; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 2px; }
