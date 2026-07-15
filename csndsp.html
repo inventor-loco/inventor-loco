@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <title>Vicente Matus, PhD | CSNDSP 2026</title>
+  <link rel="icon" href="mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#0d0d0d">
+  <link rel="stylesheet" href="styles/icons.css" />
+  <link rel="stylesheet" href="styles/main-pages.css" />
+  <style>
+    :root { --page-accent: var(--c-red); --page-accent-soft: var(--c-red-soft); }
+    details.abstract { margin-top: 0.45rem; }
+    details.abstract summary {
+      cursor: pointer; font-family: var(--mono); font-size: 0.67rem;
+      text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink3); user-select: none;
+    }
+    details.abstract summary:hover { color: var(--page-accent); }
+    details.abstract[open] summary { color: var(--page-accent); }
+    details.abstract p { margin: 0.5rem 0 0; color: var(--ink2); font-size: 0.82rem; max-width: 48rem; }
+    .hero-photo {
+      position: relative;
+      background-color: #0d0f14;
+      background-image: linear-gradient(rgba(10, 12, 18, 0.5), rgba(10, 12, 18, 0.78)), url('assets/csndsp/edinburgh-hero.jpg');
+      background-size: cover;
+      background-position: center 32%;
+      border-color: #14161c;
+      padding-bottom: 2.4rem;
+    }
+    .hero-photo h1 { color: #fff; font-size: clamp(2.6rem, 6.5vw, 4.3rem); }
+    .hero-photo .eyebrow { color: #fca5a5; }
+    .hero-photo .lead { color: #ececec; border-left-color: var(--c-red); }
+    .hero-photo .btn { background: #fff; color: #0d0d0d; border-color: #fff; }
+    .hero-photo .btn-ghost { color: #fff; border-color: rgba(255, 255, 255, 0.45); }
+    .hero-photo .btn-ghost:hover { background: rgba(255, 255, 255, 0.15); border-color: #fff; color: #fff; }
+    .hero-photo .logo-chip { display: inline-flex; align-items: center; background: #fff; border-radius: 6px; padding: 0.5rem 0.8rem; }
+    .photo-credit { position: absolute; right: 0.9rem; bottom: 0.55rem; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.05em; }
+    .photo-credit a { color: rgba(255, 255, 255, 0.55); text-decoration: none; }
+    .photo-credit a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" aria-hidden="true" viewBox="0 0 180 180"><g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"><path d="M 22 38 L 50 138 L 78 38"/><path d="M 88 138 L 88 38 L 110 82 L 132 38 L 132 138"/><path d="M 150 72 L 150 138"/></g><circle fill="currentColor" cx="150" cy="42" r="9"/></svg>
+      <div class="brand-text">
+        <strong>Vicente Matus, PhD</strong>
+        <span>IDeTIC · ULPGC</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="" data-es="Inicio">Home</a>
+<a href="cv.html" class="">CV</a>
+<a href="publications.html" class="" data-es="Publicaciones">Publications</a>
+<a href="courses.html" class="" data-es="Cursos">Courses</a>
+<a href="donate.html" class="" data-es="Donar">Donate</a>
+    </div>
+    <a href="contact.html" class="nav-cta" data-es="Contacto">Contact</a>
+    <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+      <button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="true" onclick="setSiteLang('en')" title="English">
+        <svg viewBox="0 0 60 30" aria-hidden="true"><clipPath id="ukc"><rect width="60" height="30"/></clipPath><g clip-path="url(#ukc)"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#ukc)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 V30M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30M0,15 H60" stroke="#C8102E" stroke-width="6"/></g></svg>
+        EN
+      </button>
+      <button type="button" class="lang-btn" data-lang-btn="es" aria-pressed="false" onclick="setSiteLang('es')" title="Español">
+        <svg viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#AA151B"/><rect y="10" width="60" height="20" fill="#F1BF00"/></svg>
+        ES
+      </button>
+    </div>
+    <button class="nav-hamburger" aria-label="Toggle navigation" onclick="document.getElementById('mobile-nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html" data-es="Inicio">Home</a>
+    <a href="cv.html">CV</a>
+    <a href="publications.html" data-es="Publicaciones">Publications</a>
+    <a href="courses.html" data-es="Cursos">Courses</a>
+    <a href="donate.html" data-es="Donar">Donate</a>
+    <a href="contact.html" class="mobile-nav-cta" data-es="Contacto">Contact</a>
+  </div>
+</nav>
+<main>
+  <div class="wrap">
+
+    <section class="shell hero compact hero-photo">
+      <div class="eyebrow" data-es="Sesión de congreso · 15–17 de julio de 2026 · Edimburgo, Reino Unido">Conference session · 15–17 July 2026 · Edinburgh, UK</div>
+      <h1 data-es="Sesión Especial 07 en CSNDSP 2026">Special Session 07 at CSNDSP 2026</h1>
+      <p class="lead" data-es="Presido la Sesión Especial 07, «Camera-Based Optical Wireless Communication Systems», junto a Carlos Guerra-Yánez (Universidad Técnica Checa de Praga) en el 15.º Simposio Internacional IEEE sobre Sistemas de Comunicación, Redes y Procesamiento Digital de Señales, organizado por la Universidad de Edimburgo. La sesión reúne ocho artículos en dos sesiones orales; soy coautor de tres de ellos y presento uno como autor principal.">I co-chair Special Session 07, “Camera-Based Optical Wireless Communication Systems,” alongside
+        Carlos Guerra-Yánez (Czech Technical University in Prague) at the IEEE 15th International Symposium
+        on Communication Systems, Networks and Digital Signal Processing, hosted by the University of
+        Edinburgh. The session gathers eight papers across two oral sessions; I co-author three of them and
+        present one as lead author.</p>
+      <div style="display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;margin:0.9rem 0 0.2rem;">
+        <a class="logo-chip" href="https://eng.ed.ac.uk/csndsp-2026" target="_blank" rel="noopener" aria-label="CSNDSP 2026">
+          <img src="assets/csndsp/2026csndsp-logo.png" alt="CSNDSP 2026 — Edinburgh castle logo" style="height:44px;width:auto;" />
+        </a>
+        <a class="logo-chip" href="https://eng.ed.ac.uk/csndsp-2026" target="_blank" rel="noopener" aria-label="University of Edinburgh">
+          <img src="https://www.ed.ac.uk/themes/upstream/wpp_theme/images/logo.png" alt="University of Edinburgh" style="height:30px;width:auto;" />
+        </a>
+      </div>
+      <div class="hero-actions">
+        <a class="btn" href="https://eng.ed.ac.uk/csndsp-2026" target="_blank" rel="noopener" data-es="Visitar el evento →">Visit the event →</a>
+        <a class="btn-ghost" href="https://eng.ed.ac.uk/sites/default/files/2025-08/Camera-Based%20Optical%20Wireless%20Communication%20Systems.pdf" target="_blank" rel="noopener" data-es="Convocatoria (PDF)">Session call (PDF)</a>
+        <a class="btn-ghost" href="2026csndsp-energy-autonomous-node-poster.pdf" target="_blank" rel="noopener" data-es="Póster (PDF)">Poster (PDF)</a>
+        <a class="btn-ghost" href="publications.html" data-es="Mis publicaciones">My publications</a>
+      </div>
+      <div class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Edinburgh_Night_Panorama_from_Calton_Hill.jpg" target="_blank" rel="noopener">Photo: Gregg M. Erickson · CC BY 3.0</a></div>
+    </section>
+
+    <section class="shell section" style="margin-top:1.4rem;">
+      <div class="section-kicker" data-es="La sesión">The session</div>
+      <h2>Camera-Based Optical Wireless Communication Systems</h2>
+      <p class="section-sub" data-es="La comunicación por cámara óptica (OCC) convierte fuentes de luz comunes en transmisores y cámaras convencionales en receptores, habilitando enlaces inalámbricos sobre el espectro óptico sin licencia con hardware que ya está en todas partes. Los ocho artículos de esta sesión muestran la amplitud actual del campo: transmisores vestibles integrados en tejidos, identificación de balizas para posicionamiento, enlaces intra-satélite, arquitecturas para IoT, detección de enfermedades en cultivos con CNN y fibras ópticas de emisión lateral.">Optical camera communication (OCC) turns ordinary light sources into transmitters and off-the-shelf
+        cameras into receivers, enabling wireless links over the unlicensed optical spectrum with hardware
+        that is already everywhere. The eight papers in this session show the breadth of the field today:
+        wearable transmitters woven into fabric, beacon identification for positioning, intra-satellite
+        links, IoT architectures, CNN-based crop disease sensing, and side-emitting optical fibers.</p>
+      <div class="mini-list" style="margin-top:1.2rem;">
+        <div class="mini-item">
+          <div class="mini-k" data-es="Presidencia">Chairs</div>
+          <div class="mini-v" data-es="Vicente Matus (IDeTIC-ULPGC, España) · Carlos Guerra-Yánez (Universidad Técnica Checa, Chequia)">Vicente Matus (IDeTIC-ULPGC, Spain) · Carlos Guerra-Yánez (Czech Technical University, Czech Republic)</div>
+        </div>
+        <div class="mini-item">
+          <div class="mini-k" data-es="Formato">Format</div>
+          <div class="mini-v" data-es="Presentaciones orales, presenciales">Oral presentations, in-person</div>
+        </div>
+        <div class="mini-item">
+          <div class="mini-k" data-es="Sesiones">Sessions</div>
+          <div class="mini-v" data-es="SS07-01 — miércoles 15 de julio · SS07-02 — jueves 16 de julio">SS07-01 — Wednesday 15 July · SS07-02 — Thursday 16 July</div>
+        </div>
+        <div class="mini-item">
+          <div class="mini-k" data-es="Lugar">Venue</div>
+          <div class="mini-v" data-es="Universidad de Edimburgo, Edimburgo, Reino Unido">University of Edinburgh, Edinburgh, UK</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell section">
+      <div class="section-kicker" data-es="Programa · SS07-01">Program · SS07-01</div>
+      <h2 data-es="Sesión 1 — miércoles 15 de julio">Session 1 — Wednesday 15 July</h2>
+      <p class="section-sub" data-es="11:30–12:30 · Sala Prestonfield · Presiden: Vicente Matus y Carlos Guerra-Yánez">11:30–12:30 · Prestonfield room · Chairs: Vicente Matus &amp; Carlos Guerra-Yánez</p>
+      <div class="pub-list" style="margin-top:1.2rem;">
+
+        <div class="pub-item">
+          <div class="year">S1 · 1</div>
+          <div>
+            <div class="pub-title">Fabric as Optical Diffuser for Wearable LEDs in Optical Camera Communications Systems<span class="pub-badge" data-es="Coautor">Co-author</span></div>
+            <div class="pub-authors">Eleni Niarchou, <span class="self">Vicente Matus</span>, Victor Guerra, Jose Rabadan, Rafael Perez</div>
+            <div class="pub-venue">Universidad de Las Palmas de Gran Canaria &amp; IDeTIC, Spain · Wooptix, Spain</div>
+            <details class="abstract">
+              <summary data-es="Resumen">Abstract</summary>
+              <p>Wearable light-emitting diodes (LEDs) have recently emerged as promising transmitters for optical camera communications (OCC), enabling data transmission by being integrated into garments or accessories. In this work, we investigate the use of fabrics as optical diffusers for wearable LED transmitters in OCC systems. First, we develop an experimental testbed for angular radiation pattern characterization of textile-covered LEDs, enabling systematic measurement of horizontal emission profiles. Secondly, we derive a fabric diffuser model that analytically relates the native LED radiation pattern to the resulting garment-level emission, capturing the angular redistribution introduced by the fabric in a physically motivated framework. Thirdly, we propose a sewing pattern design methodology that supports the practical embedding of LEDs in garments while preserving optical performance and wearability. Finally, we demonstrate that flexible fabrics have the potential to be used as efficient optical diffusers in wearable OCC devices, thereby providing possibilities for developing more user-friendly and robust devices.</p>
+            </details>
+            <div class="pub-actions">
+              <span class="pub-action is-disabled" title="Poster link coming soon" aria-disabled="true" data-es="Póster">Poster</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="year">S1 · 2</div>
+          <div>
+            <div class="pub-title">Beacon Identification Using Noise Spectra in Optical Camera Communication</div>
+            <div class="pub-authors">Miguel Rêgo, Alexis Alfredo Dowhuszko, Luis Nero Alves, Pedro Fonseca</div>
+            <div class="pub-venue">University of Aveiro &amp; Instituto de Telecomunicações, Portugal · Aalto University, Finland</div>
+            <details class="abstract">
+              <summary data-es="Resumen">Abstract</summary>
+              <p>This paper proposes a novel method to identify visible light beacons using rolling shutter Optical Camera Communication (OCC), particularly suited for Visible Light Positioning (VLP) scenarios. Instead of the standard approaches of modulating the light source with a square wave, binary sequence or M-Pulse Amplitude Modulation (PAM) sequence, we propose that each beacon transmits filtered pseudo-random noise samples with a unique spectral signature. This allows us to circumvent the problem of having a low number of samples per image and the lack of time synchronisation between them, since there is no need for temporal alignment of random samples. The proposed concept was experimentally validated for a distance of up to 5 m, and the results showed that the probability of correct beacon identification increased with the number of images used. Furthermore, all beacons were correctly identified when using at least 10 images. These results indicate that this new proposed approach increases the number of beacons that can be identified, provided that a suitable number of images are used.</p>
+            </details>
+            <div class="pub-actions">
+              <span class="pub-action is-disabled" title="Poster link coming soon" aria-disabled="true" data-es="Póster">Poster</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="year">S1 · 3</div>
+          <div>
+            <div class="pub-title">Global-Shutter Pulse Amplitude Modulation for Optical Camera Communications in Intra-Satellite Links<span class="pub-badge" data-es="Coautor">Co-author</span></div>
+            <div class="pub-authors">Jaime Aranda Cubillo, <span class="self">Vicente Matus</span>, Jose Rabadan, Rafael Perez-Jimenez</div>
+            <div class="pub-venue">Universidad de Las Palmas de Gran Canaria &amp; IDeTIC, Spain</div>
+            <details class="abstract">
+              <summary data-es="Resumen">Abstract</summary>
+              <p>Optical Camera Communication (OCC) is a candidate technology for short-range intra-satellite links due to electromagnetic immunity and reduced harness complexity. In frame-wise reception (global-shutter operation), OCC throughput is constrained by the camera frame rate, motivating higher spectral-efficiency modulation at a fixed symbol clock. This work investigates M-ary pulse-amplitude modulation (PAM) for frame-based OCC and presents an end-to-end GS-PAM system, including the transmitter/receiver architectures, a statistically driven training method for selecting PAM intensity levels under camera noise and quantization constraints, and a frame-based demodulation pipeline for synchronization, amplitude estimation, quantization, and symbol reconstruction. Laboratory line-of-sight experiments demonstrate error-free transmission of 1,000 random ASCII characters using 4-PAM, achieving a twofold throughput increase over binary modulation under identical reception settings. An estimated SNR of at least 22 dB indicates sufficient margin for reliable multi-level detection. These results support PAM as an effective approach for improving throughput in low-rate, high-reliability intra-satellite OCC links.</p>
+            </details>
+            <div class="pub-actions">
+              <span class="pub-action is-disabled" title="Poster link coming soon" aria-disabled="true" data-es="Póster">Poster</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="year">S1 · 4</div>
+          <div>
+            <div class="pub-title">Comparative Analysis of PWM and FM-Based Modulation Techniques for Sensor Data Transmission in Optical Camera Communications</div>
+            <div class="pub-authors">Jorge Neto, Miguel Rêgo, Atiya Fatima Usmani, Ernesto Ventura, Luis Nero Alves</div>
+            <div class="pub-venue">Universidade de Aveiro &amp; Instituto de Telecomunicações, Portugal</div>
+            <details class="abstract">
+              <summary data-es="Resumen">Abstract</summary>
+              <p>This work investigates Pulse-Width Modulation (PWM) and Frequency Modulation (FM) as analog modulation schemes suitable for rolling shutter cameras. A theoretical and simulation framework is developed to model the rolling-shutter sampling process and evaluate signal reconstruction performance. The influence of key system parameters, including carrier frequency, modulating signal bandwidth, modulation index, and camera line sampling rate, is analyzed using the root-mean-square error (RMSE). Additionally, the impact of rolling-shutter line timing jitter is examined. Results show that FM provides lower reconstruction error under nominal conditions, while PWM exhibits greater robustness under large timing jitter. These findings highlight important trade-offs when selecting modulation schemes for OCC-based sensing systems.</p>
+            </details>
+            <div class="pub-actions">
+              <span class="pub-action is-disabled" title="Poster link coming soon" aria-disabled="true" data-es="Póster">Poster</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="shell section">
+      <div class="section-kicker" data-es="Programa · SS07-02">Program · SS07-02</div>
+      <h2 data-es="Sesión 2 — jueves 16 de julio">Session 2 — Thursday 16 July</h2>
+      <p class="section-sub" data-es="16:30–17:30 · Sala Pentland · Presiden: Carlos Guerra-Yánez y Vicente Matus">16:30–17:30 · Pentland room · Chairs: Carlos Guerra-Yánez &amp; Vicente Matus</p>
+      <div class="pub-list" style="margin-top:1.2rem;">
+
+        <div class="pub-item">
+          <div class="year">S2 · 1</div>
+          <div>
+            <div class="pub-title">Selective Detection of Black Rot in Grapevine Leaves Using Convolutional Neural Networks</div>
+            <div class="pub-authors">Patrícia Sergueevna Moltchanova, Luis Nero Alves, Carla Sofia Santos Ferreira</div>
+            <div class="pub-venue">Universidade de Aveiro, Portugal · Instituto Politécnico de Coimbra, Portugal</div>
+            <details class="abstract">
+              <summary data-es="Resumen">Abstract</summary>
+              <p>Grapevine diseases represent a major threat to vineyard productivity, with Black Rot being among the most destructive due to its rapid spread and visual similarity to other diseases. These diseases are associated with a diversity of pathogenic agents, namely fungi, oomycetes, bacteria and pests. While prior work frequently reports high accuracy in controlled multi-class classification, practical deployments commonly require selective detection of a target disease against a contaminated negative class. In this work, Black Rot detection is formulated as a binary classification task, where the negative class includes healthy leaves and other visually similar diseases. This study employed ImageNet pretrained Convolutional Neural Network (CNN) backbones, MobileNetV2, DenseNet121, ResNet50 and VGG16, using a two-stage transfer learning protocol. The ability of the CNN models to accurately identify Black Rot cases was evaluated using standard classification metrics, namely accuracy, precision, recall and F1-score. The results show clear differences in detection behaviour across architectures. ResNet50 achieves the highest overall performance, obtaining 100.0% precision, with no false positives while maintaining a high recall 96.3% and a F1-score of 98.1%, with an accuracy of 98.9%. Overall, the achieved performance is competitive and exceeds values reported in the literature, while addressing a more realistic contaminated-negative scenario.</p>
+            </details>
+            <div class="pub-actions">
+              <span class="pub-action is-disabled" title="Poster link coming soon" aria-disabled="true" data-es="Póster">Poster</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="year">S2 · 2</div>
+          <div>
+            <div class="pub-title">Optical Camera Communication as a Complementary Technology for Internet of Things: Architectures, Applications and Future Perspectives</div>
+            <div class="pub-authors">Fábio Matias, Miguel Rêgo, Atiya Fatima Usmani, Monica Figueiredo, Luis Nero Alves</div>
+            <div class="pub-venue">Universidade de Aveiro &amp; Instituto de Telecomunicações, Portugal · Polytechnic Institute of Leiria, Portugal</div>
+            <details class="abstract">
+              <summary data-es="Resumen">Abstract</summary>
+              <p>Optical Camera Communication (OCC) has emerged as a promising branch of Optical Wireless Communications (OWC), leveraging the unlicensed optical spectrum and widespread camera-equipped devices to enable low-cost, secure, and interference-resilient communication. As Internet of Things (IoT) deployments grow, conventional radio-frequency (RF) technologies face challenges related to spectrum congestion and electromagnetic interference. OCC addresses these limitations by offering a complementary solution for IoT applications where moderate data rates can be traded for robustness, spatial selectivity, and seamless integration with existing infrastructure. This review provides a comprehensive overview of OCC technologies, examining both transmitter and receiver architectures. Furthermore, this work identifies technical challenges hindering large-scale adoption and outlines emerging research directions towards sixth-generation (6G) networks. Special emphasis is placed on Integrated Sensing and Communication (ISAC) paradigms, and on distributed intelligent OCC networks.</p>
+            </details>
+            <div class="pub-actions">
+              <span class="pub-action is-disabled" title="Poster link coming soon" aria-disabled="true" data-es="Póster">Poster</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="year">S2 · 3</div>
+          <div>
+            <div class="pub-title">Energy-Autonomous Optical Camera Communication Node for Intra-Satellite Links<span class="pub-badge" data-es="Autor principal">Lead author</span></div>
+            <div class="pub-authors"><span class="self">Vicente Matus</span>, Jaime Aranda Cubillo, Rafael Perez-Jimenez, Jose Rabadan</div>
+            <div class="pub-venue">IDeTIC, Universidad de Las Palmas de Gran Canaria, Spain</div>
+            <details class="abstract">
+              <summary data-es="Resumen">Abstract</summary>
+              <p>This paper presents the design and experimental validation of an energy-autonomous optical camera communication (OCC) transmitter node intended for intra-satellite links. The proposed prototype harvests optical energy using a photovoltaic cell and stores it in an ultracapacitor, enabling threshold-triggered burst transmissions without electrical connection to a power bus. A laboratory demonstrator is characterized in terms of charge-transmit operating cycles and energy budget metrics, showing repeatable autonomous behavior with a charging time of approximately 199 s, burst durations of approximately 21 s, payloads of 315 bits per burst, a duty cycle of 9.6%, and an effective throughput of 1.43 bps. The results highlight how energy availability governs the effective throughput and motivates energy-aware OCC design for modular spacecraft subsystems.</p>
+            </details>
+            <div class="pub-actions">
+              <a class="pub-action" href="2026csndsp-energy-autonomous-node-poster.pdf" target="_blank" rel="noopener" data-es="Póster">Poster</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="year">S2 · 4</div>
+          <div>
+            <div class="pub-title">Real-Time Optical Camera Communication Based on Side-Emitting Fibers</div>
+            <div class="pub-authors">Jakub Formánek, Carlos Guerra-Yánez, Stanislav Zvanovec, Matej Komanec</div>
+            <div class="pub-venue">Czech Technical University in Prague, Czech Republic</div>
+            <details class="abstract">
+              <summary data-es="Resumen">Abstract</summary>
+              <p>This paper presents a real-time Optical Camera Communication (OCC) system for sensor-data transmission using a side-emitting optical fiber as a distributed light transmitter and a rolling-shutter camera as the receiver. Sensor data are packetized and sequentially transmitted using On-Off Keying modulation with Manchester encoding, while all receiver-side processing is done in real time. Region of Interest (ROI) detection is achieved using a Minimal Spanning Tree (MST)-based approach, enabling reliable tracking of the side-emitting fiber under varying distances. Experimental evaluation demonstrates stable real-time operation at approximately 47.5 fps across all tested conditions. For transmitter-receiver distances up to about 150 cm, the system achieves a low Bit Error Rate (BER) and near-unity Success of Reception (SoR). The presented results confirm the feasibility of low-cost, real-time OCC links for short-range sensor-data transmission using side-emitting optical fibers and provide a solid foundation for future improvements.</p>
+            </details>
+            <div class="pub-actions">
+              <span class="pub-action is-disabled" title="Poster link coming soon" aria-disabled="true" data-es="Póster">Poster</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+<footer>
+  <div class="footer-inner">
+    <span class="footer-name">Vicente Matus, PhD</span>
+    <span data-es="IDeTIC · ULPGC · Las Palmas de Gran Canaria, España">IDeTIC · ULPGC · Las Palmas de Gran Canaria, Spain</span>
+    <div class="footer-links">
+      <a href="https://scholar.google.com/citations?user=Exjlq20AAAAJ" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg> Scholar</a>
+      <a href="https://orcid.org/0000-0003-4262-3882" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 17.629H5.667V7.062h1.702v10.567zm-.852-12.269a1.06 1.06 0 1 1 0-2.121 1.06 1.06 0 0 1 0 2.121zM18.525 17.629h-3.928V7.062h3.928c3.3 0 4.976 2.385 4.976 5.284 0 3.147-1.956 5.283-4.976 5.283zm-.223-9.046h-2.003v7.523h1.99c2.828 0 3.473-2.146 3.473-3.762 0-2.634-1.676-3.761-3.46-3.761z"/></svg> ORCID</a>
+      <a href="https://github.com/inventor-loco" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> GitHub</a>
+      <a href="https://www.linkedin.com/in/vicente-matus/" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+      <a href="https://www.youtube.com/@inventorloco92" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.506 2.506 0 0 0-1.768-1.768C18.254 4 12 4 12 4s-6.254 0-7.814.418a2.506 2.506 0 0 0-1.768 1.768C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 0 0 1.768 1.768C5.746 20 12 20 12 20s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 16.254 22 12 22 12s0-4.254-.418-5.814zM10 15V9l5.2 3-5.2 3z"/></svg> YouTube</a>
+      <a href="https://www.researchgate.net/profile/Vicente-Matus" target="_blank" rel="noopener"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm-1.5 5h3.1c1.4 0 2.4.9 2.4 2.3 0 1-.5 1.8-1.3 2.2L16 16h-1.8l-1.6-4.2H10.5V16H9V7h1.5zm0 3.5h1.4c.8 0 1.3-.4 1.3-1.1 0-.7-.5-1.1-1.3-1.1H10.5V10.5z"/></svg> ResearchGate</a>
+      <a href="contact.html"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3 6 H21 V18 H3 Z M3 6 L12 13 L21 6"/></svg> <span data-es="Contacto">Contact</span></a>
+    </div>
+    <span class="footer-copy" data-es="&copy; Vicente Matus, IDeTIC-ULPGC, España">&copy; Vicente Matus, IDeTIC-ULPGC, Spain</span>
+  </div>
+</footer>
+
+  <script src="scripts/site-lang.js"></script>
+</body>
+</html>
