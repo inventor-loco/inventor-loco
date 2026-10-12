@@ -1,0 +1,260 @@
+// Collaboration world map on publications.html.
+//
+// Reads data/affiliations.json (built by scripts/build_affiliations.py) and
+// draws one dot per city hosting co-author institutions, sized by joint papers,
+// with optional great-circle arcs from the home institution. Needs d3@7 and
+// topojson-client@3 loaded first. Labels follow the site language (site-lang.js).
+(function () {
+  // Set to false to hide the arcs from the home institution if the map gets too busy.
+  var SHOW_ARCS = true;
+
+  var DATA_URL = 'data/affiliations.json';
+  var WORLD_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+  var MAX_ZOOM = 8;
+  // world-atlas names that differ from OpenAlex country names.
+  var COUNTRY_ALIASES = { 'United States': 'United States of America', 'Czech Republic': 'Czechia' };
+
+  var TEXT = {
+    en: {
+      papers: function (n) { return n + (n === 1 ? ' joint paper' : ' joint papers'); },
+      stats: function (i, c, p) { return i + ' partner institutions · ' + c + ' countries · ' + p + ' papers'; },
+      home: 'Home institution',
+      more: function (n) { return '+ ' + n + ' more'; },
+      hint: 'Ctrl/⌘ + scroll or the buttons to zoom · drag to pan',
+      hintTouch: 'Pinch or use the buttons to zoom',
+      zoomIn: 'Zoom in', zoomOut: 'Zoom out', reset: 'Reset view',
+      list: 'Show as table', cols: ['Institution', 'City', 'Country', 'Joint papers']
+    },
+    es: {
+      papers: function (n) { return n + (n === 1 ? ' publicación conjunta' : ' publicaciones conjuntas'); },
+      stats: function (i, c, p) { return i + ' instituciones colaboradoras · ' + c + ' países · ' + p + ' publicaciones'; },
+      home: 'Institución base',
+      more: function (n) { return '+ ' + n + ' más'; },
+      hint: 'Ctrl/⌘ + rueda o los botones para hacer zoom · arrastra para desplazar',
+      hintTouch: 'Pellizca o usa los botones para hacer zoom',
+      zoomIn: 'Acercar', zoomOut: 'Alejar', reset: 'Restablecer vista',
+      list: 'Ver como tabla', cols: ['Institución', 'Ciudad', 'País', 'Publicaciones']
+    }
+  };
+
+  var root = document.getElementById('collab-map');
+  if (!root || !window.d3 || !window.topojson) return;
+  var section = root.closest('section');
+
+  function lang() { return document.documentElement.lang === 'es' ? 'es' : 'en'; }
+  function t() { return TEXT[lang()]; }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  Promise.all([d3.json(DATA_URL), d3.json(WORLD_URL)]).then(function (res) {
+    init(res[0], res[1]);
+  }).catch(function (err) {
+    console.warn('collab-map: data not loaded', err);
+    if (section) section.hidden = true;
+  });
+
+  function init(data, world) {
+    var paperTitle = {};
+    data.papers.forEach(function (p) { paperTitle[p.doi || p.key] = p; });
+    var home = data.institutions.find(function (i) { return i.id === data.home; });
+    var located = data.institutions.filter(function (i) { return i.lat != null && i.lng != null; });
+
+    // One dot per city, since several institutions often share a city's coordinates.
+    var sites = d3.groups(located, function (i) { return i.city + '|' + i.country_code; }).map(function (g) {
+      var insts = g[1].sort(function (a, b) { return b.count - a.count; });
+      var papers = new Set();
+      insts.forEach(function (i) { i.papers.forEach(function (p) { papers.add(p); }); });
+      return {
+        insts: insts,
+        city: insts[0].city,
+        country: insts[0].country,
+        coords: [d3.mean(insts, function (i) { return i.lng; }), d3.mean(insts, function (i) { return i.lat; })],
+        count: papers.size,
+        isHome: insts.some(function (i) { return i.id === data.home; })
+      };
+    // Bigger dots first so small ones stay clickable; home last so its marker sits on top.
+    }).sort(function (a, b) { return (a.isHome - b.isHome) || (b.count - a.count); });
+    // Put a label on the left when another site sits just east of it.
+    sites.forEach(function (s) {
+      s.labelLeft = sites.some(function (o) {
+        var dx = o.coords[0] - s.coords[0];
+        return o !== s && dx > 0 && dx < 4 && Math.abs(o.coords[1] - s.coords[1]) < 3;
+      });
+    });
+    var homeSite = sites.find(function (s) { return s.isHome; });
+
+    var partnerCountries = new Set(located.filter(function (i) { return i.id !== data.home; })
+      .map(function (i) { return COUNTRY_ALIASES[i.country] || i.country; }));
+    var countries = topojson.feature(world, world.objects.countries).features
+      .filter(function (f) { return f.properties.name !== 'Antarctica'; });
+    var borders = topojson.mesh(world, world.objects.countries, function (a, b) { return a !== b; });
+
+    var r = d3.scaleSqrt().domain([1, d3.max(sites, function (s) { return s.count; })]).range([3.5, 12]);
+    var arcW = d3.scaleLinear().domain([1, d3.max(sites, function (s) { return s.isHome ? 0 : s.count; }) || 1]).range([0.75, 2.5]);
+
+    // --- DOM scaffold -------------------------------------------------------
+    root.innerHTML = '';
+    var svg = d3.select(root).append('svg').attr('class', 'collab-svg').attr('role', 'img');
+    var gMap = svg.append('g');
+    var gLand = gMap.append('g');
+    var gBorders = gMap.append('path').attr('class', 'collab-borders');
+    var gArcs = gMap.append('g').attr('class', 'collab-arcs');
+    var gDots = gMap.append('g');
+
+    var controls = d3.select(root).append('div').attr('class', 'collab-controls');
+    var btnIn = controls.append('button').attr('type', 'button').text('+');
+    var btnOut = controls.append('button').attr('type', 'button').text('−');
+    var btnReset = controls.append('button').attr('type', 'button').text('⟲');
+    var hint = d3.select(root).append('div').attr('class', 'collab-hint');
+    var tip = d3.select(root).append('div').attr('class', 'collab-tip').attr('role', 'status').attr('hidden', true);
+
+    var statsEl = document.getElementById('collab-stats');
+    var details = d3.select(root.parentNode).append('details').attr('class', 'collab-table');
+    var summary = details.append('summary');
+    var table = details.append('div').attr('class', 'collab-table-scroll').append('table');
+
+    var projection = d3.geoNaturalEarth1();
+    var path = d3.geoPath(projection);
+    var k = 1;
+    var narrow = false;
+    var pinned = null;
+
+    var zoom = d3.zoom().scaleExtent([1, MAX_ZOOM])
+      .filter(function (e) {
+        if (e.type === 'wheel') return e.ctrlKey || e.metaKey;
+        return !e.button;
+      })
+      .on('zoom', function (e) {
+        k = e.transform.k;
+        gMap.attr('transform', e.transform);
+        svg.classed('is-zoomed', k > 1.01);
+        sizeMarks();
+      });
+    svg.call(zoom).on('dblclick.zoom', null);
+    btnIn.on('click', function () { svg.transition().duration(300).call(zoom.scaleBy, 1.8); });
+    btnOut.on('click', function () { svg.transition().duration(300).call(zoom.scaleBy, 1 / 1.8); });
+    btnReset.on('click', function () { svg.transition().duration(300).call(zoom.transform, d3.zoomIdentity); });
+
+    // --- drawing --------------------------------------------------------------
+    function draw() {
+      var w = root.clientWidth;
+      narrow = w < 520;
+      var fc = { type: 'FeatureCollection', features: countries };
+      projection.fitWidth(w, fc);
+      var h = Math.ceil(path.bounds(fc)[1][1]);
+      svg.attr('viewBox', [0, 0, w, h]).attr('width', w).attr('height', h);
+      zoom.extent([[0, 0], [w, h]]).translateExtent([[0, 0], [w, h]]);
+
+      gLand.selectAll('path').data(countries).join('path')
+        .attr('class', function (f) { return partnerCountries.has(f.properties.name) ? 'collab-land is-partner' : 'collab-land'; })
+        .attr('d', path);
+      gBorders.attr('d', path(borders));
+
+      gArcs.selectAll('path').data(SHOW_ARCS && homeSite ? sites.filter(function (s) { return !s.isHome; }) : [])
+        .join('path')
+        .attr('d', function (s) { return path({ type: 'LineString', coordinates: [homeSite.coords, s.coords] }); })
+        .attr('stroke-width', function (s) { return arcW(s.count); });
+
+      var dot = gDots.selectAll('g.collab-site').data(sites, function (s) { return s.city + s.country; }).join(function (enter) {
+        var g = enter.append('g').attr('class', function (s) { return s.isHome ? 'collab-site is-home' : 'collab-site'; })
+          .attr('tabindex', 0);
+        g.append('circle').attr('class', 'hit');
+        g.append('circle').attr('class', 'dot');
+        g.filter(function (s) { return s.isHome; }).append('circle').attr('class', 'ring');
+        g.append('text').attr('class', 'collab-label').text(function (s) { return s.city; });
+        g.on('mouseenter', function (e, s) { if (!pinned) showTip(s, this); })
+          .on('mouseleave', function () { if (!pinned) hideTip(); })
+          .on('focus', function (e, s) { showTip(s, this); })
+          .on('blur', function () { if (!pinned) hideTip(); })
+          .on('click', function (e, s) {
+            e.stopPropagation();
+            pinned = pinned === s ? null : s;
+            if (pinned) showTip(s, this); else hideTip();
+          });
+        return g;
+      });
+      dot.attr('transform', function (s) { var p = projection(s.coords); return 'translate(' + p[0] + ',' + p[1] + ')'; });
+      sizeMarks();
+    }
+
+    // Marks keep a constant on-screen size while the map zooms.
+    function sizeMarks() {
+      gDots.selectAll('g.collab-site').each(function (s) {
+        var g = d3.select(this);
+        g.select('.dot').attr('r', r(s.count) / k).attr('stroke-width', 1.5 / k);
+        g.select('.hit').attr('r', (r(s.count) + 8) / k);
+        g.select('.ring').attr('r', (r(s.count) + 4) / k).attr('stroke-width', 1.5 / k);
+        var gap = (r(s.count) + (s.isHome ? 7 : 4)) / k;
+        g.select('.collab-label')
+          .attr('x', s.labelLeft ? -gap : gap).attr('y', 3.5 / k)
+          .attr('text-anchor', s.labelLeft ? 'end' : 'start')
+          .attr('font-size', 11 / k).attr('stroke-width', 3 / k)
+          .attr('display', (s.isHome && !narrow) || k >= 2.5 ? null : 'none');
+      });
+    }
+
+    function showTip(s, node) {
+      var T = t();
+      var html = '<div class="collab-tip-place">' + esc(s.city) + ', ' + esc(s.country) + '</div>';
+      s.insts.forEach(function (i) {
+        html += '<div class="collab-tip-inst"><strong>' + esc(i.name) + '</strong>' +
+          '<span class="collab-tip-count">' + (i.id === data.home ? T.home + ' · ' : '') + T.papers(i.count) + '</span></div>';
+      });
+      if (!s.isHome) {
+        var papers = Array.from(new Set(s.insts.flatMap(function (i) { return i.papers; })))
+          .map(function (p) { return paperTitle[p] || { title: p }; })
+          .sort(function (a, b) { return (b.year || 0) - (a.year || 0); });
+        html += '<ul>' + papers.slice(0, 3).map(function (p) {
+          return '<li>' + esc(p.title) + (p.year ? ' <span>(' + p.year + ')</span>' : '') + '</li>';
+        }).join('') + (papers.length > 3 ? '<li class="more">' + T.more(papers.length - 3) + '</li>' : '') + '</ul>';
+      }
+      tip.html(html).attr('hidden', null);
+
+      var box = root.getBoundingClientRect();
+      var dotBox = node.querySelector('.dot').getBoundingClientRect();
+      var x = dotBox.left + dotBox.width / 2 - box.left;
+      var y = dotBox.top - box.top;
+      var tw = tip.node().offsetWidth, th = tip.node().offsetHeight;
+      var left = Math.max(4, Math.min(x - tw / 2, box.width - tw - 4));
+      var top = y - th - 10 < 0 ? dotBox.bottom - box.top + 10 : y - th - 10;
+      tip.style('left', left + 'px').style('top', top + 'px');
+    }
+    function hideTip() { tip.attr('hidden', true); }
+    svg.on('click', function () { pinned = null; hideTip(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { pinned = null; hideTip(); } });
+
+    // --- text that follows the site language --------------------------------
+    function renderText() {
+      var T = t();
+      var partners = data.institutions.filter(function (i) { return i.id !== data.home; });
+      var nCountries = new Set(partners.map(function (i) { return i.country_code; }).filter(Boolean)).size;
+      if (statsEl) statsEl.textContent = T.stats(partners.length, nCountries, data.papers.length);
+      svg.attr('aria-label', T.stats(partners.length, nCountries, data.papers.length));
+      hint.text(window.matchMedia('(pointer: coarse)').matches ? T.hintTouch : T.hint);
+      btnIn.attr('aria-label', T.zoomIn).attr('title', T.zoomIn);
+      btnOut.attr('aria-label', T.zoomOut).attr('title', T.zoomOut);
+      btnReset.attr('aria-label', T.reset).attr('title', T.reset);
+      summary.text(T.list);
+      table.html('<thead><tr>' + T.cols.map(function (c) { return '<th>' + c + '</th>'; }).join('') + '</tr></thead><tbody>' +
+        data.institutions.map(function (i) {
+          return '<tr' + (i.id === data.home ? ' class="is-home"' : '') + '><td>' + esc(i.name) + '</td><td>' + esc(i.city) +
+            '</td><td>' + esc(i.country) + '</td><td>' + i.count + '</td></tr>';
+        }).join('') + '</tbody>');
+      if (pinned) hideTip(), pinned = null;
+    }
+
+    draw();
+    renderText();
+    document.addEventListener('sitelangchange', renderText);
+    var lastW = root.clientWidth;
+    new ResizeObserver(function () {
+      if (root.clientWidth === lastW) return;
+      lastW = root.clientWidth;
+      svg.call(zoom.transform, d3.zoomIdentity);
+      draw();
+    }).observe(root);
+  }
+})();

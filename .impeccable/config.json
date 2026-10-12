@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "publications.html"
+        ],
+        "createdAt": "2026-10-12T11:46:44.226Z",
+        "reason": "Claude: static-scan false positive; rendered-page scans at 1280x800 and 390x844 report no cramped-padding and .section has 1.75rem 2rem padding"
+      }
+    ]
+  }
+}

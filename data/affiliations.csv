@@ -1,0 +1,26 @@
+openalex_id,ror,name,type,city,country,country_code,lat,lng,joint_papers
+I119635470,https://ror.org/01teme464,Universidad de Las Palmas de Gran Canaria,education,Las Palmas de Gran Canaria,Spain,ES,28.099729537963867,-15.413430213928223,45
+I44504214,https://ror.org/03kqpb082,Czech Technical University in Prague,education,Prague,Czechia,CZ,50.08804,14.42076,18
+I32394136,https://ror.org/049e6bc10,Northumbria University,education,Newcastle upon Tyne,United Kingdom,GB,54.97328186035156,-1.6139600276947021,12
+x-pilighting,,Pi Lighting,company,Sion,Switzerland,CH,46.2331,7.3606,9
+I4210120471,https://ror.org/02ht4fk33,Instituto de Telecomunicações,nonprofit,Aveiro,Portugal,PT,40.6405,-8.6538,6
+I60858718,https://ror.org/00nt41z93,University of Aveiro,education,Aveiro,Portugal,PT,40.64575,-8.64643,6
+I69737025,https://ror.org/047gc3g35,University of Chile,education,Santiago,Chile,CL,-33.45694,-70.64827,6
+I158438070,https://ror.org/01r9z8p25,Universidad de La Laguna,education,San Cristóbal de La Laguna,Spain,ES,28.4853,-16.32014,5
+I169427155,https://ror.org/010dvvh94,Universidade de Leiria e Oeste,education,Leiria,Portugal,PT,39.74362,-8.80705,4
+I2799535320,https://ror.org/04vdpck27,Catholic University of the Maule,education,Talca,Chile,CL,-35.4232,-71.64974,3
+I9927081,https://ror.org/020hwjq30,Aalto University,education,Espoo,Finland,FI,60.2052001953125,24.65220069885254,2
+I196664497,https://ror.org/000917t60,Autonomous University of San Luis Potosí,education,San Luis Potosí City,Mexico,MX,22.15234,-100.97135,2
+I4210144223,https://ror.org/04bpsn575,Metropolitan University of Technology,education,Santiago,Chile,CL,-33.44749450683594,-70.65763854980469,2
+I119003972,https://ror.org/05vf0dg29,Roma Tre University,education,Rome,Italy,IT,41.89193,12.51133,2
+I911713783,https://ror.org/03gtdcg60,Universidad Diego Portales,education,Santiago,Chile,CL,-33.45694,-70.64827,2
+I10457146,https://ror.org/02ma57s91,Universidad de Santiago de Chile,education,Santiago,Chile,CL,-33.45694,-70.64827,2
+I4387155461,https://ror.org/04thacr56,"Alex Ekwueme Federal University, Ndufu-Alike",education,Abakaliki,Nigeria,NG,6.324850082397461,8.113679885864258,1
+I19820366,https://ror.org/034t30j35,Chinese Academy of Sciences,government,Beijing,China,CN,39.9075,116.39723,1
+I4210151023,https://ror.org/05ev3vr27,Quanzhou Institute of Equipment Manufacturing Haixi Institute,education,Quanzhou,China,CN,24.874208450317383,118.67564392089844,1
+I3124150290,https://ror.org/04jrwm652,San Sebastián University,education,Concepción,Chile,CL,-36.82699,-73.04977,1
+I50357001,https://ror.org/03ths8210,Universidad Carlos III de Madrid,education,Madrid,Spain,ES,40.4165,-3.70256,1
+I241749,https://ror.org/013meh722,University of Cambridge,education,Cambridge,United Kingdom,GB,52.2,0.11667,1
+I172787465,https://ror.org/0460jpj73,University of Concepción,education,Concepción,Chile,CL,-36.82699,-73.04977,1
+I181647926,https://ror.org/00n3w3b69,University of Strathclyde,education,Glasgow,United Kingdom,GB,55.86515,-4.25763,1
+x-wooptix,,Wooptix,company,San Cristóbal de La Laguna,Spain,ES,28.4853,-16.32014,1

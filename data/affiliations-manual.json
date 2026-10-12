@@ -1,0 +1,105 @@
+{
+  "_readme": [
+    "Hand-maintained input for scripts/build_affiliations.py. Run that script after editing this file.",
+    "Full workflow for new publications: see 'HOW TO ADD A PUBLICATION' at the top of the list in publications.html.",
+    "Institution ids are OpenAlex ids (find one at https://api.openalex.org/institutions/ror:<ROR id> or https://api.openalex.org/institutions?search=<name>) or keys of 'custom'.",
+    "home: the institution the map's arcs start from.",
+    "papers: downloadBib key -> institution ids, for publications without a DOI. Delete the entry once the DOI link is on the page.",
+    "add: DOI -> institution ids that OpenAlex missed. 'build_affiliations.py --audit' lists candidates from Crossref.",
+    "custom: organisations not in OpenAlex (e.g. companies): id -> {name, type, city, country, country_code, lat, lng}. Use an 'x-' prefix for the id.",
+    "merge: id -> id to fold it into (wrong or duplicate matches).",
+    "hide: ids to drop from the map entirely.",
+    "override: id -> fields to replace on an OpenAlex institution (name, city, lat, lng, country_code...)."
+  ],
+  "home": "I119635470",
+  "papers": {
+    "matus2026energy": [
+      "I119635470"
+    ],
+    "niarchou2026fabric": [
+      "I119635470"
+    ],
+    "aranda2026globalshutter": [
+      "I119635470"
+    ],
+    "penailillo2026multiregion": [
+      "I69737025",
+      "I119635470",
+      "I911713783",
+      "I2799535320",
+      "I10457146"
+    ]
+  },
+  "add": {
+    "10.1109/jiot.2025.3543443": [
+      "x-pilighting"
+    ],
+    "10.1049/ote2.70005": [
+      "x-pilighting"
+    ],
+    "10.3390/s24092766": [
+      "x-pilighting"
+    ],
+    "10.1109/csndsp60683.2024.10636549": [
+      "x-pilighting"
+    ],
+    "10.1109/sacvlc59022.2023.10347670": [
+      "x-pilighting"
+    ],
+    "10.1109/sacvlc59022.2023.10347729": [
+      "x-pilighting"
+    ],
+    "10.1109/contel58387.2023.10199043": [
+      "x-pilighting"
+    ],
+    "10.1109/csndsp54353.2022.9907903": [
+      "x-pilighting"
+    ],
+    "10.1109/wasowc54657.2022.9798438": [
+      "x-pilighting"
+    ],
+    "10.3390/electronics15030567": [
+      "x-wooptix"
+    ],
+    "10.1109/balkancom61808.2024.10557196": [
+      "I4210120471"
+    ],
+    "10.1109/csndsp60683.2024.10636635": [
+      "I4210120471"
+    ]
+  },
+  "custom": {
+    "x-pilighting": {
+      "name": "Pi Lighting",
+      "type": "company",
+      "city": "Sion",
+      "country": "Switzerland",
+      "country_code": "CH",
+      "lat": 46.2331,
+      "lng": 7.3606
+    },
+    "x-wooptix": {
+      "name": "Wooptix",
+      "type": "company",
+      "city": "San Cristóbal de La Laguna",
+      "country": "Spain",
+      "country_code": "ES",
+      "lat": 28.4853,
+      "lng": -16.32014
+    }
+  },
+  "merge": {
+    "I4405256324": "I60858718"
+  },
+  "hide": [],
+  "override": {
+    "I4210120471": {
+      "city": "Aveiro",
+      "lat": 40.6405,
+      "lng": -8.6538
+    },
+    "I4387155461": {
+      "country_code": "NG"
+    }
+  }
+}

@@ -61,15 +61,68 @@
   <div class="wrap">
 
     <section class="shell hero compact">
-      <div class="eyebrow" data-es="Producción científica completa">Complete research output</div>
       <h1 data-es="Publicaciones">Publications</h1>
       <p class="lead" data-es="Todas las publicaciones con enlaces DOI y BibTeX descargable.">All publications with DOI links and downloadable BibTeX.</p>
     </section>
 
     <section class="shell section">
-      <div class="section-kicker" data-es="Lista completa">Complete list</div>
+      <h2 data-es="Instituciones colaboradoras">Collaborating institutions</h2>
+      <p class="collab-stats" id="collab-stats"></p>
+      <div id="collab-map" class="collab-map"></div>
+    </section>
+
+    <section class="shell section">
       <h2 data-es="Todas las publicaciones">All publications</h2>
       <div class="pub-list" style="margin-top:1.2rem;">
+
+        <!--
+          HOW TO ADD A PUBLICATION
+          ========================
+          This list is the single source of truth: the collaboration map above
+          (data/affiliations.json) is generated from it by scripts/build_affiliations.py.
+
+          1. Copy this template to the top of its year group (newest first):
+
+             <div class="pub-item">
+               <div class="year">2026</div>
+               <div>
+                 <div class="pub-title">Paper Title</div>
+                 <div class="pub-authors">Coauthor, A., <span class="self">Matus, V.</span>, Coauthor, B.</div>
+                 <div class="pub-venue">Journal Name, 12(3), 456, 2026</div>
+                 <div class="pub-actions">
+                   <a class="pub-action" href="https://doi.org/10.xxxx/xxxxx" target="_blank" rel="noopener">DOI</a>
+                   <button class="pub-action" onclick="downloadBib('firstauthor2026keyword')" data-es="Descargar .bib">Download .bib</button>
+                 </div>
+               </div>
+             </div>
+
+             - The DOI link must keep exactly the form href="https://doi.org/<doi>":
+               that's how the build script finds the paper.
+             - The venue line must end with the year; the script reads the year from it.
+             - Newly published papers: add class "is-new" to the pub-item and
+               <span class="pub-badge" data-es="Nuevo">New</span> at the end of the
+               title. Remove both once the paper is no longer new.
+             - No DOI yet: replace the DOI <a> with
+               <span class="pub-action is-disabled" title="DOI not yet assigned" aria-disabled="true">DOI</span>
+
+          2. Add the BibTeX entry to the bibEntries object in the <script> at the
+             bottom of this page, under the same key used in downloadBib('...').
+
+          3. Update the collaboration map from the repo root:
+               python3 scripts/build_affiliations.py --audit
+             It prints the papers, institutions and countries it found. The audit
+             lists affiliations from Crossref that OpenAlex missed (companies,
+             small institutes); add those in data/affiliations-manual.json under
+             "add" (and "custom" if the organisation has no OpenAlex id).
+
+          4. Papers without a DOI are invisible to OpenAlex: list their institutions
+             in data/affiliations-manual.json under "papers", keyed by the
+             downloadBib key. When the DOI appears, put the DOI link on the page,
+             delete the "papers" entry and run step 3 again.
+
+          5. Commit publications.html together with data/affiliations.json and
+             data/affiliations.csv.
+        -->
 
         <!-- 2026 -->
         <div class="pub-item is-new">
@@ -717,6 +770,8 @@
 </footer>
 
 <script>
+  // BibTeX for each "Download .bib" button, keyed by the downloadBib('...') key.
+  // Adding a publication? See "HOW TO ADD A PUBLICATION" at the top of the list.
   const bibEntries = {
     niarchou2026fabric: `@inproceedings{niarchou2026fabric,
   author = {Niarchou, Eleni and Matus, Vicente and Guerra, Victor and Rabadan, Jose and Perez, Rafael},
@@ -1199,6 +1254,9 @@
   }
 </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+  <script src="scripts/collab-map.js"></script>
   <script src="scripts/site-lang.js"></script>
 </body>
 </html>
