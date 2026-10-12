@@ -1,6 +1,6 @@
 // Collaboration world map on publications.html.
 //
-// Reads data/affiliations.json (built by scripts/build_affiliations.py) and
+// Reads data/affiliations.json (built by scripts/build-affiliations.mjs) and
 // draws one dot per city hosting co-author institutions, sized by joint papers,
 // with optional great-circle arcs from the home institution. Needs d3@7 and
 // topojson-client@3 loaded first. Labels follow the site language (site-lang.js).

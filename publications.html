@@ -79,7 +79,7 @@
           HOW TO ADD A PUBLICATION
           ========================
           This list is the single source of truth: the collaboration map above
-          (data/affiliations.json) is generated from it by scripts/build_affiliations.py.
+          (data/affiliations.json) is generated from it by scripts/build-affiliations.mjs (Node.js, no dependencies).
 
           1. Copy this template to the top of its year group (newest first):
 
@@ -109,7 +109,7 @@
              bottom of this page, under the same key used in downloadBib('...').
 
           3. Update the collaboration map from the repo root:
-               python3 scripts/build_affiliations.py --audit
+               node scripts/build-affiliations.mjs --audit
              It prints the papers, institutions and countries it found. The audit
              lists affiliations from Crossref that OpenAlex missed (companies,
              small institutes); add those in data/affiliations-manual.json under
