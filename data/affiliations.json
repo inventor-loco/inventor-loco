@@ -60,6 +60,7 @@
     "10.1364/oe.27.019150",
     "10.1109/contel.2019.8848549"
    ],
+   "logo": "assets/logos/ulpgc-idetic.svg",
    "count": 45
   },
   {
@@ -92,6 +93,7 @@
     "10.1109/csndsp49049.2020.9249441",
     "10.1109/csndsp49049.2020.9249566"
    ],
+   "logo": "assets/logos/ctu.svg",
    "count": 18
   },
   {
@@ -118,6 +120,7 @@
     "10.3390/s20123361",
     "10.1109/csndsp49049.2020.9249566"
    ],
+   "logo": "assets/logos/northumbria.png",
    "count": 12
   },
   {
@@ -141,6 +144,8 @@
     "10.1109/csndsp54353.2022.9907903",
     "10.1109/wasowc54657.2022.9798438"
    ],
+   "logo": "assets/logos/pilighting.png",
+   "logo_light": true,
    "count": 9
   },
   {
@@ -161,6 +166,7 @@
     "10.1109/csndsp60683.2024.10636649",
     "10.1109/wf-iot58464.2023.10539392"
    ],
+   "logo": "assets/logos/it.png",
    "count": 6
   },
   {
@@ -181,6 +187,7 @@
     "10.1109/sacvlc59022.2023.10347655",
     "10.1109/sacvlc59022.2023.10347680"
    ],
+   "logo": "assets/logos/aveiro.png",
    "count": 6
   },
   {
@@ -201,6 +208,7 @@
     "10.1109/csndsp.2018.8471768",
     "10.1109/sacvlc.2017.8267606"
    ],
+   "logo": "assets/logos/uchile.jpg",
    "count": 6
   },
   {
@@ -220,6 +228,7 @@
     "10.1109/csndsp54353.2022.9907903",
     "10.1109/wasowc54657.2022.9798438"
    ],
+   "logo": "assets/logos/ull.jpg",
    "count": 5
   },
   {
@@ -238,6 +247,7 @@
     "10.1109/csndsp60683.2024.10636635",
     "10.1109/sacvlc59022.2023.10347655"
    ],
+   "logo": "assets/logos/leiria.png",
    "count": 4
   },
   {
@@ -255,6 +265,7 @@
     "10.1109/colcom66267.2025.11185793",
     "10.1109/latincom67778.2025.11345393"
    ],
+   "logo": "assets/logos/ucm.png",
    "count": 3
   },
   {
@@ -271,6 +282,7 @@
     "10.1109/csndsp60683.2024.10636649",
     "10.1109/wf-iot58464.2023.10539392"
    ],
+   "logo": "assets/logos/aalto.svg",
    "count": 2
   },
   {
@@ -287,6 +299,7 @@
     "10.1109/jiot.2025.3543443",
     "10.1109/sacvlc59022.2023.10347729"
    ],
+   "logo": "assets/logos/uaslp.png",
    "count": 2
   },
   {
@@ -303,6 +316,7 @@
     "10.3390/s25175435",
     "10.1109/colcom66267.2025.11185793"
    ],
+   "logo": "assets/logos/utem.svg",
    "count": 2
   },
   {
@@ -319,6 +333,7 @@
     "10.1007/s11432-025-4504-3",
     "10.1109/wf-iot58464.2023.10539392"
    ],
+   "logo": "assets/logos/roma3.svg",
    "count": 2
   },
   {
@@ -335,6 +350,7 @@
     "penailillo2026multiregion",
     "10.1109/colcom66267.2025.11185793"
    ],
+   "logo": "assets/logos/udp.png",
    "count": 2
   },
   {
@@ -351,6 +367,7 @@
     "penailillo2026multiregion",
     "10.1109/csndsp.2018.8471768"
    ],
+   "logo": "assets/logos/usach.svg",
    "count": 2
   },
   {
@@ -366,6 +383,7 @@
    "papers": [
     "10.1109/wf-iot58464.2023.10539392"
    ],
+   "logo": "assets/logos/funai.png",
    "count": 1
   },
   {
@@ -381,6 +399,7 @@
    "papers": [
     "10.1007/s11432-025-4504-3"
    ],
+   "logo": "assets/logos/cas.png",
    "count": 1
   },
   {
@@ -411,6 +430,7 @@
    "papers": [
     "10.3390/s25175435"
    ],
+   "logo": "assets/logos/uss.png",
    "count": 1
   },
   {
@@ -426,6 +446,7 @@
    "papers": [
     "10.1109/wf-iot58464.2023.10539392"
    ],
+   "logo": "assets/logos/uc3m.svg",
    "count": 1
   },
   {
@@ -441,6 +462,7 @@
    "papers": [
     "10.1007/s11432-025-4504-3"
    ],
+   "logo": "assets/logos/cambridge.png",
    "count": 1
   },
   {
@@ -456,6 +478,7 @@
    "papers": [
     "10.3390/s25175435"
    ],
+   "logo": "assets/logos/udec.svg",
    "count": 1
   },
   {
@@ -471,6 +494,7 @@
    "papers": [
     "10.1007/s11432-025-4504-3"
    ],
+   "logo": "assets/logos/strathclyde.png",
    "count": 1
   },
   {
@@ -486,6 +510,7 @@
    "papers": [
     "10.3390/electronics15030567"
    ],
+   "logo": "assets/logos/wooptix.svg",
    "count": 1
   }
  ],

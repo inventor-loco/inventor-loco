@@ -9,7 +9,8 @@
     "custom: organisations not in OpenAlex (e.g. companies): id -> {name, type, city, country, country_code, lat, lng}. Use an 'x-' prefix for the id.",
     "merge: id -> id to fold it into (wrong or duplicate matches).",
     "hide: ids to drop from the map entirely.",
-    "override: id -> fields to replace on an OpenAlex institution (name, city, lat, lng, country_code...)."
+    "override: id -> fields to replace on an OpenAlex institution (name, city, lat, lng, country_code...).",
+    "logos: id -> logo path for the carousel, or {src, light: true} for white logos (drawn dark). Institutions without one show their name. Record where each file came from in assets/logos/SOURCES.md."
   ],
   "home": "I119635470",
   "papers": {
@@ -101,5 +102,34 @@
     "I4387155461": {
       "country_code": "NG"
     }
+  },
+  "logos": {
+    "I119635470": "assets/logos/ulpgc-idetic.svg",
+    "I44504214": "assets/logos/ctu.svg",
+    "I32394136": "assets/logos/northumbria.png",
+    "x-pilighting": {
+      "src": "assets/logos/pilighting.png",
+      "light": true
+    },
+    "I4210120471": "assets/logos/it.png",
+    "I60858718": "assets/logos/aveiro.png",
+    "I69737025": "assets/logos/uchile.jpg",
+    "I158438070": "assets/logos/ull.jpg",
+    "I169427155": "assets/logos/leiria.png",
+    "I2799535320": "assets/logos/ucm.png",
+    "I9927081": "assets/logos/aalto.svg",
+    "I196664497": "assets/logos/uaslp.png",
+    "I4210144223": "assets/logos/utem.svg",
+    "I119003972": "assets/logos/roma3.svg",
+    "I911713783": "assets/logos/udp.png",
+    "I10457146": "assets/logos/usach.svg",
+    "I4387155461": "assets/logos/funai.png",
+    "I19820366": "assets/logos/cas.png",
+    "I3124150290": "assets/logos/uss.png",
+    "I50357001": "assets/logos/uc3m.svg",
+    "I241749": "assets/logos/cambridge.png",
+    "I172787465": "assets/logos/udec.svg",
+    "I181647926": "assets/logos/strathclyde.png",
+    "x-wooptix": "assets/logos/wooptix.svg"
   }
 }

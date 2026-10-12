@@ -11,6 +11,24 @@
         ],
         "createdAt": "2026-10-12T11:46:44.226Z",
         "reason": "Claude: static-scan false positive; rendered-page scans at 1280x800 and 390x844 report no cramped-padding and .section has 1.75rem 2rem padding"
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "publications.html"
+        ],
+        "createdAt": "2026-10-12T12:29:03.270Z",
+        "reason": "User asked for the CV logo carousel on publications.html (user confirmed, 2026-10-12); the .logo-carousel-track loop pauses on hover and stops under prefers-reduced-motion"
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "cv.html"
+        ],
+        "createdAt": "2026-10-12T12:29:03.285Z",
+        "reason": "User asked for the CV logo carousel on publications.html (user confirmed, 2026-10-12); the .logo-carousel-track loop pauses on hover and stops under prefers-reduced-motion"
       }
     ]
   }

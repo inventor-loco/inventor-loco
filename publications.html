@@ -69,6 +69,10 @@
       <h2 data-es="Instituciones colaboradoras">Collaborating institutions</h2>
       <p class="collab-stats" id="collab-stats"></p>
       <div id="collab-map" class="collab-map"></div>
+      <!-- Filled by scripts/collab-logos.js from data/affiliations.js -->
+      <div class="logo-carousel" aria-label="Co-author institutions">
+        <div class="logo-carousel-track" id="collab-logos-track"></div>
+      </div>
     </section>
 
     <section class="shell section">
@@ -115,13 +119,21 @@
              small institutes); add those in data/affiliations-manual.json under
              "add" (and "custom" if the organisation has no OpenAlex id).
 
-          4. Papers without a DOI are invisible to OpenAlex: list their institutions
+          4. New institution on the map? Give it a logo for the carousel under the
+             map: save the file in assets/logos/ (SVG, or PNG about 320px wide),
+             add it to "logos" in data/affiliations-manual.json, note its source in
+             assets/logos/SOURCES.md and run step 3 again. Without a logo the
+             carousel shows the institution's name.
+
+          5. Papers without a DOI are invisible to OpenAlex: list their institutions
              in data/affiliations-manual.json under "papers", keyed by the
              downloadBib key. When the DOI appears, put the DOI link on the page,
              delete the "papers" entry and run step 3 again.
 
-          5. Commit publications.html together with data/affiliations.json and
-             data/affiliations.csv.
+          6. Commit publications.html together with everything the script
+             regenerated in data/ (affiliations.json, .csv, .js, world-110m.js).
+             The map reads data/affiliations.js, so skipping step 3 leaves the
+             map out of date.
         -->
 
         <!-- 2026 -->
@@ -1254,9 +1266,13 @@
   }
 </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+  <!-- Collaboration map: all local files, no network requests (see scripts/collab-map.js) -->
+  <script src="scripts/vendor/d3.v7.9.0.min.js"></script>
+  <script src="scripts/vendor/topojson-client.v3.1.0.min.js"></script>
+  <script src="data/world-110m.js"></script>
+  <script src="data/affiliations.js"></script>
   <script src="scripts/collab-map.js"></script>
+  <script src="scripts/collab-logos.js"></script>
   <script src="scripts/site-lang.js"></script>
 </body>
 </html>

@@ -176,24 +176,25 @@ communications and indoor positioning:
 ## 10. All-time collaborators (logo carousel on cv.html)
 
 Institutions and companies from research and past work. Logo files live in
-`assets/logos/`; missing files fall back to a text chip on the site.
+`assets/logos/` (sources in `assets/logos/SOURCES.md`); missing files fall back
+to a text chip on the site.
 
 | Collaborator | Context | Logo file |
 |---|---|---|
-| ULPGC / IDeTIC | Home institution | CDN: cdn.ulpgc.es/logos/logo-ulpgc-horizontal-2t.svg |
+| ULPGC / IDeTIC | Home institution | assets/logos/ulpgc-idetic.svg |
 | Universidad de Chile | Degree, research assistant, teaching | assets/logos/uchile.jpg |
-| Instituto de Telecomunicações (PT) | Visiting researcher 2023–2024 | CDN: it.pt/img/IT-30years-logo_01_website.png |
+| Instituto de Telecomunicações (PT) | Visiting researcher 2023–2024 | assets/logos/it.png |
 | Northumbria University (UK) | Research stay 2023 | assets/logos/northumbria.png |
 | Czech Technical University in Prague | Research stay 2019 | assets/logos/ctu.svg |
-| Universidad de Málaga | Thesis tribunal president 2026 | assets/logos/uma.png *(missing)* |
-| Escuela Politécnica Nacional (EC) | Co-tribunal / research network | assets/logos/epn.png *(missing)* |
-| Pontificia U. Católica de Chile | Lab instrumentation 2014–2015 | assets/logos/puc.png *(missing)* |
-| Veolia (FR) | Revo Project | assets/logos/veolia.png *(missing)* |
-| Lightning Hybrids (US) | Revo Project | assets/logos/lightning-hybrids.png *(missing)* |
-| Terralink (CL) | Electrical engineer | assets/logos/terralink.png *(missing)* |
-| Toki Rapa Nui | Solar volunteering | assets/logos/toki.png *(missing)* |
-| NEWFOCUS COST CA19111 | Research network | assets/logos/newfocus.png *(missing)* |
-| Visionar Automatización | Co-founder 2025 | assets/logos/visionar.png *(missing)* |
+| Universidad de Málaga | Thesis tribunal president 2026 | assets/logos/uma.png |
+| Escuela Politécnica Nacional (EC) | Co-tribunal / research network | assets/logos/epn.png (white logo, drawn dark) |
+| Pontificia U. Católica de Chile | Lab instrumentation 2014–2015 | assets/logos/puc.svg |
+| Veolia (FR) | Revo Project | assets/logos/veolia.svg |
+| Lightning Hybrids (US) | Revo Project | assets/logos/lightning-hybrids.png |
+| Terralink (CL) | Electrical engineer | assets/logos/terralink.png |
+| Toki Rapa Nui | Solar volunteering | assets/logos/toki.png |
+| NEWFOCUS COST CA19111 | Research network | assets/logos/newfocus.png (white logo, drawn dark) |
+| Visionar Automatización | Co-founder 2025 | assets/logos/visionar.png |
 
 ## 11. Not shown on the website (private / logistics)
 

@@ -71,16 +71,6 @@
     .timeline-subsection { margin-top: 1.4rem; }
     .timeline-subsection > h3 { font-size: 0.85rem; font-weight: 500; margin: 0 0 0.6rem 0; color: var(--ink); }
 
-    /* Collaborators logo carousel */
-    .logo-carousel { overflow: hidden; position: relative; margin-top: 1.4rem; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-    .logo-carousel-track { display: flex; align-items: center; gap: 3rem; width: max-content; animation: logo-scroll 40s linear infinite; }
-    .logo-carousel:hover .logo-carousel-track { animation-play-state: paused; }
-    @keyframes logo-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .lc-item { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .lc-item img { display: block; height: 38px; width: auto; max-width: 150px; object-fit: contain; opacity: 0.75; filter: grayscale(1); transition: opacity 0.2s, filter 0.2s; }
-    .lc-item:hover img { opacity: 1; filter: none; }
-    .lc-name { display: none; align-items: center; justify-content: center; padding: 0.45rem 0.9rem; border: 1px solid var(--rule); border-radius: 3px; font-family: var(--mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink3); white-space: nowrap; }
-    @media (prefers-reduced-motion: reduce) { .logo-carousel-track { animation: none; flex-wrap: wrap; width: auto; } }
 
     /* Collapsible sections: collapsed shows only the most recent entry */
     .cv-collapsible.collapsed .cv-collapse-item { display: none; }
@@ -205,7 +195,7 @@
               <div class="timeline-org">IDeTIC, Universidad de Las Palmas de Gran Canaria</div>
               <p class="timeline-desc" data-es="Investigación postdoctoral en comunicaciones por cámara óptica y sistemas experimentales de comunicaciones ópticas inalámbricas.">Postdoctoral research in Optical Camera Communications and experimental optical wireless systems.</p>
             </div>
-            <img class="inst-logo" src="https://cdn.ulpgc.es/logos/logo-ulpgc-horizontal-2t.svg" alt="ULPGC" loading="lazy">
+            <img class="inst-logo" src="assets/logos/ulpgc-idetic.svg" alt="ULPGC" loading="lazy">
           </div>
         </div>
         <div class="timeline-row">
@@ -227,7 +217,7 @@
               <div class="timeline-org">Instituto de Telecomunicações, Aveiro, Portugal</div>
               <p class="timeline-desc" data-es="Colaboración de investigación vinculada a OCC vestible y problemas experimentales de comunicación relacionados.">Research collaboration connected to wearable OCC and related experimental communication problems.</p>
             </div>
-            <img class="inst-logo" src="https://www.it.pt/img/IT-30years-logo_01_website.png" alt="Instituto de Telecomunicações" loading="lazy">
+            <img class="inst-logo" src="assets/logos/it.png" alt="Instituto de Telecomunicações" loading="lazy">
           </div>
         </div>
         <div class="timeline-row">
@@ -261,7 +251,7 @@
               <div class="timeline-org">Universidad de Las Palmas de Gran Canaria</div>
               <p class="timeline-desc" data-es="Realizado bajo una beca de las Acciones Marie Skłodowska-Curie.">Completed under a Marie Skłodowska-Curie Actions fellowship.</p>
             </div>
-            <img class="inst-logo" src="https://cdn.ulpgc.es/logos/logo-ulpgc-horizontal-2t.svg" alt="ULPGC" loading="lazy">
+            <img class="inst-logo" src="assets/logos/ulpgc-idetic.svg" alt="ULPGC" loading="lazy">
           </div>
         </div>
         <div class="timeline-row">
@@ -429,7 +419,7 @@
                 <div class="timeline-org">Eleni Niarchou · Universidad de Las Palmas de Gran Canaria</div>
                 <p class="timeline-desc" data-es="Tesis doctoral: <em>Contribution to the application of Optical Camera Communications to Wearable Sensor Networks</em> (defensa 5 de septiembre de 2025).">Doctoral thesis: <em>Contribution to the application of Optical Camera Communications to Wearable Sensor Networks</em> (defense September 5, 2025).</p>
               </div>
-              <img class="inst-logo" src="https://cdn.ulpgc.es/logos/logo-ulpgc-horizontal-2t.svg" alt="ULPGC" loading="lazy">
+              <img class="inst-logo" src="assets/logos/ulpgc-idetic.svg" alt="ULPGC" loading="lazy">
             </div>
           </div>
           <div class="timeline-row">
@@ -515,27 +505,32 @@
       <p class="muted" style="margin-top:0.4rem;font-size:0.8rem;" data-es="Instituciones y empresas de la investigación y trabajos pasados, de todos los tiempos.">Institutions and companies from research and past work, all-time.</p>
       <div class="logo-carousel" aria-label="Collaborator logos">
         <div class="logo-carousel-track" id="lc-track">
-          <div class="lc-item"><img src="https://cdn.ulpgc.es/logos/logo-ulpgc-horizontal-2t.svg" alt="ULPGC" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">ULPGC · IDeTIC</span></div>
+          <div class="lc-item"><img src="assets/logos/ulpgc-idetic.svg" alt="ULPGC · IDeTIC" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">ULPGC · IDeTIC</span></div>
           <div class="lc-item"><img src="assets/logos/uchile.jpg" alt="Universidad de Chile" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Universidad de Chile</span></div>
-          <div class="lc-item"><img src="https://www.it.pt/img/IT-30years-logo_01_website.png" alt="Instituto de Telecomunicações" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Instituto de Telecomunicações</span></div>
+          <div class="lc-item"><img src="assets/logos/it.png" alt="Instituto de Telecomunicações" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Instituto de Telecomunicações</span></div>
           <div class="lc-item"><img src="assets/logos/northumbria.png" alt="Northumbria University" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Northumbria University</span></div>
           <div class="lc-item"><img src="assets/logos/ctu.svg" alt="Czech Technical University in Prague" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">CTU Prague</span></div>
           <div class="lc-item"><img src="assets/logos/uma.png" alt="Universidad de Málaga" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Universidad de Málaga</span></div>
-          <div class="lc-item"><img src="assets/logos/epn.png" alt="Escuela Politécnica Nacional" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">EPN Ecuador</span></div>
-          <div class="lc-item"><img src="assets/logos/puc.png" alt="Pontificia Universidad Católica de Chile" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">PUC de Chile</span></div>
-          <div class="lc-item"><img src="assets/logos/veolia.png" alt="Veolia" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Veolia</span></div>
+          <div class="lc-item"><img class="is-light" src="assets/logos/epn.png" alt="Escuela Politécnica Nacional" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">EPN Ecuador</span></div>
+          <div class="lc-item"><img src="assets/logos/puc.svg" alt="Pontificia Universidad Católica de Chile" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">PUC de Chile</span></div>
+          <div class="lc-item"><img src="assets/logos/veolia.svg" alt="Veolia" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Veolia</span></div>
           <div class="lc-item"><img src="assets/logos/lightning-hybrids.png" alt="Lightning Hybrids" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Lightning Hybrids</span></div>
           <div class="lc-item"><img src="assets/logos/terralink.png" alt="Terralink" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Terralink</span></div>
           <div class="lc-item"><img src="assets/logos/toki.png" alt="Toki Rapa Nui" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Toki Rapa Nui</span></div>
-          <div class="lc-item"><img src="assets/logos/newfocus.png" alt="NEWFOCUS COST CA19111" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">NEWFOCUS · COST</span></div>
+          <div class="lc-item"><img class="is-light" src="assets/logos/newfocus.png" alt="NEWFOCUS COST CA19111" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">NEWFOCUS · COST</span></div>
           <div class="lc-item"><img src="assets/logos/visionar.png" alt="Visionar Automatización" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="lc-name">Visionar Automatización</span></div>
         </div>
       </div>
       <script>
-        // Duplicate the track contents once so the -50% translate loops seamlessly
+        // Duplicate the track contents once so the -50% translate loops seamlessly;
+        // the copy is hidden from screen readers. Styles: styles/main-pages.css.
         (function () {
           var t = document.getElementById('lc-track');
-          t.innerHTML += t.innerHTML;
+          Array.prototype.slice.call(t.children).forEach(function (el) {
+            var copy = el.cloneNode(true);
+            copy.setAttribute('aria-hidden', 'true');
+            t.appendChild(copy);
+          });
         })();
       </script>
     </section>

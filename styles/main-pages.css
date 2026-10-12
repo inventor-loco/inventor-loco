@@ -339,9 +339,29 @@ footer { padding: 0 0 2rem; }
   font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
 }
 
+/* Logo carousel (cv.html collaborators, publications.html co-author institutions).
+   The track holds the items twice so the -50% translate loops seamlessly. */
+.logo-carousel { overflow: hidden; position: relative; margin-top: 1.4rem; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.logo-carousel-track { display: flex; align-items: center; gap: 3rem; width: max-content; animation: logo-scroll 40s linear infinite; }
+.logo-carousel:hover .logo-carousel-track { animation-play-state: paused; }
+@keyframes logo-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.lc-item { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.lc-item img { display: block; height: 38px; width: auto; max-width: 150px; object-fit: contain; opacity: 0.75; filter: grayscale(1); transition: opacity 0.2s, filter 0.2s; }
+.lc-item:hover img { opacity: 1; filter: none; }
+/* White logos (made for dark backgrounds) are drawn as dark silhouettes. */
+.lc-item img.is-light, .lc-item:hover img.is-light { filter: brightness(0); }
+.lc-name { display: none; align-items: center; justify-content: center; padding: 0.45rem 0.9rem; border: 1px solid var(--rule); border-radius: 3px; font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink3); white-space: nowrap; }
+.lc-item.no-logo .lc-name { display: inline-flex; }
+@media (prefers-reduced-motion: reduce) {
+  .logo-carousel { -webkit-mask-image: none; mask-image: none; }
+  .logo-carousel-track { animation: none; flex-wrap: wrap; width: auto; gap: 1.5rem 3rem; }
+  .logo-carousel-track [aria-hidden="true"] { display: none; }
+}
+
 /* Collaboration map (publications.html, scripts/collab-map.js) */
 .collab-stats { margin: 0.2rem 0 0; color: var(--ink2); font-family: var(--mono); font-size: 0.75rem; }
 .collab-stats:empty { display: none; }
+.collab-error { margin: 0; padding: 1rem; border: 1px dashed var(--rule); border-radius: 4px; color: var(--ink2); font-size: 0.85rem; }
 .collab-map { position: relative; margin-top: 1rem; min-height: 120px; }
 .collab-svg { display: block; width: 100%; height: auto; cursor: grab; touch-action: pan-y pinch-zoom; }
 .collab-svg.is-zoomed { touch-action: none; }
