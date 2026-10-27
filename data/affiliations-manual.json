@@ -13,24 +13,7 @@
     "logos: id -> logo path for the carousel, or {src, light: true} for white logos (drawn dark). Institutions without one show their name. Record where each file came from in assets/logos/SOURCES.md."
   ],
   "home": "I119635470",
-  "papers": {
-    "matus2026energy": [
-      "I119635470"
-    ],
-    "niarchou2026fabric": [
-      "I119635470"
-    ],
-    "aranda2026globalshutter": [
-      "I119635470"
-    ],
-    "penailillo2026multiregion": [
-      "I69737025",
-      "I119635470",
-      "I911713783",
-      "I2799535320",
-      "I10457146"
-    ]
-  },
+  "papers": {},
   "add": {
     "10.1109/jiot.2025.3543443": [
       "x-pilighting"
