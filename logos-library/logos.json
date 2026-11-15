@@ -1,0 +1,990 @@
+{
+  "name": "Organization logos for Vicente Matus Icaza",
+  "organizations": [
+    {
+      "name": "Aalto University",
+      "slug": "aalto",
+      "category": "university",
+      "files": [
+        {
+          "path": "aalto/aalto_color.svg",
+          "variant": "color",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/aalto.svg. Recorded provenance in assets/logos/SOURCES.md: Wikimedia Commons, Aalto-yliopiston logo.svg.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "Agencia Nacional de Investigación y Desarrollo",
+      "slug": "anid",
+      "category": "funder",
+      "files": [
+        {
+          "path": "anid/anid_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 981,
+          "height": 527,
+          "low_resolution": false
+        },
+        {
+          "path": "anid/anid_color.svg",
+          "variant": "color",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "anid/anid_pluma.svg",
+          "variant": "pluma",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "anid/anid_pluma_white.svg",
+          "variant": "pluma_white",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "anid/anid_stacked.png",
+          "variant": "stacked",
+          "format": "png",
+          "width": 924,
+          "height": 838,
+          "low_resolution": false
+        }
+      ],
+      "source_url": "https://anid.cl/media-kit/",
+      "provenance": "Kit Digital zip https://s3.amazonaws.com/documentos.anid.cl/documentos-y-servicios/kit-digital/Logos.zip (joint Ministerio de Ciencia + ANID, 2026). anid_stacked.png is anid_rojo_azul.png published on the same media-kit page. The Illustrator and PDF masters in the zip were not copied.",
+      "usage": "Not embedded in the website. Relevant to Chilean proposals and acknowledgements.",
+      "notes": "The kit is a joint ministry lockup, not a standalone ANID wordmark. The website header PNG is 216×65 and was not kept."
+    },
+    {
+      "name": "Alex Ekwueme Federal University, Ndufu-Alike",
+      "slug": "funai",
+      "category": "university",
+      "files": [
+        {
+          "path": "funai/funai_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 320,
+          "height": 88,
+          "low_resolution": true
+        }
+      ],
+      "source_url": "https://funai.edu.ng/",
+      "provenance": "assets/logos/funai.png. SOURCES.md: funai.edu.ng funai_Logo.png, downscaled.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "Chinese Academy of Sciences",
+      "slug": "cas",
+      "category": "institute",
+      "files": [
+        {
+          "path": "cas/cas_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 320,
+          "height": 287,
+          "low_resolution": true
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/cas.png. SOURCES.md: English Wikipedia, Seal of the Chinese Academy of Sciences.png, downscaled.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "CSNDSP",
+      "slug": "csndsp",
+      "category": "conference",
+      "files": [
+        {
+          "path": "csndsp/csndsp_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 283,
+          "height": 189,
+          "low_resolution": true
+        }
+      ],
+      "source_url": "https://eng.ed.ac.uk/csndsp-2026",
+      "provenance": "Copied from assets/csndsp/2026csndsp-logo.png (283×189). The conference page publishes a similar castle mark as a 241 px webp.",
+      "usage": "index.html and csndsp.html."
+    },
+    {
+      "name": "Czech Technical University in Prague",
+      "slug": "ctu",
+      "category": "university",
+      "files": [
+        {
+          "path": "ctu/ctu_color.svg",
+          "variant": "color",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ctu/ctu_color_en.svg",
+          "variant": "color_en",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ctu/ctu_mono.svg",
+          "variant": "mono",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ctu/ctu_symbol.svg",
+          "variant": "symbol",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ctu/ctu_symbol_white.svg",
+          "variant": "symbol_white",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ctu/ctu_vertical.svg",
+          "variant": "vertical",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ctu/ctu_vertical_en.svg",
+          "variant": "vertical_en",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ctu/ctu_white.svg",
+          "variant": "white",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ctu/ctu_white_en.svg",
+          "variant": "white_en",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": "https://www.cvut.cz/logo-a-graficky-manual",
+      "provenance": "Official package “Symbol a logo ČVUT v Praze” (2020-11-10). assets/logos/ctu.svg is a separate Illustrator export and is not byte-identical; it was not copied again.",
+      "usage": "cv.html timeline (2019 research stay) and collaborator carousel; publications map.",
+      "notes": "Supplementary-colour versions, black-and-white verticals, and Pantone PDFs remain in the zip on the brand page."
+    },
+    {
+      "name": "Departamento de Ingeniería Eléctrica, Universidad de Chile",
+      "slug": "die",
+      "category": "department",
+      "files": [
+        {
+          "path": "die/die_horizontal.png",
+          "variant": "horizontal",
+          "format": "png",
+          "width": 408,
+          "height": 77,
+          "low_resolution": true
+        }
+      ],
+      "source_url": "https://www.die.cl/",
+      "provenance": "Homepage header https://www.die.cl/wp-content/uploads/2023/03/cropped-logo-fcfm-die-1.png (408×77). No larger or vector file was linked from the department site.",
+      "usage": "Not embedded in the website. Incoming academic home (Profesor Asistente, DIE)."
+    },
+    {
+      "name": "Escuela Politécnica Nacional",
+      "slug": "epn",
+      "category": "university",
+      "files": [
+        {
+          "path": "epn/epn_white.png",
+          "variant": "white",
+          "format": "png",
+          "width": 320,
+          "height": 160,
+          "low_resolution": true
+        }
+      ],
+      "source_url": "https://www.epn.edu.ec/",
+      "provenance": "assets/logos/epn.png. SOURCES.md: epn.edu.ec logo-epn-LINEAS-03.png, a white logo downscaled to about 320 px. The site draws it dark.",
+      "usage": "cv.html collaborator carousel (class is-light).",
+      "notes": "White artwork. It disappears on a white slide."
+    },
+    {
+      "name": "European Union",
+      "slug": "european-union",
+      "category": "funder",
+      "files": [
+        {
+          "path": "european-union/european-union_blue.svg",
+          "variant": "blue",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "european-union/european-union_color.svg",
+          "variant": "color",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "european-union/european-union_mono.svg",
+          "variant": "mono",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "european-union/european-union_wordmark_en.svg",
+          "variant": "wordmark_en",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": "https://european-union.europa.eu/principles-countries-history/symbols/european-flag_en",
+      "provenance": "English SVG reproductions from the official emblem download page (colour, white-and-blue, black outline). Wordmark SVG is the positive English logo served on that site.",
+      "usage": "Not embedded as an image. cv.html cites the Horizon 2020 Marie Skłodowska-Curie grant (No. 764461) for the 2019 Prague stay and the VISION ITN.",
+      "notes": "Funding acknowledgements usually pair the emblem with a sentence. Do not redraw the stars or the proportions."
+    },
+    {
+      "name": "Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile",
+      "slug": "fcfm",
+      "category": "faculty",
+      "files": [
+        {
+          "path": "fcfm/fcfm_horizontal.png",
+          "variant": "horizontal",
+          "format": "png",
+          "width": 2048,
+          "height": 655,
+          "low_resolution": false
+        },
+        {
+          "path": "fcfm/fcfm_horizontal.svg",
+          "variant": "horizontal",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "fcfm/fcfm_seal.svg",
+          "variant": "seal",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "fcfm/fcfm_seal_white.svg",
+          "variant": "seal_white",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": "https://logos.cmmedu.uchile.cl/fcfm/",
+      "provenance": "Official faculty files on the Universidad de Chile logo server: horizontal.svg, horizontal-2048.png (2048×655), principal.svg, blanco.svg.",
+      "usage": "Not embedded in the website. Named in the CV as the 2016 outstanding-student award (FCFM).",
+      "notes": "blanco.svg is a white seal (same proportions as principal.svg), not a white horizontal wordmark."
+    },
+    {
+      "name": "IDeTIC, Universidad de Las Palmas de Gran Canaria",
+      "slug": "idetic",
+      "category": "institute",
+      "files": [
+        {
+          "path": "idetic/idetic_color.svg",
+          "variant": "color",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "idetic/idetic_white.svg",
+          "variant": "white",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": "https://idetic.ulpgc.es/",
+      "provenance": "idetic_color.svg is https://idetic.ulpgc.es/wp-content/uploads/2022/02/idetic_rev_hmr_acron_1.svg (byte-identical to assets/logos/ulpgc-idetic.svg). idetic_white.svg is https://idetic.ulpgc.es/wp-content/uploads/2018/11/idetic_rev_hc_blanca_2.svg, the header mark on the institute site.",
+      "usage": "cv.html timeline (postdoc, PhD, funded projects) and the collaborator carousel; publications map for ULPGC. Footer text on the main pages reads IDeTIC · ULPGC."
+    },
+    {
+      "name": "IEEE",
+      "slug": "ieee",
+      "category": "society",
+      "files": [
+        {
+          "path": "ieee/ieee_black.eps",
+          "variant": "black",
+          "format": "eps",
+          "low_resolution": false
+        },
+        {
+          "path": "ieee/ieee_black.png",
+          "variant": "black",
+          "format": "png",
+          "width": 287,
+          "height": 84,
+          "low_resolution": true
+        },
+        {
+          "path": "ieee/ieee_color.eps",
+          "variant": "color",
+          "format": "eps",
+          "low_resolution": false
+        },
+        {
+          "path": "ieee/ieee_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 287,
+          "height": 84,
+          "low_resolution": true
+        },
+        {
+          "path": "ieee/ieee_white.eps",
+          "variant": "white",
+          "format": "eps",
+          "low_resolution": false
+        },
+        {
+          "path": "ieee/ieee_white.png",
+          "variant": "white",
+          "format": "png",
+          "width": 287,
+          "height": 84,
+          "low_resolution": true
+        }
+      ],
+      "source_url": "https://brand-experience.ieee.org/guidelines/master-brand-and-logos/",
+      "provenance": "Master Brand EPS (print) and PNG (web) in blue, white, and black from the IEEE Brand Experience toolkit.",
+      "usage": "Not embedded as a logo. Publications and the CSNDSP blurb name IEEE as publisher and as the symposium’s sponsor.",
+      "notes": "Downloading the toolkit means agreeing to the IEEE Master Brand and Brand Identity Toolkit Agreement. The official web PNGs are 287×84; use the EPS for print."
+    },
+    {
+      "name": "Instituto de Telecomunicações",
+      "slug": "it",
+      "category": "institute",
+      "files": [
+        {
+          "path": "it/it_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 320,
+          "height": 114,
+          "low_resolution": true
+        }
+      ],
+      "source_url": "https://www.it.pt/",
+      "provenance": "assets/logos/it.png. SOURCES.md: it.pt IT-30years-logo_01_website.png, the 30-year campaign mark, downscaled.",
+      "usage": "cv.html timeline (visiting researcher, 2023–2024) and collaborator carousel; publications map.",
+      "notes": "This is the 30-year campaign lockup, not necessarily the standing institute mark."
+    },
+    {
+      "name": "Lightning Hybrids",
+      "slug": "lightning-hybrids",
+      "category": "company",
+      "files": [
+        {
+          "path": "lightning-hybrids/lightning-hybrids_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 320,
+          "height": 127,
+          "low_resolution": true
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/lightning-hybrids.png. SOURCES.md: lightninghybrids.com via the 2016 Web Archive, footer PNG, downscaled.",
+      "usage": "cv.html collaborator carousel (Revo Project).",
+      "notes": "Source is a 2016 archive snapshot, not a current brand page."
+    },
+    {
+      "name": "NEWFOCUS COST Action CA19111",
+      "slug": "newfocus",
+      "category": "network",
+      "files": [
+        {
+          "path": "newfocus/newfocus_white.png",
+          "variant": "white",
+          "format": "png",
+          "width": 320,
+          "height": 75,
+          "low_resolution": true
+        }
+      ],
+      "source_url": "https://www.newfocus-cost.eu/",
+      "provenance": "assets/logos/newfocus.png. SOURCES.md: newfocus-cost.eu logo-horizontal.png, a white logo downscaled. The site draws it dark.",
+      "usage": "cv.html collaborator carousel (class is-light). The 2023 Northumbria stay text cites the action.",
+      "notes": "White artwork. The generic COST mark is not in the repo."
+    },
+    {
+      "name": "Northumbria University",
+      "slug": "northumbria",
+      "category": "university",
+      "files": [
+        {
+          "path": "northumbria/northumbria_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 2000,
+          "height": 635,
+          "low_resolution": false
+        }
+      ],
+      "source_url": "https://www.northumbria.ac.uk/about-us/our-new-identity/",
+      "provenance": "Copied from assets/logos/northumbria.png (2000×635), already in the website repo. The public identity page describes the shield but does not offer a file download.",
+      "usage": "cv.html timeline (2023 research stay) and collaborator carousel; publications map.",
+      "notes": "No SVG was found on a public brand page."
+    },
+    {
+      "name": "OCC4SAT",
+      "slug": "occ4sat",
+      "category": "project",
+      "files": [
+        {
+          "path": "occ4sat/occ4sat_icon.svg",
+          "variant": "icon",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": "https://occ4sat.eu/",
+      "provenance": "Site icon https://occ4sat.eu/favicon.svg. The project homepage uses the word OCC4Sat as text and does not publish a wordmark.",
+      "usage": "index.html references assets/occ4sat-logo.png, which is not in this checkout. cv.html names the project as text.",
+      "notes": "This is the geometric site icon, not a wordmark."
+    },
+    {
+      "name": "Pi Lighting",
+      "slug": "pilighting",
+      "category": "company",
+      "files": [
+        {
+          "path": "pilighting/pilighting_white.png",
+          "variant": "white",
+          "format": "png",
+          "width": 320,
+          "height": 75,
+          "low_resolution": true
+        }
+      ],
+      "source_url": "https://www.pi-lighting.com/",
+      "provenance": "assets/logos/pilighting.png. SOURCES.md: pi-lighting.com logo-inline-white.png, downscaled. The publications carousel draws it dark.",
+      "usage": "Publications collaborator carousel (light logo).",
+      "notes": "White artwork."
+    },
+    {
+      "name": "Politécnico de Leiria",
+      "slug": "leiria",
+      "category": "university",
+      "files": [
+        {
+          "path": "leiria/leiria_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 320,
+          "height": 126,
+          "low_resolution": true
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/leiria.png. SOURCES.md: English Wikipedia, Logótipo Politécnico Leiria 01.png, downscaled.",
+      "usage": "Publications collaborator carousel. The map labels the OpenAlex institution “Universidade de Leiria e Oeste”.",
+      "notes": "Confirm that this polytechnic mark is the institution intended on the map."
+    },
+    {
+      "name": "Pontificia Universidad Católica de Chile",
+      "slug": "puc",
+      "category": "university",
+      "files": [
+        {
+          "path": "puc/puc_color.svg",
+          "variant": "color",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/puc.svg. SOURCES.md: Wikimedia Commons, Marca-uc.svg.",
+      "usage": "cv.html collaborator carousel (lab instrumentation, 2014–2015)."
+    },
+    {
+      "name": "Roma Tre University",
+      "slug": "roma3",
+      "category": "university",
+      "files": [
+        {
+          "path": "roma3/roma3_color.svg",
+          "variant": "color",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/roma3.svg. SOURCES.md: Wikimedia Commons, Roma Tre University logo.svg.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "Terralink",
+      "slug": "terralink",
+      "category": "company",
+      "files": [
+        {
+          "path": "terralink/terralink_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 320,
+          "height": 90,
+          "low_resolution": true
+        }
+      ],
+      "source_url": "https://terralink.cl/",
+      "provenance": "assets/logos/terralink.png. SOURCES.md: terralink.cl logoterralink.webp, downscaled.",
+      "usage": "cv.html collaborator carousel (electrical engineer)."
+    },
+    {
+      "name": "Toki Rapa Nui",
+      "slug": "toki",
+      "category": "organization",
+      "files": [
+        {
+          "path": "toki/toki_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 320,
+          "height": 167,
+          "low_resolution": true
+        }
+      ],
+      "source_url": "https://tokirapanui.org/",
+      "provenance": "assets/logos/toki.png. SOURCES.md: tokirapanui.org logo_toki_rapanui_header.png, downscaled.",
+      "usage": "cv.html collaborator carousel (solar volunteering)."
+    },
+    {
+      "name": "Universidad Autónoma de San Luis Potosí",
+      "slug": "uaslp",
+      "category": "university",
+      "files": [
+        {
+          "path": "uaslp/uaslp_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 250,
+          "height": 320,
+          "low_resolution": true
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/uaslp.png. SOURCES.md: English Wikipedia, UASLP.1.png, downscaled.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "Universidad Carlos III de Madrid",
+      "slug": "uc3m",
+      "category": "university",
+      "files": [
+        {
+          "path": "uc3m/uc3m_color.svg",
+          "variant": "color",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/uc3m.svg. SOURCES.md: Wikimedia Commons, Logo UC3M.svg.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "Universidad Católica del Maule",
+      "slug": "ucm",
+      "category": "university",
+      "files": [
+        {
+          "path": "ucm/ucm_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 320,
+          "height": 320,
+          "low_resolution": true
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/ucm.png. SOURCES.md: Spanish Wikipedia, Escudo UCM.png, downscaled.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "Universidad de Chile",
+      "slug": "uchile",
+      "category": "university",
+      "files": [
+        {
+          "path": "uchile/uchile_horizontal.jpg",
+          "variant": "horizontal",
+          "format": "jpg",
+          "width": 400,
+          "height": 171,
+          "low_resolution": true
+        },
+        {
+          "path": "uchile/uchile_seal.svg",
+          "variant": "seal",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": "https://uchile.cl/presentacion/institucionalidad/simbolos/escudo",
+      "provenance": "Seal SVG from the university logo directory https://logos.cmmedu.uchile.cl/uchile/principal.svg. Horizontal JPEG copied from assets/logos/uchile.jpg (400×171). The same directory’s horizontal.png is only 296×126, so the website file is the larger raster.",
+      "usage": "cv.html timeline (degree, research assistant, teaching) and collaborator carousel; publications map.",
+      "notes": "The 2017 graphic-standards manual points at https://uchile.cl/u7910 for a full download. That short link now redirects to the shield page and does not return the print package."
+    },
+    {
+      "name": "Universidad de Concepción",
+      "slug": "udec",
+      "category": "university",
+      "files": [
+        {
+          "path": "udec/udec_color.svg",
+          "variant": "color",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/udec.svg. SOURCES.md: English Wikipedia, Escudo de la Universidad de Concepción.svg.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "Universidad de La Laguna",
+      "slug": "ull",
+      "category": "university",
+      "files": [
+        {
+          "path": "ull/ull_color.jpg",
+          "variant": "color",
+          "format": "jpg",
+          "width": 320,
+          "height": 274,
+          "low_resolution": true
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/ull.jpg. SOURCES.md: Wikimedia Commons, Logo ULL.jpg, downscaled.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "Universidad de Las Palmas de Gran Canaria",
+      "slug": "ulpgc",
+      "category": "university",
+      "files": [
+        {
+          "path": "ulpgc/ulpgc_acronym_black.svg",
+          "variant": "acronym_black",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ulpgc/ulpgc_acronym_color.svg",
+          "variant": "acronym_color",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ulpgc/ulpgc_acronym_white.svg",
+          "variant": "acronym_white",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ulpgc/ulpgc_compact_black.svg",
+          "variant": "compact_black",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ulpgc/ulpgc_compact_color.svg",
+          "variant": "compact_color",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ulpgc/ulpgc_compact_white.svg",
+          "variant": "compact_white",
+          "format": "svg",
+          "low_resolution": false
+        },
+        {
+          "path": "ulpgc/ulpgc_horizontal_color.svg",
+          "variant": "horizontal_color",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": "https://www.ulpgc.es/identidad-corporativa/marca-grafica-ulpgc",
+      "provenance": "Official files from the university CDN https://cdn.ulpgc.es/logos/, which the brand page publishes. The HTML brand page itself returned 403 from this environment, so the vertical and single-ink variants listed there were not fetched.",
+      "usage": "Named throughout the site as the home university. cv.html currently shows the IDeTIC lockup (assets/logos/ulpgc-idetic.svg) in the ULPGC slots, not this university mark.",
+      "notes": "35th-anniversary marks are also on the CDN and were left out."
+    },
+    {
+      "name": "Universidad de Málaga",
+      "slug": "uma",
+      "category": "university",
+      "files": [
+        {
+          "path": "uma/uma_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 320,
+          "height": 320,
+          "low_resolution": true
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/uma.png. SOURCES.md: Wikimedia Commons, Universidad de Málaga.jpg, saved as PNG and downscaled.",
+      "usage": "cv.html timeline (thesis tribunal president, 2026) and collaborator carousel."
+    },
+    {
+      "name": "Universidad de Santiago de Chile",
+      "slug": "usach",
+      "category": "university",
+      "files": [
+        {
+          "path": "usach/usach_color.svg",
+          "variant": "color",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/usach.svg. SOURCES.md: English Wikipedia, Escudo USACH.svg.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "Universidad Diego Portales",
+      "slug": "udp",
+      "category": "university",
+      "files": [
+        {
+          "path": "udp/udp_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 320,
+          "height": 78,
+          "low_resolution": true
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/udp.png. SOURCES.md: Wikimedia Commons, Logo Universidad Diego Portales.png, downscaled.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "Universidad San Sebastián",
+      "slug": "uss",
+      "category": "university",
+      "files": [
+        {
+          "path": "uss/uss_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 200,
+          "height": 200,
+          "low_resolution": true
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/uss.png. SOURCES.md: Wikimedia Commons, Escudo Universidad San Sebastián.png (200×200).",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "Universidad Tecnológica Metropolitana",
+      "slug": "utem",
+      "category": "university",
+      "files": [
+        {
+          "path": "utem/utem_color.svg",
+          "variant": "color",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/utem.svg. SOURCES.md: Wikimedia Commons, UTEM.svg.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "University of Aveiro",
+      "slug": "aveiro",
+      "category": "university",
+      "files": [
+        {
+          "path": "aveiro/aveiro_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 320,
+          "height": 77,
+          "low_resolution": true
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/aveiro.png. SOURCES.md: Portuguese Wikipedia, UA Logo e Símbolo.png, downscaled to about 320 px.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "University of Cambridge",
+      "slug": "cambridge",
+      "category": "university",
+      "files": [
+        {
+          "path": "cambridge/cambridge_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 320,
+          "height": 69,
+          "low_resolution": true
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/cambridge.png. SOURCES.md: Wikimedia Commons, University of Cambridge logo.png, downscaled.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "University of Edinburgh",
+      "slug": "edinburgh",
+      "category": "university",
+      "files": [
+        {
+          "path": "edinburgh/edinburgh_horizontal.png",
+          "variant": "horizontal",
+          "format": "png",
+          "width": 831,
+          "height": 199,
+          "low_resolution": false
+        }
+      ],
+      "source_url": "https://www.ed.ac.uk/",
+      "provenance": "Masthead PNG https://www.ed.ac.uk/themes/upstream/wpp_theme/images/logo.png (831×199). index.html and csndsp.html hotlink this URL; it was not stored in the repo.",
+      "usage": "Hotlinked on index.html and csndsp.html next to the CSNDSP 2026 mark.",
+      "notes": "A 144×144 centred black file is also on the theme and was not kept. No public SVG was found."
+    },
+    {
+      "name": "University of Strathclyde",
+      "slug": "strathclyde",
+      "category": "university",
+      "files": [
+        {
+          "path": "strathclyde/strathclyde_color.png",
+          "variant": "color",
+          "format": "png",
+          "width": 320,
+          "height": 100,
+          "low_resolution": true
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/strathclyde.png. SOURCES.md: English Wikipedia, University of Strathclyde logo.png, downscaled.",
+      "usage": "Publications collaborator carousel."
+    },
+    {
+      "name": "Veolia",
+      "slug": "veolia",
+      "category": "company",
+      "files": [
+        {
+          "path": "veolia/veolia_color.svg",
+          "variant": "color",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": null,
+      "provenance": "assets/logos/veolia.svg. SOURCES.md: Wikimedia Commons, Veolia logo.svg.",
+      "usage": "cv.html collaborator carousel (Revo Project)."
+    },
+    {
+      "name": "Visionar Automatización",
+      "slug": "visionar",
+      "category": "company",
+      "files": [
+        {
+          "path": "visionar/visionar_black.png",
+          "variant": "black",
+          "format": "png",
+          "width": 4184,
+          "height": 673,
+          "low_resolution": false
+        },
+        {
+          "path": "visionar/visionar_white.png",
+          "variant": "white",
+          "format": "png",
+          "width": 2692,
+          "height": 436,
+          "low_resolution": false
+        }
+      ],
+      "source_url": "https://visionar.es/",
+      "provenance": "Official site files Logo-Visionar-Calatrava-web-2025-negro.png (4184×673) and Visionar-Logo-2025-blanco.png (2692×436). assets/logos/visionar.png is a 320×51 downscale of the black mark and was not copied again.",
+      "usage": "cv.html timeline (co-founder, 2025) and collaborator carousel.",
+      "notes": "No SVG on the company site."
+    },
+    {
+      "name": "Wooptix",
+      "slug": "wooptix",
+      "category": "company",
+      "files": [
+        {
+          "path": "wooptix/wooptix_icon.svg",
+          "variant": "icon",
+          "format": "svg",
+          "low_resolution": false
+        }
+      ],
+      "source_url": "https://wooptix.com/",
+      "provenance": "assets/logos/wooptix.svg. SOURCES.md: wooptix.com wooptix-icon.svg (viewBox 60×58).",
+      "usage": "Publications collaborator carousel. csndsp.html names Wooptix in a paper affiliation.",
+      "notes": "Icon only. A horizontal wordmark was not in the repo."
+    }
+  ],
+  "gaps": {
+    "missing": [
+      "Marie Skłodowska-Curie Actions programme emblem. The anniversary toolkit is hosted on CIRCABC and was not an open file. Use `european-union/` plus the funding sentence until that emblem is obtained.",
+      "VISION ITN logo. The network is named in cv.html and has no image in the repo or on an open brand page found here.",
+      "Generic COST Association logo. The NEWFOCUS action logo is included; the COST mark itself is not.",
+      "OCC4SAT wordmark. index.html points at `assets/occ4sat-logo.png`, which is not in the repo. occ4sat.eu publishes only the geometric favicon kept as `occ4sat/occ4sat_icon.svg`.",
+      "Quanzhou Institute of Equipment Manufacturing (Haixi Institute). publications data says no logo was found; the carousel shows the name.",
+      "Universidad de Chile horizontal imagotype at print size. The logo server’s `horizontal.png` is 296×126. The website JPEG is 400×171. The manual’s download link (uchile.cl/u7910) no longer returns a package.",
+      "ULPGC vertical and single-ink variants. The brand page lists them; this environment could not fetch that HTML. The CDN set (horizontal, acronym, compact, in colour, black, and white) is included.",
+      "DIE vector, and any file larger than the 408×77 homepage header.",
+      "FCFM white horizontal wordmark. The logo server has a white seal, not a white horizontal.",
+      "Wooptix wordmark. Only the 60×58 icon from the company site is in the repo.",
+      "Northumbria, Edinburgh, CSNDSP, and Visionar SVGs. Northumbria’s PNG is 2000 px wide. Edinburgh’s masthead PNG is 831×199. CSNDSP is 283×189. Visionar’s PNGs are large."
+    ],
+    "low_resolution": [
+      "- **Alex Ekwueme Federal University, Ndufu-Alike** (`funai`): funai_color.png (320×88)",
+      "- **Chinese Academy of Sciences** (`cas`): cas_color.png (320×287)",
+      "- **CSNDSP** (`csndsp`): csndsp_color.png (283×189)",
+      "- **Departamento de Ingeniería Eléctrica, Universidad de Chile** (`die`): die_horizontal.png (408×77)",
+      "- **Escuela Politécnica Nacional** (`epn`): epn_white.png (320×160)",
+      "- **Instituto de Telecomunicações** (`it`): it_color.png (320×114)",
+      "- **Lightning Hybrids** (`lightning-hybrids`): lightning-hybrids_color.png (320×127)",
+      "- **NEWFOCUS COST Action CA19111** (`newfocus`): newfocus_white.png (320×75)",
+      "- **Pi Lighting** (`pilighting`): pilighting_white.png (320×75)",
+      "- **Politécnico de Leiria** (`leiria`): leiria_color.png (320×126)",
+      "- **Terralink** (`terralink`): terralink_color.png (320×90)",
+      "- **Toki Rapa Nui** (`toki`): toki_color.png (320×167)",
+      "- **Universidad Autónoma de San Luis Potosí** (`uaslp`): uaslp_color.png (250×320)",
+      "- **Universidad Católica del Maule** (`ucm`): ucm_color.png (320×320)",
+      "- **Universidad de Chile** (`uchile`): uchile_horizontal.jpg (400×171). A vector of a different variant is in the folder.",
+      "- **Universidad de La Laguna** (`ull`): ull_color.jpg (320×274)",
+      "- **Universidad de Málaga** (`uma`): uma_color.png (320×320)",
+      "- **Universidad Diego Portales** (`udp`): udp_color.png (320×78)",
+      "- **Universidad San Sebastián** (`uss`): uss_color.png (200×200)",
+      "- **University of Aveiro** (`aveiro`): aveiro_color.png (320×77)",
+      "- **University of Cambridge** (`cambridge`): cambridge_color.png (320×69)",
+      "- **University of Strathclyde** (`strathclyde`): strathclyde_color.png (320×100)"
+    ]
+  }
+}
