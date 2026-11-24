@@ -1,5 +1,5 @@
 {
-  "_readme": "Canonical professional bio for Vicente Matus Icaza. Edit this file only. The home-page lead reads tagline (first person) and cv.html and cv-full.html read bios.short (first person); bio.html renders bios.medium and bios.long only, both written in third-person IEEE-biography style. Public copies: https://inventor-loco.vercel.app/bio.json and https://inventor-loco.vercel.app/bio (bio.html). Entries in todos are unverified and must be filled by Vicente. Do not add publications, awards, or numbers that are not already in this file.",
+  "_readme": "Canonical professional bio for Vicente Matus Icaza. Edit this file only. The home-page lead reads tagline (first person) and cv.html and cv-full.html read bios.short (first person); bio.html renders bios.medium and bios.long only, both written in third-person IEEE-biography style. Public copies: https://vmatus.com/bio.json and https://vmatus.com/bio (bio.html). Entries in todos are unverified and must be filled by Vicente. Do not add publications, awards, or numbers that are not already in this file.",
   "version": 1,
   "updated": "2026-11-24",
   "name": {
@@ -272,21 +272,21 @@
         "en": "Website",
         "es": "Sitio web"
       },
-      "url": "https://inventor-loco.vercel.app"
+      "url": "https://vmatus.com"
     },
     "bio_json": {
       "label": {
         "en": "bio.json",
         "es": "bio.json"
       },
-      "url": "https://inventor-loco.vercel.app/bio.json"
+      "url": "https://vmatus.com/bio.json"
     },
     "bio_page": {
       "label": {
         "en": "Bio page",
         "es": "Página de biografía"
       },
-      "url": "https://inventor-loco.vercel.app/bio"
+      "url": "https://vmatus.com/bio"
     },
     "email": {
       "label": {
@@ -395,7 +395,7 @@
     },
     {
       "id": "website-url",
-      "text": "Canonical site URL. This file and readme.md use https://inventor-loco.vercel.app. cv-master.md and cv-full.html still list https://inventor-loco.github.io/inventor-loco/. /bio is a Vercel rewrite to bio.html; /bio.html and /bio.json work without that rewrite."
+      "text": "Canonical site URL is https://vmatus.com, used across bio.json, readme.md, cv-master.md, cv-master-es.md, and cv-full.html. /bio is a Vercel rewrite to bio.html; /bio.html and /bio.json work without that rewrite."
     },
     {
       "id": "email-personal-public",

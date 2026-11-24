@@ -1,7 +1,7 @@
 Welcome to my github!
 
-check my website: https://inventor-loco.vercel.app
+check my website: https://vmatus.com
 
 Canonical bio (tagline, short / medium / long, English and Spanish, positions, education, interests, links): [bio.json](bio.json).
-Live copies: https://inventor-loco.vercel.app/bio.json and https://inventor-loco.vercel.app/bio
+Live copies: https://vmatus.com/bio.json and https://vmatus.com/bio
 

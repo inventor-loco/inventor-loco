@@ -32,7 +32,7 @@
 - **LinkedIn:** https://www.linkedin.com/in/vicente-matus/
 - **ResearchGate:** https://www.researchgate.net/profile/Vicente-Matus
 - **YouTube:** https://www.youtube.com/@inventorloco92
-- **Sitio web:** https://inventor-loco.github.io/inventor-loco/
+- **Sitio web:** https://vmatus.com
 
 ## 2. Resumen del perfil
 
