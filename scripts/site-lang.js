@@ -7,35 +7,47 @@
 // localStorage under 'site-lang' (falling back to the legacy 'cv-lang' key) so
 // it persists across pages and reloads.
 //
-// On the CV pages the profile summary text lives ONLY in the cv-master markdown
-// files (cv-master.md / cv-master-es.md) and is injected into elements marked
-// data-cv="summary". That fetch only runs when such an element is present, so
-// this script is safe to include on every page (including courses/ subpages).
+// The public bio lives ONLY in /bio.json. Elements marked data-bio="tagline"
+// (or "short", "medium", "long") and the CV profile elements marked
+// data-cv="summary" are filled from that file. data-cv="summary" uses
+// bios.short. The fetch runs only when such an element is present, so this
+// script is safe to include on every page (including courses/ subpages).
+// A data-es fallback on the same node still applies if bio.json fails to load.
 //
 // A 'sitelangchange' event (aliased as 'cvlangchange') is dispatched on every
 // switch so other scripts (e.g. the course video player) can react.
 (function () {
   var STORAGE_KEY = 'site-lang';
-  var summaries = {};
-  var hasSummary = !!document.querySelector('[data-cv="summary"]');
+  var bio = null;
+  var needsBio = !!document.querySelector('[data-bio], [data-cv="summary"]');
 
-  function extractSummary(md) {
-    var m = md.match(/##\s*2\.[^\n]*\n[\s\S]*?((?:^>.*$\n?)+)/m);
-    return m ? m[1].replace(/^>\s?/gm, '').replace(/\s+/g, ' ').trim() : null;
+  function localized(value, lang) {
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    if (lang === 'es' && value.es) return value.es;
+    return value.en || value.es || '';
   }
 
-  function loadSummary(lang, file) {
-    return fetch(file)
-      .then(function (r) { return r.ok ? r.text() : Promise.reject(r.status); })
-      .then(function (md) { summaries[lang] = extractSummary(md); })
-      .catch(function (e) { console.warn(file + ' not loaded:', e); });
+  function loadBio() {
+    return fetch('bio.json')
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (data) { bio = data; })
+      .catch(function (e) { console.warn('bio.json not loaded:', e); });
   }
 
-  function applySummary(lang) {
-    var text = summaries[lang] || summaries.en;
-    if (!text) return;
+  function applyBio(lang) {
+    if (!bio) return;
+    document.querySelectorAll('[data-bio]').forEach(function (el) {
+      var key = el.getAttribute('data-bio');
+      var value = key === 'tagline'
+        ? localized(bio.tagline, lang)
+        : localized(bio.bios && bio.bios[key], lang);
+      if (value) el.textContent = value;
+    });
+    var summary = localized(bio.bios && bio.bios.short, lang);
+    if (!summary) return;
     document.querySelectorAll('[data-cv="summary"]').forEach(function (el) {
-      el.textContent = text;
+      el.textContent = summary;
     });
   }
 
@@ -61,7 +73,7 @@
     document.documentElement.lang = lang;
     try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
     applyDataLang(lang);
-    if (hasSummary) applySummary(lang);
+    if (needsBio) applyBio(lang);
     document.querySelectorAll('[data-lang-btn]').forEach(function (b) {
       var on = b.getAttribute('data-lang-btn') === lang;
       b.classList.toggle('active', on);
@@ -80,12 +92,10 @@
   } catch (e) {}
   var initial = (stored === 'es') ? 'es' : 'en';
 
-  if (hasSummary) {
-    Promise.all([
-      loadSummary('en', 'cv-master.md'),
-      loadSummary('es', 'cv-master-es.md')
-    ]).then(function () { window.setSiteLang(initial); });
-  } else {
-    window.setSiteLang(initial);
+  // Apply data-es immediately so the page does not wait on the network.
+  // When bio.json arrives, apply it on top (CV summary, and any data-bio node).
+  window.setSiteLang(initial);
+  if (needsBio) {
+    loadBio().then(function () { window.setSiteLang(initial); });
   }
 })();

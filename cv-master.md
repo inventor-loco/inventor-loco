@@ -1,8 +1,12 @@
 # CV Master — Vicente Matus Icaza, PhD
 
-> **Single source of truth for all CV information**, including items not (yet) shown on the
-> website or in the FECYT CVN. When updating `cv.html`, `publications.html`, or the CVN,
-> pull from this file. Items marked `[CVN: pending]` are missing from the FECYT CVN.
+> **Single source of truth for the CV**, including items not (yet) shown on the
+> website or in the FECYT CVN. The public bio (tagline, short, medium, and long
+> text, in English and Spanish) lives in [`bio.json`](bio.json). The profile
+> paragraph on `cv.html` and `cv-full.html` is `bios.short` from that file.
+> When updating the CV pages, `publications.html`, or the CVN, pull from this file,
+> and pull the profile sentence from `bio.json`. Items marked `[CVN: pending]`
+> are missing from the FECYT CVN.
 >
 > **Printable version:** `cv-full.html` renders §1–§10 of this file as a print-ready A4
 > page (linked from the cv.html hero as "Printable full CV (PDF)"). Keep it in sync when
@@ -28,15 +32,11 @@
 
 ## 2. Profile summary
 
-Canonical text. **Do not copy it elsewhere**: `cv.html` and `cv-full.html` fetch this
-blockquote at runtime via `scripts/cv-shared.js` (elements marked `data-cv="summary"`).
-Edit it here and both pages update automatically.
+The profile paragraph is **not** stored in this file. It is `bios.short` in
+[`bio.json`](bio.json). `scripts/site-lang.js` injects it into elements marked
+`data-cv="summary"` on `cv.html` and `cv-full.html`. Edit `bio.json` only.
 
-> I am an engineer focused on building the new generation of optical wireless
-> communications for the Internet of things. I work fluently with prototyping platforms
-> and have authored numerous scientific publications taking part in publicly funded
-> research projects. My goal is to transfer technology to society by means of
-> teaching and entrepreneurship. My favorite workspace is the laboratory.
+The previous English and Spanish summaries were moved there unchanged.
 
 ## 3. Metrics (Google Scholar, May 2026)
 

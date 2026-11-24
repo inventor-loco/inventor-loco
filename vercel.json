@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/bio/", "destination": "/bio", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/bio", "destination": "/bio.html" }
+  ]
+}

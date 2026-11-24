@@ -1,9 +1,12 @@
 # CV Maestro — Vicente Matus Icaza, PhD
 
-> **Fuente única de verdad para toda la información del CV**, incluyendo elementos que (aún)
-> no aparecen en el sitio web ni en el CVN de la FECYT. Al actualizar `cv.html`,
-> `publications.html` o el CVN, toma los datos de este archivo. Los elementos marcados con
-> `[CVN: pendiente]` faltan en el CVN de la FECYT.
+> **Fuente única de verdad del CV**, incluyendo elementos que (aún) no aparecen en el
+> sitio web ni en el CVN de la FECYT. La biografía pública (eslogan, texto corto, medio
+> y largo, en inglés y en español) vive en [`bio.json`](bio.json). El párrafo de perfil
+> de `cv.html` y `cv-full.html` es `bios.short` de ese archivo. Al actualizar las páginas
+> del CV, `publications.html` o el CVN, toma los datos de este archivo, y toma la frase
+> de perfil de `bio.json`. Los elementos marcados con `[CVN: pendiente]` faltan en el CVN
+> de la FECYT.
 >
 > **Versión imprimible:** `cv-full.html` representa las §1–§10 de este archivo como una
 > página A4 lista para imprimir (enlazada desde el hero de cv.html como "CV completo
@@ -33,16 +36,11 @@
 
 ## 2. Resumen del perfil
 
-Texto canónico. **No lo copies en otros lugares**: `cv.html` y `cv-full.html` obtienen esta
-cita en tiempo de ejecución mediante `scripts/cv-shared.js` (elementos marcados con
-`data-cv="summary"`). Edítalo aquí y ambas páginas se actualizan automáticamente.
+El párrafo de perfil **no** vive en este archivo. Es `bios.short` en
+[`bio.json`](bio.json). `scripts/site-lang.js` lo inserta en los elementos marcados con
+`data-cv="summary"` en `cv.html` y `cv-full.html`. Edita solo `bio.json`.
 
-> Soy un ingeniero enfocado en construir la nueva generación de comunicaciones ópticas
-> inalámbricas para el internet de las cosas. Trabajo con fluidez con plataformas de
-> prototipado y he sido autor de numerosas publicaciones científicas participando en
-> proyectos de investigación con financiación pública. Mi objetivo es transferir tecnología
-> a la sociedad por medio de la docencia y el emprendimiento. Mi espacio de trabajo favorito
-> es el laboratorio.
+Los resúmenes anteriores, en inglés y en español, se trasladaron allí sin cambios.
 
 ## 3. Métricas (Google Scholar, mayo de 2026)
 
