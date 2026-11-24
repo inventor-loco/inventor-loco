@@ -1,0 +1,429 @@
+{
+  "_readme": "Canonical professional bio for Vicente Matus Icaza. Edit this file only. The home-page lead reads tagline, cv.html and cv-full.html read bios.short, and bio.html renders the rest. Public copies: https://inventor-loco.vercel.app/bio.json and https://inventor-loco.vercel.app/bio (bio.html). Entries in todos are unverified and must be filled by Vicente. Do not add publications, awards, or numbers that are not already in this file.",
+  "version": 1,
+  "updated": "2026-11-24",
+  "name": {
+    "full": "Vicente Matus Icaza",
+    "display": "Vicente Matus, PhD",
+    "given": "Vicente",
+    "family": "Matus Icaza"
+  },
+  "nationality": [
+    {
+      "en": "Chilean",
+      "es": "chilena"
+    },
+    {
+      "en": "Spanish",
+      "es": "española"
+    }
+  ],
+  "tagline": {
+    "en": "I work on optical camera communications, embedded systems, experimental prototyping, and teaching platforms built around practical engineering.",
+    "es": "Trabajo en comunicaciones por cámara óptica, sistemas embebidos, prototipado experimental y plataformas docentes construidas en torno a la ingeniería práctica."
+  },
+  "bios": {
+    "short": {
+      "en": "I am an engineer focused on building the new generation of optical wireless communications for the Internet of things. I work fluently with prototyping platforms and have authored numerous scientific publications taking part in publicly funded research projects. My goal is to transfer technology to society by means of teaching and entrepreneurship. My favorite workspace is the laboratory.",
+      "es": "Soy un ingeniero enfocado en construir la nueva generación de comunicaciones ópticas inalámbricas para el internet de las cosas. Trabajo con fluidez con plataformas de prototipado y he sido autor de numerosas publicaciones científicas participando en proyectos de investigación con financiación pública. Mi objetivo es transferir tecnología a la sociedad por medio de la docencia y el emprendimiento. Mi espacio de trabajo favorito es el laboratorio.",
+      "target_words": 50,
+      "provenance": "Unchanged profile summary previously stored in cv-master.md §2 and cv-master-es.md §2. This is the paragraph on cv.html and cv-full.html."
+    },
+    "medium": {
+      "en": "I am an engineer focused on building the new generation of optical wireless communications for the Internet of things. I am a postdoctoral researcher at IDeTIC, Universidad de Las Palmas de Gran Canaria, working on optical camera communications and experimental optical wireless systems. I have spent about eight years in the Canary Islands. I hold a PhD from the Universidad de Las Palmas de Gran Canaria and an electrical engineering degree from the Universidad de Chile; César Azurdia supervised the Memoria. My goal is to transfer technology to society by means of teaching and entrepreneurship. I have accepted a full-time Profesor Asistente position at the Departamento de Ingeniería Eléctrica (DIE), FCFM, Universidad de Chile, starting around January 2027. I hold Chilean and Spanish nationality.",
+      "es": "Soy un ingeniero enfocado en construir la nueva generación de comunicaciones ópticas inalámbricas para el internet de las cosas. Soy investigador postdoctoral en el IDeTIC, Universidad de Las Palmas de Gran Canaria, donde trabajo en comunicaciones por cámara óptica y en sistemas experimentales de comunicaciones ópticas inalámbricas. Llevo cerca de ocho años en las Islas Canarias. Tengo el doctorado por la Universidad de Las Palmas de Gran Canaria y el título de Ingeniero Civil Eléctrico por la Universidad de Chile; la memoria la dirigió César Azurdia. Mi objetivo es transferir tecnología a la sociedad por medio de la docencia y el emprendimiento. He aceptado un cargo a jornada completa de Profesor Asistente en el Departamento de Ingeniería Eléctrica (DIE), FCFM, Universidad de Chile, en torno a enero de 2027. Tengo nacionalidad chilena y española.",
+      "target_words": 120,
+      "provenance": "New text in the existing first-person voice. Facts are limited to the short bio, the CV, and the notes Vicente supplied for this file."
+    },
+    "long": {
+      "en": "I am an engineer focused on building the new generation of optical wireless communications for the Internet of things. I work on optical camera communications, embedded systems, experimental prototyping, and teaching platforms built around practical engineering. I am a postdoctoral researcher at IDeTIC, Universidad de Las Palmas de Gran Canaria, in the Canary Islands. The postdoctoral work is on optical camera communications and experimental optical wireless systems. I am also an active researcher on the OCC4SAT project, on optical camera communications for satellite-oriented applications. I have spent about eight years in the Canary Islands. From 2018 to 2021 I completed my PhD in EmITIC (Empresa, Internet y Tecnologías de las Comunicaciones) at the Universidad de Las Palmas de Gran Canaria, with a Marie Skłodowska-Curie Actions fellowship. The doctorate was awarded Suma Cum Laude. I hold an electrical engineering degree from the Universidad de Chile, completed between 2014 and 2017 and awarded in 2018 with highest distinction. The Memoria was a visible light communications platform applied to vehicular networks, supervised by César Azurdia. I also hold a bachelor's degree in electrical engineering sciences from the Universidad de Chile (2010–2014). I work fluently with prototyping platforms and have authored numerous scientific publications taking part in publicly funded research projects. I have taught research seminars in optical wireless communications at the Universidad de Chile. In 2025 I co-founded Visionar Automatización, in the Canary Islands, where I develop software and hardware for local businesses. My goal is to transfer technology to society by means of teaching and entrepreneurship. My favorite workspace is the laboratory. I have accepted a full-time Profesor Asistente position at the Departamento de Ingeniería Eléctrica (DIE), Facultad de Ciencias Físicas y Matemáticas (FCFM), Universidad de Chile, starting around January 2027. I hold Chilean and Spanish nationality.",
+      "es": "Soy un ingeniero enfocado en construir la nueva generación de comunicaciones ópticas inalámbricas para el internet de las cosas. Trabajo en comunicaciones por cámara óptica, sistemas embebidos, prototipado experimental y plataformas docentes construidas en torno a la ingeniería práctica. Soy investigador postdoctoral en el IDeTIC de la Universidad de Las Palmas de Gran Canaria, en las Islas Canarias. Investigo en comunicaciones por cámara óptica y en sistemas experimentales de comunicaciones ópticas inalámbricas. También soy investigador activo del proyecto OCC4SAT, sobre comunicaciones por cámara óptica para aplicaciones orientadas a satélites. Llevo cerca de ocho años en las Islas Canarias. Entre 2018 y 2021 completé el doctorado en EmITIC (Empresa, Internet y Tecnologías de las Comunicaciones) en la Universidad de Las Palmas de Gran Canaria, con una beca de las Acciones Marie Skłodowska-Curie. El doctorado fue calificado con Suma Cum Laude. Tengo el título de Ingeniero Civil Eléctrico por la Universidad de Chile, cursado entre 2014 y 2017 y otorgado en 2018 con máxima distinción. La memoria fue una plataforma de comunicaciones por luz visible aplicada a redes vehiculares, dirigida por César Azurdia. También tengo el grado de Licenciatura en Ingeniería Eléctrica por la Universidad de Chile (2010–2014). Trabajo con fluidez con plataformas de prototipado y he sido autor de numerosas publicaciones científicas participando en proyectos de investigación con financiación pública. He impartido en la Universidad de Chile seminarios de investigación en comunicaciones ópticas inalámbricas. En 2025 cofundé Visionar Automatización, en las Islas Canarias, donde desarrollo software y hardware para negocios locales. Mi objetivo es transferir tecnología a la sociedad por medio de la docencia y el emprendimiento. Mi espacio de trabajo favorito es el laboratorio. He aceptado un cargo a jornada completa de Profesor Asistente en el Departamento de Ingeniería Eléctrica (DIE), Facultad de Ciencias Físicas y Matemáticas (FCFM), Universidad de Chile, con inicio en torno a enero de 2027. Tengo nacionalidad chilena y española.",
+      "target_words": 300,
+      "provenance": "New text in the existing first-person voice. Adds only positions, education, and project names already on the site or confirmed for this file. No citation counts and no funding amounts."
+    }
+  },
+  "positions": {
+    "current": [
+      {
+        "id": "idetic-postdoc",
+        "status": "current",
+        "dates": {
+          "en": "2022–present",
+          "es": "2022–presente"
+        },
+        "start": "2022",
+        "end": null,
+        "role": {
+          "en": "Postdoctoral Researcher",
+          "es": "Investigador postdoctoral"
+        },
+        "organization": "IDeTIC, Universidad de Las Palmas de Gran Canaria",
+        "organization_short": "IDeTIC · ULPGC",
+        "location": {
+          "en": "Las Palmas de Gran Canaria, Canary Islands, Spain",
+          "es": "Las Palmas de Gran Canaria, Islas Canarias, España"
+        },
+        "summary": {
+          "en": "Postdoctoral research in optical camera communications and experimental optical wireless systems.",
+          "es": "Investigación postdoctoral en comunicaciones por cámara óptica y sistemas experimentales de comunicaciones ópticas inalámbricas."
+        },
+        "source": "cv-master.md §4 and cv.html"
+      },
+      {
+        "id": "visionar",
+        "status": "current",
+        "dates": {
+          "en": "2025",
+          "es": "2025"
+        },
+        "start": "2025",
+        "end": null,
+        "role": {
+          "en": "Co-founder and developer",
+          "es": "Cofundador y desarrollador"
+        },
+        "organization": "Visionar Automatización Soc. Ltda.",
+        "location": {
+          "en": "Canary Islands, Spain",
+          "es": "Islas Canarias, España"
+        },
+        "summary": {
+          "en": "Software and hardware developer of AI-powered solutions for local businesses.",
+          "es": "Desarrollador de software y hardware de soluciones potenciadas por IA para negocios locales."
+        },
+        "source": "cv-master.md §4",
+        "todo": "visionar-current"
+      }
+    ],
+    "incoming": [
+      {
+        "id": "uchile-profesor-asistente",
+        "status": "incoming",
+        "dates": {
+          "en": "around January 2027",
+          "es": "en torno a enero de 2027"
+        },
+        "start": null,
+        "end": null,
+        "employment": {
+          "en": "full-time",
+          "es": "jornada completa"
+        },
+        "role": {
+          "en": "Profesor Asistente",
+          "es": "Profesor Asistente"
+        },
+        "organization": "Universidad de Chile",
+        "department": {
+          "en": "Department of Electrical Engineering (DIE), Faculty of Physical and Mathematical Sciences (FCFM)",
+          "es": "Departamento de Ingeniería Eléctrica (DIE), Facultad de Ciencias Físicas y Matemáticas (FCFM)"
+        },
+        "location": {
+          "en": "Santiago, Chile",
+          "es": "Santiago, Chile"
+        },
+        "summary": {
+          "en": "Accepted a full-time Profesor Asistente position, starting around January 2027.",
+          "es": "Cargo aceptado de Profesor Asistente a jornada completa, con inicio en torno a enero de 2027."
+        },
+        "source": "Confirmed for this file. Not yet on cv.html.",
+        "todo": "profesor-asistente-start"
+      }
+    ]
+  },
+  "education": [
+    {
+      "id": "phd-emtic-ulpgc",
+      "credential": {
+        "en": "Ph.D. in EmITIC (Empresa, Internet y Tecnologías de las Comunicaciones)",
+        "es": "Doctorado en EmITIC (Empresa, Internet y Tecnologías de las Comunicaciones)"
+      },
+      "organization": "Universidad de Las Palmas de Gran Canaria",
+      "dates": {
+        "en": "2018–2021",
+        "es": "2018–2021"
+      },
+      "start": "2018",
+      "end": "2021",
+      "notes": {
+        "en": "Marie Skłodowska-Curie Actions fellowship. Suma Cum Laude.",
+        "es": "Beca de las Acciones Marie Skłodowska-Curie. Suma Cum Laude."
+      },
+      "thesis_title": null,
+      "apostille": {
+        "apostilled": true,
+        "country": null,
+        "date": null
+      },
+      "source": "cv-master.md §4. Apostille confirmed for this file; country and date were not.",
+      "todo": "phd-thesis-and-apostille"
+    },
+    {
+      "id": "electrical-engineer-uchile",
+      "credential": {
+        "en": "Electrical Engineer",
+        "es": "Ingeniero Civil Eléctrico"
+      },
+      "organization": "Universidad de Chile",
+      "dates": {
+        "en": "2014–2017",
+        "es": "2014–2017"
+      },
+      "start": "2014",
+      "end": "2017",
+      "awarded": "2018",
+      "notes": {
+        "en": "Credits equivalent to a master's degree. Graduated with highest distinction (2018). Degree project (Memoria): a visible light communications platform applied to vehicular networks.",
+        "es": "Créditos equivalentes a un máster. Graduado con máxima distinción (2018). Memoria: una plataforma de comunicaciones por luz visible aplicada a redes vehiculares."
+      },
+      "supervisor": {
+        "name": "César Azurdia",
+        "name_in_cv": "César Augusto Azurdia Meza",
+        "role": {
+          "en": "Memoria supervisor",
+          "es": "Dirección de la memoria"
+        }
+      },
+      "source": "cv-master.md §4 for the degree and the project. Supervisor confirmed for this file.",
+      "todo": "supervisor-name-form"
+    },
+    {
+      "id": "bsc-uchile",
+      "credential": {
+        "en": "Bachelor in Electrical Engineering Sciences",
+        "es": "Grado de Licenciatura en Ingeniería Eléctrica"
+      },
+      "organization": "Universidad de Chile",
+      "location": {
+        "en": "Santiago, Chile",
+        "es": "Santiago, Chile"
+      },
+      "dates": {
+        "en": "2010–2014",
+        "es": "2010–2014"
+      },
+      "start": "2010",
+      "end": "2014",
+      "source": "cv-master.md §4"
+    }
+  ],
+  "research_interests": [
+    {
+      "id": "owc",
+      "en": "Optical wireless communications",
+      "es": "Comunicaciones ópticas inalámbricas"
+    },
+    {
+      "id": "occ",
+      "en": "Optical camera communications (OCC)",
+      "es": "Comunicaciones por cámara óptica (OCC)"
+    },
+    {
+      "id": "vlc",
+      "en": "Visible light communications",
+      "es": "Comunicaciones por luz visible"
+    },
+    {
+      "id": "embedded",
+      "en": "Embedded systems",
+      "es": "Sistemas embebidos"
+    },
+    {
+      "id": "prototyping",
+      "en": "Experimental prototyping",
+      "es": "Prototipado experimental"
+    },
+    {
+      "id": "iot",
+      "en": "Internet of Things",
+      "es": "Internet de las cosas"
+    },
+    {
+      "id": "teaching",
+      "en": "Teaching platforms built around practical engineering",
+      "es": "Plataformas docentes construidas en torno a la ingeniería práctica"
+    }
+  ],
+  "languages": [
+    {
+      "id": "es",
+      "en": "Spanish",
+      "es": "español",
+      "level": {
+        "en": "native",
+        "es": "nativo"
+      },
+      "source": "cv-master.md §8"
+    },
+    {
+      "id": "en",
+      "en": "English",
+      "es": "inglés",
+      "level": {
+        "en": "B2 (Oxford Test of English)",
+        "es": "B2 (Oxford Test of English)"
+      },
+      "source": "cv-master.md §8"
+    }
+  ],
+  "links": {
+    "website": {
+      "label": {
+        "en": "Website",
+        "es": "Sitio web"
+      },
+      "url": "https://inventor-loco.vercel.app"
+    },
+    "bio_json": {
+      "label": {
+        "en": "bio.json",
+        "es": "bio.json"
+      },
+      "url": "https://inventor-loco.vercel.app/bio.json"
+    },
+    "bio_page": {
+      "label": {
+        "en": "Bio page",
+        "es": "Página de biografía"
+      },
+      "url": "https://inventor-loco.vercel.app/bio"
+    },
+    "email": {
+      "label": {
+        "en": "Institutional email",
+        "es": "Correo institucional"
+      },
+      "url": "mailto:vicente.matus@ulpgc.es"
+    },
+    "email_personal": {
+      "label": {
+        "en": "Personal email",
+        "es": "Correo personal"
+      },
+      "url": "mailto:vmat.icaza@gmail.com",
+      "todo": "email-personal-public"
+    },
+    "orcid": {
+      "label": {
+        "en": "ORCID",
+        "es": "ORCID"
+      },
+      "url": "https://orcid.org/0000-0003-4262-3882"
+    },
+    "cvn": {
+      "label": {
+        "en": "CVN (FECYT)",
+        "es": "CVN (FECYT)"
+      },
+      "url": "https://cvn.fecyt.es/0000-0003-4262-3882"
+    },
+    "google_scholar": {
+      "label": {
+        "en": "Google Scholar",
+        "es": "Google Scholar"
+      },
+      "url": "https://scholar.google.com/citations?user=Exjlq20AAAAJ"
+    },
+    "scopus": {
+      "label": {
+        "en": "Scopus",
+        "es": "Scopus"
+      },
+      "url": "https://www.scopus.com/authid/detail.uri?authorId=57203117554"
+    },
+    "github": {
+      "label": {
+        "en": "GitHub",
+        "es": "GitHub"
+      },
+      "url": "https://github.com/inventor-loco"
+    },
+    "linkedin": {
+      "label": {
+        "en": "LinkedIn",
+        "es": "LinkedIn"
+      },
+      "url": "https://www.linkedin.com/in/vicente-matus/"
+    },
+    "researchgate": {
+      "label": {
+        "en": "ResearchGate",
+        "es": "ResearchGate"
+      },
+      "url": "https://www.researchgate.net/profile/Vicente-Matus"
+    },
+    "youtube": {
+      "label": {
+        "en": "YouTube",
+        "es": "YouTube"
+      },
+      "url": "https://www.youtube.com/@inventorloco92"
+    }
+  },
+  "todos": [
+    {
+      "id": "profesor-asistente-start",
+      "text": "Exact start date of the Profesor Asistente appointment at DIE, FCFM, Universidad de Chile. The prose says only \"around January 2027\" / \"en torno a enero de 2027\". positions.incoming[0].start is null."
+    },
+    {
+      "id": "profesor-asistente-english",
+      "text": "English name of the rank. Both languages keep \"Profesor Asistente\" so the file does not invent a translation. Confirm whether English bios should say Assistant Professor or keep the Spanish rank."
+    },
+    {
+      "id": "uchile-contact",
+      "text": "Universidad de Chile contact for the new appointment: institutional email, office, phone, and postal address. None of these are in the repo. The institutional email here is still vicente.matus@ulpgc.es."
+    },
+    {
+      "id": "phd-thesis-and-apostille",
+      "text": "PhD thesis title (not in cv-master.md) and the apostille: the doctorate is apostilled, but the country and date are not recorded. The public prose does not mention the apostille. Add the title, and say whether the apostille should appear in a bio."
+    },
+    {
+      "id": "supervisor-name-form",
+      "text": "Memoria supervisor in the prose is \"César Azurdia\". cv-master.md also uses \"César Augusto Azurdia Meza\". Confirm which form belongs in the bio."
+    },
+    {
+      "id": "visionar-current",
+      "text": "Visionar Automatización Soc. Ltda. is listed as a current role because cv-master.md gives 2025 and no end date. Confirm that it is still active and that the company belongs in the public long bio."
+    },
+    {
+      "id": "nationality-public",
+      "text": "Chilean and Spanish nationality is stated in the medium and long bios and in nationality. Confirm that this should stay on the public page."
+    },
+    {
+      "id": "eight-years",
+      "text": "\"About eight years\" / \"cerca de ocho años\" in the Canary Islands is used as given (consistent with the PhD start in 2018, as of 2026-11-24). Replace it with an arrival month if you want the line to stay exact, and revisit it as the date moves."
+    },
+    {
+      "id": "website-url",
+      "text": "Canonical site URL. This file and readme.md use https://inventor-loco.vercel.app. cv-master.md and cv-full.html still list https://inventor-loco.github.io/inventor-loco/. /bio is a Vercel rewrite to bio.html; /bio.html and /bio.json work without that rewrite."
+    },
+    {
+      "id": "email-personal-public",
+      "text": "Personal email vmat.icaza@gmail.com is already in cv-master.md and is repeated at links.email_personal. Remove it from this public file if it should not ship at /bio.json."
+    },
+    {
+      "id": "idetic-english-name",
+      "text": "Official English expansion of IDeTIC, if you want it in grant forms. The site only ever uses the acronym, so this file does not expand it."
+    },
+    {
+      "id": "research-interests",
+      "text": "Review research_interests. The list is wording already on the home page and the CV (optical wireless, OCC, visible light, embedded systems, prototyping, Internet of Things, teaching platforms). Add or remove topics. No keywords were invented beyond that."
+    },
+    {
+      "id": "languages-level",
+      "text": "English level is B2 (Oxford Test of English), copied from cv-master.md §8. Confirm that this is still the level you want stated. It is not repeated in the prose."
+    },
+    {
+      "id": "distinctions-in-prose",
+      "text": "Suma Cum Laude and highest distinction appear in the long bio and in education notes because cv-master.md already states them. Say if they should come out of the prose. Other distinctions (2016 FCFM award, 2009 PSU) are not in the bio."
+    },
+    {
+      "id": "department-english",
+      "text": "English department line is a translation of the Spanish names you supplied: Department of Electrical Engineering (DIE), Faculty of Physical and Mathematical Sciences (FCFM). Confirm the faculty's official English wording if it differs."
+    },
+    {
+      "id": "voice-pass",
+      "text": "Read the medium and long bios in both languages and edit anything that does not sound like you. The short bios are the old CV paragraphs and were not rewritten (58 English words, 66 Spanish). Medium is 124 English words and 134 Spanish. Long is 295 English words and 314 Spanish. Spanish runs a little longer than English."
+    }
+  ]
+}
