@@ -1,6 +1,9 @@
-// Renders bio.html from /bio.json. The hero tagline is filled by site-lang.js
-// (data-bio="tagline"); this script fills the copy blocks and the structured
-// sections, and re-renders when the EN/ES toggle fires sitelangchange.
+// Renders bio.html from /bio.json. Only the medium and long bios (both in
+// third-person, IEEE-biography style) are shown as copy-ready text cards; the
+// first-person tagline and short bio stay in bio.json for the home-page lead
+// and the CV summary but are not rendered here. This script also fills the
+// structured sections, and re-renders when the EN/ES toggle fires
+// sitelangchange.
 (function () {
   var bio = null;
 
@@ -76,10 +79,8 @@
 
   var ui = {
     en: {
-      textsKicker: 'Copy-ready',
+      textsKicker: 'Copy-ready · IEEE style (third person)',
       texts: 'Texts',
-      tagline: 'Tagline',
-      short: 'Short bio',
       medium: 'Medium bio',
       long: 'Long bio',
       copyEn: 'Copy English',
@@ -98,10 +99,8 @@
       nationality: function (list) { return list.join(' and ') + ' nationality.'; }
     },
     es: {
-      textsKicker: 'Listo para copiar',
+      textsKicker: 'Listo para copiar · estilo IEEE (tercera persona)',
       texts: 'Textos',
-      tagline: 'Eslogan',
-      short: 'Biografía corta',
       medium: 'Biografía media',
       long: 'Biografía larga',
       copyEn: 'Copiar inglés',
@@ -129,11 +128,16 @@
     return typeof url === 'string' && /^(https:\/\/|mailto:)/.test(url) ? url : '';
   }
 
+  function paragraphs(text) {
+    return (text || '')
+      .split(/\n\s*\n/)
+      .map(function (p) { return p.trim(); })
+      .filter(Boolean);
+  }
+
   function renderTexts(root) {
     var t = T();
     var blocks = [
-      { title: t.tagline, value: bio.tagline },
-      { title: t.short, value: bio.bios && bio.bios.short },
       { title: t.medium, value: bio.bios && bio.bios.medium },
       { title: t.long, value: bio.bios && bio.bios.long }
     ];
@@ -149,8 +153,9 @@
       card.style.marginTop = '1rem';
       card.appendChild(el('div', 'card-kicker', 'EN ' + words(english) + ' · ES ' + words(spanish)));
       card.appendChild(el('h3', null, block.title));
-      var body = el('p', 'bio-text', L(block.value));
-      card.appendChild(body);
+      paragraphs(L(block.value)).forEach(function (p) {
+        card.appendChild(el('p', 'bio-text', p));
+      });
       var actions = el('div', 'hero-actions bio-actions');
       if (english) actions.appendChild(copyButton(t.copyEn, english));
       if (spanish) actions.appendChild(copyButton(t.copyEs, spanish));

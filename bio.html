@@ -16,7 +16,22 @@
   <link rel="stylesheet" href="styles/main-pages.css" />
   <style>
     :root { --page-accent: var(--c-teal); --page-accent-soft: var(--c-teal-soft); }
+    .bio-hero-grid {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      grid-template-areas: "portrait title";
+      gap: 2rem;
+      align-items: stretch;
+    }
+    .bio-hero-portrait { grid-area: portrait; display: flex; }
+    .bio-hero-title    { grid-area: title; }
+    .bio-portrait-img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 4px; border: 1px solid var(--rule); background: var(--soft); min-height: 200px; }
+    @media (max-width: 640px) {
+      .bio-hero-grid { grid-template-columns: 1fr; grid-template-areas: "portrait" "title"; }
+      .bio-portrait-img { max-width: 140px; }
+    }
     .bio-text { margin: 0.75rem 0 0; color: var(--ink); font-size: 0.95rem; max-width: 48rem; }
+    .bio-text + .bio-text { margin-top: 0.75rem; }
     .bio-subhead { font-size: 0.85rem; font-weight: 500; margin: 1.15rem 0 0.15rem; color: var(--ink); }
     #bio-links .mini-item { grid-template-columns: 12.5rem 1fr; }
     @media (max-width: 760px) {
@@ -85,16 +100,26 @@
   <div class="wrap">
 
     <section class="shell hero compact">
-      <div class="eyebrow" data-es="Biografía canónica">Canonical bio</div>
-      <h1 data-es="Biografía">Bio</h1>
-      <!-- Canonical copy: bio.json tagline. The text here is the no-JS fallback and must match that field. -->
-      <p class="lead" data-bio="tagline" data-es="Trabajo en comunicaciones por cámara óptica, sistemas embebidos, prototipado experimental y plataformas docentes construidas en torno a la ingeniería práctica.">I work on optical camera communications, embedded systems, experimental prototyping, and teaching platforms built around practical engineering.</p>
-      <div class="hero-actions">
-        <a class="btn" href="bio.json">bio.json</a>
-        <a class="btn-ghost" href="cv.html">CV</a>
+      <div class="bio-hero-grid">
+        <div class="bio-hero-portrait">
+          <img class="bio-portrait-img"
+               src="assets/portrait/profile.jpg"
+               onerror="this.src='assets/portrait/profile.svg'"
+               alt="Vicente Matus, PhD"
+               width="180" height="225">
+        </div>
+        <div class="bio-hero-title">
+          <div class="eyebrow" data-es="Biografía canónica">Canonical bio</div>
+          <h1 data-es="Biografía">Bio</h1>
+          <p class="lead" data-es="Biografía profesional en estilo IEEE (tercera persona), en versión media y larga. Esta página lee bio.json.">Professional biography in IEEE style (third person), in a medium and a long version. This page reads bio.json.</p>
+          <div class="hero-actions">
+            <a class="btn" href="bio.json">bio.json</a>
+            <a class="btn-ghost" href="cv.html">CV</a>
+          </div>
+          <p class="muted" style="margin-top:0.9rem;" data-es="El texto canónico vive en bio.json.">The canonical text lives in bio.json.</p>
+          <noscript><p class="muted" style="margin-top:0.8rem;">This page needs JavaScript to render the bios. The raw file is <a href="bio.json">bio.json</a>.</p></noscript>
+        </div>
       </div>
-      <p class="muted" style="margin-top:0.9rem;" data-es="Esta página lee bio.json. El texto canónico está en ese archivo.">This page reads bio.json. The canonical text lives in that file.</p>
-      <noscript><p class="muted" style="margin-top:0.8rem;">This page needs JavaScript to render the bios. The raw file is <a href="bio.json">bio.json</a>.</p></noscript>
     </section>
 
     <section class="shell section" id="bio-texts" style="margin-top:1.4rem;" hidden></section>
